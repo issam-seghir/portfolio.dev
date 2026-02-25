@@ -21,7 +21,3 @@ export function useViewStats() {
 export function useWakatimeStats() {
   return useQuery(orpc.wakatime.stats.queryOptions())
 }
-
-export function useSpotifyStats() {
-  return useQuery(orpc.spotify.stats.queryOptions())
-}

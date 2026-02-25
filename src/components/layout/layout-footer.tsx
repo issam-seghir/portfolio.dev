@@ -8,7 +8,6 @@ import { FOOTER_LINKS } from '@/config/links'
 import { useGitHubStats } from '@/hooks/queries/stats.query'
 
 import LocaleSwitcher from './locale-switcher'
-import NowPlaying from './now-playing'
 
 function LayoutFooter() {
   const { data, isSuccess, isLoading, isError } = useGitHubStats()
@@ -16,7 +15,6 @@ function LayoutFooter() {
 
   return (
     <footer className='relative mx-auto mb-6 flex w-full max-w-5xl flex-col rounded-2xl bg-background/30 p-8 saturate-100 backdrop-blur-md'>
-      <NowPlaying />
       <div className='mt-12 grid grid-cols-2 sm:grid-cols-3'>
         {FOOTER_LINKS.map((list) => (
           <div key={list.id} className='mb-10 flex flex-col items-start gap-4 pr-4'>
