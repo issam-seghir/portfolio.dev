@@ -1,9 +1,9 @@
 import type { useTranslations } from 'next-intl'
 
-import { SiFacebook, SiGithub, SiInstagram, SiX, SiYoutube } from '@icons-pack/react-simple-icons'
+import { SiFacebook, SiGithub, SiInstagram, SiX } from '@icons-pack/react-simple-icons'
 import { BarChartIcon, FlameIcon, MessageCircleIcon, MonitorIcon, PencilIcon, UserCircleIcon } from 'lucide-react'
 
-import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_YOUTUBE_URL } from '@/lib/constants'
+import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_X_URL } from '@/lib/constants'
 
 // Seems that next-intl doesn't expose the type for translation key,
 // so we extract it here
@@ -107,8 +107,6 @@ export const FOOTER_LINKS: FooterLinks = [
       { href: SITE_INSTAGRAM_URL, labelKey: 'common.labels.instagram' },
       // i18n-check t('common.labels.github')
       { href: SITE_GITHUB_URL, labelKey: 'common.labels.github' },
-      // i18n-check t('common.labels.youtube')
-      { href: SITE_YOUTUBE_URL, labelKey: 'common.labels.youtube' },
     ],
   },
   {
@@ -148,11 +146,6 @@ export const SOCIAL_LINKS: SocialLinks = [
     href: SITE_X_URL,
     title: 'X',
     icon: <SiX />,
-  },
-  {
-    href: SITE_YOUTUBE_URL,
-    title: 'YouTube',
-    icon: <SiYoutube />,
   },
 ]
 

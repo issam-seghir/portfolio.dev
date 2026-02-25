@@ -1,7 +1,7 @@
 // Inspired by: https://fig.io
 'use client'
 
-import { SiGithub, SiYoutube } from '@icons-pack/react-simple-icons'
+import { SiGithub } from '@icons-pack/react-simple-icons'
 import { ArrowRightIcon, PencilIcon, StarIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -11,7 +11,6 @@ import {
   useGitHubStats,
   useLikeStats,
   useViewStats,
-  useYoutubeStats,
 } from '@/hooks/queries/stats.query'
 
 type Card = {
@@ -28,7 +27,6 @@ type Card = {
 }
 
 function Stats() {
-  const youtubeQuery = useYoutubeStats()
   const githubQuery = useGitHubStats()
   const likesQuery = useLikeStats()
   const viewsQuery = useViewStats()
@@ -36,28 +34,6 @@ function Stats() {
   const t = useTranslations()
 
   const data: Card[] = [
-    {
-      title: t('dashboard.stat.youtube-subscribers'),
-      link: 'https://www.youtube.com/@nelsonlaidev',
-      value: youtubeQuery.data?.subscribers,
-      icon: <SiYoutube className='text-[#ff0000]' />,
-      linkText: 'YouTube',
-      gradient: {
-        startColor: '#ff0000',
-        endColor: '#ca1a1a',
-      },
-    },
-    {
-      title: t('dashboard.stat.youtube-views'),
-      link: 'https://www.youtube.com/@nelsonlaidev',
-      value: youtubeQuery.data?.views,
-      icon: <SiYoutube className='text-[#ff0000]' />,
-      linkText: 'YouTube',
-      gradient: {
-        startColor: '#ff0000',
-        endColor: '#ca1a1a',
-      },
-    },
     {
       title: t('dashboard.stat.github-followers'),
       link: 'https://github.com/nelsonlaidev',

@@ -111,8 +111,7 @@
       "terms": "服務條款",
       "unsubscribe": "取消訂閱",
       "users": "使用者",
-      "uses": "裝備",
-      "youtube": "YouTube"
+      "uses": "裝備"
     },
     "like": "讚",
     "likes": "{count, plural, =1 {# 點讚} other {# 點讚}}",
@@ -131,14 +130,12 @@
     "go-to-homepage": "回到首頁"
   },
   "dashboard": {
-    "description": "這是我的個人儀表板，使用 Next.js API 路由建立，並部署為 serverless functions。我使用這個儀表板追蹤 YouTube、GitHub 等平台的各種統計。",
+    "description": "這是我的個人儀表板，使用 Next.js API 路由建立，並部署為 serverless functions。我使用這個儀表板追蹤 GitHub 等平台的各種統計。",
     "stat": {
       "blog-total-likes": "部落格總按讚數",
       "blog-total-views": "部落格總瀏覽量",
       "github-followers": "GitHub 關注者",
-      "github-stars": "GitHub 星數",
-      "youtube-subscribers": "YouTube 訂閱者",
-      "youtube-views": "YouTube 瀏覽量"
+      "github-stars": "GitHub 星數"
     }
   },
   "design": {

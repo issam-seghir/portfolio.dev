@@ -111,8 +111,7 @@
       "terms": "服务条款",
       "unsubscribe": "取消订阅",
       "users": "用户",
-      "uses": "装备",
-      "youtube": "YouTube"
+      "uses": "装备"
     },
     "like": "赞",
     "likes": "{count, plural, =1 {# 点赞} other {# 点赞}}",
@@ -131,14 +130,12 @@
     "go-to-homepage": "回到首页"
   },
   "dashboard": {
-    "description": "这是我的个人仪表板，使用 Next.js API 路由建立，并部署为 serverless functions。我使用这个仪表板追踪 YouTube、GitHub 等平台的各种统计。",
+    "description": "这是我的个人仪表板，使用 Next.js API 路由建立，并部署为 serverless functions。我使用这个仪表板追踪 GitHub 等平台的各种统计。",
     "stat": {
       "blog-total-likes": "博客总点赞数",
       "blog-total-views": "博客总浏览量",
       "github-followers": "GitHub 关注者",
-      "github-stars": "GitHub 星数",
-      "youtube-subscribers": "YouTube 订阅者",
-      "youtube-views": "YouTube 浏览量"
+      "github-stars": "GitHub 星数"
     }
   },
   "design": {
