@@ -1,7 +1,7 @@
 // Inspired by: https://fig.io
 'use client'
 
-import { SiGithub, SiWakatime, SiYoutube } from '@icons-pack/react-simple-icons'
+import { SiGithub, SiYoutube } from '@icons-pack/react-simple-icons'
 import { ArrowRightIcon, PencilIcon, StarIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -11,7 +11,6 @@ import {
   useGitHubStats,
   useLikeStats,
   useViewStats,
-  useWakatimeStats,
   useYoutubeStats,
 } from '@/hooks/queries/stats.query'
 
@@ -33,23 +32,10 @@ function Stats() {
   const githubQuery = useGitHubStats()
   const likesQuery = useLikeStats()
   const viewsQuery = useViewStats()
-  const wakatimeQuery = useWakatimeStats()
 
   const t = useTranslations()
 
   const data: Card[] = [
-    {
-      title: t('dashboard.stat.coding-hours'),
-      link: 'https://wakatime.com/@nelsonlaidev',
-      value: wakatimeQuery.data?.hours,
-      icon: <SiWakatime className='text-[#0061ff]' />,
-      linkText: 'WakaTime',
-      gradient: {
-        startColor: '#0061ff',
-        endColor: '#6f7bf7',
-      },
-      suffix: 'hrs',
-    },
     {
       title: t('dashboard.stat.youtube-subscribers'),
       link: 'https://www.youtube.com/@nelsonlaidev',

@@ -17,7 +17,3 @@ export function useLikeStats() {
 export function useViewStats() {
   return useQuery(orpc.view.stats.queryOptions())
 }
-
-export function useWakatimeStats() {
-  return useQuery(orpc.wakatime.stats.queryOptions())
-}

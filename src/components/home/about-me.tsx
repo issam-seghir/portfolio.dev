@@ -8,7 +8,6 @@ import { buttonVariants } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
-import CodingHours from './coding-hours'
 import Connect from './connect'
 import FavoriteFramework from './favorite-framework'
 import LocationCard from './location-card'
@@ -78,7 +77,6 @@ function AboutMe() {
         <div className='grid gap-4'>
           <Connect />
           <div className='grid gap-4 [@media(min-width:450px)]:grid-cols-2'>
-            <CodingHours />
             <FavoriteFramework />
           </div>
         </div>

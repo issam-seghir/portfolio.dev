@@ -135,7 +135,6 @@
     "stat": {
       "blog-total-likes": "部落格總按讚數",
       "blog-total-views": "部落格總瀏覽量",
-      "coding-hours": "編程時間",
       "github-followers": "GitHub 關注者",
       "github-stars": "GitHub 星數",
       "youtube-subscribers": "YouTube 訂閱者",
@@ -192,7 +191,6 @@
   },
   "homepage": {
     "about-me": {
-      "coding-hours": "編程時間",
       "connect": "聯繫",
       "fav-framework": "最愛框架",
       "location": "香港",

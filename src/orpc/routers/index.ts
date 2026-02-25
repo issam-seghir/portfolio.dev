@@ -10,13 +10,11 @@ import { settingsRouter } from './settings.router'
 import { unsubscribeRouter } from './unsubscribe.router'
 import { viewRouter } from './view.router'
 import { voteRouter } from './vote.router'
-import { wakatimeRouter } from './wakatime.router'
 import { youtubeRouter } from './youtube.router'
 
 export const router = {
   github: githubRouter,
   youtube: youtubeRouter,
-  wakatime: wakatimeRouter,
   view: viewRouter,
   like: likeRouter,
   comment: commentRouter,

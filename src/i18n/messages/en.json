@@ -135,7 +135,6 @@
     "stat": {
       "blog-total-likes": "Blog Total Likes",
       "blog-total-views": "Blog Total Views",
-      "coding-hours": "Coding Hours",
       "github-followers": "GitHub Followers",
       "github-stars": "GitHub Stars",
       "youtube-subscribers": "YouTube Subscribers",
@@ -192,7 +191,6 @@
   },
   "homepage": {
     "about-me": {
-      "coding-hours": "Coding hours",
       "connect": "Connect",
       "fav-framework": "Fav. framework",
       "location": "Hong Kong",
