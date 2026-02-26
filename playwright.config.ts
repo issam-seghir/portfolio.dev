@@ -2,7 +2,7 @@ import { defineConfig, devices } from '@playwright/test'
 
 import { env } from './src/lib/env'
 
-const baseURL = 'http://localhost:3000'
+const baseURL = 'http://localhost:3005'
 
 export default defineConfig({
   testDir: './src/tests/e2e',

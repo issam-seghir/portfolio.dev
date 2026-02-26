@@ -103,8 +103,8 @@ ReplyEmailTemplate.PreviewProps = {
   date: 'January 2, 2025',
   replierIdentifier: 'comment=1&reply=1',
   postTitle: 'Understanding Modern Web Development',
-  postUrl: 'http://localhost:3000/blog/understanding-modern-web-development',
-  unsubscribeUrl: 'http://localhost:3000/unsubscribe?token=abc123',
+  postUrl: 'http://localhost:3005/blog/understanding-modern-web-development',
+  unsubscribeUrl: 'http://localhost:3005/unsubscribe?token=abc123',
 } satisfies ReplyEmailTemplateProps
 
 export default ReplyEmailTemplate

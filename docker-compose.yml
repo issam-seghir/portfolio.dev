@@ -5,7 +5,7 @@ services:
     image: postgres:16-alpine
     container_name: nelsonlaidev-postgres
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -18,7 +18,7 @@ services:
     image: redis
     container_name: nelsonlaidev-redis
     ports:
-      - 6379:6379
+      - 6380:6379
     volumes:
       - redis:/data
     networks:
@@ -28,7 +28,7 @@ services:
     image: hiett/serverless-redis-http:latest
     container_name: nelsonlaidev-redis-http
     ports:
-      - 8079:80
+      - 8080:80
     environment:
       SRH_MODE: env
       SRH_TOKEN: nelsonlaidev

@@ -26,7 +26,7 @@ export async function createBrowserContext(browser: Browser, options: CreateBrow
       cookies: [],
       origins: [
         {
-          origin: options.baseURL ?? 'http://localhost:3000',
+          origin: options.baseURL ?? 'http://localhost:3005',
           localStorage: options.localStorage ?? [],
         },
       ],

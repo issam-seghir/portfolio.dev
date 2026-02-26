@@ -178,11 +178,11 @@ The services will be available at the following URLs:
 
 | Service          | URL              |
 | ---------------- | ---------------- |
-| App              | `localhost:3000` |
-| React Email      | `localhost:3001` |
-| Database         | `localhost:5432` |
-| Redis            | `localhost:6379` |
-| Redis serverless | `localhost:8079` |
+| App              | `localhost:3005` |
+| React Email      | `localhost:3006` |
+| Database         | `localhost:5433` |
+| Redis            | `localhost:6380` |
+| Redis serverless | `localhost:8080` |
 
 ### Available Scripts
 
