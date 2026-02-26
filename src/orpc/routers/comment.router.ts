@@ -116,7 +116,7 @@ const createComment = protectedProcedure
     const commenterName = user.name
     const commenterImage = user.image ?? getDefaultImage(user.id)
     const postTitle = post.title
-    const postUrl = `https://nelsonlai.dev/blog/${input.slug}`
+    const postUrl = `${env.NEXT_PUBLIC_SITE_URL}/blog/${input.slug}`
 
     const comment = await context.db.transaction(async (tx) => {
       const [c] = await tx
@@ -198,7 +198,7 @@ const createComment = protectedProcedure
               date: input.date,
               postTitle,
               postUrl,
-              unsubscribeUrl: `https://nelsonlai.dev/unsubscribe?token=${token}`,
+              unsubscribeUrl: `${env.NEXT_PUBLIC_SITE_URL}/unsubscribe?token=${token}`,
             }),
           })
         }

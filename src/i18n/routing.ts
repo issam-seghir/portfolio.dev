@@ -2,7 +2,7 @@ import { createNavigation } from 'next-intl/navigation'
 import { defineRouting } from 'next-intl/routing'
 
 export const routing = defineRouting({
-  locales: ['en', 'zh-TW', 'zh-CN'] as const,
+  locales: ['en', 'ar'] as const,
   defaultLocale: 'en',
   localePrefix: 'as-needed',
   localeDetection: true,
@@ -15,8 +15,7 @@ export const routing = defineRouting({
 
 export const localeLabels: Record<(typeof routing.locales)[number], string> = {
   en: 'English',
-  'zh-TW': '繁體中文',
-  'zh-CN': '简体中文',
+  ar: 'العربية',
 }
 
 export const { Link, usePathname, useRouter, redirect } = createNavigation(routing)

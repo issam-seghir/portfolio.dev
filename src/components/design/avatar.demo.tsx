@@ -20,27 +20,27 @@ function AvatarSizes() {
     <DemoItem title='Sizes' orientation='vertical'>
       <div className='flex flex-wrap items-center gap-2'>
         <Avatar size='sm'>
-          <AvatarImage src='https://github.com/nelsonlaidev.png' alt='@nelsonlaidev' />
-          <AvatarFallback>NL</AvatarFallback>
+          <AvatarImage src='https://github.com/issam-seghir.png' alt='@issam-seghir' />
+          <AvatarFallback>IS</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src='https://github.com/nelsonlaidev.png' alt='@nelsonlaidev' />
-          <AvatarFallback>NL</AvatarFallback>
+          <AvatarImage src='https://github.com/issam-seghir.png' alt='@issam-seghir' />
+          <AvatarFallback>IS</AvatarFallback>
         </Avatar>
         <Avatar size='lg'>
-          <AvatarImage src='https://github.com/nelsonlaidev.png' alt='@nelsonlaidev' />
-          <AvatarFallback>NL</AvatarFallback>
+          <AvatarImage src='https://github.com/issam-seghir.png' alt='@issam-seghir' />
+          <AvatarFallback>IS</AvatarFallback>
         </Avatar>
       </div>
       <div className='flex flex-wrap items-center gap-2'>
         <Avatar size='sm'>
-          <AvatarFallback>NL</AvatarFallback>
+          <AvatarFallback>IS</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarFallback>NL</AvatarFallback>
+          <AvatarFallback>IS</AvatarFallback>
         </Avatar>
         <Avatar size='lg'>
-          <AvatarFallback>NL</AvatarFallback>
+          <AvatarFallback>IS</AvatarFallback>
         </Avatar>
       </div>
     </DemoItem>

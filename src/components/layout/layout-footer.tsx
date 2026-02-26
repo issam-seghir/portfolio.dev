@@ -33,9 +33,9 @@ function LayoutFooter() {
       <div className='mt-20 flex flex-col gap-4'>
         <LocaleSwitcher />
         <div className='flex items-center justify-between text-sm'>
-          <div>&copy; {new Date().getFullYear()} Nelson Lai</div>
+          <div>&copy; {new Date().getFullYear()} Issam Seghir</div>
           <Link
-            href='https://nelsonlai.link/s/github-portfolio'
+            href='https://github.com/issam-seghir/portfolio.dev'
             className='flex items-center justify-center overflow-hidden rounded-4xl border'
           >
             <div className='flex h-8 items-center gap-2 border-r bg-muted pr-2 pl-3'>

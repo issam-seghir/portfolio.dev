@@ -56,10 +56,10 @@ function SidebarBasic() {
           <SidebarHeader>
             <div className='flex items-center gap-3 px-2 pt-2'>
               <div className='flex size-8 items-center justify-center rounded-lg bg-primary text-xs font-semibold text-primary-foreground'>
-                NL
+                IS
               </div>
               <div className='flex flex-col leading-tight'>
-                <span className='text-sm font-semibold'>Nelson Labs</span>
+                <span className='text-sm font-semibold'>Issam Labs</span>
                 <span className='text-xs text-muted-foreground'>Design team</span>
               </div>
             </div>

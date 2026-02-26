@@ -13,7 +13,7 @@ import {
   MY_NAME,
   SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
-  SITE_INSTAGRAM_URL,
+  SITE_LINKEDIN_URL,
   SITE_X_URL,
 } from '@/lib/constants'
 import { getPageBySlug } from '@/lib/content'
@@ -63,7 +63,7 @@ function Page(props: PageProps<'/[locale]/about'>) {
       name: MY_NAME,
       description: t('metadata.site-description'),
       url: getBaseUrl(),
-      sameAs: [SITE_FACEBOOK_URL, SITE_INSTAGRAM_URL, SITE_X_URL, SITE_GITHUB_URL],
+      sameAs: [SITE_FACEBOOK_URL, SITE_LINKEDIN_URL, SITE_X_URL, SITE_GITHUB_URL],
     },
     inLanguage: locale,
   }

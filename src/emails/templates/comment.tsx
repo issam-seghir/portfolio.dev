@@ -36,7 +36,7 @@ function CommentEmailTemplate(props: CommentEmailTemplateProps) {
       <Head>
         <GeistFont />
       </Head>
-      <Preview>New comment on the post "{postTitle}" on nelsonlai.dev</Preview>
+      <Preview>New comment on the post "{postTitle}"</Preview>
       <Tailwind>
         <Body className='m-auto bg-white p-1'>
           <Container className='mx-auto w-full max-w-165 rounded-2xl border border-solid border-[#e5e5e5] bg-white p-8'>
@@ -85,11 +85,11 @@ function CommentEmailTemplate(props: CommentEmailTemplateProps) {
 CommentEmailTemplate.PreviewProps = {
   comment: 'This is exactly what I needed! The explanations are clear and concise. Thanks for sharing! 👏',
   commenterName: 'John Doe',
-  commenterImage: 'https://nelsonlai.dev/api/avatar/john-doe',
+  commenterImage: 'http://localhost:3005/api/avatar/john-doe',
   date: 'January 1, 2025',
   commentIdentifier: 'comment=1',
   postTitle: 'Understanding Modern Web Development',
-  postUrl: 'http://localhost:3000/blog/understanding-modern-web-development',
+  postUrl: 'http://localhost:3005/blog/understanding-modern-web-development',
 } satisfies CommentEmailTemplateProps
 
 export default CommentEmailTemplate

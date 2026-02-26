@@ -2,18 +2,21 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-
   "files.associations": {
     "*.css": "tailwindcss",
     ".env*": "properties"
   },
-
-  "tailwindCSS.classFunctions": ["cva", "cn"],
-
+  "tailwindCSS.classFunctions": [
+    "cva",
+    "cn"
+  ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.preferTypeOnlyAutoImports": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "i18n-ally.localesPaths": [
+    "src/i18n",
+    "src/i18n/messages"
+  ]
 }

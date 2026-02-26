@@ -36,7 +36,7 @@ function Stats() {
   const data: Card[] = [
     {
       title: t('dashboard.stat.github-followers'),
-      link: 'https://github.com/nelsonlaidev',
+      link: 'https://github.com/issam-seghir',
       value: githubQuery.data?.followers,
       icon: <SiGithub className='text-[#fee000]' />,
       linkText: 'GitHub',
@@ -47,7 +47,7 @@ function Stats() {
     },
     {
       title: t('dashboard.stat.github-stars'),
-      link: 'https://github.com/nelsonlaidev',
+      link: 'https://github.com/issam-seghir',
       value: githubQuery.data?.stars,
       icon: <StarIcon className='size-6 text-[#fee000]' />,
       linkText: 'GitHub',
@@ -58,7 +58,7 @@ function Stats() {
     },
     {
       title: t('dashboard.stat.blog-total-views'),
-      link: 'https://nelsonlai.dev',
+      link: '/',
       value: viewsQuery.data?.views,
       icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
       linkText: 'Blog',
@@ -69,7 +69,7 @@ function Stats() {
     },
     {
       title: t('dashboard.stat.blog-total-likes'),
-      link: 'https://nelsonlai.dev',
+      link: '/',
       value: likesQuery.data?.likes,
       icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
       linkText: 'Blog',

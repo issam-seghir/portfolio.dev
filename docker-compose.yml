@@ -3,38 +3,38 @@ version: '3'
 services:
   db:
     image: postgres:16-alpine
-    container_name: nelsonlaidev-postgres
+    container_name: portfolio-postgres
     ports:
       - 5433:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=nelsonlaidev
+      - POSTGRES_DB=portfolio
     volumes:
       - db:/var/lib/postgresql/data
     networks:
-      - nelsonlaidev-network
+      - portfolio-network
   redis:
     image: redis
-    container_name: nelsonlaidev-redis
+    container_name: portfolio-redis
     ports:
       - 6380:6379
     volumes:
       - redis:/data
     networks:
-      - nelsonlaidev-network
+      - portfolio-network
 
   serverless-redis-http:
     image: hiett/serverless-redis-http:latest
-    container_name: nelsonlaidev-redis-http
+    container_name: portfolio-redis-http
     ports:
       - 8080:80
     environment:
       SRH_MODE: env
-      SRH_TOKEN: nelsonlaidev
+      SRH_TOKEN: portfolio
       SRH_CONNECTION_STRING: redis://redis:6379
     networks:
-      - nelsonlaidev-network
+      - portfolio-network
     depends_on:
       - redis
 
@@ -43,5 +43,5 @@ volumes:
   redis:
 
 networks:
-  nelsonlaidev-network:
+  portfolio-network:
     driver: bridge

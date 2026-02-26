@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "Hi! I'm Nelson Lai, a passionate web development student creating innovative projects with HTML, CSS, and JavaScript. Explore my portfolio, skills, and journey in building user-friendly apps. Let's connect!"
+    "description": "Hi! I'm Issam Seghir, a Software Engineer from Algeria specializing in React, Next.js, React Native, and full-stack development. Explore my portfolio, skills, and projects. Let's connect!"
   },
   "account": {
     "account-created": "Account created",
@@ -53,7 +53,7 @@
       "toggle-strikethrough": "Toggle strikethrough",
       "write": "Write"
     },
-    "description": "Discover my website and blog, where I share tutorials, notes, and experiences as a full-stack engineer based in Hong Kong. I began web dev as a hobby in Dec 2020. Explore my journey!",
+    "description": "Discover my website and blog, where I share tutorials, notes, and experiences as a software engineer from Algeria. Explore my journey in web and mobile development!",
     "footer": {
       "edit-on-github": "Edit on GitHub",
       "last-updated": "Last updated: {date}"
@@ -103,8 +103,7 @@
       "github": "GitHub",
       "guestbook": "Guestbook",
       "home": "Home",
-      "instagram": "Instagram",
-      "links": "Links",
+      "linkedin": "LinkedIn",
       "privacy": "Privacy Policy",
       "projects": "Projects",
       "settings": "Settings",
@@ -144,7 +143,7 @@
   "dialog": {
     "sign-in": {
       "continue-with": "Continue with {provider}",
-      "description": "to continue to nelsonlai.dev",
+      "description": "to continue to Issam Seghir's portfolio",
       "last-used": "Last used",
       "notice": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>"
     }
@@ -190,26 +189,26 @@
     "about-me": {
       "connect": "Connect",
       "fav-framework": "Fav. framework",
-      "location": "Hong Kong",
+      "location": "Algeria",
       "more": "Know more about me",
       "stacks": "Stacks",
       "title": "About Me"
     },
     "get-in-touch": {
       "description": "Feel free to reach out to me!",
-      "image-alt": "Nelson Lai's Logo",
-      "title": "Any questions about Next.js?"
+      "image-alt": "Issam Seghir's Logo",
+      "title": "Have a project in mind?"
     },
     "hero": {
       "amazing": "Amazing",
       "attractive": "Attractive",
       "fantastic": "Fantastic",
-      "location-timezone": "Hong Kong • UTC/GMT +8",
+      "location-timezone": "Algeria • UTC/GMT +1",
       "stunning": "Stunning",
       "title-bottom": "React",
       "title-middle-left": "building",
       "title-middle-right": "websites using",
-      "title-top": "I'm Nelson, a Full Stack Engineer"
+      "title-top": "I'm Issam, a Software Engineer"
     },
     "latest-articles": {
       "card": "Article",
@@ -231,7 +230,7 @@
     "link-to-section": "Link to section"
   },
   "metadata": {
-    "site-description": "Nelson Lai is a full stack engineer based in Hong Kong. He builds performant and elegant websites using React, Node.js, and modern technologies."
+    "site-description": "Issam Seghir is a software engineer from Algeria. He builds performant and elegant web and mobile applications using React, Next.js, and modern technologies."
   },
   "privacy": {
     "description": "This page explains how we handle your data and protect your privacy when you use our website."
