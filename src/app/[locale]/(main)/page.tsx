@@ -17,7 +17,6 @@ import {
   SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_LINKEDIN_URL,
-  SITE_X_URL,
 } from '@/lib/constants'
 import { getLatestPosts, getSelectedProjects } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
@@ -59,7 +58,7 @@ function Page(props: PageProps<'/[locale]'>) {
       '@type': 'Person',
       name: MY_NAME,
       url: getBaseUrl(),
-      sameAs: [SITE_FACEBOOK_URL, SITE_LINKEDIN_URL, SITE_X_URL, SITE_GITHUB_URL],
+      sameAs: [SITE_FACEBOOK_URL, SITE_LINKEDIN_URL, SITE_GITHUB_URL],
     },
     copyrightYear: new Date().getFullYear(),
     dateCreated: '2022-02-01T00:00:00Z',

@@ -1,6 +1,6 @@
 'use client'
 
-import { SiFacebook, SiGithub, SiX } from '@icons-pack/react-simple-icons'
+import { SiFacebook, SiGithub } from '@icons-pack/react-simple-icons'
 import { ArrowUpRightIcon, MailIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -9,7 +9,6 @@ import {
   SITE_GITHUB_URL,
   SITE_LINKEDIN_URL,
   SITE_WHATSAPP_URL,
-  SITE_X_URL,
 } from '@/lib/constants'
 import { cn } from '@/utils/cn'
 
@@ -49,12 +48,6 @@ const LINKS = [
     icon: SiGithub,
     label: 'GitHub',
     labelKey: 'about.connect.github',
-  },
-  {
-    href: SITE_X_URL,
-    icon: SiX,
-    label: 'X',
-    labelKey: 'about.connect.x',
   },
   {
     href: SITE_FACEBOOK_URL,

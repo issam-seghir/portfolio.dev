@@ -1,9 +1,9 @@
 import type { useTranslations } from 'next-intl'
 
-import { SiFacebook, SiGithub, SiX } from '@icons-pack/react-simple-icons'
+import { SiFacebook, SiGithub } from '@icons-pack/react-simple-icons'
 import { FlameIcon, MessageCircleIcon, MonitorIcon, PencilIcon, UserCircleIcon } from 'lucide-react'
 
-import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_X_URL } from '@/lib/constants'
+import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
 
 const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg role='img' viewBox='0 0 24 24' fill='currentColor' width='1em' height='1em' {...props}>
@@ -137,11 +137,6 @@ export const SOCIAL_LINKS: SocialLinks = [
     href: SITE_FACEBOOK_URL,
     title: 'Facebook',
     icon: <SiFacebook />,
-  },
-  {
-    href: SITE_X_URL,
-    title: 'X',
-    icon: <SiX />,
   },
 ]
 
