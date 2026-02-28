@@ -20,7 +20,7 @@ const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
 )
 
 const STATS = [
-  { value: 5, suffix: '+', labelKey: 'about.stat-years' },
+  { value: 4, suffix: '+', labelKey: 'about.stat-years' },
   { value: 20, suffix: '+', labelKey: 'about.stat-projects' },
   { value: 10, suffix: '+', labelKey: 'about.stat-clients' },
   { value: 3, suffix: '+', labelKey: 'about.stat-countries' },
@@ -104,6 +104,13 @@ export function AboutHero({ description }: AboutHeroProps) {
               <SiGithub className='size-3.5' />
               GitHub
             </a>
+            <Link
+              href='/resume.pdf'
+              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'gap-1.5')}
+            >
+              <DownloadIcon className='size-3.5' />
+              {t('about.download-cv')}
+            </Link>
           </div>
         </div>
       </div>

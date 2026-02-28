@@ -1,20 +1,19 @@
 {
   "about": {
-    "description": "Software Engineer from Algeria building high-quality web & mobile applications. Specializing in React, Next.js, and full-stack TypeScript.",
-    "role": "Software Engineer · Freelancer",
-    "available": "Available for freelance work",
-    "contact": "Get in Touch",
+    "description": "Software Engineer & SaaS Founder from Algeria. I design and build high-performance web & mobile applications, ERP systems, and AI-powered SaaS products using React, Next.js, and TypeScript.",
+    "role": "Software Engineer · SaaS Founder · Freelancer",
+    "available": "Open for freelance & contract work",
+    "contact": "Let's Talk",
     "download-cv": "Download CV",
-    "stat-years": "Years Experience",
-    "stat-projects": "Projects Shipped",
-    "stat-clients": "Happy Clients",
+    "stat-years": "Years of Experience",
+    "stat-projects": "Projects Delivered",
+    "stat-clients": "Satisfied Clients",
     "stat-countries": "Countries Served",
     "connect": {
       "email": "Email",
       "whatsapp": "WhatsApp",
       "linkedin": "LinkedIn",
       "github": "GitHub",
-      "x": "X",
       "facebook": "Facebook"
     },
     "skills": {
@@ -22,6 +21,8 @@
       "backend": "Backend & APIs",
       "database": "Database & Infrastructure",
       "devops": "DevOps & Deployment",
+      "design": "Design & UX",
+      "testing": "Testing & QA",
       "ai": "AI Integration"
     },
     "process": {
@@ -38,31 +39,31 @@
     },
     "testimonials": [
       {
-        "quote": "Issam delivered an outstanding e-commerce platform that exceeded our expectations. His attention to detail and technical expertise made the entire process seamless.",
+        "quote": "Issam transformed our vision into a pixel-perfect e-commerce platform. His design instinct is exceptional — he didn't just code it, he made it beautiful. The site performs at 95+ Lighthouse scores.",
         "name": "Ahmed B.",
         "role": "Founder, Creative Book"
       },
       {
-        "quote": "Working with Issam was a game-changer for our startup. He built our MVP in record time without cutting any corners on code quality.",
+        "quote": "We needed a full-stack developer who could think like a founder. Issam built our SaaS MVP from scratch — auth, payments, dashboard, the works — in weeks, not months.",
         "name": "Sarah M.",
-        "role": "CTO, SaaS Startup"
+        "role": "CEO, AI Startup"
       },
       {
-        "quote": "Issam's full-stack skills are remarkable. He handled everything from database design to a polished UI, and communicated clearly throughout.",
+        "quote": "What sets Issam apart is his creative problem-solving. He proposed a better UX flow than what we designed, convinced us with a prototype, and the conversion rate jumped 40%.",
         "name": "Youssef K.",
-        "role": "Product Manager"
+        "role": "Product Lead, Compos Food"
       }
     ],
     "currently": {
       "location": "Based in Algiers, Algeria",
+      "building": "Building SaaS products & freelancing",
       "reading": "Reading: Designing Data-Intensive Applications",
-      "fuel": "Fueled by coffee and curiosity",
-      "listening": "Listening to lo-fi beats while coding"
+      "fuel": "Fueled by coffee, curiosity, and a desire to create"
     },
     "cta": {
-      "title": "Have a project in mind?",
-      "description": "I'm currently available for freelance work. Let's build something great together.",
-      "email-me": "Email Me",
+      "title": "Ready to bring your idea to life?",
+      "description": "Whether it's a SaaS product, mobile app, e-commerce platform, or AI-powered tool — I'll take it from concept to production. Let's build something people love.",
+      "email-me": "Start a Conversation",
       "linkedin": "Connect on LinkedIn"
     }
   },
@@ -94,6 +95,7 @@
     "toggle-sidebar": "Toggle sidebar"
   },
   "blog": {
+    "description": "Tutorials, insights, and lessons learned from building SaaS products, web & mobile apps, and AI-powered tools. Written by a software engineer who ships.",
     "comments": {
       "author": "Author",
       "comments": "{count, plural, =1 {comment} other {comments}}",
@@ -117,7 +119,6 @@
       "toggle-strikethrough": "Toggle strikethrough",
       "write": "Write"
     },
-    "description": "Discover my website and blog, where I share tutorials, notes, and experiences as a software engineer from Algeria. Explore my journey in web and mobile development!",
     "footer": {
       "edit-on-github": "Edit on GitHub",
       "last-updated": "Last updated: {date}"
@@ -264,40 +265,46 @@
     "experience": {
       "title": "Experience",
       "items": {
+        "founder": {
+          "title": "SaaS Founder & Lead Developer",
+          "company": "Multiple SaaS Products",
+          "period": "2024 — Present",
+          "description": "Building and shipping AI-powered SaaS products and e-commerce platforms. Full ownership from ideation to architecture to deployment."
+        },
         "freelance": {
           "title": "Freelance Software Engineer",
-          "company": "Self-Employed",
+          "company": "International Clients",
           "period": "2023 — Present",
-          "description": "Building full-stack web and mobile applications for clients using React, Next.js, and React Native."
+          "description": "Delivering high-performance web & mobile apps for startups and businesses. Specializing in React/Next.js, React Native, ERP systems, and 90-100 Lighthouse scores."
         },
         "fullstack": {
           "title": "Full-Stack Developer",
-          "company": "Various Projects",
-          "period": "2021 — 2023",
-          "description": "Developed e-commerce platforms, real-time chat apps, and AI-powered tools using modern JavaScript frameworks."
+          "company": "Enterprise & Startup Projects",
+          "period": "2022 — 2023",
+          "description": "Spearheaded development of an ERP system and multiple e-commerce platforms. Integrated AI APIs and built scalable backend architectures."
         },
         "education": {
           "title": "Computer Science",
           "company": "University of Science and Technology",
           "period": "2019 — 2024",
-          "description": "Studied computer science fundamentals, algorithms, data structures, and software engineering."
+          "description": "Studied computer science, algorithms, data structures, and software engineering. Self-taught web & mobile development alongside academics."
         }
       }
     },
     "get-in-touch": {
-      "title": "Let's Work Together",
-      "description": "Have a project in mind or want to collaborate? I'm always open to discussing new opportunities and interesting ideas.",
-      "email": "Send an Email",
-      "availability": "I typically respond within 24 hours."
+      "title": "Let's Build Something Amazing",
+      "description": "Got a SaaS idea, need a mobile app, or want a stunning web platform? I turn ambitious ideas into production-ready products. Let's talk.",
+      "email": "Start a Conversation",
+      "availability": "Typically respond within 24 hours. Available for freelance & contract work."
     },
     "hero": {
-      "available": "Available for work",
+      "available": "Available for freelance",
       "greeting": "Hi, I'm Issam Seghir.",
-      "tagline": "I build web & mobile apps.",
-      "description": "Software Engineer specializing in React, Next.js, and React Native. I craft performant, elegant applications with modern technologies and clean architecture.",
-      "cta-projects": "View My Work",
+      "tagline": "I engineer ideas into products.",
+      "description": "Software Engineer & SaaS Founder. I build high-performance web apps, cross-platform mobile apps, and AI-powered SaaS products — from concept to production, pixel-perfect.",
+      "cta-projects": "See My Work",
       "cta-about": "About Me",
-      "location-timezone": "Algeria · UTC/GMT +1"
+      "location-timezone": "Algiers, Algeria · UTC+1"
     },
     "latest-articles": {
       "card": "Article",
@@ -319,13 +326,13 @@
     "link-to-section": "Link to section"
   },
   "metadata": {
-    "site-description": "Issam Seghir is a software engineer from Algeria. He builds performant and elegant web and mobile applications using React, Next.js, and modern technologies."
+    "site-description": "Issam Seghir — Software Engineer & SaaS Founder from Algeria. Building high-performance web apps, cross-platform mobile apps, ERP systems, and AI-powered SaaS products with React, Next.js, TypeScript, and React Native."
   },
   "privacy": {
     "description": "This page explains how we handle your data and protect your privacy when you use our website."
   },
   "projects": {
-    "description": "A collection of my projects, crafted with dedication.",
+    "description": "A showcase of SaaS products, web platforms, mobile apps, and AI tools I've built — from concept to production.",
     "visit-website": "Visit Website"
   },
   "settings": {

@@ -15,6 +15,13 @@ type TimelineItem = {
 
 const TIMELINE_ITEMS: TimelineItem[] = [
   {
+    titleKey: 'homepage.experience.items.founder.title',
+    companyKey: 'homepage.experience.items.founder.company',
+    periodKey: 'homepage.experience.items.founder.period',
+    descriptionKey: 'homepage.experience.items.founder.description',
+    type: 'work',
+  },
+  {
     titleKey: 'homepage.experience.items.freelance.title',
     companyKey: 'homepage.experience.items.freelance.company',
     periodKey: 'homepage.experience.items.freelance.period',

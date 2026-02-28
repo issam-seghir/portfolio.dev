@@ -1,15 +1,15 @@
 'use client'
 
-import { BookOpenIcon, CoffeeIcon, MapPinIcon, MusicIcon } from 'lucide-react'
+import { BookOpenIcon, CoffeeIcon, MapPinIcon, RocketIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
 const ITEMS = [
   { icon: MapPinIcon, labelKey: 'about.currently.location', color: 'text-blue-500' },
+  { icon: RocketIcon, labelKey: 'about.currently.building', color: 'text-violet-500' },
   { icon: BookOpenIcon, labelKey: 'about.currently.reading', color: 'text-emerald-500' },
   { icon: CoffeeIcon, labelKey: 'about.currently.fuel', color: 'text-orange-500' },
-  { icon: MusicIcon, labelKey: 'about.currently.listening', color: 'text-violet-500' },
 ] as const
 
 function CurrentlySection() {

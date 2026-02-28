@@ -10,7 +10,7 @@ const SKILL_CATEGORIES = [
   {
     labelKey: 'about.skills.frontend',
     color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Shadcn UI', 'React Native', 'Expo'],
+    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS',  'Shadcn UI', 'React Native', 'Expo'],
   },
   {
     labelKey: 'about.skills.backend',
@@ -20,12 +20,22 @@ const SKILL_CATEGORIES = [
   {
     labelKey: 'about.skills.database',
     color: 'bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20',
-    skills: ['PostgreSQL', 'MongoDB', 'Prisma', 'Drizzle', 'Supabase', 'Firebase', 'Redis'],
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Prisma', 'Drizzle', 'Supabase', 'Firebase', 'Redis'],
+  },
+  {
+    labelKey: 'about.skills.design',
+    color: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
+    skills: ['Figma', 'UI/UX Design', 'Responsive Design', 'Complex Animations', 'Lighthouse 90-100'],
   },
   {
     labelKey: 'about.skills.devops',
     color: 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20',
-    skills: ['Docker', 'CI/CD', 'Vercel', 'Cloudflare', 'GitHub Actions', 'Linux'],
+    skills: ['Docker', 'CI/CD', 'GitHub Actions', 'Vercel', 'Netlify', 'Cloudflare', 'Linux'],
+  },
+  {
+    labelKey: 'about.skills.testing',
+    color: 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20',
+    skills: ['Jest', 'Vitest', 'Postman', 'E2E Testing'],
   },
   {
     labelKey: 'about.skills.ai',
