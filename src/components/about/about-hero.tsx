@@ -1,11 +1,15 @@
 'use client'
 
+import NumberFlow from '@number-flow/react'
 import { SiGithub } from '@icons-pack/react-simple-icons'
-import { MailIcon } from 'lucide-react'
+import { DownloadIcon, MailIcon } from 'lucide-react'
+import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
+import { useEffect, useRef, useState } from 'react'
 
 import BlurImage from '@/components/blur-image'
 import { buttonVariants } from '@/components/ui/button'
+import { Link } from '@/components/ui/link'
 import { MY_NAME, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
 import { cn } from '@/utils/cn'
 
@@ -15,12 +19,30 @@ const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
+const STATS = [
+  { value: 5, suffix: '+', labelKey: 'about.stat-years' },
+  { value: 20, suffix: '+', labelKey: 'about.stat-projects' },
+  { value: 10, suffix: '+', labelKey: 'about.stat-clients' },
+  { value: 3, suffix: '+', labelKey: 'about.stat-countries' },
+] as const
+
 type AboutHeroProps = {
   description: string
 }
 
 export function AboutHero({ description }: AboutHeroProps) {
   const t = useTranslations()
+  const statsRef = useRef<HTMLDivElement>(null)
+  const statsInView = useInView(statsRef, { once: true, margin: '-50px' })
+  const [animateStats, setAnimateStats] = useState(false)
+
+  useEffect(() => {
+    if (statsInView) {
+      const timer = setTimeout(() => setAnimateStats(true), 200)
+      return () => clearTimeout(timer)
+    }
+    return undefined
+  }, [statsInView])
 
   return (
     <>
@@ -86,20 +108,30 @@ export function AboutHero({ description }: AboutHeroProps) {
         </div>
       </div>
 
-      {/* Stat badges */}
-      <div className='mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4'>
-        {[
-          { value: '5+', labelKey: 'about.stat-years' },
-          { value: '20+', labelKey: 'about.stat-projects' },
-          { value: '10+', labelKey: 'about.stat-clients' },
-          { value: '3+', labelKey: 'about.stat-countries' },
-        ].map((stat) => (
-          <div key={stat.labelKey} className='flex flex-col items-center rounded-2xl p-4 shadow-feature-card'>
-            <span className='text-2xl font-bold'>{stat.value}</span>
+      {/* Animated stat badges */}
+      <motion.div
+        ref={statsRef}
+        className='mb-16 grid grid-cols-2 gap-4 sm:grid-cols-4'
+        initial={{ opacity: 0, y: 30 }}
+        animate={statsInView ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        {STATS.map((stat, index) => (
+          <motion.div
+            key={stat.labelKey}
+            className='group flex flex-col items-center gap-1 rounded-2xl p-5 shadow-feature-card transition-colors hover:bg-accent/30'
+            initial={{ opacity: 0, y: 20 }}
+            animate={statsInView ? { opacity: 1, y: 0 } : undefined}
+            transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
+          >
+            <span className='text-3xl font-bold tabular-nums'>
+              <NumberFlow value={animateStats ? stat.value : 0} />
+              {stat.suffix}
+            </span>
             <span className='text-xs text-muted-foreground'>{t(stat.labelKey as never)}</span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </>
   )
 }

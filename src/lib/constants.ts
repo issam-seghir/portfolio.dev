@@ -13,6 +13,7 @@ export const SITE_GITHUB_URL = 'https://github.com/issam-seghir'
 export const SITE_FACEBOOK_URL = 'https://www.facebook.com/issam.seghirr'
 export const SITE_LINKEDIN_URL = 'https://www.linkedin.com/in/issam-seghir'
 export const SITE_X_URL = 'https://x.com/issam_seghirr'
+export const SITE_WHATSAPP_URL = 'https://wa.me/213XXXXXXXXX'
 
 export const OG_IMAGE_WIDTH = 1200
 export const OG_IMAGE_HEIGHT = 630

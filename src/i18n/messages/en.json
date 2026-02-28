@@ -4,16 +4,66 @@
     "role": "Software Engineer · Freelancer",
     "available": "Available for freelance work",
     "contact": "Get in Touch",
+    "download-cv": "Download CV",
     "stat-years": "Years Experience",
     "stat-projects": "Projects Shipped",
     "stat-clients": "Happy Clients",
     "stat-countries": "Countries Served",
     "connect": {
       "email": "Email",
+      "whatsapp": "WhatsApp",
       "linkedin": "LinkedIn",
       "github": "GitHub",
       "x": "X",
       "facebook": "Facebook"
+    },
+    "skills": {
+      "frontend": "Frontend & Mobile",
+      "backend": "Backend & APIs",
+      "database": "Database & Infrastructure",
+      "devops": "DevOps & Deployment",
+      "ai": "AI Integration"
+    },
+    "process": {
+      "understand": "Understand",
+      "understand-desc": "I dig into the problem, the users, and the business goals before writing a single line of code.",
+      "design": "Design",
+      "design-desc": "I think in systems. Architecture decisions come before UI decisions.",
+      "build": "Build",
+      "build-desc": "I write clean, typed, well-tested code. No shortcuts.",
+      "ship": "Ship",
+      "ship-desc": "I optimize for performance, set up monitoring, and make sure deployments are smooth.",
+      "iterate": "Iterate",
+      "iterate-desc": "Software is never done. I stay involved and improve things over time."
+    },
+    "testimonials": [
+      {
+        "quote": "Issam delivered an outstanding e-commerce platform that exceeded our expectations. His attention to detail and technical expertise made the entire process seamless.",
+        "name": "Ahmed B.",
+        "role": "Founder, Creative Book"
+      },
+      {
+        "quote": "Working with Issam was a game-changer for our startup. He built our MVP in record time without cutting any corners on code quality.",
+        "name": "Sarah M.",
+        "role": "CTO, SaaS Startup"
+      },
+      {
+        "quote": "Issam's full-stack skills are remarkable. He handled everything from database design to a polished UI, and communicated clearly throughout.",
+        "name": "Youssef K.",
+        "role": "Product Manager"
+      }
+    ],
+    "currently": {
+      "location": "Based in Algiers, Algeria",
+      "reading": "Reading: Designing Data-Intensive Applications",
+      "fuel": "Fueled by coffee and curiosity",
+      "listening": "Listening to lo-fi beats while coding"
+    },
+    "cta": {
+      "title": "Have a project in mind?",
+      "description": "I'm currently available for freelance work. Let's build something great together.",
+      "email-me": "Email Me",
+      "linkedin": "Connect on LinkedIn"
     }
   },
   "account": {
