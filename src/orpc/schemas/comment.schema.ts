@@ -1,7 +1,7 @@
 import { createSelectSchema } from 'drizzle-zod'
 import * as z from 'zod'
 
-import { comments, users, votes } from '@/db/schemas'
+import { comments, users } from '@/db/schemas'
 
 import { InfiniteQuerySchema } from './common.schema'
 
@@ -16,14 +16,12 @@ export const ListCommentsInputSchema = InfiniteQuerySchema.extend({
 export const ListCommentsOutputSchema = z.object({
   comments: z.array(
     createSelectSchema(comments).extend({
-      liked: z.boolean().nullable(),
       user: createSelectSchema(users).pick({
         id: true,
         name: true,
         image: true,
         role: true,
       }),
-      votes: z.array(createSelectSchema(votes)),
     }),
   ),
   nextCursor: z.date().optional(),

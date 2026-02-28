@@ -1,17 +1,41 @@
 ---
 name: Discord Clone
-description: Real-time chat and video communication app
+description: Real-time messaging application with channels, voice, and video
 homepage: https://github.com/issam-seghir/discord-clone
 github: https://github.com/issam-seghir/discord-clone
 techstack:
   - Next.js
   - Socket.io
-  - LiveKit
   - Prisma
   - Tailwind CSS
-dateCreated: '2024-03-01T00:00:00Z'
+  - TypeScript
+selected: true
+dateCreated: '2023-08-20T00:00:00Z'
 ---
 
-A full-stack Discord-inspired application featuring real-time messaging, voice and video calls powered by LiveKit, server/channel management, and member roles. Built with Socket.io for instant bi-directional communication and Prisma for database management.
+## The Problem
 
-Supports direct messaging, file attachments, infinite message loading with scroll, and a responsive design that works across devices.
+Real-time communication platforms require handling complex challenges: WebSocket connections, message persistence, user presence, file uploads, and audio/video streaming — all while keeping the experience smooth and responsive.
+
+## The Solution
+
+This Discord clone replicates the core experience of Discord with **real-time messaging**, server/channel management, and direct messaging. Built with a modern stack that prioritizes performance and developer experience.
+
+### Key Features
+
+- **Real-time Messaging** — Instant message delivery via Socket.io with typing indicators
+- **Server & Channels** — Create and manage servers with text, audio, and video channels
+- **Direct Messages** — 1-on-1 conversations between members
+- **Member Management** — Role system with kick/ban capabilities for server admins
+- **File Sharing** — Upload and share images and PDFs with drag-and-drop support
+- **Infinite Scroll** — Message history loads seamlessly as you scroll up
+
+## Technical Decisions
+
+**Socket.io** powers the real-time layer because of its automatic reconnection handling and room-based broadcasting, which maps perfectly to Discord's channel model. **Prisma** with PostgreSQL handles the relational data — messages, users, servers, and channels have complex relationships that a relational database models naturally.
+
+I used **Next.js API routes** as the backend, keeping the entire stack in one repository for easier development and deployment. The client-side state management uses React Query for server state and Zustand for UI state.
+
+## What I Learned
+
+Building this project taught me the intricacies of WebSocket scaling, managing connection state across browser tabs, and designing database schemas for hierarchical data (servers > channels > messages > replies).

@@ -163,7 +163,6 @@
     "message-cannot-be-empty": "لا يمكن أن تكون الرسالة فارغة",
     "name-cannot-be-empty": "لا يمكن أن يكون الاسم فارغًا",
     "name-too-long": "الاسم طويل جدًا",
-    "need-logged-in-to-vote": "تحتاج إلى تسجيل الدخول للتصويت على التعليقات",
     "not-found": "الصفحة غير موجودة.",
     "reply-cannot-be-empty": "لا يمكن أن يكون الرد فارغًا",
     "sign-in-error": "فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.",
@@ -188,27 +187,53 @@
   "homepage": {
     "about-me": {
       "connect": "تواصل",
-      "fav-framework": "إطار العمل المفضل",
+      "resume": "السيرة الذاتية",
+      "download-resume": "تحميل PDF",
       "location": "الجزائر",
       "more": "اعرف المزيد عني",
       "stacks": "التقنيات",
+      "stacks-frontend": "الواجهة الأمامية",
+      "stacks-backend": "الواجهة الخلفية",
+      "stacks-tools": "الأدوات والموبايل",
       "title": "عني"
     },
+    "experience": {
+      "title": "الخبرة",
+      "items": {
+        "freelance": {
+          "title": "مهندس برمجيات مستقل",
+          "company": "عمل حر",
+          "period": "2023 — الحاضر",
+          "description": "بناء تطبيقات ويب وموبايل كاملة للعملاء باستخدام React و Next.js و React Native."
+        },
+        "fullstack": {
+          "title": "مطور Full-Stack",
+          "company": "مشاريع متنوعة",
+          "period": "2021 — 2023",
+          "description": "تطوير منصات تجارة إلكترونية وتطبيقات دردشة في الوقت الفعلي وأدوات مدعومة بالذكاء الاصطناعي."
+        },
+        "education": {
+          "title": "علوم الحاسوب",
+          "company": "جامعة العلوم والتكنولوجيا",
+          "period": "2019 — 2024",
+          "description": "دراسة أساسيات علوم الحاسوب والخوارزميات وهياكل البيانات وهندسة البرمجيات."
+        }
+      }
+    },
     "get-in-touch": {
-      "description": "لا تتردد في التواصل معي!",
-      "image-alt": "شعار عصام صغير",
-      "title": "لديك مشروع في ذهنك؟"
+      "title": "لنعمل معاً",
+      "description": "لديك مشروع في ذهنك أو تريد التعاون؟ أنا دائماً منفتح لمناقشة الفرص الجديدة والأفكار المثيرة.",
+      "email": "أرسل بريداً",
+      "availability": "أرد عادةً خلال 24 ساعة."
     },
     "hero": {
-      "amazing": "مذهلة",
-      "attractive": "جذابة",
-      "fantastic": "رائعة",
-      "location-timezone": "الجزائر • UTC/GMT +1",
-      "stunning": "مبهرة",
-      "title-bottom": "React",
-      "title-middle-left": "أبني",
-      "title-middle-right": "مواقع ويب باستخدام",
-      "title-top": "أنا عصام، مهندس برمجيات"
+      "available": "متاح للعمل",
+      "greeting": "مرحباً، أنا عصام صغير.",
+      "tagline": "أبني تطبيقات ويب وموبايل.",
+      "description": "مهندس برمجيات متخصص في React و Next.js و React Native. أصمم تطبيقات عالية الأداء وأنيقة باستخدام تقنيات حديثة وبنية نظيفة.",
+      "cta-projects": "شاهد أعمالي",
+      "cta-about": "عني",
+      "location-timezone": "الجزائر · UTC/GMT +1"
     },
     "latest-articles": {
       "card": "مقال",

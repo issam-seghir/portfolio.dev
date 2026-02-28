@@ -1,125 +1,84 @@
 'use client'
 
-import { motion, useAnimate, useInView } from 'motion/react'
+import { SiGithub } from '@icons-pack/react-simple-icons'
+import { MailIcon, SendIcon } from 'lucide-react'
+import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
-import BlurImage from '@/components/blur-image'
+import { buttonVariants } from '@/components/ui/button'
+import { SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
 import { cn } from '@/utils/cn'
 
-import { buttonVariants } from '../ui/button'
+const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg role='img' viewBox='0 0 24 24' fill='currentColor' width='1em' height='1em' {...props}>
+    <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
+  </svg>
+)
 
 const variants = {
-  initial: {
-    y: 40,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-  },
+  initial: { y: 40, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
 }
 
 function GetInTouch() {
-  const [scope, animate] = useAnimate()
   const cardsRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(cardsRef, { once: true, margin: '-100px' })
   const t = useTranslations()
 
-  useEffect(() => {
-    animate(
-      [
-        ['#pointer', { left: 200, top: 60 }, { duration: 0 }],
-        ['#javascript', { opacity: 1 }, { duration: 0 }],
-        ['#pointer', { left: 50, top: 102 }, { at: '+0.5', duration: 0.5, ease: 'easeInOut' }],
-        ['#javascript', { opacity: 0.4 }, { at: '-0.3', duration: 0.1 }],
-        ['#react-js', { opacity: 1 }, { duration: 0.3 }],
-        ['#pointer', { left: 224, top: 170 }, { at: '+0.5', duration: 0.5, ease: 'easeInOut' }],
-        ['#react-js', { opacity: 0.4 }, { at: '-0.3', duration: 0.1 }],
-        ['#typescript', { opacity: 1 }, { duration: 0.3 }],
-        ['#pointer', { left: 88, top: 198 }, { at: '+0.5', duration: 0.5, ease: 'easeInOut' }],
-        ['#typescript', { opacity: 0.4 }, { at: '-0.3', duration: 0.1 }],
-        ['#next-js', { opacity: 1 }, { duration: 0.3 }],
-        ['#pointer', { left: 200, top: 60 }, { at: '+0.5', duration: 0.5, ease: 'easeInOut' }],
-        ['#next-js', { opacity: 0.4 }, { at: '-0.3', duration: 0.1 }],
-        ['#javascript', { opacity: 1 }, { duration: 0.3 }],
-      ],
-      { repeat: Number.POSITIVE_INFINITY },
-    )
-  }, [animate])
-
   return (
     <motion.div
-      className='relative flex flex-col justify-center gap-12 rounded-2xl p-5 shadow-feature-card md:flex-row'
+      className='relative my-24 overflow-hidden rounded-2xl p-8 shadow-feature-card md:p-12'
       initial='initial'
       animate={isInView ? 'animate' : 'initial'}
       variants={variants}
       ref={cardsRef}
-      transition={{
-        duration: 0.5,
-      }}
+      transition={{ duration: 0.5 }}
     >
-      <div className='relative size-64 max-md:mx-auto' ref={scope}>
-        <BlurImage
-          src='/images/avatar.png'
-          width={1024}
-          height={1024}
-          className='absolute top-1/2 left-1/2 size-20 -translate-1/2 rounded-3xl'
-          alt={t('homepage.get-in-touch.image-alt')}
-        />
-        <div
-          id='next-js'
-          className='absolute bottom-12 left-14 rounded-4xl border bg-accent px-2 py-1.5 text-xs opacity-40'
+      <div className='relative z-10 mx-auto max-w-xl text-center'>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className='mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-muted'
         >
-          Next.js
-        </div>
-        <div
-          id='react-js'
-          className='absolute top-20 left-2 rounded-4xl border bg-accent px-2 py-1.5 text-xs opacity-40'
-        >
-          React.js
-        </div>
-        <div
-          id='typescript'
-          className='absolute right-1 bottom-20 rounded-4xl border bg-accent px-2 py-1.5 text-xs opacity-40'
-        >
-          TypeScript
-        </div>
-        <div
-          id='javascript'
-          className='absolute top-10 right-8 rounded-4xl border bg-accent px-2 py-1.5 text-xs opacity-40'
-        >
-          JavaScript
-        </div>
+          <SendIcon className='size-7 text-muted-foreground' />
+        </motion.div>
 
-        <div id='pointer' className='absolute'>
-          <svg
-            width='16.8'
-            height='18.2'
-            viewBox='0 0 12 13'
-            className='fill-red-500'
-            stroke='white'
-            strokeWidth='1'
-            xmlns='http://www.w3.org/2000/svg'
+        <h2 className='text-3xl font-semibold'>{t('homepage.get-in-touch.title')}</h2>
+        <p className='mt-3 text-muted-foreground'>{t('homepage.get-in-touch.description')}</p>
+
+        <div className='mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center'>
+          <a
+            href='mailto:issamusma@hotmail.com'
+            className={cn(buttonVariants({ size: 'lg' }), 'gap-2')}
           >
-            <path
-              fillRule='evenodd'
-              clipRule='evenodd'
-              d='M12 5.50676L0 0L2.83818 13L6.30623 7.86537L12 5.50676V5.50676Z'
-            />
-          </svg>
-          <span className='relative left-4 rounded-4xl bg-red-500 px-2 py-0.5 text-xs text-white'>Issam</span>
-        </div>
-      </div>
-
-      <div className='flex flex-col justify-center px-4'>
-        <p className='mb-2 text-3xl font-semibold'>{t('homepage.get-in-touch.title')}</p>
-        <p className='text-muted-foreground'>{t('homepage.get-in-touch.description')}</p>
-        <div className='my-8'>
-          <a href='mailto:issamusma@hotmail.com' className={cn(buttonVariants(), 'bg-email-button text-white')}>
-            issamusma@hotmail.com
+            <MailIcon className='size-4' />
+            {t('homepage.get-in-touch.email')}
+          </a>
+          <a
+            href={SITE_LINKEDIN_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'gap-2')}
+          >
+            <LinkedInIcon className='size-4' />
+            LinkedIn
+          </a>
+          <a
+            href={SITE_GITHUB_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'gap-2')}
+          >
+            <SiGithub className='size-4' />
+            GitHub
           </a>
         </div>
+
+        <p className='mt-6 text-sm text-muted-foreground'>
+          {t('homepage.get-in-touch.availability')}
+        </p>
       </div>
     </motion.div>
   )

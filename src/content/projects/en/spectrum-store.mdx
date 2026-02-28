@@ -1,6 +1,6 @@
 ---
 name: Spectrum Store
-description: Full-stack e-commerce platform with JWT authentication
+description: Full-stack e-commerce platform with JWT authentication and modern UI
 homepage: https://github.com/issam-seghir/spectrum-store
 github: https://github.com/issam-seghir/spectrum-store
 techstack:
@@ -9,9 +9,33 @@ techstack:
   - Shadcn UI
   - JWT Auth
   - Tailwind CSS
+  - PostgreSQL
+selected: true
 dateCreated: '2024-01-15T00:00:00Z'
 ---
 
-A full-featured e-commerce platform built with Next.js and TypeScript. Features include product catalog browsing, shopping cart management, secure JWT-based authentication, and a responsive UI powered by Shadcn components.
+## The Problem
 
-The project demonstrates end-to-end full-stack development with modern tooling, from server-side rendering and API routes to client-side state management and payment integration.
+Building a modern e-commerce experience requires juggling many concerns: authentication, product management, cart state, payments, and responsive design. Most solutions either rely on heavy frameworks or sacrifice developer experience.
+
+## The Solution
+
+Spectrum Store is a full-featured e-commerce platform built from the ground up with **Next.js** and **TypeScript**. It combines server-side rendering for SEO with client-side interactivity for a smooth shopping experience.
+
+### Key Features
+
+- **Product Catalog** — Browse and search products with server-side filtering and pagination
+- **JWT Authentication** — Secure login/register flow with token refresh and role-based access
+- **Shopping Cart** — Persistent cart with optimistic updates and real-time price calculation
+- **Responsive Design** — Fully mobile-first UI built with Shadcn UI and Tailwind CSS
+- **Admin Dashboard** — Product CRUD, order management, and analytics overview
+
+## Technical Decisions
+
+I chose **Next.js App Router** for its hybrid rendering capabilities — product pages are statically generated at build time, while the cart and checkout flow run on the client for instant feedback. **JWT-based auth** was picked over session cookies for its stateless nature, which scales better with distributed deployments.
+
+The UI layer uses **Shadcn UI** components for consistency and accessibility, customized with Tailwind CSS for the unique brand identity.
+
+## What I Learned
+
+This project deepened my understanding of server-client architecture trade-offs, especially around when to render on the server vs. client. It also taught me how to handle complex state synchronization between the cart, authentication, and payment flow.

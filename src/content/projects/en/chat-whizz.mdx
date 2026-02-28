@@ -1,14 +1,40 @@
 ---
 name: Chat Whizz
-description: Real-time chat application with Pusher
+description: Modern real-time chat application with React Native
 homepage: https://github.com/issam-seghir/chat-whizz
 github: https://github.com/issam-seghir/chat-whizz
 techstack:
-  - Next.js
-  - Pusher
+  - React Native
+  - Firebase
+  - Expo
   - TypeScript
-  - Tailwind CSS
-dateCreated: '2024-02-01T00:00:00Z'
+  - Redux
+dateCreated: '2023-05-12T00:00:00Z'
 ---
 
-A real-time chat application powered by Pusher for instant message delivery. Features include user authentication, online presence indicators, read receipts, and a modern chat UI built with Next.js and Tailwind CSS.
+## The Problem
+
+Most chat applications either lack real-time responsiveness or don't work well across platforms. Building a native-quality chat experience that works on both iOS and Android with a single codebase is a significant technical challenge.
+
+## The Solution
+
+Chat Whizz is a mobile chat application built with **React Native** and **Firebase**, delivering a smooth, native-feeling experience on both platforms. It features instant messaging, push notifications, and user presence detection.
+
+### Key Features
+
+- **Real-Time Messaging** — Instant message delivery powered by Firebase Realtime Database
+- **Push Notifications** — Background notifications via Firebase Cloud Messaging
+- **User Presence** — See who's online with real-time status indicators
+- **Image Sharing** — Send photos with compression and progressive loading
+- **Group Chats** — Create and manage group conversations with admin controls
+- **Message Status** — Read receipts and delivery confirmations
+
+## Technical Decisions
+
+**Firebase** was the backbone for real-time data sync and authentication — its offline-first architecture means messages are available even without internet, and they sync automatically when connectivity returns. **Redux** manages the application state, with persistence for offline support.
+
+I chose **Expo** for the build toolchain because it dramatically simplifies the development-to-deployment pipeline, especially for push notifications which are notoriously complex to configure manually on each platform.
+
+## What I Learned
+
+This project deepened my mobile development skills significantly. I learned about the nuances of React Native performance optimization (FlatList virtualization, image caching), push notification architectures, and the challenges of maintaining feature parity across iOS and Android.

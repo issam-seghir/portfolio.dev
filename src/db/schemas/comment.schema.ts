@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2'
 import { relations, sql } from 'drizzle-orm'
-import { boolean, foreignKey, index, integer, pgTable, primaryKey, text, timestamp } from 'drizzle-orm/pg-core'
+import { boolean, foreignKey, index, integer, pgTable, text, timestamp } from 'drizzle-orm/pg-core'
 
 import { users } from './auth.schema'
 import { posts } from './post.schema'
@@ -30,8 +30,6 @@ export const comments = pgTable(
     parentId: text('parent_id'),
     isDeleted: boolean('is_deleted').notNull().default(false),
     replyCount: integer('reply_count').notNull().default(0),
-    likeCount: integer('like_count').notNull().default(0),
-    dislikeCount: integer('dislike_count').notNull().default(0),
   },
   (table) => [
     foreignKey({
@@ -48,23 +46,6 @@ export const comments = pgTable(
       .on(table.parentId, table.createdAt.desc())
       .where(sql`${table.parentId} IS NOT NULL`),
     index('comments_body_tsvector_idx').using('gin', sql`to_tsvector('english', ${table.body})`),
-  ],
-)
-
-export const votes = pgTable(
-  'votes',
-  {
-    userId: text('user_id')
-      .notNull()
-      .references(() => users.id, { onDelete: 'cascade' }),
-    commentId: text('comment_id')
-      .notNull()
-      .references(() => comments.id, { onDelete: 'cascade' }),
-    isLike: boolean('is_like').notNull(),
-  },
-  (vote) => [
-    primaryKey({ columns: [vote.userId, vote.commentId] }),
-    index('votes_comment_id_is_like_idx').on(vote.commentId, vote.isLike),
   ],
 )
 
@@ -85,17 +66,5 @@ export const commentsRelations = relations(comments, ({ one, many }) => ({
   replies: many(comments, {
     relationName: 'comment_replies',
   }),
-  votes: many(votes),
   unsubscribes: many(unsubscribes),
-}))
-
-export const votesRelations = relations(votes, ({ one }) => ({
-  user: one(users, {
-    fields: [votes.userId],
-    references: [users.id],
-  }),
-  comment: one(comments, {
-    fields: [votes.commentId],
-    references: [comments.id],
-  }),
 }))

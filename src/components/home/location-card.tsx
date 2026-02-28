@@ -47,10 +47,10 @@ function LocationCard() {
       baseColor: [0.8, 0.8, 0.8],
       markerColor: [1, 1, 1],
       glowColor: [0.5, 0.5, 0.5],
-      markers: [{ location: [22.3193, 114.1694], size: 0.1 }],
+      markers: [{ location: [36.7538, 3.0588], size: 0.1 }],
       scale: 1.05,
       onRender: (state) => {
-        state.phi = 2.75 + springRotation.get()
+        state.phi = -0.05 + springRotation.get()
         state.width = width * 2
         state.height = width * 2
       },

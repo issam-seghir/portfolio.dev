@@ -34,20 +34,12 @@ export const env = createEnv({
     GITHUB_CLIENT_ID: z.string().min(1).optional(),
     GITHUB_CLIENT_SECRET: z.string().min(1).optional(),
 
-    DISCORD_WEBHOOK_URL: z.url().optional(),
-
     RESEND_API_KEY: z.string().min(1).optional(),
     AUTHOR_EMAIL: z
       .union([z.email(), z.literal('')])
       .optional()
       .transform((v) => (v === '' ? undefined : v)),
     JWT_SECRET: z.string().min(1).optional(),
-
-    CLOUDFLARE_R2_ENDPOINT: z.url().optional(),
-    CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1).optional(),
-    CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().min(1).optional(),
-    CLOUDFLARE_R2_BUCKET_NAME: z.string().min(1).optional(),
-    CLOUDFLARE_R2_PUBLIC_URL: z.url().optional(),
 
     POSTHOG_ENV_ID: z.string().min(1).optional(),
     POSTHOG_API_KEY: z.string().min(1).optional(),

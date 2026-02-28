@@ -1,14 +1,39 @@
 ---
 name: Astralyn
-description: Enterprise dashboard with data visualization
+description: Interactive space-themed web experience with animations
 homepage: https://github.com/issam-seghir/astralyn
 github: https://github.com/issam-seghir/astralyn
 techstack:
   - React
-  - Joy UI
-  - Syncfusion
+  - Three.js
+  - GSAP
+  - Tailwind CSS
   - TypeScript
-dateCreated: '2023-06-01T00:00:00Z'
+dateCreated: '2023-11-05T00:00:00Z'
 ---
 
-An enterprise-grade dashboard application built with React, Joy UI for theming, and Syncfusion components for powerful data grids, charts, and scheduling features. Designed for managing business operations with a clean, responsive interface.
+## The Problem
+
+Creating immersive, visually rich web experiences that combine 3D graphics, smooth animations, and strong storytelling is one of the most challenging areas of frontend development. It requires balancing visual impact with performance.
+
+## The Solution
+
+Astralyn is an interactive, space-themed web experience that uses **Three.js** for 3D rendering and **GSAP** for scroll-based animations. Users explore a narrative-driven space journey with cinematic transitions and interactive elements.
+
+### Key Features
+
+- **3D Space Scene** — Interactive starfield and planet rendering with Three.js
+- **Scroll-Based Storytelling** — Content reveals through smooth scroll-driven animations
+- **Cinematic Transitions** — GSAP-powered page transitions with easing curves
+- **Responsive Performance** — Optimized for both desktop and mobile with LOD management
+- **Accessible** — Fallback content for users who prefer reduced motion
+
+## Technical Decisions
+
+**Three.js** was chosen for the 3D rendering layer because of its extensive ecosystem and WebGL abstraction. **GSAP** handles the scroll-triggered animations because of its timeline API, which lets you choreograph complex animation sequences declaratively.
+
+Performance was a primary concern — I implemented texture compression, geometry instancing, and frame-rate adaptive rendering to maintain 60fps on mid-range devices.
+
+## What I Learned
+
+This project pushed my understanding of GPU rendering pipelines, memory management for 3D assets, and the intersection of design and engineering. It also taught me how to create accessibility-first experiences that gracefully degrade for users with different device capabilities.

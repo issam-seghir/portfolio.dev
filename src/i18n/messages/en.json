@@ -163,7 +163,6 @@
     "message-cannot-be-empty": "Message cannot be empty",
     "name-cannot-be-empty": "Name cannot be empty",
     "name-too-long": "Name is too long",
-    "need-logged-in-to-vote": "You need to be logged in to vote comments",
     "not-found": "Page not found.",
     "reply-cannot-be-empty": "Reply cannot be empty",
     "sign-in-error": "Failed to sign in. Please try again.",
@@ -188,27 +187,53 @@
   "homepage": {
     "about-me": {
       "connect": "Connect",
-      "fav-framework": "Fav. framework",
+      "resume": "Resume",
+      "download-resume": "Download PDF",
       "location": "Algeria",
       "more": "Know more about me",
-      "stacks": "Stacks",
+      "stacks": "Tech Stack",
+      "stacks-frontend": "Frontend",
+      "stacks-backend": "Backend",
+      "stacks-tools": "Tools & Mobile",
       "title": "About Me"
     },
+    "experience": {
+      "title": "Experience",
+      "items": {
+        "freelance": {
+          "title": "Freelance Software Engineer",
+          "company": "Self-Employed",
+          "period": "2023 — Present",
+          "description": "Building full-stack web and mobile applications for clients using React, Next.js, and React Native."
+        },
+        "fullstack": {
+          "title": "Full-Stack Developer",
+          "company": "Various Projects",
+          "period": "2021 — 2023",
+          "description": "Developed e-commerce platforms, real-time chat apps, and AI-powered tools using modern JavaScript frameworks."
+        },
+        "education": {
+          "title": "Computer Science",
+          "company": "University of Science and Technology",
+          "period": "2019 — 2024",
+          "description": "Studied computer science fundamentals, algorithms, data structures, and software engineering."
+        }
+      }
+    },
     "get-in-touch": {
-      "description": "Feel free to reach out to me!",
-      "image-alt": "Issam Seghir's Logo",
-      "title": "Have a project in mind?"
+      "title": "Let's Work Together",
+      "description": "Have a project in mind or want to collaborate? I'm always open to discussing new opportunities and interesting ideas.",
+      "email": "Send an Email",
+      "availability": "I typically respond within 24 hours."
     },
     "hero": {
-      "amazing": "Amazing",
-      "attractive": "Attractive",
-      "fantastic": "Fantastic",
-      "location-timezone": "Algeria • UTC/GMT +1",
-      "stunning": "Stunning",
-      "title-bottom": "React",
-      "title-middle-left": "building",
-      "title-middle-right": "websites using",
-      "title-top": "I'm Issam, a Software Engineer"
+      "available": "Available for work",
+      "greeting": "Hi, I'm Issam Seghir.",
+      "tagline": "I build web & mobile apps.",
+      "description": "Software Engineer specializing in React, Next.js, and React Native. I craft performant, elegant applications with modern technologies and clean architecture.",
+      "cta-projects": "View My Work",
+      "cta-about": "About Me",
+      "location-timezone": "Algeria · UTC/GMT +1"
     },
     "latest-articles": {
       "card": "Article",

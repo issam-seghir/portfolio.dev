@@ -2,7 +2,7 @@ import { ORPCError } from '@orpc/client'
 import { and, asc, count, desc, eq, gt, isNotNull, isNull, lt, ne } from 'drizzle-orm'
 import { getLocale } from 'next-intl/server'
 
-import { comments, settings, unsubscribes, votes } from '@/db/schemas'
+import { comments, settings, unsubscribes } from '@/db/schemas'
 import { CommentEmailTemplate, ReplyEmailTemplate } from '@/emails'
 import { IS_PRODUCTION } from '@/lib/constants'
 import { getPostBySlug } from '@/lib/content'
@@ -52,9 +52,6 @@ const listComments = publicProcedure
             id: true,
           },
         },
-        votes: {
-          where: eq(votes.userId, session?.user.id ?? ''),
-        },
       },
       orderBy: input.sort === 'newest' ? desc(comments.createdAt) : asc(comments.createdAt),
     })
@@ -71,9 +68,6 @@ const listComments = publicProcedure
               id: true,
             },
           },
-          votes: {
-            where: eq(votes.userId, session?.user.id ?? ''),
-          },
         },
       })
 
@@ -81,12 +75,10 @@ const listComments = publicProcedure
     }
 
     const result = query.map((comment) => {
-      const selfVote = comment.votes.length > 0 ? comment.votes[0] : null
       const defaultImage = getDefaultImage(comment.user.id)
 
       return {
         ...comment,
-        liked: selfVote?.isLike ?? null,
         user: {
           ...comment.user,
           image: comment.user.image ?? defaultImage,

@@ -33,6 +33,10 @@ function Stats() {
 
   const t = useTranslations()
 
+  const blogViews = viewsQuery.data?.views
+  const blogLikes = likesQuery.data?.likes
+  const hasBlogData = (blogViews !== undefined && blogViews > 0) || (blogLikes !== undefined && blogLikes > 0)
+
   const data: Card[] = [
     {
       title: t('dashboard.stat.github-followers'),
@@ -56,28 +60,32 @@ function Stats() {
         endColor: '#ffce63',
       },
     },
-    {
-      title: t('dashboard.stat.blog-total-views'),
-      link: '/',
-      value: viewsQuery.data?.views,
-      icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
-      linkText: 'Blog',
-      gradient: {
-        startColor: '#ff0f7b',
-        endColor: '#f945ff',
-      },
-    },
-    {
-      title: t('dashboard.stat.blog-total-likes'),
-      link: '/',
-      value: likesQuery.data?.likes,
-      icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
-      linkText: 'Blog',
-      gradient: {
-        startColor: '#ff0f7b',
-        endColor: '#f945ff',
-      },
-    },
+    ...(hasBlogData
+      ? [
+          {
+            title: t('dashboard.stat.blog-total-views'),
+            link: '/',
+            value: blogViews,
+            icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
+            linkText: 'Blog',
+            gradient: {
+              startColor: '#ff0f7b',
+              endColor: '#f945ff',
+            },
+          },
+          {
+            title: t('dashboard.stat.blog-total-likes'),
+            link: '/',
+            value: blogLikes,
+            icon: <PencilIcon className='size-6 text-[#ff0f7b]' />,
+            linkText: 'Blog',
+            gradient: {
+              startColor: '#ff0f7b',
+              endColor: '#f945ff',
+            },
+          },
+        ]
+      : []),
   ]
 
   return (

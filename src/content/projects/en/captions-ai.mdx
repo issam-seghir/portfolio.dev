@@ -1,15 +1,40 @@
 ---
 name: Captions AI
-description: Animated landing page clone with GSAP and Lottie
-homepage: https://github.com/issam-seghir/Captions-ai-landing-page-clone
-github: https://github.com/issam-seghir/Captions-ai-landing-page-clone
+description: AI-powered caption generation for social media content
+homepage: https://github.com/issam-seghir/captions-ai
+github: https://github.com/issam-seghir/captions-ai
 techstack:
-  - HTML
-  - CSS
-  - GSAP
-  - Lottie
-  - JavaScript
-dateCreated: '2023-09-01T00:00:00Z'
+  - React
+  - OpenAI API
+  - Node.js
+  - Tailwind CSS
+  - TypeScript
+selected: true
+dateCreated: '2024-03-10T00:00:00Z'
 ---
 
-A pixel-perfect clone of the Captions AI landing page, featuring smooth scroll-triggered animations powered by GSAP and rich micro-interactions using Lottie. Built with vanilla HTML, CSS, and JavaScript to demonstrate advanced animation and frontend craftsmanship without relying on heavy frameworks.
+## The Problem
+
+Content creators spend significant time crafting captions for social media posts. Writing engaging, platform-specific captions at scale is tedious and repetitive, especially when you need variations for different platforms (Instagram, Twitter, LinkedIn).
+
+## The Solution
+
+Captions AI generates social media captions using **OpenAI's GPT models**, tailored to the platform, tone, and audience. Users upload an image or describe their content, and the AI produces multiple caption options instantly.
+
+### Key Features
+
+- **Multi-Platform Support** — Generate captions optimized for Instagram, Twitter, LinkedIn, and Facebook
+- **Tone Selection** — Choose from professional, casual, humorous, or inspirational tones
+- **Hashtag Generation** — Automatically suggest relevant hashtags based on content
+- **Caption Variations** — Generate multiple options to A/B test engagement
+- **History** — Save and revisit previously generated captions
+
+## Technical Decisions
+
+The **OpenAI API** was the natural choice for text generation quality. I implemented prompt engineering techniques to ensure consistent, platform-appropriate output — for example, Twitter captions stay under 280 characters while Instagram captions can be longer and include emoji suggestions.
+
+The frontend is a **React SPA** with a clean, minimal interface focused on the generation workflow. **Node.js** serves as the API layer, handling OpenAI requests and rate limiting.
+
+## What I Learned
+
+This project was my deep dive into **prompt engineering** — structuring prompts with examples, constraints, and formatting instructions to get reliable, high-quality output. I also learned about managing API costs and implementing caching strategies for similar requests.

@@ -2,8 +2,6 @@ import { ORPCError } from '@orpc/client'
 import { and, desc, eq, lt } from 'drizzle-orm'
 
 import { messages } from '@/db/schemas'
-import { IS_PRODUCTION } from '@/lib/constants'
-import { sendGuestbookNotification } from '@/lib/discord'
 import { getDefaultImage } from '@/utils/get-default-image'
 
 import { protectedProcedure, publicProcedure } from '../procedures'
@@ -72,10 +70,6 @@ const createMessage = protectedProcedure
       throw new ORPCError('INTERNAL_SERVER_ERROR', {
         message: 'Failed to create message',
       })
-    }
-
-    if (IS_PRODUCTION) {
-      await sendGuestbookNotification(input.message, user.name, user.image ?? getDefaultImage(user.id))
     }
 
     return message

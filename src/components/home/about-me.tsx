@@ -9,7 +9,7 @@ import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
 import Connect from './connect'
-import FavoriteFramework from './favorite-framework'
+import ResumeCard from './favorite-framework'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'
 
@@ -77,7 +77,7 @@ function AboutMe() {
         <div className='grid gap-4'>
           <Connect />
           <div className='grid gap-4 [@media(min-width:450px)]:grid-cols-2'>
-            <FavoriteFramework />
+            <ResumeCard />
           </div>
         </div>
       </motion.div>
