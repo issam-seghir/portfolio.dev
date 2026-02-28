@@ -6,9 +6,9 @@ import { type Locale, useTranslations } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { use } from 'react'
 
+import { AboutHero } from '@/components/about/about-hero'
 import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
-import PageHeader from '@/components/page-header'
 import {
   MY_NAME,
   SITE_FACEBOOK_URL,
@@ -77,7 +77,7 @@ function Page(props: PageProps<'/[locale]/about'>) {
   return (
     <>
       <JsonLd json={jsonLd} />
-      <PageHeader title={title} description={description} />
+      <AboutHero description={description} />
       <Mdx code={code} />
     </>
   )

@@ -1,7 +1,7 @@
 import type { useTranslations } from 'next-intl'
 
 import { SiFacebook, SiGithub, SiX } from '@icons-pack/react-simple-icons'
-import { BarChartIcon, FlameIcon, MessageCircleIcon, PencilIcon, UserCircleIcon } from 'lucide-react'
+import { FlameIcon, MessageCircleIcon, MonitorIcon, PencilIcon, UserCircleIcon } from 'lucide-react'
 
 import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_X_URL } from '@/lib/constants'
 
@@ -39,11 +39,11 @@ export const HEADER_LINKS: HeaderLinks = [
     labelKey: 'common.labels.guestbook',
   },
   {
-    icon: <BarChartIcon className='size-3.5' />,
-    href: '/dashboard',
-    key: 'dashboard',
-    // i18n-check t('common.labels.dashboard')
-    labelKey: 'common.labels.dashboard',
+    icon: <MonitorIcon className='size-3.5' />,
+    href: '/uses',
+    key: 'uses',
+    // i18n-check t('common.labels.uses')
+    labelKey: 'common.labels.uses',
   },
   {
     icon: <FlameIcon className='size-3.5' />,

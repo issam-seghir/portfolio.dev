@@ -8,6 +8,7 @@ import ImageZoom from '../image-zoom'
 
 import Heading from './heading'
 import ItemGrid from './item-grid'
+import LetsConnect from './lets-connect'
 import LinkCard from './link-card'
 import Logo from './logo'
 import Table from './table'
@@ -50,7 +51,7 @@ const components = {
   // Custom components
   Table,
   ItemGrid,
-  Video,
+  LetsConnect,
   LinkCard,
   Logo,
   TreeView,

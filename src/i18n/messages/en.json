@@ -1,6 +1,20 @@
 {
   "about": {
-    "description": "Hi! I'm Issam Seghir, a Software Engineer from Algeria specializing in React, Next.js, React Native, and full-stack development. Explore my portfolio, skills, and projects. Let's connect!"
+    "description": "Software Engineer from Algeria building high-quality web & mobile applications. Specializing in React, Next.js, and full-stack TypeScript.",
+    "role": "Software Engineer · Freelancer",
+    "available": "Available for freelance work",
+    "contact": "Get in Touch",
+    "stat-years": "Years Experience",
+    "stat-projects": "Projects Shipped",
+    "stat-clients": "Happy Clients",
+    "stat-countries": "Countries Served",
+    "connect": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "x": "X",
+      "facebook": "Facebook"
+    }
   },
   "account": {
     "account-created": "Account created",

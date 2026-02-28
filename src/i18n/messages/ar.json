@@ -1,6 +1,20 @@
 {
   "about": {
-    "description": "مرحبًا! أنا عصام صغير، مهندس برمجيات من الجزائر متخصص في React و Next.js و React Native وتطوير الويب الشامل. استكشف محفظتي ومهاراتي ومشاريعي. لنتواصل!"
+    "description": "مهندس برمجيات من الجزائر متخصص في بناء تطبيقات ويب وموبايل عالية الجودة باستخدام React و Next.js و TypeScript.",
+    "role": "مهندس برمجيات · مستقل",
+    "available": "متاح للعمل الحر",
+    "contact": "تواصل معي",
+    "stat-years": "سنوات خبرة",
+    "stat-projects": "مشروع مُنجز",
+    "stat-clients": "عميل سعيد",
+    "stat-countries": "دول خدمناها",
+    "connect": {
+      "email": "البريد الإلكتروني",
+      "linkedin": "لينكدإن",
+      "github": "جيت هب",
+      "x": "إكس",
+      "facebook": "فيسبوك"
+    }
   },
   "account": {
     "account-created": "تم إنشاء الحساب",

@@ -35,14 +35,6 @@ if (!IS_PRODUCTION) {
   })
 }
 
-if (env.CLOUDFLARE_R2_PUBLIC_URL) {
-  const { hostname } = new URL(env.CLOUDFLARE_R2_PUBLIC_URL)
-
-  remotePatterns.push({
-    protocol: 'https',
-    hostname,
-  })
-}
 
 const config: NextConfig = {
   productionBrowserSourceMaps: true,
