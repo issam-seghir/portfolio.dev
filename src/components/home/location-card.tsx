@@ -90,7 +90,7 @@ function LocationCard() {
       glowColor: [0.5, 0.5, 0.5],
       markers: [{ location: [ALGIERS.lat, ALGIERS.lon], size: 0.1 }],
       scale: 1.05,
-      onRender: (state) => {
+      onRender: (state: Record<string, number>) => {
         state.phi = -0.05 + springRotation.get()
         state.width = width * 2
         state.height = width * 2
@@ -110,12 +110,12 @@ function LocationCard() {
       try {
         const res = await fetch('https://ipapi.co/json/', { signal: controller.signal })
         if (!res.ok) throw new Error('Geo lookup failed')
-        const data = await res.json()
+        const data = (await res.json()) as Record<string, unknown>
         const lat = Number(data.latitude)
         const lon = Number(data.longitude)
         setGeo({
-          city: data.city ?? 'Unknown',
-          country: data.country_name ?? 'Unknown',
+          city: (data.city as string) ?? 'Unknown',
+          country: (data.country_name as string) ?? 'Unknown',
           lat,
           lon,
           distance: haversineKm(ALGIERS.lat, ALGIERS.lon, lat, lon),

@@ -6,14 +6,14 @@ import { useTranslations } from 'next-intl'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 const FACTS = [
-  { key: 'homepage.about-me.fun-fact-1', emoji: '🧒', bg: 'from-amber-500/10 to-orange-500/10' },
-  { key: 'homepage.about-me.fun-fact-2', emoji: '💭', bg: 'from-indigo-500/10 to-purple-500/10' },
-  { key: 'homepage.about-me.fun-fact-3', emoji: '⌨️', bg: 'from-green-500/10 to-emerald-500/10' },
-  { key: 'homepage.about-me.fun-fact-4', emoji: '🏗️', bg: 'from-blue-500/10 to-cyan-500/10' },
-  { key: 'homepage.about-me.fun-fact-5', emoji: '☕', bg: 'from-amber-600/10 to-yellow-500/10' },
-  { key: 'homepage.about-me.fun-fact-6', emoji: '🌙', bg: 'from-violet-500/10 to-pink-500/10' },
-  { key: 'homepage.about-me.fun-fact-7', emoji: '🐉', bg: 'from-red-500/10 to-orange-500/10' },
-  { key: 'homepage.about-me.fun-fact-8', emoji: '🎬', bg: 'from-teal-500/10 to-cyan-500/10' },
+  { key: 'homepage.about-me.fun-fact-1', emoji: '✍️', bg: 'from-violet-500/10 to-purple-500/10' },
+  { key: 'homepage.about-me.fun-fact-2', emoji: '🎨', bg: 'from-rose-500/10 to-pink-500/10' },
+  { key: 'homepage.about-me.fun-fact-3', emoji: '🚀', bg: 'from-blue-500/10 to-cyan-500/10' },
+  { key: 'homepage.about-me.fun-fact-4', emoji: '🗣️', bg: 'from-green-500/10 to-emerald-500/10' },
+  { key: 'homepage.about-me.fun-fact-5', emoji: '🖌️', bg: 'from-amber-500/10 to-orange-500/10' },
+  { key: 'homepage.about-me.fun-fact-6', emoji: '🌙', bg: 'from-indigo-500/10 to-blue-500/10' },
+  { key: 'homepage.about-me.fun-fact-7', emoji: '🤝', bg: 'from-amber-600/10 to-yellow-500/10' },
+  { key: 'homepage.about-me.fun-fact-8', emoji: '🧩', bg: 'from-teal-500/10 to-cyan-500/10' },
 ] as const
 
 function FunFactsCard() {

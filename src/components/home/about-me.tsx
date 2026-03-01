@@ -4,89 +4,130 @@ import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
+import { AnimatedLine } from '@/components/ui/animated-line'
 import { buttonVariants } from '@/components/ui/button'
+import { HoverWords } from '@/components/ui/hover-words'
 import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
+import CodingDnaCard from './coding-dna-card'
 import Connect from './connect'
+import CurrentlyCard from './currently-card'
 import ResumeCard from './favorite-framework'
+import FunFactsCard from './fun-facts-card'
+import LanguagesCard from './languages-card'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'
 
-const variants = {
-  initial: {
-    y: 40,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-  },
+function BentoItem({
+  children,
+  className,
+  isInView,
+  delay = 0,
+}: {
+  children: React.ReactNode
+  className?: string
+  isInView: boolean
+  delay?: number
+}) {
+  return (
+    <motion.div
+      className={cn('min-w-0', className)}
+      initial={{ opacity: 0, y: 30, scale: 0.97 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : undefined}
+      transition={{ duration: 0.5, delay, type: 'spring', stiffness: 100, damping: 20 }}
+    >
+      {children}
+    </motion.div>
+  )
 }
 
 function AboutMe() {
   const cardsRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(cardsRef, { once: true, margin: '-100px' })
+  const isInView = useInView(cardsRef, { once: true, margin: '-80px' })
   const t = useTranslations()
 
   return (
-    <motion.div
-      initial='initial'
-      animate={isInView ? 'animate' : 'initial'}
-      variants={variants}
-      ref={cardsRef}
-      transition={{
-        duration: 0.5,
-      }}
-      className='relative my-24'
-    >
-      <motion.h2
-        className='text-center text-3xl font-semibold'
-        initial={{
-          y: 30,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.3,
-        }}
+    <div ref={cardsRef} className='relative my-24'>
+      <div>
+        <motion.h2
+          className='text-center text-3xl font-semibold'
+          initial={{ y: 30, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : undefined}
+          transition={{ duration: 0.3 }}
+        >
+          {t('homepage.about-me.title')}
+        </motion.h2>
+        <motion.div
+          className='flex justify-center'
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : undefined}
+          transition={{ duration: 0.3, delay: 0.15 }}
+        >
+          <AnimatedLine delay={0.2} duration={0.4} />
+        </motion.div>
+      </div>
+
+      <motion.p
+        className='mx-auto mt-4 max-w-xl text-center text-muted-foreground'
+        initial={{ opacity: 0, y: 15 }}
+        animate={isInView ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: 0.4, delay: 0.1 }}
       >
-        {t('homepage.about-me.title')}
-      </motion.h2>
-      <motion.div
-        className='mt-12 grid gap-4 md:grid-cols-2'
-        initial={{
-          y: 40,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.3,
-        }}
-      >
-        <div className='grid gap-4'>
+        <HoverWords text={t('homepage.about-me.intro')} />
+      </motion.p>
+
+      {/* Row 1: Location — full width for the Mapbox map */}
+      <div className='mt-12'>
+        <BentoItem isInView={isInView} delay={0.1}>
           <LocationCard />
+        </BentoItem>
+      </div>
+
+      {/* Row 2: My Coding DNA + Fun Facts */}
+      <div className='mt-4 grid gap-4 md:grid-cols-2'>
+        <BentoItem isInView={isInView} delay={0.15}>
+          <CodingDnaCard />
+        </BentoItem>
+        <BentoItem isInView={isInView} delay={0.2}>
+          <FunFactsCard />
+        </BentoItem>
+      </div>
+
+      {/* Row 3: Tech Stack (wide) + Currently */}
+      <div className='mt-4 grid gap-4 md:grid-cols-5'>
+        <BentoItem className='md:col-span-3' isInView={isInView} delay={0.25}>
           <StacksCard />
-        </div>
-        <div className='grid gap-4'>
+        </BentoItem>
+        <BentoItem className='md:col-span-2' isInView={isInView} delay={0.3}>
+          <CurrentlyCard />
+        </BentoItem>
+      </div>
+
+      {/* Row 4: Languages + Connect + Resume */}
+      <div className='mt-4 grid gap-4 md:grid-cols-6'>
+        <BentoItem className='md:col-span-2' isInView={isInView} delay={0.35}>
+          <LanguagesCard />
+        </BentoItem>
+        <BentoItem className='md:col-span-3' isInView={isInView} delay={0.4}>
           <Connect />
-          <div className='grid gap-4 [@media(min-width:450px)]:grid-cols-2'>
-            <ResumeCard />
-          </div>
-        </div>
-      </motion.div>
-      <div className='my-8 flex items-center justify-center'>
+        </BentoItem>
+        <BentoItem className='md:col-span-1' isInView={isInView} delay={0.45}>
+          <ResumeCard />
+        </BentoItem>
+      </div>
+
+      <motion.div
+        className='my-8 flex items-center justify-center'
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: 0.4, delay: 0.5 }}
+      >
         <Link href='/about' className={cn(buttonVariants({ variant: 'outline' }))}>
           {t('homepage.about-me.more')}
         </Link>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }
 

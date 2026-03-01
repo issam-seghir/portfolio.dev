@@ -1,24 +1,24 @@
 'use client'
 
-import { DnaIcon } from 'lucide-react'
+import { FingerprintIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 
 const TRAITS = [
-  { key: 'trait-night-owl', emoji: '🦉', bg: 'from-indigo-500/15 to-purple-500/15' },
-  { key: 'trait-coffee', emoji: '☕', bg: 'from-amber-500/15 to-orange-500/15' },
-  { key: 'trait-vim', emoji: '⌨️', bg: 'from-green-500/15 to-emerald-500/15' },
-  { key: 'trait-dreams', emoji: '💭', bg: 'from-blue-500/15 to-cyan-500/15' },
-  { key: 'trait-founder', emoji: '🚀', bg: 'from-violet-500/15 to-pink-500/15' },
-  { key: 'trait-pixel', emoji: '🎨', bg: 'from-rose-500/15 to-red-500/15' },
-  { key: 'trait-self-taught', emoji: '📚', bg: 'from-teal-500/15 to-cyan-500/15' },
-  { key: 'trait-fast', emoji: '⚡', bg: 'from-yellow-500/15 to-amber-500/15' },
+  { key: 'trait-curious', emoji: '🧠', bg: 'from-blue-500/15 to-cyan-500/15' },
+  { key: 'trait-creative', emoji: '🎨', bg: 'from-rose-500/15 to-pink-500/15' },
+  { key: 'trait-founder', emoji: '🚀', bg: 'from-violet-500/15 to-purple-500/15' },
+  { key: 'trait-perfectionist', emoji: '✨', bg: 'from-amber-500/15 to-yellow-500/15' },
+  { key: 'trait-dreamer', emoji: '💭', bg: 'from-indigo-500/15 to-blue-500/15' },
+  { key: 'trait-resilient', emoji: '🦁', bg: 'from-orange-500/15 to-red-500/15' },
+  { key: 'trait-self-taught', emoji: '📚', bg: 'from-teal-500/15 to-emerald-500/15' },
+  { key: 'trait-unboxed', emoji: '💡', bg: 'from-green-500/15 to-lime-500/15' },
 ] as const
 
 const STATS = [
-  { key: 'coding-hours', value: '3,200+', icon: '⏱️' },
-  { key: 'projects-shipped', value: '25+', icon: '📦' },
-  { key: 'cups-of-coffee', value: '4,800', icon: '☕' },
+  { key: 'stat-experience', value: '4+', icon: '📅' },
+  { key: 'stat-projects', value: '25+', icon: '📦' },
+  { key: 'stat-coffee', value: '∞', icon: '☕' },
 ] as const
 
 function CodingDnaCard() {
@@ -27,7 +27,7 @@ function CodingDnaCard() {
   return (
     <div className='flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card transition-shadow hover:shadow-lg lg:p-6'>
       <div className='flex items-center gap-2'>
-        <DnaIcon className='size-4.5' />
+        <FingerprintIcon className='size-4.5' />
         <h2 className='text-sm'>{t('homepage.about-me.coding-dna')}</h2>
       </div>
 
@@ -60,10 +60,10 @@ function CodingDnaCard() {
             transition={{ delay: i * 0.1 + 0.4, duration: 0.4 }}
           >
             <span className='text-sm'>{stat.icon}</span>
-            <span className='text-base font-bold tabular-nums bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400'>
+            <span className='bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-base font-bold tabular-nums text-transparent dark:from-blue-400 dark:to-violet-400'>
               {stat.value}
             </span>
-            <span className='text-[10px] text-muted-foreground text-center leading-tight'>
+            <span className='text-center text-[10px] leading-tight text-muted-foreground'>
               {t(`homepage.about-me.${stat.key}` as never)}
             </span>
           </motion.div>
