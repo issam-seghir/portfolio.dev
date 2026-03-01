@@ -60,7 +60,7 @@ function StacksCard() {
   const t = useTranslations()
 
   return (
-    <div className='flex flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card lg:p-6'>
+    <div className='flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card transition-shadow hover:shadow-lg lg:p-6'>
       <div className='flex items-center gap-2'>
         <ZapIcon className='size-4.5' />
         <h2 className='text-sm'>{t('homepage.about-me.stacks')}</h2>
