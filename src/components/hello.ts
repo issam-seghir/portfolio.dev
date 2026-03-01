@@ -4,20 +4,24 @@ import { useEffect } from 'react'
 
 function Hello() {
   useEffect(() => {
-    // This is a fun little message for anyone who might be inspecting the code.
-    // So we disable the rule for this line.
     // eslint-disable-next-line no-console
     console.log(
-      `\
-%cHey there, awesome developer!
+      `%c
+  ╦╔═╗╔═╗╔═╗╔╦╗
+  ║╚═╗╚═╗╠═╣║║║
+  ╩╚═╝╚═╝╩ ╩╩ ╩
+  ╔═╗╔═╗╔═╗╦ ╦╦╦═╗
+  ╚═╗║╣ ║ ╦╠═╣║╠╦╝
+  ╚═╝╚═╝╚═╝╩ ╩╩╩╚═
 
-If you're digging this code, check out my GitHub repo:
+  Software Engineer & SaaS Founder
 
-https://github.com/issam-seghir/portfolio.dev
+  Curious? Check out the source:
+  https://github.com/issam-seghir/portfolio.dev
 
-and give it a star ⭐
+  Give it a star if you like it! ⭐
 `,
-      'font-size: 16px',
+      'color: #6366f1; font-size: 14px; font-family: monospace;',
     )
   }, [])
 

@@ -1,0 +1,282 @@
+---
+title: Building an ERP System from Scratch — Architecture and Lessons Learned
+date: '2025-08-10T00:00:00.000Z'
+modifiedTime: '2025-08-10T00:00:00.000Z'
+summary: A technical deep-dive into designing and building a modular ERP system with Node.js, PostgreSQL, and React, covering database design, API architecture, and hard lessons from production.
+---
+
+## Why Build an ERP from Scratch
+
+Most developers would tell you not to. "Just use SAP," "Try Odoo," "ERPNext exists." And they are not wrong — building an ERP system is one of the most complex undertaking in business software. But when your client needs a system tailored to North African business workflows, with Arabic/French bilingual support, local tax regulations, and integration with regional payment providers, off-the-shelf solutions start falling apart quickly.
+
+Over the past two years, I have built three ERP systems for different clients — a textile manufacturer, a wholesale distributor, and a multi-branch retail chain. Each one taught me something the previous one got wrong. This post is a distillation of those lessons into a practical architecture guide.
+
+## The Module Structure
+
+An ERP is not a single application. It is a collection of interconnected modules, each handling a distinct business domain. The key is designing module boundaries that are cohesive internally but loosely coupled externally.
+
+Here are the core modules I have settled on after multiple iterations:
+
+- **Inventory Management** — Products, warehouses, stock movements, reorder points
+- **Sales & Invoicing** — Quotes, sales orders, invoices, payment tracking
+- **Purchasing** — Purchase orders, supplier management, receiving
+- **Accounting** — General ledger, journal entries, financial reports, tax calculations
+- **HR & Payroll** — Employee records, attendance, leave management, salary computation
+- **CRM** — Customer profiles, interaction history, pipeline tracking
+
+Each module owns its data and exposes functionality through well-defined API endpoints. Modules communicate through a combination of direct API calls for synchronous operations and an event bus for asynchronous side effects.
+
+## Database Design with PostgreSQL
+
+PostgreSQL is the backbone of every ERP I have built, and for good reason. It handles complex queries well, has excellent JSON support for semi-structured data, and its row-level security features are invaluable for multi-tenant setups.
+
+### Schema Strategy
+
+I use a schema-per-module approach within a single database. Each module gets its own PostgreSQL schema, which provides namespace isolation without the operational overhead of separate databases:
+
+```sql
+CREATE SCHEMA inventory;
+CREATE SCHEMA sales;
+CREATE SCHEMA accounting;
+CREATE SCHEMA hr;
+
+CREATE TABLE inventory.products (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    sku VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    name_ar VARCHAR(255),
+    description TEXT,
+    category_id UUID REFERENCES inventory.categories(id),
+    unit_of_measure VARCHAR(20) NOT NULL DEFAULT 'piece',
+    reorder_point INTEGER NOT NULL DEFAULT 0,
+    is_active BOOLEAN NOT NULL DEFAULT true,
+    metadata JSONB DEFAULT '{}',
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE inventory.stock_movements (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_id UUID NOT NULL REFERENCES inventory.products(id),
+    warehouse_id UUID NOT NULL REFERENCES inventory.warehouses(id),
+    movement_type VARCHAR(20) NOT NULL CHECK (
+        movement_type IN ('in', 'out', 'transfer', 'adjustment')
+    ),
+    quantity INTEGER NOT NULL,
+    reference_type VARCHAR(50),
+    reference_id UUID,
+    notes TEXT,
+    created_by UUID NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_stock_movements_product
+    ON inventory.stock_movements(product_id, created_at DESC);
+CREATE INDEX idx_stock_movements_warehouse
+    ON inventory.stock_movements(warehouse_id, movement_type);
+```
+
+A few design decisions worth highlighting:
+
+**UUIDs as primary keys.** In a system where data might sync across branches or get imported from external sources, auto-incrementing integers cause collision headaches. UUIDs eliminate that problem entirely.
+
+**JSONB metadata columns.** Every business has unique fields they want to track. Instead of adding columns for every custom field request, I use a `metadata` JSONB column that handles arbitrary key-value data. PostgreSQL can index JSONB paths efficiently with GIN indexes.
+
+**Bilingual name columns.** For the North African market, having `name` and `name_ar` (Arabic) columns on core entities saves enormous complexity compared to building a full translation system.
+
+### The Accounting Schema
+
+The accounting module deserves special attention because getting it wrong is catastrophic. I use a double-entry bookkeeping system built on a journal entries model:
+
+```sql
+CREATE TABLE accounting.accounts (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    code VARCHAR(20) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    account_type VARCHAR(20) NOT NULL CHECK (
+        account_type IN (
+            'asset', 'liability', 'equity', 'revenue', 'expense'
+        )
+    ),
+    parent_id UUID REFERENCES accounting.accounts(id),
+    is_active BOOLEAN NOT NULL DEFAULT true
+);
+
+CREATE TABLE accounting.journal_entries (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    entry_date DATE NOT NULL,
+    reference VARCHAR(100),
+    description TEXT,
+    is_posted BOOLEAN NOT NULL DEFAULT false,
+    created_by UUID NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE accounting.journal_lines (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    journal_entry_id UUID NOT NULL
+        REFERENCES accounting.journal_entries(id) ON DELETE CASCADE,
+    account_id UUID NOT NULL REFERENCES accounting.accounts(id),
+    debit NUMERIC(15, 2) NOT NULL DEFAULT 0,
+    credit NUMERIC(15, 2) NOT NULL DEFAULT 0,
+    CHECK (debit >= 0 AND credit >= 0),
+    CHECK (debit > 0 OR credit > 0)
+);
+```
+
+The critical constraint: every journal entry must balance. I enforce this at the application level before posting, and I also run a nightly reconciliation job that flags any imbalances.
+
+## API Architecture
+
+The API layer uses Node.js with Express, structured around a controller-service-repository pattern. Nothing revolutionary, but it works reliably at scale.
+
+### Route Organization
+
+Each module gets its own Express router, mounted under a versioned API prefix:
+
+```typescript
+import { Router } from "express";
+import { inventoryRouter } from "./modules/inventory/routes";
+import { salesRouter } from "./modules/sales/routes";
+import { accountingRouter } from "./modules/accounting/routes";
+import { hrRouter } from "./modules/hr/routes";
+import { authMiddleware } from "./middleware/auth";
+import { permissionMiddleware } from "./middleware/permissions";
+
+const apiRouter = Router();
+
+apiRouter.use(authMiddleware);
+
+apiRouter.use("/inventory", permissionMiddleware("inventory"), inventoryRouter);
+apiRouter.use("/sales", permissionMiddleware("sales"), salesRouter);
+apiRouter.use("/accounting", permissionMiddleware("accounting"), accountingRouter);
+apiRouter.use("/hr", permissionMiddleware("hr"), hrRouter);
+
+export { apiRouter };
+```
+
+### The Service Layer
+
+Services contain the business logic and coordinate between repositories. Here is a simplified version of the inventory service that handles stock movements:
+
+```typescript
+import { db } from "@/db";
+import { EventBus } from "@/lib/event-bus";
+
+interface CreateStockMovementInput {
+  productId: string;
+  warehouseId: string;
+  movementType: "in" | "out" | "transfer" | "adjustment";
+  quantity: number;
+  referenceType?: string;
+  referenceId?: string;
+  userId: string;
+}
+
+export async function createStockMovement(input: CreateStockMovementInput) {
+  return db.transaction(async (tx) => {
+    const movement = await tx.query(
+      `INSERT INTO inventory.stock_movements
+        (product_id, warehouse_id, movement_type, quantity,
+         reference_type, reference_id, created_by)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING *`,
+      [
+        input.productId,
+        input.warehouseId,
+        input.movementType,
+        input.quantity,
+        input.referenceType,
+        input.referenceId,
+        input.userId,
+      ]
+    );
+
+    await tx.query(
+      `UPDATE inventory.warehouse_stock
+       SET quantity = quantity + $1, updated_at = NOW()
+       WHERE product_id = $2 AND warehouse_id = $3`,
+      [
+        input.movementType === "out" ? -input.quantity : input.quantity,
+        input.productId,
+        input.warehouseId,
+      ]
+    );
+
+    const currentStock = await tx.query(
+      `SELECT quantity, p.reorder_point
+       FROM inventory.warehouse_stock ws
+       JOIN inventory.products p ON p.id = ws.product_id
+       WHERE ws.product_id = $1 AND ws.warehouse_id = $2`,
+      [input.productId, input.warehouseId]
+    );
+
+    if (currentStock.rows[0].quantity <= currentStock.rows[0].reorder_point) {
+      EventBus.emit("inventory.low_stock", {
+        productId: input.productId,
+        warehouseId: input.warehouseId,
+        currentQuantity: currentStock.rows[0].quantity,
+        reorderPoint: currentStock.rows[0].reorder_point,
+      });
+    }
+
+    return movement.rows[0];
+  });
+}
+```
+
+The transaction ensures that the stock movement and the quantity update are atomic. If either fails, both roll back. The event emission for low stock happens outside the transaction — if the notification fails, we do not want to roll back a valid stock movement.
+
+## Cross-Module Communication
+
+This is where ERP systems get tricky. When a sales order is confirmed, the inventory module needs to reserve stock, the accounting module needs to create a journal entry, and the CRM module might need to update the customer's purchase history.
+
+I use a lightweight event bus for this:
+
+```typescript
+type EventHandler = (payload: unknown) => Promise<void>;
+
+class EventBusImpl {
+  private handlers: Map<string, EventHandler[]> = new Map();
+
+  on(event: string, handler: EventHandler) {
+    const existing = this.handlers.get(event) || [];
+    this.handlers.set(event, [...existing, handler]);
+  }
+
+  async emit(event: string, payload: unknown) {
+    const handlers = this.handlers.get(event) || [];
+    await Promise.allSettled(
+      handlers.map((handler) => handler(payload))
+    );
+  }
+}
+
+export const EventBus = new EventBusImpl();
+```
+
+Each module registers its event handlers at startup. The sales module emits `sales.order_confirmed`, and the inventory and accounting modules react independently. Using `Promise.allSettled` instead of `Promise.all` ensures that a failure in one handler does not block the others.
+
+For production systems with higher reliability requirements, I would replace this in-process event bus with a message queue like BullMQ backed by Redis. But for the scale I was operating at — hundreds of transactions per day, not thousands per second — the simple approach worked fine.
+
+## Lessons Learned the Hard Way
+
+**Start with accounting, not inventory.** Every module eventually needs to create financial records. If your accounting module is an afterthought, you end up retrofitting it everywhere, and that is where bugs hide.
+
+**Multi-currency support cannot be added later.** I learned this on my second ERP build. If there is any chance the business deals in multiple currencies, build it in from day one. Retrofitting currency conversion into an existing ledger is a nightmare.
+
+**Soft deletes everywhere.** In an ERP, you almost never want to actually delete data. A deleted product might still be referenced by historical invoices. Use `is_active` flags and `deleted_at` timestamps instead of `DELETE` statements.
+
+**Audit logging is not optional.** Every mutation — every insert, update, and delete — needs to be logged with who did it and when. I use PostgreSQL triggers to write to audit tables automatically. When a client's accountant asks "who changed this invoice last Tuesday," you need to have the answer.
+
+**Test with real data volumes.** My inventory queries ran beautifully with 100 test products. With 50,000 products and two years of stock movements, those same queries timed out. Load testing with realistic data volumes saved me from multiple production disasters.
+
+**Permissions are a product feature, not a technical detail.** The warehouse manager should not see HR data. The accountant should not modify inventory. Building a granular, role-based permission system early on saved countless hours of "can you restrict access to..." requests later.
+
+## Was It Worth Building from Scratch
+
+For the specific clients and markets I serve — absolutely. The tailored workflows, bilingual support, and integration with local payment systems would have been impossible with an off-the-shelf solution without heavy customization anyway.
+
+But I would not recommend this path for everyone. If your business fits neatly into what Odoo or ERPNext offers, use those. Building an ERP is a multi-year commitment to maintenance, updates, and feature requests that never stop. Only build custom if your requirements genuinely demand it.
+
+The architecture I have described here is not perfect. It has evolved through three projects and will keep evolving. But the core principles — modular boundaries, transactional integrity, event-driven communication, and obsessive audit logging — have held up in production and scaled well as these businesses grew.

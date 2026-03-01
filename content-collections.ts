@@ -9,6 +9,11 @@ type BaseDoc = {
   content: string
 }
 
+function getReadingTime(content: string): number {
+  const words = content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length
+  return Math.max(1, Math.ceil(words / 230))
+}
+
 async function transform<D extends BaseDoc>(document: D, context: Context) {
   const code = await compileMDX(context, document, {
     remarkPlugins,
@@ -26,6 +31,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     locale,
     slug: path,
     toc: await getTOC(document.content),
+    readingTime: getReadingTime(document.content),
   }
 }
 

@@ -11,6 +11,7 @@ import GetInTouch from '@/components/home/get-in-touch'
 import Hero from '@/components/home/hero'
 import LatestArticles from '@/components/home/latest-articles'
 import SelectedProjects from '@/components/home/selected-projects'
+import HomeTestimonials from '@/components/home/testimonials'
 import JsonLd from '@/components/json-ld'
 import {
   MY_NAME,
@@ -76,6 +77,7 @@ function Page(props: PageProps<'/[locale]'>) {
       <SelectedProjects projects={filteredProjects} />
       <AboutMe />
       <Experience />
+      <HomeTestimonials />
       {filteredPosts.length > 0 && <LatestArticles posts={filteredPosts} />}
       <GetInTouch />
     </>

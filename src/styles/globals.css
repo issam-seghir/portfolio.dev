@@ -156,8 +156,18 @@
     }
   }
 
-  --font-sans: var(--font-geist-sans), var(--font-noto-sans-tc), var(--font-noto-sans-sc);
-  --font-mono: var(--font-geist-mono);
+  @keyframes shimmer {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  --font-sans: var(--font-sans-main), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans-main), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-main), ui-monospace, monospace;
 
   --background-image-email-button: var(--email-button);
 
@@ -212,6 +222,11 @@
   --email-button: linear-gradient(180deg, rgb(210 10 30) 5%, rgb(239 90 90) 100%);
 
   --feature-card: 0 -1px 3px 0 rgb(0 0 0 / 0.05);
+}
+
+[dir='rtl'] {
+  --font-sans: var(--font-noto-sans-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-noto-sans-arabic), ui-sans-serif, system-ui, sans-serif;
 }
 
 .dark {
@@ -271,6 +286,48 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+@layer components {
+  .hover-word {
+    position: relative;
+    cursor: default;
+    transition: color 0.15s ease;
+  }
+  .hover-word:hover {
+    color: var(--foreground);
+  }
+  .hover-word::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgb(59 130 246), rgb(139 92 246));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s ease;
+  }
+  .hover-word:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 }
 
@@ -280,5 +337,17 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  button:not(:disabled):active,
+  [role='button']:not(:disabled):active {
+    transform: scale(0.97);
   }
 }

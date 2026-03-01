@@ -3,7 +3,7 @@ import type { Viewport } from 'next'
 import '@/styles/globals.css'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Geist, Geist_Mono, Noto_Sans_Arabic } from 'next/font/google'
+import { JetBrains_Mono, Noto_Sans_Arabic, Plus_Jakarta_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { setRequestLocale } from 'next-intl/server'
@@ -27,14 +27,16 @@ export const viewport: Viewport = {
   ],
 }
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: '--font-sans-main',
   subsets: ['latin'],
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetBrainsMono = JetBrains_Mono({
+  variable: '--font-mono-main',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 const notoSansArabic = Noto_Sans_Arabic({
@@ -57,7 +59,7 @@ async function Layout(props: LayoutProps<'/[locale]'>) {
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={cn(geistSans.variable, geistMono.variable, notoSansArabic.variable)}
+      className={cn(plusJakartaSans.variable, jetBrainsMono.variable, notoSansArabic.variable)}
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >

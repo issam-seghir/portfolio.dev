@@ -74,7 +74,6 @@ export function createMetadata(options: Options): Metadata {
       },
       twitter: {
         card: 'summary_large_image',
-        creator: '@issam_seghirr',
       },
       icons: {
         icon: {

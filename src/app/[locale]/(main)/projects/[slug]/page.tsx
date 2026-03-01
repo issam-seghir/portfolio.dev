@@ -10,9 +10,11 @@ import { use } from 'react'
 import BlurImage from '@/components/blur-image'
 import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
+import ProjectCTA from '@/components/project-cta'
 import ProjectHeader from '@/components/project-header'
+import ProjectNavigation from '@/components/project-navigation'
 import { MY_NAME } from '@/lib/constants'
-import { getProjectBySlug } from '@/lib/content'
+import { getLatestProjects, getProjectBySlug } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
@@ -79,6 +81,11 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
     inLanguage: locale,
   }
 
+  const allProjectsForLocale = getLatestProjects(locale)
+  const currentIndex = allProjectsForLocale.findIndex((p) => p.slug === slug)
+  const prevProject = currentIndex > 0 ? allProjectsForLocale[currentIndex - 1] : undefined
+  const nextProject = currentIndex < allProjectsForLocale.length - 1 ? allProjectsForLocale[currentIndex + 1] : undefined
+
   return (
     <>
       <JsonLd json={jsonLd} />
@@ -93,6 +100,8 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
           lazy={false}
         />
         <Mdx code={code} />
+        <ProjectCTA />
+        <ProjectNavigation prev={prevProject} next={nextProject} />
       </div>
     </>
   )

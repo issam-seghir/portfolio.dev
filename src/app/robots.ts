@@ -8,7 +8,7 @@ function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: ['/', '/api/avatar/*'],
-        disallow: ['/api/'],
+        disallow: ['/api/', '/account', '/admin', '/unsubscribe'],
       },
     ],
     sitemap: `${getBaseUrl()}/sitemap.xml`,

@@ -18,6 +18,16 @@
 
   & {
     max-width: none;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  :where(p):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    text-wrap: pretty;
+  }
+
+  :is(:where(h1, h2, h3, h4, h5, h6):not(:where([class~='not-prose'], [class~='not-prose'] *))) {
+    text-wrap: balance;
   }
 
   :where(img):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -25,6 +35,7 @@
   }
 
   :where(code):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+    font-family: var(--font-mono);
     padding: 2px 4px;
     font-size: 13px;
     border-radius: 6px;

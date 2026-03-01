@@ -63,6 +63,12 @@ function Page(props: PageProps<'/[locale]/about'>) {
       description: t('metadata.site-description'),
       url: getBaseUrl(),
       sameAs: [SITE_FACEBOOK_URL, SITE_LINKEDIN_URL, SITE_GITHUB_URL],
+      jobTitle: 'Software Engineer & SaaS Founder',
+      knowsAbout: [
+        'React', 'Next.js', 'TypeScript', 'React Native', 'Node.js', 'PostgreSQL',
+        'SaaS Development', 'ERP Systems', 'AI Integration', 'Web Development',
+        'Mobile App Development', 'UI/UX Design', 'Tailwind CSS', 'Prisma',
+      ],
     },
     inLanguage: locale,
   }

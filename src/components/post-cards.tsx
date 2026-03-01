@@ -2,6 +2,7 @@
 
 import type { Post } from 'content-collections'
 
+import { ClockIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import BlurImage from '@/components/blur-image'
@@ -29,7 +30,7 @@ function PostCards(props: PostCardsProps) {
 }
 
 function PostCard(props: PostCardProps) {
-  const { slug, title, summary, date } = props
+  const { slug, title, summary, date, readingTime } = props
   const formattedDate = useFormattedDate(date)
   const t = useTranslations()
 
@@ -47,7 +48,15 @@ function PostCard(props: PostCardProps) {
         alt={title}
       />
       <div className='flex items-center justify-between gap-2 px-2 pt-4 text-sm text-muted-foreground'>
-        {formattedDate ?? '--'}
+        <div className='flex items-center gap-3'>
+          {formattedDate ?? '--'}
+          {readingTime && (
+            <span className='flex items-center gap-1'>
+              <ClockIcon className='size-3' />
+              {readingTime} min
+            </span>
+          )}
+        </div>
         <div className='flex gap-2'>
           {likesQuery.isLoading && '--'}
           {likesQuery.isError && t('common.error')}

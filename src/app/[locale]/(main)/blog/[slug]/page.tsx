@@ -7,11 +7,13 @@ import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import { Suspense, use } from 'react'
 
+import AuthorBio from '@/components/blog/author-bio'
 import BlogFooter from '@/components/blog/blog-footer'
 import BlogHeader from '@/components/blog/blog-header'
 import LikeButton from '@/components/blog/like-button'
 import MobileTableOfContents from '@/components/blog/mobile-table-of-contents'
 import ProgressBar from '@/components/blog/progress-bar'
+import ShareButtons from '@/components/blog/share-buttons'
 import TableOfContents from '@/components/blog/table-of-contents'
 import CommentSection from '@/components/comment-section'
 import JsonLd from '@/components/json-ld'
@@ -88,6 +90,7 @@ function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
       name: MY_NAME,
       url: baseUrl,
     },
+    wordCount: post.content.split(/\s+/).length,
     inLanguage: locale,
   }
 
@@ -100,6 +103,10 @@ function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
       <div className='mt-8 flex flex-col justify-between lg:flex-row'>
         <article className='w-full lg:max-w-2xl'>
           <Mdx code={post.code} />
+          <div className='mt-8 flex items-center justify-between border-t pt-6'>
+            <ShareButtons title={post.title} url={url} />
+          </div>
+          <AuthorBio />
         </article>
         <aside className='w-full lg:w-68'>
           <div className='sticky top-24'>

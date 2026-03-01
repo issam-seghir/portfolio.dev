@@ -1,0 +1,155 @@
+---
+title: "AI-Powered SaaS Tools I Actually Use Daily as a Developer"
+date: "2026-01-08"
+modifiedTime: "2026-01-08"
+summary: "An honest review of the AI tools in my daily workflow for coding, design, writing, testing, and productivity — what works, what doesn't, and what's worth paying for."
+---
+
+## The AI Tool Explosion
+
+Every week there is a new AI tool promising to 10x your productivity. Most of them are noise. After testing dozens of tools over the past year, I have settled on a small set that genuinely make me faster. This is not a sponsored list. These are the tools I actually pay for and use every day while building SaaS products and shipping freelance projects.
+
+## Coding: Where AI Shines Brightest
+
+### Cursor
+
+Cursor has replaced VS Code as my primary editor, and that is not something I say lightly. I was deeply invested in VS Code with custom keybindings, extensions, and workflows built up over years. Cursor is built on VS Code so all of that transferred over, but the AI integration is on another level.
+
+What makes Cursor different from just using Copilot in VS Code is the context awareness. You can reference files, folders, and documentation directly in your prompts. When I am working on a complex database migration, I can tell Cursor to look at my existing schema files and generate a migration that is consistent with my naming conventions and patterns.
+
+The inline editing feature is where I get the most value. I highlight a block of code, hit Ctrl+K, describe what I want to change, and it rewrites just that section. For refactoring, this is significantly faster than doing it manually.
+
+Where it falls short: Cursor sometimes struggles with very large codebases. If you have hundreds of files, the context window can become a bottleneck. I have also noticed it occasionally generates code that looks correct but has subtle bugs, especially with complex TypeScript generics. You still need to review everything carefully.
+
+**Verdict:** Worth every dollar. The Pro plan pays for itself within the first week.
+
+### GitHub Copilot
+
+I still have Copilot active as a secondary suggestion engine. Even though Cursor handles most of my AI-assisted coding, Copilot's inline autocomplete is useful for boilerplate code. Writing repetitive patterns like form validation, API route handlers, or test cases is where it shines.
+
+The Copilot chat feature is decent for quick questions, but I find myself reaching for Cursor's chat more often because of the better context handling.
+
+Where it falls short: Copilot's suggestions can be confidently wrong. It will autocomplete a function call with arguments that look plausible but do not match the actual API. It also has a tendency to suggest deprecated patterns, especially for fast-moving libraries like Next.js.
+
+**Verdict:** Good as a complement to Cursor. The autocomplete alone justifies the subscription if your employer is not already paying for it.
+
+## Design: AI Is Getting Useful
+
+### Figma AI
+
+Figma has been integrating AI features gradually and some of them are genuinely useful. The auto-layout suggestions save time when cleaning up messy frames. The rename layers feature sounds trivial but when you inherit a design file with layers named "Frame 427" and "Rectangle 19", bulk AI renaming is a lifesaver.
+
+The text generation and translation features are practical for prototyping. Instead of using placeholder text, I can generate realistic content that makes designs feel more authentic during client reviews.
+
+Where it falls short: The AI-generated design suggestions are hit or miss. They work for simple UI patterns but anything complex still requires manual design thinking. I would not trust it to design a full page layout from scratch.
+
+**Verdict:** Nice quality-of-life improvements within a tool I already use daily. Not a reason to switch to Figma if you are using something else.
+
+### AI Image Generation for Mockups
+
+I use AI image generation tools for creating placeholder images, illustrations for blog posts, and app store screenshots during the prototyping phase. This used to require stock photo subscriptions or hiring an illustrator for early-stage mockups.
+
+For actual production assets, I still work with designers. AI-generated images are good enough for prototyping and MVPs but they lack the consistency and brand alignment you need for a polished product.
+
+**Verdict:** Useful for early-stage work and prototyping. Not a replacement for professional design.
+
+## Writing: The Underrated Productivity Boost
+
+### AI Writing Assistants
+
+I use AI for first drafts of documentation, README files, and changelog entries. Writing documentation is one of those tasks that most developers put off because it is tedious. Having an AI generate a first draft that I then edit and refine cuts the time in half.
+
+My workflow looks like this:
+
+1. Write bullet points of what needs to be documented
+2. Have the AI expand those into full paragraphs
+3. Edit heavily for accuracy, tone, and technical correctness
+4. Add code examples manually because AI-generated code in docs is often wrong
+
+For blog posts like this one, I write the outline and key points myself, then use AI to help with transitions and filler paragraphs. The ideas and technical content are mine. The AI helps me get past blank page syndrome.
+
+Where it falls short: AI writing tools produce generic, bland prose if you do not guide them aggressively. The default output reads like it was written by a committee. You need to inject your own voice and opinions.
+
+**Verdict:** Valuable for documentation and first drafts. Do not publish AI-generated content without heavy editing.
+
+## Testing: Surprisingly Helpful
+
+### AI-Assisted Test Generation
+
+This is an area where AI has surprised me the most. Generating unit tests and integration tests is one of the best uses of AI coding tools. Here is my typical workflow:
+
+1. Write the function or component
+2. Ask Cursor to generate tests based on the implementation
+3. Review the tests, add edge cases the AI missed, remove redundant ones
+4. Run the tests and fix any that fail
+
+The AI is particularly good at generating the repetitive boilerplate that makes up most test files: the setup, the mocking, the assertion patterns. It handles the boring parts so I can focus on thinking about edge cases and failure modes.
+
+```typescript
+// I write the function
+export function calculateDiscount(
+  price: number,
+  discountPercent: number,
+  maxDiscount: number
+): number {
+  const discount = price * (discountPercent / 100);
+  return Math.min(discount, maxDiscount);
+}
+
+// AI generates comprehensive tests in seconds
+describe("calculateDiscount", () => {
+  it("calculates percentage discount correctly", () => {
+    expect(calculateDiscount(100, 20, 50)).toBe(20);
+  });
+
+  it("caps discount at maximum", () => {
+    expect(calculateDiscount(1000, 50, 100)).toBe(100);
+  });
+
+  it("handles zero price", () => {
+    expect(calculateDiscount(0, 20, 50)).toBe(0);
+  });
+
+  it("handles zero discount percentage", () => {
+    expect(calculateDiscount(100, 0, 50)).toBe(0);
+  });
+
+  it("handles discount equal to max", () => {
+    expect(calculateDiscount(200, 25, 50)).toBe(50);
+  });
+});
+```
+
+Where it falls short: AI-generated tests often test implementation details rather than behavior. They also tend to miss the tricky edge cases that actually cause bugs in production. Use them as a starting point, not a finished product.
+
+**Verdict:** One of the highest ROI uses of AI in development. Cuts test-writing time dramatically.
+
+## Productivity: The Small Wins Add Up
+
+### AI-Powered Search and Note Taking
+
+I use AI-enhanced tools for searching across my notes, bookmarks, and documentation. When I am debugging a problem I have seen before, being able to search my notes in natural language instead of exact keywords saves real time.
+
+### Terminal Assistants
+
+Having AI available in the terminal for generating complex commands is a small but consistent time saver. Instead of searching Stack Overflow for the right `ffmpeg` flags or `docker` compose syntax, I describe what I want and get the command instantly.
+
+### Meeting Transcription and Summarization
+
+For client calls and team meetings, AI transcription has been a game changer. I no longer take notes during meetings. I stay fully present in the conversation and review the AI-generated summary afterward. Key decisions, action items, and follow-ups are extracted automatically.
+
+## What I Am Not Using
+
+For transparency, here are some hyped AI tools I tried and stopped using:
+
+- **AI code review bots**: Too noisy. They flag too many false positives and miss the subtle issues that actually matter. A human reviewer is still far superior.
+- **AI project management tools**: The AI features in most PM tools feel tacked on. Auto-generated task descriptions and sprint summaries are not useful enough to justify switching tools.
+- **AI database query generators**: Natural language to SQL sounds great until you realize the generated queries are often inefficient or subtly wrong. I would rather write SQL myself.
+
+## The Honest Summary
+
+AI tools have genuinely made me 20-30% faster on certain tasks. Not 10x. Not even 2x across the board. The gains are concentrated in specific areas: writing boilerplate code, generating tests, drafting documentation, and handling repetitive tasks.
+
+The tools that work best are the ones embedded in software I already use. Cursor works because it is my editor. Figma AI works because it is my design tool. Standalone AI tools that require switching context rarely stick in my workflow.
+
+My advice: try tools for at least two weeks before judging them. The first day with any AI tool feels magical. The real test is whether you are still using it a month later. The tools on this list have all passed that test.

@@ -1,0 +1,208 @@
+---
+title: "Next.js App Router Performance Tips That Actually Matter"
+date: "2026-02-05"
+modifiedTime: "2026-02-05"
+summary: "Practical performance optimization patterns for the Next.js App Router, covering server components, streaming, caching, and bundle size reduction."
+---
+
+## Why Performance Still Matters
+
+After shipping several production apps with the Next.js App Router, I have noticed the same performance pitfalls showing up again and again. The App Router gives us powerful primitives, but using them wrong can make your app slower than the Pages Router ever was. Here are the patterns I have settled on after months of real-world optimization.
+
+## Server Components vs Client Components
+
+The single biggest performance win in the App Router is server components, and the single biggest mistake is turning everything into a client component without thinking.
+
+The rule is simple: keep components on the server unless they need interactivity or browser APIs. A component that renders a list of blog posts does not need `"use client"`. A component that handles a form submission does.
+
+```tsx
+// This stays as a server component — no directive needed
+async function RecentPosts() {
+  const posts = await db.post.findMany({
+    orderBy: { createdAt: "desc" },
+    take: 5,
+  });
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>
+          <a href={`/blog/${post.slug}`}>{post.title}</a>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+When you do need a client component, push the `"use client"` boundary as far down the tree as possible. Instead of making an entire page a client component because of one button, extract just the interactive part.
+
+```tsx
+// page.tsx — server component
+import { LikeButton } from "./like-button";
+
+export default async function PostPage({ params }) {
+  const post = await getPost(params.slug);
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+      <LikeButton postId={post.id} />
+    </article>
+  );
+}
+```
+
+```tsx
+// like-button.tsx — only this is a client component
+"use client";
+
+import { useState } from "react";
+
+export function LikeButton({ postId }: { postId: string }) {
+  const [liked, setLiked] = useState(false);
+
+  return (
+    <button onClick={() => setLiked(!liked)}>
+      {liked ? "♥" : "♡"} Like
+    </button>
+  );
+}
+```
+
+This pattern keeps the page HTML streaming fast from the server while hydrating only the tiny interactive island.
+
+## Streaming With Suspense
+
+One of the most underused features in the App Router is streaming. Instead of waiting for all data to load before showing anything, you can stream sections independently.
+
+```tsx
+import { Suspense } from "react";
+
+export default function DashboardPage() {
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <Suspense fallback={<StatsSkeleton />}>
+        <DashboardStats />
+      </Suspense>
+      <Suspense fallback={<ChartSkeleton />}>
+        <RevenueChart />
+      </Suspense>
+      <Suspense fallback={<TableSkeleton />}>
+        <RecentOrders />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+Each `Suspense` boundary streams independently. If `DashboardStats` resolves in 100ms but `RevenueChart` takes 2 seconds, the user sees the stats immediately instead of staring at a blank page. This is a massive perceived performance improvement.
+
+The key insight is to wrap each async server component that fetches data in its own `Suspense` boundary. Do not wrap everything in a single boundary — that defeats the purpose.
+
+## Parallel Data Fetching
+
+A common performance killer is sequential data fetching. If your page needs data from three different sources, do not await them one after the other.
+
+```tsx
+// Bad — sequential fetching, each waits for the previous one
+async function DashboardStats() {
+  const users = await getUsers();
+  const revenue = await getRevenue();
+  const orders = await getOrders();
+
+  return <StatsDisplay users={users} revenue={revenue} orders={orders} />;
+}
+```
+
+```tsx
+// Good — parallel fetching with Promise.all
+async function DashboardStats() {
+  const [users, revenue, orders] = await Promise.all([
+    getUsers(),
+    getRevenue(),
+    getOrders(),
+  ]);
+
+  return <StatsDisplay users={users} revenue={revenue} orders={orders} />;
+}
+```
+
+If the three requests each take 200ms, the sequential version takes 600ms while the parallel version takes 200ms. This difference compounds quickly in real applications.
+
+When combined with Suspense streaming, you get the best of both worlds: each section loads independently and fetches its own data in parallel.
+
+## Image Optimization
+
+The `next/image` component is powerful but I see a lot of projects misusing it. Here is what actually moves the needle:
+
+- **Always set `width` and `height`** (or use `fill`) to prevent layout shift. This is the most common Core Web Vitals issue I see in Next.js apps.
+- **Use `priority` on above-the-fold images** like hero images and logos. This triggers preloading.
+- **Use `sizes` to tell the browser what size the image will actually be** at different breakpoints. Without it, Next.js serves the largest size.
+- **Use `placeholder="blur"`** with a `blurDataURL` for a polished loading experience.
+
+```tsx
+import Image from "next/image";
+
+<Image
+  src="/hero.jpg"
+  alt="Hero image"
+  width={1200}
+  height={630}
+  priority
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1200px"
+  placeholder="blur"
+  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZ..."
+/>
+```
+
+For images below the fold, lazy loading is the default and you do not need to change anything. But make sure you are not accidentally setting `priority` on images that are not visible on initial load.
+
+## Caching Strategies
+
+The App Router has multiple caching layers and understanding them is critical. Here is a simplified mental model:
+
+- **Request Memoization**: If you call the same `fetch` with the same arguments in multiple server components during a single request, it only executes once. This is automatic.
+- **Data Cache**: `fetch` results are cached across requests by default. Use `{ next: { revalidate: 3600 } }` to set a TTL, or `{ cache: "no-store" }` to opt out.
+- **Full Route Cache**: Static routes are fully cached at build time. Dynamic routes are rendered per request.
+
+```tsx
+// Cached for 1 hour
+const data = await fetch("https://api.example.com/products", {
+  next: { revalidate: 3600 },
+});
+
+// Never cached — always fresh
+const data = await fetch("https://api.example.com/user/profile", {
+  cache: "no-store",
+});
+```
+
+For database queries that do not use `fetch`, you can use the `unstable_cache` function (or the newer `"use cache"` directive in Next.js 15) to opt into the data cache.
+
+The biggest mistake I see is either caching everything (serving stale data) or caching nothing (slow pages). Think about each data source individually: how often does it change? How expensive is the query? How stale can it be before users notice?
+
+## Bundle Size Optimization
+
+Even with server components reducing client-side JavaScript, bundle size still matters for your client components. Here are the patterns I follow:
+
+- **Dynamic imports for heavy components**: If a component is not needed on initial render, load it dynamically.
+
+```tsx
+import dynamic from "next/dynamic";
+
+const CodeEditor = dynamic(() => import("./code-editor"), {
+  loading: () => <div>Loading editor...</div>,
+  ssr: false,
+});
+```
+
+- **Audit your imports**: A single `import { format } from "date-fns"` in a client component pulls in the entire library in older versions. Use subpath imports like `import { format } from "date-fns/format"` or switch to lighter alternatives.
+- **Use the Next.js bundle analyzer**: Run `ANALYZE=true next build` with `@next/bundle-analyzer` to visualize what is actually in your bundles. Every time I run this on a new project, I find surprises.
+- **Check for duplicate dependencies**: Different versions of the same library sneaking into your bundle is more common than you think. Use `npm ls <package>` to find duplicates.
+
+## Wrapping Up
+
+Performance optimization is not about applying every trick you know. It is about measuring, identifying the actual bottlenecks, and applying the right fix. Start with Lighthouse and Core Web Vitals, find what is slow, and use these patterns to fix it. The App Router gives us excellent tools — we just need to use them intentionally.
