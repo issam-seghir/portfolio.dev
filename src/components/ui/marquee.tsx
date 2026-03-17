@@ -31,6 +31,7 @@ function Marquee(props: MarqueeProps) {
   return (
     <div
       data-slot='marquee'
+      dir='ltr'
       className={cn('group flex overflow-hidden', direction === 'left' ? 'flex-row' : 'flex-col', className)}
       style={{
         maskImage: mask,

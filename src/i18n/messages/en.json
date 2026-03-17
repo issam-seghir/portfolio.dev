@@ -39,19 +39,34 @@
     },
     "testimonials": [
       {
-        "quote": "Issam transformed our vision into a pixel-perfect e-commerce platform. His design instinct is exceptional — he didn't just code it, he made it beautiful. The site performs at 95+ Lighthouse scores.",
-        "name": "Ahmed B.",
-        "role": "Founder, Creative Book"
+        "quote": "It's rare to find a developer who combines the power of clean code with a genuine eye for design — and that's exactly what I found in Issam. The work wasn't just technical execution; it was a journey of craftsmanship and attention to the finest details. The design quality and results were stunning. Issam isn't just a developer — he's a true partner who pushes for the best possible outcome.",
+        "highlights": ["clean code", "eye for design", "craftsmanship", "true partner"],
+        "name": "Coach Karim",
+        "role": "Trainer & CEO, Creative Book"
       },
       {
-        "quote": "We needed a full-stack developer who could think like a founder. Issam built our SaaS MVP from scratch — auth, payments, dashboard, the works — in weeks, not months.",
-        "name": "Sarah M.",
-        "role": "CEO, AI Startup"
+        "quote": "Issam took our Basmat Design website to the next level. He added online payments, set up CI/CD deployment, and fixed our performance issues — our Lighthouse scores improved on both mobile and desktop. That brought more clients to basmatdesign.cloud. Professional and results-driven.",
+        "highlights": ["online payments", "CI/CD deployment", "Lighthouse scores", "more clients"],
+        "name": "Alla Mohamed",
+        "role": "Basmat Design, Saudi Arabia"
       },
       {
-        "quote": "What sets Issam apart is his creative problem-solving. He proposed a better UX flow than what we designed, convinced us with a prototype, and the conversion rate jumped 40%.",
-        "name": "Youssef K.",
-        "role": "Product Lead, Compos Food"
+        "quote": "Over 3 million users — and more than a year in production with zero performance issues. Issam built our website and admin dashboard from the ground up. What impressed us most was his speed and pixel-perfect execution. Users love the UI/UX, and his SEO improvements helped us rank on Google.",
+        "highlights": ["Over 3 million users", "zero performance issues", "pixel-perfect", "rank on Google"],
+        "name": "Abdul Aziz",
+        "role": "Awan Company, Saudi Arabia"
+      },
+      {
+        "quote": "As Project Manager at Compos Solution, I worked with Issam on the development of our Food Delivery application. The result was a very successful and polished product, perfectly aligned with our design guidelines. He is highly cooperative, understands requirements quickly, and communicates effectively. I would confidently collaborate with him again.",
+        "highlights": ["polished product", "design guidelines", "highly cooperative", "confidently collaborate"],
+        "name": "Mohamed Akram",
+        "role": "Project Manager, Compos Solution"
+      },
+      {
+        "quote": "As co-founders of Ecomenia, Issam has been the technical backbone from day one. He architected and built our all-in-one e-commerce platform — order management, delivery integrations like Yalidine and Mystro, multi-store dashboards, inventory, and team tools — with the kind of clarity and scalability that lets real businesses run on it. His combination of product sense and engineering rigor is exactly what you want in a CTO.",
+        "highlights": ["technical backbone", "all-in-one e-commerce platform", "scalability", "CTO"],
+        "name": "Miloud Khdoum",
+        "role": "Founder, Ecomenia"
       }
     ],
     "currently": {
@@ -284,7 +299,7 @@
       "trait-unboxed": "Outside the Box",
       "stat-experience": "Years of Exp.",
       "stat-projects": "Projects Shipped",
-      "stat-coffee": "Cups of Coffee",
+      "stat-coffee": "Pixel Magic",
       "fun-facts": "Fun Facts",
       "fun-facts-tap": "Tap for more",
       "fun-fact-1": "I used to write poetry and fiction that left classmates speechless. Creativity ran in my veins before I ever wrote a line of code.",

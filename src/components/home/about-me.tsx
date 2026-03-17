@@ -11,11 +11,8 @@ import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
 import CodingDnaCard from './coding-dna-card'
-import Connect from './connect'
 import CurrentlyCard from './currently-card'
-import ResumeCard from './favorite-framework'
 import FunFactsCard from './fun-facts-card'
-import LanguagesCard from './languages-card'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'
 
@@ -94,26 +91,10 @@ function AboutMe() {
         </BentoItem>
       </div>
 
-      {/* Row 3: Tech Stack (wide) + Currently */}
-      <div className='mt-4 grid gap-4 md:grid-cols-5'>
-        <BentoItem className='md:col-span-3' isInView={isInView} delay={0.25}>
+      {/* Row 3: Tech Stack — full width for the floating icons */}
+      <div className='mt-4'>
+        <BentoItem isInView={isInView} delay={0.25}>
           <StacksCard />
-        </BentoItem>
-        <BentoItem className='md:col-span-2' isInView={isInView} delay={0.3}>
-          <CurrentlyCard />
-        </BentoItem>
-      </div>
-
-      {/* Row 4: Languages + Connect + Resume */}
-      <div className='mt-4 grid gap-4 md:grid-cols-6'>
-        <BentoItem className='md:col-span-2' isInView={isInView} delay={0.35}>
-          <LanguagesCard />
-        </BentoItem>
-        <BentoItem className='md:col-span-3' isInView={isInView} delay={0.4}>
-          <Connect />
-        </BentoItem>
-        <BentoItem className='md:col-span-1' isInView={isInView} delay={0.45}>
-          <ResumeCard />
         </BentoItem>
       </div>
 

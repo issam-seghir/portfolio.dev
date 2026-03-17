@@ -6,7 +6,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { use } from 'react'
 
 import AboutMe from '@/components/home/about-me'
-import Experience from '@/components/home/experience'
 import GetInTouch from '@/components/home/get-in-touch'
 import Hero from '@/components/home/hero'
 import LatestArticles from '@/components/home/latest-articles'
@@ -76,7 +75,6 @@ function Page(props: PageProps<'/[locale]'>) {
       <Hero />
       <SelectedProjects projects={filteredProjects} />
       <AboutMe />
-      <Experience />
       <HomeTestimonials />
       {filteredPosts.length > 0 && <LatestArticles posts={filteredPosts} />}
       <GetInTouch />

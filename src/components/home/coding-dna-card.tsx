@@ -17,8 +17,8 @@ const TRAITS = [
 
 const STATS = [
   { key: 'stat-experience', value: '4+', icon: '📅' },
-  { key: 'stat-projects', value: '25+', icon: '📦' },
-  { key: 'stat-coffee', value: '∞', icon: '☕' },
+  { key: 'stat-projects', value: '11+', icon: '📦' },
+  { key: 'stat-coffee', value: '∞', icon: '🪄' },
 ] as const
 
 function CodingDnaCard() {
@@ -59,11 +59,11 @@ function CodingDnaCard() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 + 0.4, duration: 0.4 }}
           >
-            <span className='text-sm'>{stat.icon}</span>
+            <span className='text-2xl'>{stat.icon}</span>
             <span className='bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-base font-bold tabular-nums text-transparent dark:from-blue-400 dark:to-violet-400'>
               {stat.value}
             </span>
-            <span className='text-center text-[10px] leading-tight text-muted-foreground'>
+            <span className='text-center text-[13px] leading-tight text-muted-foreground'>
               {t(`homepage.about-me.${stat.key}` as never)}
             </span>
           </motion.div>
