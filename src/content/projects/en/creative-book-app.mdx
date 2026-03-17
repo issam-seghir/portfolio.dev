@@ -1,0 +1,48 @@
+---
+name: Creative Book App
+description: Arabic digital reading platform with EPUB reader, online payments, and offline-first experience
+homepage: https://www.creativebook.io
+techstack:
+  - React Native
+  - Expo
+  - Supabase
+  - Drizzle ORM
+  - tRPC
+  - TypeScript
+  - Tailwind CSS
+  - Zustand
+  - Stripe
+selected: true
+dateCreated: '2025-01-15T00:00:00Z'
+---
+
+## The Problem
+
+Arabic digital reading is broken. Most platforms push PDF-based reading with terrible UX, aggressive monetization, and zero trust in digital ownership. Readers feel disconnected from publishers, and the market lacks a native, comfortable, Arabic-first reading experience that treats books as permanent purchases, not rentals.
+
+## The Solution
+
+I am building Creative Book App, a publisher-owned Arabic mobile reading platform focused on delivering premium EPUB-based reading experiences. The app prioritizes reading comfort, trust, and simplicity over aggressive monetization.
+
+### Key Features
+
+- **EPUB-Based Native Reader** with adjustable fonts, spacing, margins, and Arabic-friendly typography (Amiri, Noto Naskh Arabic)
+- **Reading Modes** including Light, Sepia, and Dark themes with a distraction-free calm mode
+- **Offline-First Architecture** where books download for permanent offline access using expo-file-system and expo-sqlite
+- **Multiple Payment Methods** including Cash on Delivery (COD), Baridi Mob, and Visa/Stripe for the Algerian market
+- **Free Previews** letting readers browse first chapters before purchasing with no forced sign-up until checkout
+- **Personal Library** with purchased books, reading progress, bookmarks, and cloud sync across devices
+- **Curated Catalog** with a small, publisher-curated library that builds editorial trust over quantity
+- **Ratings and Reviews** with a moderated review system to maintain quality discussions
+
+## Technical Decisions
+
+The app is built as a monorepo with React Native (Expo SDK 54+) on the frontend and Supabase with Drizzle ORM on the backend. tRPC provides end-to-end type safety between the mobile client and API layer. Better Auth handles authentication with email and OAuth support.
+
+The EPUB rendering pipeline is purpose-built for Arabic content with RTL layout, proper Naskh typography, and page-turn navigation optimized for right-to-left reading flow. Offline storage uses a local-first sync strategy where books are downloaded via expo-file-system and reading progress syncs when connectivity returns.
+
+Payment integration handles Algeria-specific gateways (Baridi Mob, COD) alongside Stripe for international cards. The purchase model is strictly one-time with no subscriptions, no ads, and no dark patterns.
+
+## What I Learned
+
+Building for the Arabic digital market requires rethinking assumptions. RTL is not just a CSS flip. Typography, reading rhythm, and navigation patterns all need ground-up consideration. Integrating multiple Algerian payment gateways taught me how to build resilient payment flows for emerging markets where standard Stripe-only approaches fall short.
