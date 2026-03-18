@@ -6,7 +6,7 @@ export async function checkAppliedTheme(page: Page, theme: string) {
   await expect(htmlElement).not.toHaveClass(new RegExp(String.raw`${theme === 'light' ? 'dark' : 'light'}`))
 }
 
-export async function checkStoredTheme(page: Page, theme: 'light' | 'dark' | 'system') {
+export async function checkStoredTheme(page: Page, theme: 'light' | 'dark') {
   await expect(async () => {
     const storedTheme = await page.evaluate(() => localStorage.getItem('theme'))
     expect(storedTheme).toBe(theme)

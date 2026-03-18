@@ -1,7 +1,7 @@
 'use client'
 
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'motion/react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import BlurImage from '@/components/blur-image'
@@ -42,6 +42,7 @@ function DescriptionWithHighlight({ text, highlight }: { text: string; highlight
 
 function Hero() {
   const t = useTranslations()
+  const locale = useLocale()
   const [taglineIndex, setTaglineIndex] = useState(0)
   const avatarRef = useRef<HTMLDivElement>(null)
 
@@ -167,7 +168,12 @@ function Hero() {
           initial={{ scale: 0, opacity: 0, filter: 'blur(20px)' }}
           animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
           transition={{ duration: 0.6, delay: 0.2, type: 'spring', stiffness: 200, damping: 20 }}
-          style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+          style={{
+            rotateX,
+            rotateY,
+            scaleX: locale === 'ar' ? -1 : 1,
+            transformStyle: 'preserve-3d',
+          }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >

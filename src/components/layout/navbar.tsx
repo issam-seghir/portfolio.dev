@@ -16,7 +16,7 @@ function Navbar() {
         {HEADER_LINKS.map((link) => (
           <li key={link.key} className='relative flex items-center justify-center'>
             <Link
-              className='rounded-sm px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground data-active:text-foreground'
+              className='rounded-sm py-2 ps-3 pe-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground data-active:text-foreground'
               data-active={link.href === pathname}
               href={link.href}
             >

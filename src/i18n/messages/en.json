@@ -194,7 +194,8 @@
       "terms": "Terms of Service",
       "unsubscribe": "Unsubscribe",
       "users": "Users",
-      "uses": "Uses"
+      "uses": "Uses",
+      "store": "Store"
     },
     "like": "Like",
     "likes": "{count, plural, =1 {# like} other {# likes}}",
@@ -280,7 +281,7 @@
       "location-distance-pre": "I'm from Algiers, Algeria, roughly",
       "location-distance-post": "away from your current location, according to your IP address.",
       "location-fallback": "I'm based in Algiers, Algeria — come say hello!",
-      "location-credit": "Inspired by Josh W. Comeau's whimsical idea",
+      "location-credit": "Approximate distance from your location (IP-based).",
       "more": "Know more about me",
       "stacks": "Tech Stack",
       "stacks-frontend": "Frontend",
@@ -450,5 +451,58 @@
   },
   "uses": {
     "description": "The tools, software, hardware, and setup I use daily for software engineering, SaaS development, and design work."
+  },
+  "store": {
+    "description": "Courses, digital products, and services — learn from my experience or get templates and custom work.",
+    "featured": "Featured",
+    "price-format": "${value}",
+    "price-inquire": "Inquire",
+    "categories": {
+      "course": "Course",
+      "template": "Template",
+      "service": "Service"
+    },
+    "cta": {
+      "view": "View",
+      "inquire": "Inquire",
+      "custom-title": "Want something custom?",
+      "custom-description": "Need a tailored course, template, or project? I build one-off solutions and ongoing partnerships.",
+      "custom-button": "Get in touch"
+    },
+    "filters": {
+      "search-placeholder": "Search products...",
+      "category": {
+        "all": "All",
+        "course": "Courses",
+        "template": "Templates",
+        "service": "Services"
+      },
+      "sort-label": "Sort by",
+      "sort": {
+        "newest": "Newest",
+        "price-asc": "Price: Low to High",
+        "price-desc": "Price: High to Low",
+        "name": "Name A–Z"
+      }
+    },
+    "empty": {
+      "title": "No products found",
+      "description": "Try adjusting your search or filters to find what you're looking for."
+    },
+    "pagination": {
+      "aria-label": "Pagination",
+      "prev": "Previous page",
+      "next": "Next page",
+      "page": "Page {n}"
+    },
+    "sections": {
+      "courses": "Courses",
+      "courses-description": "Structured courses and workshops on web development, React, Next.js, or building SaaS products.",
+      "templates": "Templates & digital products",
+      "templates-description": "Starter kits, UI templates, and reusable digital products to speed up your projects.",
+      "services": "Services",
+      "services-description": "Custom development: landing pages, web apps, mobile apps, and consulting."
+    },
+    "placeholder": "Details and availability on request. Reach out to inquire or get a quote."
   }
 }

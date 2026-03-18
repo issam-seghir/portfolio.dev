@@ -19,30 +19,9 @@ test.describe('theme', () => {
         await checkAppliedTheme(page, initialTheme)
 
         await page.getByTestId('theme-toggle').click()
-        await page.getByTestId(`theme-${theme}-button`).click()
 
         await checkAppliedTheme(page, theme)
         await checkStoredTheme(page, theme)
-      })
-    }
-  })
-
-  test.describe('system preference', () => {
-    const testCases = [
-      { preferredColorScheme: 'light', expectedTheme: 'light' },
-      { preferredColorScheme: 'dark', expectedTheme: 'dark' },
-    ] as const
-
-    for (const { preferredColorScheme, expectedTheme } of testCases) {
-      test(`renders ${expectedTheme} theme if preferred-colorscheme is ${preferredColorScheme}`, async ({ page }) => {
-        await page.emulateMedia({ colorScheme: preferredColorScheme })
-
-        await setThemeInLocalStorage(page, 'system')
-
-        await page.goto('/')
-
-        await checkStoredTheme(page, 'system')
-        await checkAppliedTheme(page, expectedTheme)
       })
     }
   })

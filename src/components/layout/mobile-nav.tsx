@@ -29,7 +29,7 @@ function MobileNav() {
           <DropdownMenuItem
             key={link.key}
             render={
-              <Link href={link.href} className='flex items-center gap-4'>
+              <Link href={link.href} className='flex items-center gap-4 rtl:flex-row-reverse'>
                 {link.icon}
                 <div>{t(link.labelKey)}</div>
               </Link>
