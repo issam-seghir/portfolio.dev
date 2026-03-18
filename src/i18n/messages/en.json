@@ -194,7 +194,6 @@
       "terms": "Terms of Service",
       "unsubscribe": "Unsubscribe",
       "users": "Users",
-      "uses": "Uses",
       "store": "Store"
     },
     "like": "Like",
@@ -448,9 +447,6 @@
     "unsubscribed-description": "You will no longer receive reply notifications emails for this comment.",
     "you-are-unsubscribing-as": "You're unsubscribing as {email}",
     "you-have-been-unsubscribed": "You've been unsubscribed"
-  },
-  "uses": {
-    "description": "The tools, software, hardware, and setup I use daily for software engineering, SaaS development, and design work."
   },
   "store": {
     "description": "Courses, digital products, and services — learn from my experience or get templates and custom work.",

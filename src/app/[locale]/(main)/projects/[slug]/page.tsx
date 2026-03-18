@@ -68,7 +68,7 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
     name,
     description,
     url,
-    codeRepository: github,
+    ...(github && { codeRepository: github }),
     license: 'https://opensource.org/licenses/MIT',
     programmingLanguage: 'TypeScript',
     dateCreated,

@@ -28,7 +28,7 @@ function ProjectHeader(props: ProjectHeaderProps) {
   const { name, description, homepage, github } = props
   const t = useTranslations()
 
-  const repo = github.split('/').pop()
+  const repo = github ? github.split('/').pop() : null
 
   return (
     <div className='space-y-8 pt-10'>
@@ -50,10 +50,12 @@ function ProjectHeader(props: ProjectHeaderProps) {
             <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
           </Link>
         )}
-        <Link href={github} className={cn(buttonVariants(), 'group')}>
-          {GITHUB_USERNAME}/{repo}
-          <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
-        </Link>
+        {github && (
+          <Link href={github} className={cn(buttonVariants(), 'group')}>
+            {GITHUB_USERNAME}/{repo}
+            <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
+          </Link>
+        )}
       </motion.div>
     </div>
   )
