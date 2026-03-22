@@ -1,4 +1,4 @@
-import { Logo } from '@/components/ui/logo'
+import { LOGO_ASPECT } from '@/lib/logo-constants'
 
 function getFontSize(title: string) {
   const baseSize = 80
@@ -16,11 +16,15 @@ function getFontSize(title: string) {
 type OGImageProps = {
   title: string
   url?: string
+  /** Base64 data URL for the logo (required for Satori / ImageResponse). */
+  logoDataUrl: string
 }
 
 function OGImage(props: OGImageProps) {
-  const { title, url } = props
+  const { title, url, logoDataUrl } = props
   const fontSize = getFontSize(title)
+  const logoW = 50
+  const logoH = Math.round(logoW * LOGO_ASPECT)
 
   return (
     <div
@@ -35,7 +39,14 @@ function OGImage(props: OGImageProps) {
         color: '#fff',
       }}
     >
-      <Logo width={50} style={{ position: 'absolute', left: 50, top: 50 }} />
+      {/* eslint-disable-next-line @next/next/no-img-element -- Satori OG pipeline; data URL only */}
+      <img
+        src={logoDataUrl}
+        alt=''
+        width={logoW}
+        height={logoH}
+        style={{ position: 'absolute', left: 50, top: 50, objectFit: 'contain' }}
+      />
       <div style={{ fontSize, maxWidth: 740, fontWeight: 600 }}>{title}</div>
       <div style={{ display: 'flex', fontSize: 30, position: 'absolute', right: 50, bottom: 50, fontWeight: 500 }}>
         issam.dev{url}

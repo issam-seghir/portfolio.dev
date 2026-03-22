@@ -8,6 +8,7 @@ import { hasLocale, type Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
 import OGImage from '@/components/og-image'
+import { LOGO_PUBLIC_FILE } from '@/lib/logo-constants'
 import en from '@/i18n/messages/en.json'
 import { routing } from '@/i18n/routing'
 import { getPostBySlug } from '@/lib/content'
@@ -91,8 +92,10 @@ async function generateProjectOGImage(slugs: string[]) {
 
 async function generateOGImage(title: string, url: string) {
   const fonts = await getOGImageFonts(title)
+  const logoBuffer = await fs.readFile(path.join(process.cwd(), 'public', LOGO_PUBLIC_FILE))
+  const logoDataUrl = `data:image/jpeg;base64,${logoBuffer.toString('base64')}`
 
-  return new ImageResponse(<OGImage title={title} url={url} />, {
+  return new ImageResponse(<OGImage title={title} url={url} logoDataUrl={logoDataUrl} />, {
     width: 1200,
     height: 630,
     fonts,

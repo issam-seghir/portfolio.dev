@@ -1,6 +1,6 @@
 'use client'
 
-import { CodeIcon, CommandIcon, LinkIcon, LogInIcon, LogOutIcon, UserCircleIcon } from 'lucide-react'
+import { CommandIcon, HomeIcon, LinkIcon, LogInIcon, LogOutIcon, UserCircleIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Fragment, useEffect, useState } from 'react'
 
@@ -15,7 +15,7 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command'
-import { SOCIAL_LINKS } from '@/config/links'
+import { COMMAND_MENU_SOCIAL_LINKS, HEADER_LINKS } from '@/config/links'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import { useSignInDialog } from '@/hooks/use-sign-in-dialog'
 import { useSignOut } from '@/hooks/use-sign-out'
@@ -33,6 +33,34 @@ type CommandGroup = {
   actions: CommandAction[]
 }
 
+function playCommandOpenSound() {
+  if (typeof window === 'undefined') return
+  const Ctx =
+    window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+  if (!Ctx) return
+  try {
+    const ctx = new Ctx()
+    const osc1 = ctx.createOscillator()
+    const osc2 = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc1.connect(gain)
+    osc2.connect(gain)
+    gain.connect(ctx.destination)
+    osc1.frequency.value = 440
+    osc2.frequency.value = 554.37
+    osc1.type = 'sine'
+    osc2.type = 'sine'
+    gain.gain.setValueAtTime(0.06, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12)
+    osc1.start(ctx.currentTime)
+    osc2.start(ctx.currentTime)
+    osc1.stop(ctx.currentTime + 0.12)
+    osc2.stop(ctx.currentTime + 0.12)
+  } catch {
+    // ignore if audio fails (e.g. autoplay policy)
+  }
+}
+
 function CommandMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [copy] = useCopyToClipboard()
@@ -48,10 +76,7 @@ function CommandMenu() {
 
   function openMenu() {
     setIsOpen(true)
-  }
-
-  function toggleMenu() {
-    setIsOpen((value) => !value)
+    playCommandOpenSound()
   }
 
   function openExternalLink(url: string) {
@@ -80,11 +105,38 @@ function CommandMenu() {
     await signOut()
   }
 
+  function handleNavigate(href: string) {
+    closeMenu()
+    router.push(href)
+  }
+
+  const navActions: CommandAction[] = [
+    {
+      title: t('common.labels.home'),
+      icon: <HomeIcon />,
+      onSelect: () => {
+        handleNavigate('/')
+      },
+    },
+    ...HEADER_LINKS.map((link) => ({
+      title: t(link.labelKey),
+      icon: link.icon,
+      onSelect: () => {
+        handleNavigate(link.href)
+      },
+    })),
+  ]
+
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
         event.preventDefault()
-        toggleMenu()
+        setIsOpen((prev) => {
+          if (!prev) {
+            playCommandOpenSound()
+          }
+          return !prev
+        })
       }
     }
 
@@ -116,23 +168,16 @@ function CommandMenu() {
         },
       ]
 
-  const generalActions: CommandAction[] = [
+  const quickActions: CommandAction[] = [
     {
       title: t('command-menu.actions.copy-link'),
       icon: <LinkIcon />,
       onSelect: copyCurrentUrl,
     },
-    {
-      title: t('command-menu.actions.source-code'),
-      icon: <CodeIcon />,
-      onSelect: () => {
-        openExternalLink('https://github.com/issam-seghir/portfolio.dev')
-      },
-    },
   ]
 
-  const socialActions: CommandAction[] = SOCIAL_LINKS.map((link) => ({
-    title: link.title,
+  const socialActions: CommandAction[] = COMMAND_MENU_SOCIAL_LINKS.map((link) => ({
+    title: t(link.labelKey),
     icon: link.icon,
     onSelect: () => {
       openExternalLink(link.href)
@@ -140,10 +185,14 @@ function CommandMenu() {
   }))
 
   const groups: CommandGroup[] = [
+    { name: t('command-menu.groups.navigate'), actions: navActions },
     { name: t('common.labels.account'), actions: accountActions },
-    { name: t('common.labels.general'), actions: generalActions },
+    { name: t('command-menu.groups.quick-actions'), actions: quickActions },
     { name: t('command-menu.groups.social'), actions: socialActions },
   ]
+
+  const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.platform)
+  const shortcutLabel = isMac ? '⌘K' : 'Ctrl+K'
 
   return (
     <>
@@ -152,9 +201,17 @@ function CommandMenu() {
         size='icon'
         onClick={openMenu}
         aria-label={t('command-menu.open-menu')}
+        title={t('command-menu.open-menu')}
         data-testid='command-menu-button'
+        className='relative'
       >
         <CommandIcon />
+        <kbd
+          className='pointer-events-none absolute -bottom-0.5 -right-0.5 hidden rounded border border-border/50 bg-muted/80 px-1 font-mono text-[10px] font-medium text-muted-foreground sm:inline'
+          aria-hidden
+        >
+          {shortcutLabel}
+        </kbd>
       </Button>
       <CommandDialog open={isOpen} onOpenChange={setIsOpen}>
         <Command>

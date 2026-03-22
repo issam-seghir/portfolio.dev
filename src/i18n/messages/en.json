@@ -111,6 +111,8 @@
   },
   "blog": {
     "description": "Tutorials, insights, and lessons learned from building SaaS products, web & mobile apps, and AI-powered tools. Written by a software engineer who ships.",
+    "rss-subscribe": "Subscribe via RSS",
+    "rss-description": "Open the feed in Feedly, NetNewsWire, or any RSS reader to get new posts.",
     "comments": {
       "author": "Author",
       "comments": "{count, plural, =1 {comment} other {comments}}",
@@ -156,6 +158,8 @@
       "source-code": "Source code"
     },
     "groups": {
+      "navigate": "Navigate",
+      "quick-actions": "Quick actions",
       "social": "Social"
     },
     "no-results": "No results found.",
@@ -189,6 +193,7 @@
       "home": "Home",
       "linkedin": "LinkedIn",
       "privacy": "Privacy Policy",
+      "rss": "RSS feed",
       "projects": "Projects",
       "settings": "Settings",
       "terms": "Terms of Service",
@@ -211,15 +216,6 @@
       "placeholder": "Search articles"
     },
     "go-to-homepage": "Go to homepage"
-  },
-  "dashboard": {
-    "description": "My personal developer dashboard tracking GitHub stars, followers, blog views, and likes — built with Next.js serverless API routes.",
-    "stat": {
-      "blog-total-likes": "Blog Total Likes",
-      "blog-total-views": "Blog Total Views",
-      "github-followers": "GitHub Followers",
-      "github-stars": "GitHub Stars"
-    }
   },
   "design": {
     "description": "Explore the design system and UI components used throughout this website. View component variants, styles, and implementation examples."
@@ -305,7 +301,7 @@
       "fun-fact-1": "I used to write poetry and fiction that left classmates speechless. Creativity ran in my veins before I ever wrote a line of code.",
       "fun-fact-2": "I design every pixel of my websites from scratch — no designer, no Figma file. Just my imagination and a code editor.",
       "fun-fact-3": "Quit my job after 3 months, risked all my savings on a SaaS. Some call it crazy — I call it Tuesday.",
-      "fun-fact-4": "My persuasion skills are so sharp I've talked clients out of their own features — just because I had a better idea.",
+      "fun-fact-4": "I ask the right questions before writing code. Nailing the brief upfront saves time, budget, and avoids scope creep.",
       "fun-fact-5": "If I wasn't a developer, I'd be an artist. My drawings used to stun people. Now my websites do.",
       "fun-fact-6": "I don't ship code until it's clean enough that future me would thank present me. No shortcuts.",
       "fun-fact-7": "People I meet for the first time often say the same thing: trustworthy, kind, and easy to talk to.",

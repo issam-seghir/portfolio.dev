@@ -40,6 +40,9 @@ export function createMetadata(options: Options): Metadata {
           ...Object.fromEntries(routing.locales.map((l) => [l, getLocalizedPath({ locale: l, pathname })])),
           'x-default': getLocalizedPath({ locale: routing.defaultLocale, pathname }),
         },
+        types: {
+          'application/rss+xml': getLocalizedPath({ locale, pathname: '/rss.xml' }),
+        },
       },
       robots: {
         index: true,

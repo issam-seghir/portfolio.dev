@@ -58,7 +58,7 @@ function LayoutHeader() {
         <span>{t('layout.skip-to-main-content')}</span>
       </Link>
       <Link href='/' className='flex items-center justify-center gap-1' aria-label={t('common.labels.home')}>
-        <Logo width={20} aria-hidden='true' />
+        <Logo width={45} aria-hidden='true' priority className='rounded-full' />
       </Link>
       <div className='flex items-center gap-2'>
         <Navbar />

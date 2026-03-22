@@ -23,7 +23,7 @@ function getChangeFrequency(pathname: string): MetadataRoute.Sitemap[number]['ch
 function sitemap(): MetadataRoute.Sitemap {
   const pathnames = getPathnames().filter((p) => p !== '/design')
 
-  return routing.locales.flatMap((locale) =>
+  const pageEntries = routing.locales.flatMap((locale) =>
     pathnames.map((pathname) => ({
       url: getLocalizedPath({ locale, pathname }),
       lastModified: new Date(),
@@ -31,6 +31,15 @@ function sitemap(): MetadataRoute.Sitemap {
       priority: getPriority(pathname),
     })),
   )
+
+  const rssEntries: MetadataRoute.Sitemap = routing.locales.map((locale) => ({
+    url: getLocalizedPath({ locale, pathname: '/rss.xml' }),
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.5,
+  }))
+
+  return [...pageEntries, ...rssEntries]
 }
 
 export default sitemap

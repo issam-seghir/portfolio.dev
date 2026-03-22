@@ -5,6 +5,7 @@ import { type Locale, useTranslations } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { use } from 'react'
 
+import BlogRssCallout from '@/components/blog/blog-rss-callout'
 import FilteredPosts from '@/components/filtered-posts'
 import JsonLd from '@/components/json-ld'
 import PageHeader from '@/components/page-header'
@@ -73,6 +74,7 @@ function Page(props: PageProps<'/[locale]/blog'>) {
     <>
       <JsonLd json={jsonLd} />
       <PageHeader title={title} description={description} />
+      <BlogRssCallout />
       <FilteredPosts posts={posts} />
     </>
   )

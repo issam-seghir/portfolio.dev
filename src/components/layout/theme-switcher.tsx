@@ -3,7 +3,7 @@
 import { MoonIcon, SunIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
-import { useCallback, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 
@@ -32,6 +32,11 @@ function ThemeSwitcher() {
   const { setTheme, resolvedTheme } = useTheme()
   const t = useTranslations()
   const audioContextRef = useRef<boolean>(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleToggle = useCallback(() => {
     const next = resolvedTheme === 'dark' ? 'light' : 'dark'
@@ -43,7 +48,9 @@ function ThemeSwitcher() {
   }, [resolvedTheme, setTheme])
 
   const isDark = (resolvedTheme ?? 'light') === 'dark'
-  const label = isDark ? t('theme-toggle.options.light') : t('theme-toggle.options.dark')
+  const nextThemeLabel = isDark ? t('theme-toggle.options.light') : t('theme-toggle.options.dark')
+  // Avoid hydration mismatch: resolvedTheme differs SSR vs client until next-themes hydrates.
+  const srOnlyText = mounted ? nextThemeLabel : t('theme-toggle.toggle-theme')
 
   return (
     <Button
@@ -55,7 +62,7 @@ function ThemeSwitcher() {
     >
       <SunIcon className='size-[1.15rem] transition-all dark:hidden dark:scale-0' />
       <MoonIcon className='hidden size-[1.15rem] dark:block dark:scale-100' />
-      <span className='sr-only'>{label}</span>
+      <span className='sr-only'>{srOnlyText}</span>
     </Button>
   )
 }

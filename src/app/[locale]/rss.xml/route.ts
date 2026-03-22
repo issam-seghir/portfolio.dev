@@ -31,15 +31,20 @@ export async function GET(_request: Request, props: RouteContext<'/[locale]/rss.
     webMaster: 'issamusma@hotmail.com',
   })
 
-  const posts = allPosts.filter((p) => p.locale === locale)
+  const posts = allPosts
+    .filter((p) => p.locale === locale)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   for (const post of posts) {
+    const url = getLocalizedPath({ locale, pathname: `/blog/${post.slug}` })
     feed.item({
       title: post.title,
-      url: getLocalizedPath({ locale, pathname: `/blog/${post.slug}` }),
+      url,
+      guid: url,
       date: post.date,
       description: post.summary,
       author: MY_NAME,
+      categories: ['Blog'],
     })
   }
 

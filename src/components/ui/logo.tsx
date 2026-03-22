@@ -1,13 +1,36 @@
-type LogoProps = React.SVGAttributes<SVGElement>
+import Image from 'next/image'
 
-function Logo(props: LogoProps) {
+import { LOGO_ASPECT, LOGO_SRC } from '@/lib/logo-constants'
+import { cn } from '@/utils/cn'
+
+type LogoProps = Omit<React.ComponentProps<typeof Image>, 'src' | 'alt'> & {
+  alt?: string
+  /** Set on above-the-fold logos (e.g. header) so Next.js loads eagerly for LCP. */
+  priority?: boolean
+}
+
+function Logo({
+  width = 32,
+  height,
+  alt = "Issam Seghir's monogram logo",
+  className,
+  priority = false,
+  ...rest
+}: LogoProps) {
+  const w = typeof width === 'number' ? width : Number(width)
+  const h = height !== undefined ? (typeof height === 'number' ? height : Number(height)) : Math.round(w * LOGO_ASPECT)
+
   return (
-    <svg version='1.0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 715' {...props}>
-      <path
-        d='M0 0V625C0 652.614 22.3858 675 50 675H150C177.614 675 200 652.614 200 625V200H350C377.614 200 400 222.386 400 250V625C400 652.614 422.386 675 450 675H550C577.614 675 600 652.614 600 625V200C600 89.5431 510.457 0 400 0H0Z'
-        fill='currentColor'
-      />
-    </svg>
+    <Image
+      src={LOGO_SRC}
+      alt={alt}
+      width={w}
+      height={h}
+      className={cn('object-contain', className)}
+      unoptimized
+      priority={priority}
+      {...rest}
+    />
   )
 }
 

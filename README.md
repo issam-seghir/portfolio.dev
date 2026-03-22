@@ -44,8 +44,8 @@ Welcome to my personal blog and portfolio website! This repository contains a mo
 - Like functionality
 - Post view counter
 - Blog post search
-- RSS feed
-- Sitemap
+- RSS feed (`/rss.xml` per locale, e.g. `/ar/rss.xml` for Arabic; `/feed`, `/rss`, and `/atom` redirect to the default feed)
+- Sitemap (includes RSS URLs)
 
 ### Performance & SEO
 
