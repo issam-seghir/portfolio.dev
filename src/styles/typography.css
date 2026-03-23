@@ -76,3 +76,18 @@
     }
   }
 }
+
+/* RTL: lists & blockquotes use logical padding (typography defaults are LTR-oriented) */
+[dir='rtl'] .prose
+  :where(ul, ol):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  padding-left: 0;
+  padding-inline-start: 1.25em;
+}
+
+[dir='rtl'] .prose
+  :where(blockquote):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
+  border-left: none;
+  border-inline-start-width: 0.25rem;
+  border-inline-start-style: solid;
+  border-inline-start-color: var(--tw-prose-quote-borders);
+}

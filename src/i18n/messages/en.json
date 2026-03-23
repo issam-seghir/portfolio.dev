@@ -4,17 +4,18 @@
     "role": "Software Engineer · SaaS Founder · Freelancer",
     "available": "Open for freelance & contract work",
     "contact": "Let's Talk",
-    "download-cv": "Download CV",
-    "stat-years": "Years of Experience",
-    "stat-projects": "Projects Delivered",
-    "stat-clients": "Satisfied Clients",
-    "stat-countries": "Countries Served",
     "connect": {
       "email": "Email",
       "whatsapp": "WhatsApp",
       "linkedin": "LinkedIn",
       "github": "GitHub",
       "facebook": "Facebook"
+    },
+    "featured-ecomenia": {
+      "heading": "Featured product",
+      "title": "Ecomenia",
+      "body": "Co-built an all-in-one e-commerce platform for MENA businesses — order management, cash on delivery (COD), delivery integrations (Yalidine, Mystro), multi-store dashboards, inventory, and team tools — as a modern alternative to fragmented Shopify-style stacks.",
+      "cta": "Explore projects"
     },
     "skills": {
       "frontend": "Frontend & Mobile",
@@ -24,6 +25,20 @@
       "design": "Design & UX",
       "testing": "Testing & QA",
       "ai": "AI Integration"
+    },
+    "capabilities": {
+      "saas": "Scalable SaaS products",
+      "saas-desc": "I build scalable SaaS products across domains—from internal tools to customer-facing platforms—with architecture that supports real growth.",
+      "ai": "AI integration",
+      "ai-desc": "I integrate AI APIs and LLM workflows into real products to unlock practical business value.",
+      "enterprise": "Enterprise systems",
+      "enterprise-desc": "I deliver large business platforms, including ERP-style systems, with clean structure and long-term maintainability.",
+      "api": "API integration",
+      "api-desc": "I connect third-party REST and tRPC services to extend product capabilities without breaking user experience.",
+      "ui": "UI/UX and dashboards",
+      "ui-desc": "I craft high-quality interfaces and professional dashboards, including full RTL Arabic support when needed.",
+      "performance": "Performance and SEO",
+      "performance-desc": "I optimize speed, responsiveness, and technical SEO to improve Lighthouse scores and search visibility."
     },
     "process": {
       "understand": "Understand",
@@ -328,7 +343,7 @@
           "title": "Freelance Software Engineer",
           "company": "International Clients",
           "period": "2023 — Present",
-          "description": "Delivering high-performance web & mobile apps for startups and businesses. Specializing in React/Next.js, React Native, ERP systems, and 90-100 Lighthouse scores."
+          "description": "Delivering high-performance web & mobile apps for startups and businesses. Specializing in React/Next.js, React Native, ERP systems"
         },
         "fullstack": {
           "title": "Full-Stack Developer",

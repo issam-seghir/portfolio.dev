@@ -33,6 +33,11 @@ if (!IS_PRODUCTION) {
     protocol: 'http',
     hostname: 'localhost',
   })
+  // Portless dev URLs (e.g. `http://portfolio-dev.localhost:1355` — name matches `package.json` `name`)
+  remotePatterns.push(
+    { protocol: 'http', hostname: 'portfolio-dev.localhost' },
+    { protocol: 'https', hostname: 'portfolio-dev.localhost' },
+  )
 }
 
 

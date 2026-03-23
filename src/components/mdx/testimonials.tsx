@@ -75,7 +75,7 @@ function Testimonials() {
         {TESTIMONIALS.map((item, index) => (
           <motion.div
             key={item.quoteKey}
-            className='group relative flex flex-col rounded-2xl border bg-card/50 p-5 shadow-feature-card transition-shadow hover:shadow-lg sm:p-6'
+            className='group relative flex min-w-0 flex-col rounded-2xl border bg-card/50 p-5 text-start shadow-feature-card transition-shadow hover:shadow-lg sm:p-6'
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : undefined}
             transition={{ duration: 0.4, delay: index * 0.1, type: 'spring', stiffness: 100, damping: 20 }}

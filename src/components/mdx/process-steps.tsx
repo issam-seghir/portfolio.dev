@@ -1,16 +1,17 @@
 'use client'
 
-import { BrainIcon, CodeIcon, PencilRulerIcon, RepeatIcon, RocketIcon } from 'lucide-react'
+import { BrainIcon, CodeIcon, FlameIcon, PencilRulerIcon, RepeatIcon, RocketIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
 const STEPS = [
-  { icon: BrainIcon, titleKey: 'about.process.understand', descKey: 'about.process.understand-desc', color: 'text-blue-500' },
-  { icon: PencilRulerIcon, titleKey: 'about.process.design', descKey: 'about.process.design-desc', color: 'text-violet-500' },
-  { icon: CodeIcon, titleKey: 'about.process.build', descKey: 'about.process.build-desc', color: 'text-emerald-500' },
-  { icon: RocketIcon, titleKey: 'about.process.ship', descKey: 'about.process.ship-desc', color: 'text-orange-500' },
-  { icon: RepeatIcon, titleKey: 'about.process.iterate', descKey: 'about.process.iterate-desc', color: 'text-pink-500' },
+  { icon: RocketIcon, titleKey: 'about.capabilities.saas', descKey: 'about.capabilities.saas-desc', color: 'text-blue-500' },
+  { icon: BrainIcon, titleKey: 'about.capabilities.ai', descKey: 'about.capabilities.ai-desc', color: 'text-violet-500' },
+  { icon: CodeIcon, titleKey: 'about.capabilities.enterprise', descKey: 'about.capabilities.enterprise-desc', color: 'text-emerald-500' },
+  { icon: RepeatIcon, titleKey: 'about.capabilities.api', descKey: 'about.capabilities.api-desc', color: 'text-orange-500' },
+  { icon: PencilRulerIcon, titleKey: 'about.capabilities.ui', descKey: 'about.capabilities.ui-desc', color: 'text-pink-500' },
+  { icon: FlameIcon, titleKey: 'about.capabilities.performance', descKey: 'about.capabilities.performance-desc', color: 'text-amber-500' },
 ] as const
 
 function ProcessSteps() {
@@ -20,13 +21,13 @@ function ProcessSteps() {
 
   return (
     <div ref={ref} className='not-prose my-10'>
-      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-5'>
+      <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
         {STEPS.map((step, index) => {
           const Icon = step.icon
           return (
             <motion.div
               key={step.titleKey}
-              className='group relative flex flex-col gap-3 rounded-xl border bg-card/50 p-5 transition-colors hover:bg-accent/40'
+              className='group relative flex min-w-0 flex-col gap-3 rounded-xl border bg-card/50 p-5 text-start transition-colors hover:bg-accent/40'
               initial={{ opacity: 0, y: 25 }}
               animate={isInView ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.4, delay: index * 0.08 }}

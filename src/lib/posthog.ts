@@ -7,9 +7,10 @@ import { env } from './env'
 
 let posthogInstance: PostHog | null = null
 
-export function getPostHogServer() {
+/** Server PostHog client when `NEXT_PUBLIC_POSTHOG_KEY` is set; otherwise `null` (local dev / no analytics). */
+export function getPostHogServerIfConfigured(): PostHog | null {
   if (!env.NEXT_PUBLIC_POSTHOG_KEY) {
-    throw new Error('POSTHOG_KEY is not set')
+    return null
   }
 
   posthogInstance ??= new PostHog(env.NEXT_PUBLIC_POSTHOG_KEY, {
@@ -19,6 +20,15 @@ export function getPostHogServer() {
   })
 
   return posthogInstance
+}
+
+/** @throws PostHog is required but not configured — prefer callers use {@link getPostHogServerIfConfigured}. */
+export function getPostHogServer(): PostHog {
+  const client = getPostHogServerIfConfigured()
+  if (!client) {
+    throw new Error('POSTHOG_KEY is not set')
+  }
+  return client
 }
 
 export function withPostHog(nextConfig: Promise<NextConfig>): Promise<NextConfig> | NextConfig {

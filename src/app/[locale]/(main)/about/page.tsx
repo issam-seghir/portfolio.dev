@@ -82,7 +82,7 @@ function Page(props: PageProps<'/[locale]/about'>) {
   return (
     <>
       <JsonLd json={jsonLd} />
-      <AboutHero description={description} />
+      <AboutHero />
       <Mdx code={code} />
     </>
   )

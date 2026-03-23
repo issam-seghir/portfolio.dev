@@ -78,6 +78,7 @@ Welcome to my personal blog and portfolio website! This repository contains a mo
 - pnpm >= 10
 - Docker
 - [Visual Studio Code](https://code.visualstudio.com/) with [recommended extensions](.vscode/extensions.json)
+- **[Portless](https://github.com/vercel-labs/portless)** (recommended for local dev — install globally per [their docs](https://github.com/vercel-labs/portless): `npm install -g portless` — do not add as a project dependency)
 
 ## Project Structure
 
@@ -151,19 +152,34 @@ pnpm db:migrate
 pnpm db:seed
 ```
 
-5. Run the app:
+5. Set **`NEXT_PUBLIC_SITE_URL`** in `.env.local` to match how you open the app (see table below).
+
+6. Run the app:
 
 ```bash
-pnpm dev          # Run the development server
+pnpm dev          # Next.js via Portless (stable named URL, avoids port clashes)
+pnpm dev:direct   # Plain Next on port 3005 (no Portless — use for E2E or if Portless isn’t installed)
 # or
 pnpm email:dev    # Run the email preview server separately
 ```
 
+#### Portless (default `pnpm dev`)
+
+This repo follows [Portless](https://github.com/vercel-labs/portless) best practices: **global CLI**, not an npm dependency. If `portless` is not found, run `npm install -g portless` or use **`pnpm dev:direct`** instead.
+
+- **One-time** (optional, for HTTPS): `portless proxy start --https` (see upstream README for OS trust / sudo notes).
+- Run **`pnpm dev`** — Portless assigns a port and serves the app at a stable URL based on the package name (`portfolio-dev` → e.g. **`http://portfolio-dev.localhost:1355`**; proxy default port **1355**).
+- Set **`NEXT_PUBLIC_SITE_URL`** in `.env.local` to that URL (or the `https://…` variant if you use `--https`).
+- **Bypass Portless** for a run: `PORTLESS=0 pnpm dev` or use **`pnpm dev:direct`** (fixed **`http://localhost:3005`**) and set `NEXT_PUBLIC_SITE_URL` accordingly.
+
+**Playwright E2E** starts **`pnpm dev:direct`** so the server matches `http://localhost:3005`.
+
 The services will be available at the following URLs:
 
-| Service          | URL              |
-| ---------------- | ---------------- |
-| App              | `localhost:3005` |
+| Service          | URL |
+| ---------------- | --- |
+| App (Portless)   | e.g. `http://portfolio-dev.localhost:1355` (see terminal after `pnpm dev`) |
+| App (direct)     | `http://localhost:3005` (`pnpm dev:direct`) |
 | React Email      | `localhost:3006` |
 | Database         | `localhost:5433` |
 | Redis            | `localhost:6380` |
@@ -172,7 +188,8 @@ The services will be available at the following URLs:
 ### Available Scripts
 
 ```bash
-pnpm dev              # Start development server
+pnpm dev              # Start development server (Portless + Next)
+pnpm dev:direct       # Next only on :3005 (no Portless)
 pnpm build            # Build for production
 pnpm start            # Start production server
 pnpm lint             # Run ESLint

@@ -25,7 +25,7 @@ function Heading<T extends Types = 'h1'>(props: HeadingProps<T>) {
         {children}
         <LinkIcon
           aria-label={t('mdx.link-to-section')}
-          className='ml-2 inline size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100'
+          className='ms-2 inline size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100'
         />
       </Link>
     </Component>

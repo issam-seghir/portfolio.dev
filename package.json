@@ -18,7 +18,8 @@
     "db:reset": "pnpm with-env tsx ./src/db/reset.ts",
     "db:seed": "pnpm with-env tsx ./src/db/seed.ts",
     "db:studio": "pnpm with-env drizzle-kit studio",
-    "dev": "pnpm with-env next dev -p 3005",
+    "dev": "pnpm with-env portless run next dev",
+    "dev:direct": "pnpm with-env next dev -p 3005",
     "email:dev": "email dev --port 3006 --dir ./src/emails/templates",
     "email:export": "email export --dir ./src/emails/templates",
     "format": "prettier --write .",
@@ -85,7 +86,7 @@
     "markdown-to-jsx": "9.6.1",
     "merge-refs": "2.0.0",
     "motion": "12.29.2",
-    "next": "16.1.6",
+    "next": "16.2.1",
     "next-intl": "4.8.0",
     "next-themes": "0.4.6",
     "nuqs": "2.8.6",
@@ -136,7 +137,7 @@
     "@types/hast": "3.0.4",
     "@types/mdast": "4.0.4",
     "@types/node": "22.19.3",
-    "@types/react": "19.2.10",
+    "@types/react": "19.2.14",
     "@types/rss": "0.0.32",
     "@types/tinycolor2": "1.4.6",
     "@vitejs/plugin-react": "5.1.2",
@@ -165,5 +166,10 @@
   "packageManager": "pnpm@10.28.2",
   "engines": {
     "node": ">=24"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.2.14"
+    }
   }
 }

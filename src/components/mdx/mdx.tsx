@@ -9,6 +9,7 @@ import ImageZoom from '../image-zoom'
 import AnimatedSection from './animated-section'
 import ClosingCTA from './closing-cta'
 import CurrentlySection from './currently-section'
+import EcomeniaHighlight from './ecomenia-highlight'
 import Heading from './heading'
 import ItemGrid from './item-grid'
 import LetsConnect from './lets-connect'
@@ -68,6 +69,7 @@ const components = {
   Video,
   ProcessSteps,
   Testimonials,
+  EcomeniaHighlight,
   SkillBadges,
   CurrentlySection,
   ClosingCTA,
@@ -78,7 +80,7 @@ function Mdx(props: MdxProps) {
   const MDXContent = useMDXComponent(code)
 
   return (
-    <div className='prose w-full'>
+    <div className='prose w-full min-w-0 max-w-none text-start prose-headings:text-start'>
       <MDXContent components={components} />
     </div>
   )

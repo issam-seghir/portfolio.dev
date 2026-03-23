@@ -50,12 +50,12 @@ function SkillBadges() {
   const t = useTranslations()
 
   return (
-    <div ref={ref} className='not-prose my-10 space-y-6'>
+    <div ref={ref} className='not-prose my-10 space-y-6 text-start'>
       {SKILL_CATEGORIES.map((category, catIndex) => (
         <motion.div
           key={category.labelKey}
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : undefined}
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.4, delay: catIndex * 0.08 }}
         >
           <h4 className='mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground'>

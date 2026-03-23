@@ -7,7 +7,7 @@ import * as z from 'zod'
 import { IS_PRODUCTION } from '@/lib/constants'
 import { TraceableError } from '@/lib/errors'
 import { ratelimit } from '@/lib/kv'
-import { getPostHogServer } from '@/lib/posthog'
+import { getPostHogServerIfConfigured } from '@/lib/posthog'
 import { getIp } from '@/utils/get-ip'
 import { sleep } from '@/utils/sleep'
 
@@ -48,8 +48,6 @@ const errorMiddleware = base.middleware(async ({ path, context, next }) => {
   try {
     return await next()
   } catch (error) {
-    const posthog = getPostHogServer()
-
     let metadata: Record<string, unknown> = { path: path.join(':') }
 
     if (error instanceof TraceableError) {
@@ -59,7 +57,12 @@ const errorMiddleware = base.middleware(async ({ path, context, next }) => {
     }
 
     console.error(error)
-    posthog.captureException(error, context.session?.user.id, metadata)
+
+    const posthog = getPostHogServerIfConfigured()
+    if (posthog) {
+      posthog.captureException(error, context.session?.user.id, metadata)
+    }
+
     throw error
   }
 })

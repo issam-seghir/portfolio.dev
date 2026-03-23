@@ -37,7 +37,8 @@ export default defineConfig({
     { name: 'teardown', testMatch: '**/*.teardown.ts' },
   ],
   webServer: {
-    command: env.CI ? 'pnpm start' : 'pnpm dev',
+    // Fixed port must match baseURL; `pnpm dev` uses Portless (dynamic PORT / URL).
+    command: env.CI ? 'pnpm start' : 'pnpm dev:direct',
     url: baseURL,
     reuseExistingServer: !env.CI,
   },
