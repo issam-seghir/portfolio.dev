@@ -364,7 +364,10 @@
     },
     "testimonials": {
       "title": "What Clients Say",
-      "subtitle": "Don't just take my word for it — here's what people I've worked with have to say."
+      "subtitle": "Don't just take my word for it — here's what people I've worked with have to say.",
+      "prev": "Previous testimonial",
+      "next": "Next testimonial",
+      "go-to": "Go to testimonial {n}"
     },
     "latest-articles": {
       "card": "Article",
@@ -380,7 +383,17 @@
   "layout": {
     "change-language": "Change language",
     "skip-to-main-content": "Skip to main content",
-    "toggle-menu": "Toggle menu"
+    "toggle-menu": "Toggle menu",
+    "footer": {
+      "tagline": "Software engineer & SaaS founder. Building products people use.",
+      "sections": {
+        "site": "Site",
+        "work": "Work",
+        "legal": "Legal"
+      },
+      "social-aria": "Social links",
+      "copyright": "© {year} {name}. All rights reserved."
+    }
   },
   "mdx": {
     "link-to-section": "Link to section"

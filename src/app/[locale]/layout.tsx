@@ -63,7 +63,7 @@ async function Layout(props: LayoutProps<'/[locale]'>) {
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >
-      <body className='relative flex min-h-screen flex-col'>
+      <body className='relative flex min-h-screen flex-col overflow-x-clip'>
         <NuqsAdapter>
           <Providers>
             <NextIntlClientProvider>

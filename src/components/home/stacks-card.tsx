@@ -21,14 +21,14 @@ import {
 import { ZapIcon } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { useTranslations } from 'next-intl'
-import { useRef } from 'react'
+import { type ComponentType, useRef } from 'react'
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/utils/cn'
 
 type TechItem = {
   name: string
-  Icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element
+  Icon: ComponentType<React.SVGProps<SVGSVGElement>>
   color: string
   glow: string
   floatDelay: number
@@ -71,13 +71,14 @@ function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
       }}
     >
       <Tooltip>
-        <TooltipTrigger asChild>
+        {/* Base UI Trigger renders a <button>; use unstyled button + inner motion (not Radix asChild) */}
+        <TooltipTrigger className='inline-flex h-auto min-h-0 w-auto cursor-grab border-0 bg-transparent p-0 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none active:cursor-grabbing'>
           <motion.div
             drag
             dragSnapToOrigin
             dragElastic={0.3}
             dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
-            className='relative cursor-grab active:cursor-grabbing'
+            className='relative'
             animate={{ y: [-floatY, floatY, -floatY] }}
             transition={{
               y: {

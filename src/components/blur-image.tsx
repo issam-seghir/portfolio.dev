@@ -18,11 +18,19 @@ type ImageProps = {
 function BlurImage(props: ImageProps) {
   const { alt, src, className, imageClassName, lazy = true, ...rest } = props
   const [isLoading, setIsLoading] = useState(true)
+  const fill = 'fill' in rest && rest.fill === true
 
   return (
-    <div className={cn('overflow-hidden', isLoading && 'animate-pulse', className)}>
+    <div
+      className={cn(
+        'overflow-hidden',
+        fill && 'relative h-full w-full',
+        isLoading && 'animate-pulse',
+        className,
+      )}
+    >
       <NextImage
-        className={cn(isLoading && 'scale-[1.02] blur-xl grayscale', imageClassName)}
+        className={cn(isLoading && 'scale-[1.02] blur-xl grayscale', fill && 'object-cover', imageClassName)}
         style={{
           transition: 'filter 700ms ease, scale 150ms ease',
         }}

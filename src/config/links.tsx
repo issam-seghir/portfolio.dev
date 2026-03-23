@@ -3,7 +3,12 @@ import type { useTranslations } from 'next-intl'
 import { SiFacebook, SiGithub } from '@icons-pack/react-simple-icons'
 import { FlameIcon, MessageCircleIcon, PencilIcon, ShoppingBagIcon, UserCircleIcon } from 'lucide-react'
 
-import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_WHATSAPP_URL } from '@/lib/constants'
+import {
+  SITE_FACEBOOK_URL,
+  SITE_GITHUB_URL,
+  SITE_LINKEDIN_URL,
+  SITE_WHATSAPP_URL,
+} from '@/lib/constants'
 
 const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg role='img' viewBox='0 0 24 24' fill='currentColor' width='1em' height='1em' {...props}>
@@ -68,58 +73,88 @@ export const HEADER_LINKS: HeaderLinks = [
   },
 ]
 
-type FooterLinks = Array<{
-  id: number
+type FooterSection = {
+  id: string
+  titleKey: TranslationKey
   links: Array<{
     href: string
     labelKey: TranslationKey
   }>
-}>
+}
 
-export const FOOTER_LINKS: FooterLinks = [
+/** Grouped footer nav: site pages, portfolio work, legal — socials are separate (icons). */
+export const FOOTER_SECTIONS: FooterSection[] = [
   {
-    id: 1,
+    id: 'site',
+    // i18n-check t('layout.footer.sections.site')
+    titleKey: 'layout.footer.sections.site',
     links: [
       // i18n-check t('common.labels.home')
       { href: '/', labelKey: 'common.labels.home' },
+      // i18n-check t('common.labels.about')
+      { href: '/about', labelKey: 'common.labels.about' },
       // i18n-check t('common.labels.blog')
       { href: '/blog', labelKey: 'common.labels.blog' },
       // i18n-check t('common.labels.rss')
       { href: '/rss.xml', labelKey: 'common.labels.rss' },
-      // i18n-check t('common.labels.about')
-      { href: '/about', labelKey: 'common.labels.about' },
-      // i18n-check t('common.labels.store')
-      { href: '/store', labelKey: 'common.labels.store' },
     ],
   },
   {
-    id: 2,
+    id: 'work',
+    // i18n-check t('layout.footer.sections.work')
+    titleKey: 'layout.footer.sections.work',
     links: [
-      // i18n-check t('common.labels.guestbook')
-      { href: '/guestbook', labelKey: 'common.labels.guestbook' },
       // i18n-check t('common.labels.projects')
       { href: '/projects', labelKey: 'common.labels.projects' },
+      // i18n-check t('common.labels.store')
+      { href: '/store', labelKey: 'common.labels.store' },
+      // i18n-check t('common.labels.guestbook')
+      { href: '/guestbook', labelKey: 'common.labels.guestbook' },
     ],
   },
   {
-    id: 3,
-    links: [
-      // i18n-check t('common.labels.facebook')
-      { href: SITE_FACEBOOK_URL, labelKey: 'common.labels.facebook' },
-      // i18n-check t('common.labels.linkedin')
-      { href: SITE_LINKEDIN_URL, labelKey: 'common.labels.linkedin' },
-      // i18n-check t('common.labels.github')
-      { href: SITE_GITHUB_URL, labelKey: 'common.labels.github' },
-    ],
-  },
-  {
-    id: 4,
+    id: 'legal',
+    // i18n-check t('layout.footer.sections.legal')
+    titleKey: 'layout.footer.sections.legal',
     links: [
       // i18n-check t('common.labels.terms')
       { href: '/terms', labelKey: 'common.labels.terms' },
       // i18n-check t('common.labels.privacy')
       { href: '/privacy', labelKey: 'common.labels.privacy' },
     ],
+  },
+]
+
+type FooterSocialLink = {
+  href: string
+  labelKey: TranslationKey
+  icon: React.ReactNode
+}
+
+export const FOOTER_SOCIAL_LINKS: FooterSocialLink[] = [
+  {
+    href: SITE_GITHUB_URL,
+    // i18n-check t('about.connect.github')
+    labelKey: 'about.connect.github',
+    icon: <SiGithub className='size-5' />,
+  },
+  {
+    href: SITE_LINKEDIN_URL,
+    // i18n-check t('about.connect.linkedin')
+    labelKey: 'about.connect.linkedin',
+    icon: <LinkedInIcon className='size-5' />,
+  },
+  {
+    href: SITE_FACEBOOK_URL,
+    // i18n-check t('about.connect.facebook')
+    labelKey: 'about.connect.facebook',
+    icon: <SiFacebook className='size-5' />,
+  },
+  {
+    href: SITE_WHATSAPP_URL,
+    // i18n-check t('about.connect.whatsapp')
+    labelKey: 'about.connect.whatsapp',
+    icon: <WhatsAppIcon className='size-5' />,
   },
 ]
 

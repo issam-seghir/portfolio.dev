@@ -36,60 +36,76 @@ function GetInTouch() {
         transition={{ duration: 0.5 }}
       >
         <div className='absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/20 via-violet-500/20 to-blue-500/20 animate-[spin_8s_linear_infinite] blur-sm' />
-        <div className='relative rounded-2xl bg-background p-8 shadow-feature-card md:p-12'>
+        <div className='relative rounded-2xl bg-background px-4 py-8 shadow-feature-card sm:px-8 md:p-12'>
           <div className='relative z-10 mx-auto max-w-xl text-center'>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : undefined}
               transition={{ duration: 0.4, delay: 0.1, type: 'spring', stiffness: 200 }}
-              className='mx-auto mb-6 flex size-16 items-center justify-center rounded-full bg-muted'
+              className='mx-auto mb-5 flex size-14 items-center justify-center rounded-full bg-muted sm:mb-6 sm:size-16'
             >
-              <SendIcon className='size-7 text-muted-foreground' />
+              <SendIcon className='size-6 text-muted-foreground sm:size-7' />
             </motion.div>
 
-            <h2 className='text-3xl font-semibold'>{t('homepage.get-in-touch.title')}</h2>
-            <p className='mt-3 text-muted-foreground'>{t('homepage.get-in-touch.description')}</p>
+            <h2 className='text-balance text-2xl font-semibold tracking-tight sm:text-3xl'>
+              {t('homepage.get-in-touch.title')}
+            </h2>
+            <p className='mt-3 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base'>
+              {t('homepage.get-in-touch.description')}
+            </p>
 
-            <div className='mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center'>
+            <div className='mt-8 flex w-full flex-col gap-3 sm:mx-auto sm:max-w-2xl sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3'>
               <a
                 href='mailto:issamusma@hotmail.com'
-                className={cn(buttonVariants({ size: 'lg' }), 'gap-2')}
+                className={cn(
+                  buttonVariants({ size: 'lg' }),
+                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                )}
               >
-                <MailIcon className='size-4' />
+                <MailIcon className='size-4 shrink-0' />
                 {t('homepage.get-in-touch.email')}
               </a>
               <a
                 href={SITE_WHATSAPP_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'gap-2')}
+                className={cn(
+                  buttonVariants({ variant: 'outline', size: 'lg' }),
+                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                )}
               >
-                <WhatsAppIcon className='size-4' />
+                <WhatsAppIcon className='size-4 shrink-0' />
                 WhatsApp
               </a>
               <a
                 href={SITE_LINKEDIN_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'gap-2')}
+                className={cn(
+                  buttonVariants({ variant: 'outline', size: 'lg' }),
+                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                )}
               >
-                <LinkedInIcon className='size-4' />
+                <LinkedInIcon className='size-4 shrink-0' />
                 LinkedIn
               </a>
               <a
                 href={SITE_GITHUB_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'gap-2')}
+                className={cn(
+                  buttonVariants({ variant: 'outline', size: 'lg' }),
+                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                )}
               >
-                <SiGithub className='size-4' />
+                <SiGithub className='size-4 shrink-0' />
                 GitHub
               </a>
             </div>
 
-            <div className='mt-6 flex items-center justify-center gap-2'>
-              <div className='size-2 rounded-full bg-green-500' />
-              <p className='text-sm text-muted-foreground'>
+            <div className='mt-6 flex min-w-0 items-center justify-center gap-2 px-2'>
+              <div className='size-2 shrink-0 rounded-full bg-green-500' aria-hidden />
+              <p className='max-w-md text-balance text-center text-xs leading-relaxed text-muted-foreground sm:text-sm'>
                 {t('homepage.get-in-touch.availability')}
               </p>
             </div>

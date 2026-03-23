@@ -49,7 +49,7 @@ function LayoutHeader() {
   return (
     <header
       ref={headerRef}
-      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 max-w-5xl items-center justify-between rounded-2xl bg-background/30 px-8 shadow-xs saturate-100 backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80'
+      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 min-w-0 max-w-5xl items-center justify-between gap-2 overflow-x-clip rounded-2xl bg-background/30 px-4 shadow-xs saturate-100 backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80 sm:px-8'
     >
       <Link
         href='#skip-nav'

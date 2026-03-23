@@ -76,10 +76,11 @@ function Hero() {
   }, [mouseX, mouseY])
 
   return (
-    <div className='relative my-20 space-y-10 md:my-28'>
-      <div className='pointer-events-none absolute inset-0 -z-10'>
-        <div className='absolute -top-32 left-1/2 size-[500px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12),transparent_70%)] blur-3xl dark:bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_70%)]' />
-        <div className='absolute -top-20 left-1/4 size-[400px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.1),transparent_70%)] blur-3xl dark:bg-[radial-gradient(circle,rgba(139,92,246,0.06),transparent_70%)]' />
+    <div className='relative my-20 space-y-10 overflow-x-clip md:my-28'>
+      <div className='pointer-events-none absolute inset-0 -z-10 overflow-x-clip'>
+        {/* Sized to viewport so blur halos cannot extend past the page on &lt;560px screens */}
+        <div className='absolute -top-32 left-1/2 size-[min(500px,120vw)] max-sm:size-[min(280px,90vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12),transparent_70%)] blur-3xl dark:bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_70%)]' />
+        <div className='absolute -top-20 left-1/2 size-[min(400px,110vw)] max-sm:size-[min(240px,85vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.1),transparent_70%)] blur-3xl dark:bg-[radial-gradient(circle,rgba(139,92,246,0.06),transparent_70%)] sm:left-1/4 sm:translate-x-0' />
       </div>
 
       <div className='flex justify-between gap-8'>

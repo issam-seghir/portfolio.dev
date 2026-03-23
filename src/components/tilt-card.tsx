@@ -30,12 +30,12 @@ function TiltCard({ children, className, tiltAmount = 6, glareEnabled = false }:
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!ref.current) return
+      if (tiltAmount === 0 || !ref.current) return
       const rect = ref.current.getBoundingClientRect()
       mouseX.set((e.clientX - rect.left) / rect.width - 0.5)
       mouseY.set((e.clientY - rect.top) / rect.height - 0.5)
     },
-    [mouseX, mouseY],
+    [mouseX, mouseY, tiltAmount],
   )
 
   const handleMouseLeave = useCallback(() => {
@@ -47,9 +47,9 @@ function TiltCard({ children, className, tiltAmount = 6, glareEnabled = false }:
     <motion.div
       ref={ref}
       className={cn('relative', className)}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformStyle: tiltAmount === 0 ? undefined : 'preserve-3d' }}
+      onMouseMove={tiltAmount === 0 ? undefined : handleMouseMove}
+      onMouseLeave={tiltAmount === 0 ? undefined : handleMouseLeave}
     >
       {children}
       {glareEnabled && (

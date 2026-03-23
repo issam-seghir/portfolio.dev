@@ -29,7 +29,7 @@ function GradientBackground(props: GradientBackgroundProps) {
       fill='none'
       viewBox='0 0 1440 550'
       preserveAspectRatio='xMidYMid meet'
-      className={cn('max-w-300', className)}
+      className={cn('max-w-full min-w-0', className)}
       {...rest}
     >
       <g filter={`url(#${orange})`}>
