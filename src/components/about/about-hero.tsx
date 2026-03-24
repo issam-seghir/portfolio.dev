@@ -65,7 +65,15 @@ export function AboutHero() {
         <div className='flex min-w-0 w-full max-w-xl flex-1 flex-col items-center gap-4 text-center md:max-w-none md:items-start md:text-start'>
           <div className='min-w-0'>
             <h1 className='text-balance text-3xl font-bold tracking-tight sm:text-4xl'>{MY_NAME}</h1>
-            <p className='mt-1 text-base text-foreground/80 sm:text-lg'>{t('about.role')}</p>
+            <p
+              className={cn(
+                'mt-1 text-base font-medium sm:text-lg',
+                'bg-linear-to-r from-blue-600 via-violet-600 to-blue-600 bg-clip-text text-transparent',
+                'dark:from-blue-400 dark:via-violet-400 dark:to-blue-400',
+              )}
+            >
+              {t('about.role')}
+            </p>
           </div>
 
           <p className='max-w-lg text-pretty text-base leading-relaxed text-foreground/95 md:max-w-2xl md:text-[1.0625rem]'>
@@ -148,18 +156,19 @@ export function AboutHero() {
             transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
           >
             {stat.kind === 'count' ? (
-              <span className='text-2xl font-bold tabular-nums text-foreground sm:text-3xl'>
-                <span className='text-transparent bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text dark:from-blue-400 dark:to-violet-400'>
-                  <NumberFlow value={animateStats ? stat.value : 0} />
-                  {stat.suffix}
-                </span>
+              <span className='text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400 sm:text-3xl'>
+                <NumberFlow
+                  value={animateStats ? stat.value : 0}
+                  suffix={stat.suffix}
+                  className='text-inherit'
+                />
               </span>
             ) : (
               <span className='flex flex-row items-center gap-1'>
                 <span className='text-xl leading-none sm:text-2xl' aria-hidden>
                   {stat.emoji}
                 </span>
-                <span className='text-2xl font-bold tabular-nums text-transparent bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text dark:from-blue-400 dark:to-violet-400 sm:text-3xl'>
+                <span className='text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400 sm:text-3xl'>
                   {stat.display}
                 </span>
               </span>
