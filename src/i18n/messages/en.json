@@ -1,6 +1,6 @@
 {
   "about": {
-    "description": "Software Engineer & SaaS Founder from Algeria. I design and build high-performance web & mobile applications, ERP systems, and AI-powered SaaS products using React, Next.js, and TypeScript.",
+    "description": "Software Engineer & SaaS Founder from Algeria. I build products that scale to millions of users — from SaaS platforms and ERP systems to AI-powered tools — with high-quality UI/UX and strong performance.",
     "role": "Software Engineer · SaaS Founder · Freelancer",
     "available": "Open for freelance & contract work",
     "contact": "Let's Talk",
@@ -28,17 +28,17 @@
     },
     "capabilities": {
       "saas": "Scalable SaaS products",
-      "saas-desc": "I build scalable SaaS products across domains—from internal tools to customer-facing platforms—with architecture that supports real growth.",
+      "saas-desc": "Scalable SaaS products across domains — from internal tools to customer-facing platforms — with architecture that supports real growth.",
       "ai": "AI integration",
-      "ai-desc": "I integrate AI APIs and LLM workflows into real products to unlock practical business value.",
+      "ai-desc": "AI APIs and LLM workflows integrated into real products to unlock practical business value.",
       "enterprise": "Enterprise systems",
-      "enterprise-desc": "I deliver large business platforms, including ERP-style systems, with clean structure and long-term maintainability.",
+      "enterprise-desc": "Large business platforms, including ERP-style systems, built with clean structure and long-term maintainability.",
       "api": "API integration",
-      "api-desc": "I connect third-party REST and tRPC services to extend product capabilities without breaking user experience.",
+      "api-desc": "Third-party REST and tRPC services connected seamlessly to extend product capabilities without breaking UX.",
       "ui": "UI/UX and dashboards",
-      "ui-desc": "I craft high-quality interfaces and professional dashboards, including full RTL Arabic support when needed.",
+      "ui-desc": "High-quality interfaces and professional dashboards, including full RTL Arabic support when needed.",
       "performance": "Performance and SEO",
-      "performance-desc": "I optimize speed, responsiveness, and technical SEO to improve Lighthouse scores and search visibility."
+      "performance-desc": "Speed, responsiveness, and technical SEO optimized to improve Lighthouse scores and search visibility."
     },
     "process": {
       "understand": "Understand",

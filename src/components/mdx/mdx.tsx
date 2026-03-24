@@ -16,6 +16,7 @@ import LetsConnect from './lets-connect'
 import LinkCard from './link-card'
 import Logo from './logo'
 import ProcessSteps from './process-steps'
+import SectionDivider from './section-divider'
 import SkillBadges from './skill-badges'
 import Table from './table'
 import Testimonials from './testimonials'
@@ -70,6 +71,7 @@ const components = {
   ProcessSteps,
   Testimonials,
   EcomeniaHighlight,
+  SectionDivider,
   SkillBadges,
   CurrentlySection,
   ClosingCTA,
