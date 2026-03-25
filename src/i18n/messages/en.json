@@ -422,10 +422,11 @@
   "projects": {
     "description": "A showcase of SaaS products, web platforms, mobile apps, and AI tools I've built — from concept to production.",
     "visit-website": "Visit Website",
+    "visit-repo": "Visit Repo",
     "cta": {
       "title": "Like what you see?",
-      "description": "I build custom web apps, mobile apps, and SaaS products. Let's discuss your next project.",
-      "button": "Start a Conversation"
+      "description": "I build custom web apps, mobile apps, and SaaS products. Message me on WhatsApp and let's discuss your next project.",
+      "button": "Chat on WhatsApp"
     },
     "nav": {
       "previous": "Previous project",

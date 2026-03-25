@@ -1,11 +1,12 @@
 'use client'
 
-import { MailIcon, RocketIcon } from 'lucide-react'
+import { MessageCircleIcon, RocketIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
 import { buttonVariants } from '@/components/ui/button'
+import { SITE_WHATSAPP_URL } from '@/lib/constants'
 import { cn } from '@/utils/cn'
 
 function ProjectCTA() {
@@ -27,10 +28,12 @@ function ProjectCTA() {
         {t('projects.cta.description')}
       </p>
       <a
-        href='mailto:issamusma@hotmail.com'
+        href={SITE_WHATSAPP_URL}
+        target='_blank'
+        rel='noopener noreferrer'
         className={cn(buttonVariants(), 'mt-6 gap-2')}
       >
-        <MailIcon className='size-4' />
+        <MessageCircleIcon className='size-4' />
         {t('projects.cta.button')}
       </a>
     </motion.div>

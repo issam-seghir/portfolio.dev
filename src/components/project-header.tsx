@@ -8,7 +8,6 @@ import { useTranslations } from 'next-intl'
 
 import { buttonVariants } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
-import { GITHUB_USERNAME } from '@/lib/constants'
 import { cn } from '@/utils/cn'
 
 const animation = {
@@ -25,10 +24,8 @@ const animation = {
 type ProjectHeaderProps = Project
 
 function ProjectHeader(props: ProjectHeaderProps) {
-  const { name, description, homepage, github } = props
+  const { name, description, homepage, github, openSource } = props
   const t = useTranslations()
-
-  const repo = github ? github.split('/').pop() : null
 
   return (
     <div className='space-y-8 pt-10'>
@@ -50,9 +47,9 @@ function ProjectHeader(props: ProjectHeaderProps) {
             <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
           </Link>
         )}
-        {github && (
+        {github && openSource && (
           <Link href={github} className={cn(buttonVariants(), 'group')}>
-            {GITHUB_USERNAME}/{repo}
+            {t('projects.visit-repo')}
             <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
           </Link>
         )}

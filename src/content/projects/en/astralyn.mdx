@@ -1,39 +1,69 @@
 ---
 name: Astralyn
-description: Interactive space-themed web experience with animations
-homepage: https://github.com/issam-seghir/astralyn
+description: Astralyn | Your Comprehensive Dashboard Experience
+homepage: https://issam-seghir.github.io/astralyn/
 github: https://github.com/issam-seghir/astralyn
+openSource: true
 techstack:
   - React
-  - Three.js
-  - GSAP
-  - Tailwind CSS
-  - TypeScript
+  - Vite
+  - Joy UI
+  - Syncfusion
+  - React Router
+  - Leaflet
+  - SASS
 dateCreated: '2023-11-05T00:00:00Z'
+selected: true
 ---
 
-## The Problem
+## Project Overview
 
-Creating immersive, visually rich web experiences that combine 3D graphics, smooth animations, and strong storytelling is one of the most challenging areas of frontend development. It requires balancing visual impact with performance.
+**Astralyn | Your Comprehensive Dashboard Experience** is a multi-module admin dashboard focused on analytics, operations, and productivity workflows. The product combines e-commerce-style data management with visualization and utility apps inside a single, customizable interface.
 
-## The Solution
+## Product Features
 
-Astralyn is an interactive, space-themed web experience that uses **Three.js** for 3D rendering and **GSAP** for scroll-based animations. Users explore a narrative-driven space journey with cinematic transitions and interactive elements.
+### Main features
 
-### Key Features
+- **🚀 Explore 6 fully equipped apps**: Kanban board, scheduler for appointments, markdown editor, diagram drawer, expense tracker, and map visualization
+- **🔥 3 dynamic data grids**: Pagination, add/edit/delete (CRUD), filtering, searching, and more
+- **🧪 Interactive data visualization**
+- **⚡ Exporting capabilities**: Export charts, notes, and table data to **PDF**, **Excel**, and **CSV**
+- **💻 Responsive** for mobile and desktop
+- **💼 Everything cached** in **local storage**
 
-- **3D Space Scene** — Interactive starfield and planet rendering with Three.js
-- **Scroll-Based Storytelling** — Content reveals through smooth scroll-driven animations
-- **Cinematic Transitions** — GSAP-powered page transitions with easing curves
-- **Responsive Performance** — Optimized for both desktop and mobile with LOD management
-- **Accessible** — Fallback content for users who prefer reduced motion
+### User customization options
 
-## Technical Decisions
+- **🌓 Dark/light mode** (system by default)
+- **🎨 3 themes**
+- **🌍 Multiple languages** (English & Arabic)
+- **✨ Extra effects** (experimental; e.g. rainbow blur background)
 
-**Three.js** was chosen for the 3D rendering layer because of its extensive ecosystem and WebGL abstraction. **GSAP** handles the scroll-triggered animations because of its timeline API, which lets you choreograph complex animation sequences declaratively.
+<Image
+  src='/images/projects/astralyn/mockup-desktop.png'
+  width={1200}
+  height={675}
+  alt='Astralyn dashboard desktop mockup from the repository'
+/>
+<Image
+  src='/images/projects/astralyn/mockup-mobile.png'
+  width={600}
+  height={1200}
+  alt='Astralyn dashboard mobile mockup from the repository'
+/>
 
-Performance was a primary concern — I implemented texture compression, geometry instancing, and frame-rate adaptive rendering to maintain 60fps on mid-range devices.
+## Tech Stack
 
-## What I Learned
+- **React + Vite** — Component architecture with a fast local development loop and efficient bundling
+- **Joy UI (MUI Joy)** — Consistent design system, theming, and reusable UI primitives
+- **Syncfusion** — Enterprise-style grids, charting, scheduler, and export tooling
+- **React Router** — Multi-module dashboard navigation and route-based app composition
+- **Leaflet** — Interactive map rendering for location-based views
+- **SASS** — Custom styling layer for visual polish and fine-grained component control
 
-This project pushed my understanding of GPU rendering pipelines, memory management for 3D assets, and the intersection of design and engineering. It also taught me how to create accessibility-first experiences that gracefully degrade for users with different device capabilities.
+## Implementation Highlights
+
+- Built as a **modular dashboard shell** where each feature app (Kanban, scheduler, editor, etc.) behaves like a first-class module
+- Used **reusable data-table patterns** (CRUD + filter + pagination) across multiple sections for consistency
+- Integrated **export flows** directly into data and content screens to support practical admin use cases
+- Added **locale-aware UI** for English and Arabic plus user preference persistence through local storage
+- Optimized for **cross-device usage** while preserving information density on larger screens
