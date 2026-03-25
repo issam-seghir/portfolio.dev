@@ -1,10 +1,11 @@
 'use client'
 
 import { QuoteIcon, StarIcon } from 'lucide-react'
-import Image from 'next/image'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
+
+import { TestimonialAvatar, type TestimonialCountryFlag } from '@/components/testimonial-avatar'
 
 type TestimonialItem = {
   quoteKey: string
@@ -14,6 +15,7 @@ type TestimonialItem = {
   color: string
   stars: number
   avatar?: string
+  countryFlag?: TestimonialCountryFlag
 }
 
 const TESTIMONIALS: TestimonialItem[] = [
@@ -33,7 +35,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     initials: 'AM',
     color: 'from-violet-500 to-pink-500',
     stars: 5,
-    avatar: '/images/testimonials/alla-mohamed.jpg',
+    avatar: '/images/testimonials/alla-mohamed.png',
   },
   {
     quoteKey: 'about.testimonials.2.quote',
@@ -42,7 +44,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     initials: 'AA',
     color: 'from-amber-500 to-orange-500',
     stars: 5,
-    avatar: '/images/testimonials/abdul-aziz.jpg',
+    countryFlag: 'sa',
   },
   {
     quoteKey: 'about.testimonials.3.quote',
@@ -60,7 +62,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     initials: 'MK',
     color: 'from-lime-500 to-green-600',
     stars: 5,
-    avatar: '/images/testimonials/miloud-khdoum.jpg',
+    avatar: '/images/testimonials/miloud-khdoum.png',
   },
 ]
 
@@ -75,25 +77,20 @@ function Testimonials() {
         {TESTIMONIALS.map((item, index) => (
           <motion.div
             key={item.quoteKey}
-            className='group relative flex min-w-0 flex-col rounded-2xl border bg-card/50 p-5 text-start shadow-feature-card transition-shadow hover:shadow-lg sm:p-6'
+            className='group relative flex min-w-0 flex-col rounded-2xl border bg-card p-5 text-start shadow-feature-card transition-shadow hover:shadow-lg sm:p-6'
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : undefined}
             transition={{ duration: 0.4, delay: index * 0.1, type: 'spring', stiffness: 100, damping: 20 }}
           >
             <div className='mb-3 flex items-center gap-3'>
-              {item.avatar ? (
-                <Image
-                  src={item.avatar}
-                  alt={t(item.nameKey as never)}
-                  width={40}
-                  height={40}
-                  className='size-10 rounded-full object-cover ring-2 ring-border'
-                />
-              ) : (
-                <div className={`flex size-10 items-center justify-center rounded-full bg-linear-to-br ${item.color} text-xs font-semibold text-white ring-2 ring-border`}>
-                  {item.initials}
-                </div>
-              )}
+              <TestimonialAvatar
+                name={t(item.nameKey as never)}
+                initials={item.initials}
+                color={item.color}
+                avatar={item.avatar}
+                countryFlag={item.countryFlag}
+                size='sm'
+              />
               <div className='min-w-0 flex-1'>
                 <p className='truncate text-sm font-semibold'>{t(item.nameKey as never)}</p>
                 <p className='truncate text-xs text-muted-foreground'>{t(item.roleKey as never)}</p>

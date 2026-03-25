@@ -1,11 +1,11 @@
 'use client'
 
 import { ChevronLeftIcon, ChevronRightIcon, QuoteIcon } from 'lucide-react'
-import Image from 'next/image'
 import { AnimatePresence, motion, useInView } from 'motion/react'
 import { useLocale, useMessages, useTranslations } from 'next-intl'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
+import { TestimonialAvatar, type TestimonialCountryFlag } from '@/components/testimonial-avatar'
 import { Marquee } from '@/components/ui/marquee'
 import { cn } from '@/utils/cn'
 
@@ -51,6 +51,7 @@ type TestimonialItem = {
   initials: string
   color: string
   avatar?: string
+  countryFlag?: TestimonialCountryFlag
 }
 
 const TESTIMONIALS: TestimonialItem[] = [
@@ -60,7 +61,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     roleKey: 'about.testimonials.0.role',
     initials: 'CK',
     color: 'from-blue-500 to-cyan-500',
-    avatar: '/images/testimonials/coach-karim.jpg',
+    avatar: '/images/testimonials/karim.png',
   },
   {
     quoteKey: 'about.testimonials.1.quote',
@@ -68,7 +69,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     roleKey: 'about.testimonials.1.role',
     initials: 'AM',
     color: 'from-violet-500 to-pink-500',
-    avatar: '/images/testimonials/alla-mohamed.jpg',
+    avatar: '/images/testimonials/alla-mohamed.png',
   },
   {
     quoteKey: 'about.testimonials.2.quote',
@@ -76,7 +77,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     roleKey: 'about.testimonials.2.role',
     initials: 'AA',
     color: 'from-amber-500 to-orange-500',
-    avatar: '/images/testimonials/abdul-aziz.jpg',
+    countryFlag: 'sa',
   },
   {
     quoteKey: 'about.testimonials.3.quote',
@@ -92,7 +93,7 @@ const TESTIMONIALS: TestimonialItem[] = [
     roleKey: 'about.testimonials.4.role',
     initials: 'MK',
     color: 'from-lime-500 to-green-600',
-    avatar: '/images/testimonials/miloud-khdoum.jpg',
+    avatar: '/images/testimonials/miloud-khdoum.png',
   },
 ]
 
@@ -279,22 +280,14 @@ function TestimonialCard({ item, mobile }: { item: TestimonialItem; mobile?: boo
       )}
     >
       <div className='mb-4 flex items-center gap-3'>
-        {item.avatar ? (
-          <Image
-            src={item.avatar}
-            alt={t(item.nameKey as never)}
-            width={44}
-            height={44}
-            sizes='44px'
-            className='size-11 rounded-full object-cover ring-2 ring-border'
-          />
-        ) : (
-          <div
-            className={`flex size-11 items-center justify-center rounded-full bg-linear-to-br ${item.color} text-xs font-semibold text-white ring-2 ring-border`}
-          >
-            {item.initials}
-          </div>
-        )}
+        <TestimonialAvatar
+          name={t(item.nameKey as never)}
+          initials={item.initials}
+          color={item.color}
+          avatar={item.avatar}
+          countryFlag={item.countryFlag}
+          size='md'
+        />
         <div className='min-w-0'>
           <p className='truncate text-sm font-semibold'>{t(item.nameKey as never)}</p>
           <p className='truncate text-xs text-muted-foreground'>{t(item.roleKey as never)}</p>

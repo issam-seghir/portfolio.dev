@@ -43,6 +43,12 @@ export const env = createEnv({
 
     POSTHOG_ENV_ID: z.string().min(1).optional(),
     POSTHOG_API_KEY: z.string().min(1).optional(),
+
+    CLOUDFLARE_R2_ENDPOINT: z.string().url().optional(),
+    CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1).optional(),
+    CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string().min(1).optional(),
+    CLOUDFLARE_R2_BUCKET_NAME: z.string().min(1).optional(),
+    CLOUDFLARE_R2_PUBLIC_URL: z.string().url().optional(),
   },
 
   client: {

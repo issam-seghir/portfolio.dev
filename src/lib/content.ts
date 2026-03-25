@@ -88,8 +88,15 @@ export function getLatestProjects(locale: string, limit: number = allProjects.le
     .slice(0, limit)
 }
 
-export function getSelectedProjects(locale: string) {
-  return allProjects.filter((project) => project.selected && project.locale === locale)
+/** Featured on the home page; full catalog lives at `/projects`. */
+export const HOMEPAGE_SELECTED_PROJECTS_LIMIT = 4
+
+export function getSelectedProjects(locale: string, limit?: number) {
+  const sorted = allProjects
+    .filter((project) => project.selected && project.locale === locale)
+    .toSorted((a, b) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime())
+
+  return limit === undefined ? sorted : sorted.slice(0, limit)
 }
 
 export function getPostBySlug(locale: string, slug: string) {

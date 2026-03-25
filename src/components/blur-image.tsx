@@ -24,7 +24,7 @@ function BlurImage(props: ImageProps) {
     <div
       className={cn(
         'overflow-hidden',
-        fill && 'relative h-full w-full',
+        fill && 'relative size-full min-h-0',
         isLoading && 'animate-pulse',
         className,
       )}

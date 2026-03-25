@@ -18,7 +18,11 @@ import {
   SITE_GITHUB_URL,
   SITE_LINKEDIN_URL,
 } from '@/lib/constants'
-import { getLatestPosts, getSelectedProjects } from '@/lib/content'
+import {
+  getLatestPosts,
+  getSelectedProjects,
+  HOMEPAGE_SELECTED_PROJECTS_LIMIT,
+} from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
@@ -67,7 +71,7 @@ function Page(props: PageProps<'/[locale]'>) {
   }
 
   const filteredPosts = getLatestPosts(locale, 2)
-  const filteredProjects = getSelectedProjects(locale)
+  const filteredProjects = getSelectedProjects(locale, HOMEPAGE_SELECTED_PROJECTS_LIMIT)
 
   return (
     <>
