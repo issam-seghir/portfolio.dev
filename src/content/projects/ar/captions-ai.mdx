@@ -1,30 +1,101 @@
 ---
 name: Captions AI
-description: إنشاء تعليقات توضيحية مدعومة بالذكاء الاصطناعي لمحتوى وسائل التواصل
-homepage: https://github.com/issam-seghir/captions-ai
-github: https://github.com/issam-seghir/captions-ai
+description: Captions | استوديو إبداعي مدعوم بالذكاء الاصطناعي — صفحة هبوط مع GSAP وLottie وبناء يهتم بالأداء
+homepage: https://issam-seghir.github.io/Captions-AI/
+openSource: false
 techstack:
-  - React
-  - OpenAI API
-  - Node.js
-  - Tailwind CSS
-  - TypeScript
-selected: true
+  - HTML5
+  - SASS
+  - JavaScript
+  - GSAP
+  - Lottie
+  - Lenis
+  - PostCSS
+  - RFS
+  - Gerillass
 dateCreated: '2024-03-10T00:00:00Z'
+selected: true
 ---
 
-## المشكلة
+## نظرة عامة على المشروع
 
-يقضي صنّاع المحتوى وقتاً كبيراً في كتابة تعليقات توضيحية لمنشورات وسائل التواصل الاجتماعي. كتابة تعليقات جذابة ومخصصة للمنصة على نطاق واسع أمر مرهق ومتكرر.
+**Captions | Your AI-powered creative studio** إعادة بناء **لصفحة هبوط [Captions.ai](https://www.captions.ai) التسويقية**. التركيز على **الحركة** (GSAP وLottie)، **التمرير السلس**، وتنفيذ **أداء وإمكانية وصول أفضل** مقارنة بالموقع المرجعي.
 
-## الحل
-
-يُنشئ Captions AI تعليقات توضيحية لوسائل التواصل الاجتماعي باستخدام **نماذج GPT من OpenAI**، مصممة خصيصاً للمنصة والنبرة والجمهور.
+## الميزات
 
 ### الميزات الرئيسية
 
-- **دعم متعدد المنصات** — إنشاء تعليقات محسّنة لـ Instagram و Twitter و LinkedIn و Facebook
-- **اختيار النبرة** — اختر من مهنية أو عادية أو فكاهية أو ملهمة
-- **إنشاء الهاشتاغات** — اقتراح هاشتاغات ذات صلة تلقائياً بناءً على المحتوى
-- **تنويعات التعليقات** — إنشاء خيارات متعددة لاختبار التفاعل
-- **السجل** — حفظ وإعادة زيارة التعليقات المُنشأة سابقاً
+- **🎬 صفحة هبوط تسويقية مستوحاة** — بنية وإحساس قريب من الصفحة الأصلية، منفذة كموقع ثابت مستقل
+- **✨ GSAP + ScrollTrigger** — حركات مرتبطة بالتمرير وتسلسل كشف الأقسام
+- **🎞️ Lottie** — رسوم متجهة مدمجة في سرد الصفحة
+- **📐 خطوط متجاوبة (RFS)** — تكييف سلس لأحجام العناوين والنص بين الشاشات
+- **🖱️ Lenis** — تمرير ناعم يعمل مع الحركات المربوطة بالتمرير
+- **🎨 SASS + Gerillass** — أنماط منظمة مع Mixins وبنية صيانة أوضح
+- **⚡ PostCSS** — `postcss-preset-env` و`postcss-inline-svg` وتسليم CSS حديث
+- **♿ إمكانية الوصول والأداء** — ضبط للاستخدام والسرعة مقارنة بالتجربة الأصلية (انظر ملخص Lighthouse أدناه ولقطة الموقع الأصلي)
+
+## Lighthouse والأداء
+
+يهدف هذا البناء إلى **أداء أعلى وإمكانية وصول أفضل من الموقع التسويقي الرسمي [Captions.ai](https://www.captions.ai)**، مع **لقطة Lighthouse للموقع الأصلي** كمرجع ([صورة على Imgur](https://i.imgur.com/fCqSHnk.png)).
+
+<img
+  alt='شارة: نتائج Lighthouse المتوسطة'
+  width={275}
+  height={56}
+  src='/images/projects/captions-ai/lighthouse-badge.svg'
+  className='mx-auto my-6 block h-auto max-w-full'
+/>
+
+### الموقع الأصلي (مرجع)
+
+<Image
+  src='/images/projects/captions-ai/original-site-lighthouse.png'
+  width={860}
+  height={540}
+  alt='لقطة تقرير Lighthouse لموقع Captions.ai التسويقي الأصلي'
+/>
+
+[فتح بحجم كامل على Imgur](https://i.imgur.com/fCqSHnk.png)
+
+### النسخة المستنسخة (سطح مكتب)
+
+**ملخص Lighthouse لسطح المكتب** للنسخة المستنسخة، أُعيد بناؤه من لقطة محفوظة من المشروع الخاص ومُستضاف محلياً ليتوافق مع سياسة أمان المحتوى الصارمة:
+
+<img
+  alt='ملخص بأسلوب Lighthouse لسطح المكتب لنسخة Captions AI'
+  src='/images/projects/captions-ai/lighthouse-desktop.svg'
+  className='mx-auto h-auto w-full max-w-3xl rounded-lg border bg-card p-2'
+/>
+
+<Image
+  src='/images/projects/captions-ai/mockup-desktop.png'
+  width={1200}
+  height={675}
+  alt='صفحة Captions AI — معاينة سطح مكتب'
+/>
+<Image
+  src='/images/projects/captions-ai/mockup-mobile.png'
+  width={600}
+  height={1200}
+  alt='صفحة Captions AI — معاينة جوال'
+/>
+
+## التقنيات المستخدمة
+
+- **HTML5** — هيكل دلالي لأقسام الهبوط وتدفق المحتوى
+- **SASS** — أنماط مكونات ومتغيرات وتخطيط
+- **JavaScript** — تنسيق مكتبات الحركة وسلوك التمرير
+- **GSAP + ScrollTrigger** — حركة زمنية وربط بالتمرير
+- **Lottie** — رسوم JSON مدمجة في الصفحة
+- **Lenis** — طبقة تمرير سلس
+- **RFS** — تكييف حجم الخط دون تعقيد استعلامات الوسائط
+- **Gerillass** — مكتبة Mixins لتسريع كتابة الأنماط
+- **PostCSS** — Preset-env وأدوات SVG مضمنة لـ CSS متوافق ومحسّن
+
+## ملامح التنفيذ
+
+- إعادة بناء الهبوط كواجهة **ثابتة** مع تحسين **الأداء وإمكانية الوصول** مقارنة بالمرجع
+- تنسيق **خطوط زمنية GSAP** مع **Lenis** لاستقرار الحركات المربوطة بالتمرير على الأجهزة المختلفة
+- استخدام **Lottie** حيث يعطي الحركة المتجهة وضوحاً أفضل من CSS وحدها
+- تطبيق **RFS** لتدرج الطباعة بين الجوال وسطح المكتب دون ازدحام استعلامات
+- توثيق الجودة عبر **ملخص Lighthouse لسطح المكتب** مستند إلى لقطة محفوظة من المشروع ومُستضاف على هذا الموقع، مع مقارنة البناء بـ **الموقع التسويقي الأصلي** عبر لقطة Lighthouse منشورة

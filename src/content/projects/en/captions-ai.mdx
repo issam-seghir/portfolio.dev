@@ -1,40 +1,101 @@
 ---
 name: Captions AI
-description: AI-powered caption generation for social media content
-homepage: https://github.com/issam-seghir/captions-ai
-github: https://github.com/issam-seghir/captions-ai
+description: Captions | Your AI-powered creative studio — landing experience with GSAP, Lottie, and a performance-first build
+homepage: https://issam-seghir.github.io/Captions-AI/
+openSource: false
 techstack:
-  - React
-  - OpenAI API
-  - Node.js
-  - Tailwind CSS
-  - TypeScript
-selected: true
+  - HTML5
+  - SASS
+  - JavaScript
+  - GSAP
+  - Lottie
+  - Lenis
+  - PostCSS
+  - RFS
+  - Gerillass
 dateCreated: '2024-03-10T00:00:00Z'
+selected: true
 ---
 
-## The Problem
+## Project Overview
 
-Content creators spend significant time crafting captions for social media posts. Writing engaging, platform-specific captions at scale is tedious and repetitive, especially when you need variations for different platforms (Instagram, Twitter, LinkedIn).
+**Captions | Your AI-powered creative studio** is a **recreation of the [Captions.ai](https://www.captions.ai) marketing landing page**. The focus is on **motion design** (GSAP, Lottie), **smooth scrolling**, and a **more performant, accessible** implementation than the reference site.
 
-## The Solution
+## Product Features
 
-Captions AI generates social media captions using **OpenAI's GPT models**, tailored to the platform, tone, and audience. Users upload an image or describe their content, and the AI produces multiple caption options instantly.
+### Main features
 
-### Key Features
+- **🎬 Marketing landing clone** — Faithful structure and feel of the original product landing, implemented as a standalone static site
+- **✨ GSAP + ScrollTrigger** — Scroll-driven animation choreography and section reveals
+- **🎞️ Lottie** — Vector-based motion graphics integrated into the page narrative
+- **📐 Responsive typography (RFS)** — Automated fluid scaling for headings and body copy across breakpoints
+- **🖱️ Lenis** — Smooth scrolling that pairs cleanly with scroll-linked animation
+- **🎨 SASS + Gerillass** — Organized styling with mixins and a maintainable stylesheet architecture
+- **⚡ PostCSS** — `postcss-preset-env`, `postcss-inline-svg`, and a modern CSS pipeline
+- **♿ Accessibility & performance** — Tuned for usability and speed relative to the original experience (see Lighthouse summary below and the original-site capture for context)
 
-- **Multi-Platform Support** — Generate captions optimized for Instagram, Twitter, LinkedIn, and Facebook
-- **Tone Selection** — Choose from professional, casual, humorous, or inspirational tones
-- **Hashtag Generation** — Automatically suggest relevant hashtags based on content
-- **Caption Variations** — Generate multiple options to A/B test engagement
-- **History** — Save and revisit previously generated captions
+## Lighthouse & performance
 
-## Technical Decisions
+This build targets **stronger performance and accessibility than the official [Captions.ai](https://www.captions.ai) marketing site**, with a **Lighthouse capture of the original** for context ([screenshot on Imgur](https://i.imgur.com/fCqSHnk.png)).
 
-The **OpenAI API** was the natural choice for text generation quality. I implemented prompt engineering techniques to ensure consistent, platform-appropriate output — for example, Twitter captions stay under 280 characters while Instagram captions can be longer and include emoji suggestions.
+<img
+  alt='Badge: Lighthouse average results'
+  width={275}
+  height={56}
+  src='/images/projects/captions-ai/lighthouse-badge.svg'
+  className='mx-auto my-6 block h-auto max-w-full'
+/>
 
-The frontend is a **React SPA** with a clean, minimal interface focused on the generation workflow. **Node.js** serves as the API layer, handling OpenAI requests and rate limiting.
+### Original site (reference)
 
-## What I Learned
+<Image
+  src='/images/projects/captions-ai/original-site-lighthouse.png'
+  width={860}
+  height={540}
+  alt='Lighthouse report screenshot for the original Captions.ai marketing site'
+/>
 
-This project was my deep dive into **prompt engineering** — structuring prompts with examples, constraints, and formatting instructions to get reliable, high-quality output. I also learned about managing API costs and implementing caching strategies for similar requests.
+[Open full-size on Imgur](https://i.imgur.com/fCqSHnk.png)
+
+### This clone (desktop)
+
+**Desktop Lighthouse summary** for the clone, recreated from the archived private-project screenshot and self-hosted so it works with a strict Content Security Policy:
+
+<img
+  alt='Desktop Lighthouse style summary for the Captions AI clone'
+  src='/images/projects/captions-ai/lighthouse-desktop.svg'
+  className='mx-auto h-auto w-full max-w-3xl rounded-lg border bg-card p-2'
+/>
+
+<Image
+  src='/images/projects/captions-ai/mockup-desktop.png'
+  width={1200}
+  height={675}
+  alt='Captions AI landing — desktop mockup'
+/>
+<Image
+  src='/images/projects/captions-ai/mockup-mobile.png'
+  width={600}
+  height={1200}
+  alt='Captions AI landing — mobile mockup'
+/>
+
+## Tech Stack
+
+- **HTML5** — Semantic structure for the landing sections and content flow
+- **SASS** — Component-oriented styles, variables, and layout helpers
+- **JavaScript** — Orchestration for animation libraries and scroll behavior
+- **GSAP + ScrollTrigger** — Timeline-based and scroll-scrubbed motion
+- **Lottie** — JSON-driven animations embedded in the page
+- **Lenis** — Inertial / smooth scroll layer
+- **RFS** — Responsive font scaling without manual breakpoint hacks
+- **Gerillass** — SASS mixins library for faster styling workflows
+- **PostCSS** — Preset-env and inline-SVG tooling for compatible, optimized CSS
+
+## Implementation Highlights
+
+- Rebuilt the landing as a **static front-end** optimized for **performance and accessibility** compared to the original reference
+- Coordinated **GSAP timelines** with **Lenis** so scroll-linked effects stay stable across devices
+- Used **Lottie** where vector animation delivers clearer motion than CSS-only approaches
+- Applied **RFS** so typography scales fluidly from mobile to desktop without cluttering media queries
+- Documented quality with a **self-hosted Lighthouse desktop summary** based on the archived project screenshot, and compared the build against the **original marketing site** using a published Lighthouse capture

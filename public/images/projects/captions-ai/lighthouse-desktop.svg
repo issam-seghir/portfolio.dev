@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="268" viewBox="0 0 1024 268" role="img" aria-label="Desktop Lighthouse summary for the Captions AI clone">
+  <rect width="1024" height="268" rx="12" fill="#0d1117"/>
+  <g transform="translate(96 24)">
+    <circle cx="88" cy="88" r="59" fill="none" stroke="#ffb21d" stroke-width="9"/>
+    <circle cx="88" cy="88" r="47" fill="#2d2213"/>
+    <text x="88" y="97" fill="#ffb21d" font-family="system-ui,Segoe UI,sans-serif" font-size="46" font-weight="700" text-anchor="middle">88</text>
+    <text x="88" y="204" fill="#8b949e" font-family="system-ui,Segoe UI,sans-serif" font-size="26" text-anchor="middle">Performance</text>
+  </g>
+  <g transform="translate(320 24)">
+    <circle cx="88" cy="88" r="59" fill="none" stroke="#1fdd71" stroke-width="9"/>
+    <circle cx="88" cy="88" r="47" fill="#11231a"/>
+    <text x="88" y="97" fill="#1fdd71" font-family="system-ui,Segoe UI,sans-serif" font-size="46" font-weight="700" text-anchor="middle">96</text>
+    <text x="88" y="204" fill="#8b949e" font-family="system-ui,Segoe UI,sans-serif" font-size="26" text-anchor="middle">Accessibility</text>
+  </g>
+  <g transform="translate(544 24)">
+    <circle cx="88" cy="88" r="59" fill="none" stroke="#1fdd71" stroke-width="9"/>
+    <circle cx="88" cy="88" r="47" fill="#11231a"/>
+    <text x="88" y="97" fill="#1fdd71" font-family="system-ui,Segoe UI,sans-serif" font-size="46" font-weight="700" text-anchor="middle">92</text>
+    <text x="88" y="204" fill="#8b949e" font-family="system-ui,Segoe UI,sans-serif" font-size="26" text-anchor="middle">Best Practices</text>
+  </g>
+  <g transform="translate(768 24)">
+    <circle cx="88" cy="88" r="59" fill="none" stroke="#1fdd71" stroke-width="9"/>
+    <circle cx="88" cy="88" r="47" fill="#11231a"/>
+    <text x="88" y="97" fill="#1fdd71" font-family="system-ui,Segoe UI,sans-serif" font-size="46" font-weight="700" text-anchor="middle">100</text>
+    <text x="88" y="204" fill="#8b949e" font-family="system-ui,Segoe UI,sans-serif" font-size="26" text-anchor="middle">SEO</text>
+  </g>
+</svg>
