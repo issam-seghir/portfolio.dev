@@ -5,6 +5,8 @@ import { motion, useInView, useMotionValue, useTransform, animate } from 'motion
 import { useTranslations } from 'next-intl'
 import { useEffect, useRef } from 'react'
 
+import { cn } from '@/utils/cn'
+
 function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(0)
@@ -39,7 +41,7 @@ function CodingStatsCard() {
   const t = useTranslations()
 
   return (
-    <div className='group flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card transition-shadow hover:shadow-lg lg:p-6'>
+    <div className={cn('bento-card group flex h-full flex-col gap-4 overflow-hidden p-4 lg:p-6')}>
       <div className='flex items-center gap-2'>
         <CodeIcon className='size-4.5' />
         <h2 className='text-sm'>{t('homepage.about-me.coding-hours')}</h2>

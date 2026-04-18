@@ -5,6 +5,8 @@ import { AnimatePresence, motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import { cn } from '@/utils/cn'
+
 const FACTS = [
   { key: 'homepage.about-me.fun-fact-1', emoji: '✍️', bg: 'from-violet-500/10 to-purple-500/10' },
   { key: 'homepage.about-me.fun-fact-2', emoji: '🎨', bg: 'from-rose-500/10 to-pink-500/10' },
@@ -46,7 +48,10 @@ function FunFactsCard() {
     <button
       type='button'
       onClick={handleClick}
-      className='group flex h-full w-full cursor-pointer flex-col gap-3 rounded-2xl p-4 shadow-feature-card transition-all hover:shadow-lg active:scale-[0.98] lg:p-6'
+      className={cn(
+        'bento-card group flex h-full w-full cursor-pointer flex-col gap-3 p-4 active:scale-[0.98] lg:p-6',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
+      )}
     >
       <div className='flex items-center justify-between'>
         <div className='flex items-center gap-2'>

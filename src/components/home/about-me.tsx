@@ -11,7 +11,6 @@ import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
 import CodingDnaCard from './coding-dna-card'
-import CurrentlyCard from './currently-card'
 import FunFactsCard from './fun-facts-card'
 import LocationCard from './location-card'
 import StacksCard from './stacks-card'

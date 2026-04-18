@@ -150,7 +150,7 @@ export function AboutHero() {
         {STATS.map((stat, index) => (
           <motion.div
             key={stat.labelKey}
-            className='group flex min-w-0 flex-col items-center gap-1 rounded-2xl border border-border/60 bg-card/30 p-3 shadow-feature-card transition-colors hover:bg-accent/30 sm:gap-1.5 sm:p-5'
+            className='group flex min-w-0 flex-col items-center justify-between gap-1 rounded-2xl border border-border/60 bg-card/30 p-3 shadow-feature-card transition-colors hover:bg-accent/30 sm:gap-1.5 sm:p-5'
             initial={{ opacity: 0, y: 20 }}
             animate={statsInView ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}

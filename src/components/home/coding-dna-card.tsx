@@ -4,6 +4,8 @@ import { FingerprintIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 
+import { cn } from '@/utils/cn'
+
 const TRAITS = [
   { key: 'trait-curious', emoji: '🧠', bg: 'from-blue-500/15 to-cyan-500/15' },
   { key: 'trait-creative', emoji: '🎨', bg: 'from-rose-500/15 to-pink-500/15' },
@@ -25,7 +27,7 @@ function CodingDnaCard() {
   const t = useTranslations()
 
   return (
-    <div className='flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card transition-shadow hover:shadow-lg lg:p-6'>
+    <div className={cn('bento-card flex h-full flex-col gap-4 overflow-hidden p-4 lg:p-6')}>
       <div className='flex items-center gap-2'>
         <FingerprintIcon className='size-4.5' />
         <h2 className='text-sm'>{t('homepage.about-me.coding-dna')}</h2>

@@ -55,8 +55,13 @@ const TECH: TechItem[] = [
   { name: 'CSS3', Icon: SiCss, color: '#1572b6', glow: 'rgba(21,114,182,0.35)', floatDelay: 1.0, floatDuration: 5.1, floatY: 4 },
 ]
 
+function isWhiteBrandColor(color: string) {
+  return color.toLowerCase() === '#ffffff'
+}
+
 function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
   const { name, Icon, color, glow, floatDelay, floatDuration, floatY } = item
+  const useThemeAwareFill = isWhiteBrandColor(color)
 
   return (
     <motion.div
@@ -92,20 +97,30 @@ function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
             whileTap={{ scale: 1.3 }}
           >
             <div
-              className='flex size-14 items-center justify-center rounded-2xl border border-white/8 bg-white/4 backdrop-blur-md transition-all duration-300 hover:border-white/20 hover:bg-white/8 sm:size-16'
+              className={cn(
+                'flex size-14 items-center justify-center rounded-2xl border backdrop-blur-md transition-all duration-300 sm:size-16',
+                'border-border/60 bg-muted/50 hover:border-border hover:bg-muted/80',
+                'dark:border-white/8 dark:bg-white/4 dark:hover:border-white/20 dark:hover:bg-white/8'
+              )}
               style={{
-                boxShadow: `0 0 0px ${glow}, inset 0 1px 0 rgba(255,255,255,0.06)`,
+                boxShadow: `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`,
               }}
               onMouseEnter={(e) => {
                 ;(e.currentTarget as HTMLDivElement).style.boxShadow =
-                  `0 0 28px ${glow}, 0 0 60px ${glow.replace(/[\d.]+\)$/, '0.15)')}, inset 0 1px 0 rgba(255,255,255,0.1)`
+                  `0 0 28px ${glow}, 0 0 60px ${glow.replace(/[\d.]+\)$/, '0.15)')}, inset 0 1px 0 rgba(128,128,128,0.14)`
               }}
               onMouseLeave={(e) => {
                 ;(e.currentTarget as HTMLDivElement).style.boxShadow =
-                  `0 0 0px ${glow}, inset 0 1px 0 rgba(255,255,255,0.06)`
+                  `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`
               }}
             >
-              <Icon className='size-7 sm:size-8' style={{ color }} />
+              <Icon
+                className={cn(
+                  'size-7 sm:size-8',
+                  useThemeAwareFill && 'text-zinc-900 dark:text-white'
+                )}
+                style={useThemeAwareFill ? undefined : { color }}
+              />
             </div>
           </motion.div>
         </TooltipTrigger>
@@ -159,7 +174,7 @@ function StacksCard() {
   const t = useTranslations()
 
   return (
-    <div className='flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card transition-shadow hover:shadow-lg lg:p-6'>
+    <div className={cn('bento-card flex h-full flex-col gap-4 overflow-hidden p-4 lg:p-6')}>
       <div className='flex items-center gap-2'>
         <ZapIcon className='size-4.5' />
         <h2 className='text-sm'>{t('homepage.about-me.stacks')}</h2>

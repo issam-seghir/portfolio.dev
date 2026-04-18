@@ -4,7 +4,32 @@ import createGlobe from 'cobe'
 import { MapPinIcon } from 'lucide-react'
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, animate } from 'motion/react'
 import { useTranslations } from 'next-intl'
+import { useTheme } from 'next-themes'
 import { useEffect, useRef, useState } from 'react'
+
+import { cn } from '@/utils/cn'
+
+/** COBE presets: dark mode matches the original card; light mode uses library “light” defaults so the globe isn’t a black sphere on a white card */
+function globeStyle(isDark: boolean) {
+  if (isDark) {
+    return {
+      dark: 1,
+      diffuse: 2,
+      mapBrightness: 2,
+      baseColor: [0.8, 0.8, 0.8] as [number, number, number],
+      markerColor: [1, 1, 1] as [number, number, number],
+      glowColor: [0.5, 0.5, 0.5] as [number, number, number],
+    }
+  }
+  return {
+    dark: 0,
+    diffuse: 1.2,
+    mapBrightness: 6,
+    baseColor: [0.9, 0.92, 0.97] as [number, number, number],
+    markerColor: [0.22, 0.48, 0.95] as [number, number, number],
+    glowColor: [0.72, 0.8, 0.96] as [number, number, number],
+  }
+}
 
 const ALGIERS = { lat: 36.7538, lon: 3.0588 }
 
@@ -49,6 +74,7 @@ function LocationCard() {
   const pointerInteracting = useRef<number | null>(null)
   const pointerInteractionMovement = useRef(0)
   const t = useTranslations()
+  const { resolvedTheme } = useTheme()
 
   const [geo, setGeo] = useState<GeoData | null>(null)
   const [loading, setLoading] = useState(true)
@@ -60,6 +86,8 @@ function LocationCard() {
     damping: 40,
     mass: 1,
   })
+
+  const isDarkGlobe = (resolvedTheme ?? 'light') === 'dark'
 
   useEffect(() => {
     let width = 0
@@ -75,21 +103,18 @@ function LocationCard() {
 
     if (!canvasRef.current) return
 
+    const style = globeStyle(isDarkGlobe)
+
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
       width: width * 2,
       height: width * 2,
       phi: 0,
       theta: 0,
-      dark: 1,
-      diffuse: 2,
       mapSamples: 16_000,
-      mapBrightness: 2,
-      baseColor: [0.8, 0.8, 0.8],
-      markerColor: [1, 1, 1],
-      glowColor: [0.5, 0.5, 0.5],
       markers: [{ location: [ALGIERS.lat, ALGIERS.lon], size: 0.1 }],
       scale: 1.05,
+      ...style,
       onRender: (state: Record<string, number>) => {
         state.phi = -0.05 + springRotation.get()
         state.width = width * 2
@@ -101,7 +126,7 @@ function LocationCard() {
       globe.destroy()
       window.removeEventListener('resize', onResize)
     }
-  }, [springRotation])
+  }, [springRotation, isDarkGlobe])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -134,7 +159,7 @@ function LocationCard() {
   const dist = geo ? (unit === 'km' ? geo.distance : geo.distance * 0.621_371) : 0
 
   return (
-    <div className='overflow-hidden rounded-2xl shadow-feature-card transition-shadow hover:shadow-lg'>
+    <div className={cn('bento-card overflow-hidden')}>
       <div className='relative flex h-60 flex-col gap-6 p-4 lg:p-6'>
         <div className='flex items-center gap-2'>
           <MapPinIcon className='size-4.5' />

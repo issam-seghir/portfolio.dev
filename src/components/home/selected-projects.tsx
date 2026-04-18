@@ -93,9 +93,10 @@ function Card(props: CardProps) {
             lazy={false}
             fetchPriority='high'
           />
+          <div className='pointer-events-none absolute inset-x-2 bottom-[46px] h-36 rounded-b-lg bg-linear-to-t from-black/85 via-black/50 to-transparent' />
           <div className='absolute bottom-16 left-7 flex flex-col transition-[left] ease-out group-hover:left-8'>
-            <h3 className='text-2xl font-semibold text-white'>{name}</h3>
-            <p className='mt-2 text-neutral-200 dark:text-muted-foreground'>{description}</p>
+            <h3 className='text-2xl font-semibold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]'>{name}</h3>
+            <p className='mt-2 text-neutral-100 [text-shadow:0_1px_8px_rgba(0,0,0,0.75)]'>{description}</p>
           </div>
           {techstack.length > 0 && (
             <div className='flex flex-wrap gap-1.5 px-4 pb-3 pt-2'>

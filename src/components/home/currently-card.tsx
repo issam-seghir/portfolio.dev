@@ -4,6 +4,8 @@ import { ActivityIcon, BookOpenIcon, HammerIcon, GraduationCapIcon } from 'lucid
 import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 
+import { cn } from '@/utils/cn'
+
 const ITEMS = [
   { key: 'currently-learning', icon: GraduationCapIcon, color: 'text-green-500' },
   { key: 'currently-building', icon: HammerIcon, color: 'text-blue-500' },
@@ -14,7 +16,7 @@ function CurrentlyCard() {
   const t = useTranslations()
 
   return (
-    <div className='flex h-full flex-col gap-4 overflow-hidden rounded-2xl p-4 shadow-feature-card transition-shadow hover:shadow-lg lg:p-6'>
+    <div className={cn('bento-card flex h-full flex-col gap-4 overflow-hidden p-4 lg:p-6')}>
       <div className='flex items-center gap-2'>
         <ActivityIcon className='size-4.5' />
         <h2 className='text-sm'>{t('homepage.about-me.currently')}</h2>

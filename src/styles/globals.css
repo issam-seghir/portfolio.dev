@@ -333,6 +333,15 @@
 }
 
 @layer components {
+  /** About / bento grid tiles: explicit border + hover (light + dark) */
+  .bento-card {
+    @apply rounded-2xl border border-border/80 bg-card text-card-foreground shadow-feature-card;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:border-foreground/20 hover:bg-muted/40 hover:shadow-md;
+    @apply dark:border-white/16;
+    @apply dark:hover:border-white/32 dark:hover:bg-accent/25 dark:hover:shadow-lg;
+  }
+
   .hover-word {
     position: relative;
     cursor: default;
