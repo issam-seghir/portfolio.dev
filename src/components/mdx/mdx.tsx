@@ -3,6 +3,7 @@ import { useMDXComponent } from '@content-collections/mdx/react'
 import BlurImage from '@/components/blur-image'
 import { CodeBlock } from '@/components/ui/code-block'
 import { Link } from '@/components/ui/link'
+import { cn } from '@/utils/cn'
 
 import ImageZoom from '../image-zoom'
 
@@ -47,12 +48,29 @@ const components = {
     )
   },
   Image: (props: React.ComponentProps<typeof BlurImage>) => {
-    const { alt, ...rest } = props
+    const { alt, fill, style, className, imageClassName, ...rest } = props
+
+    // Prose (and max-width) often constrains width via CSS; next/image then warns unless height stays proportional.
+    const isStaticSized =
+      fill !== true &&
+      typeof rest.width === 'number' &&
+      typeof rest.height === 'number'
 
     return (
       <>
         <ImageZoom>
-          <BlurImage className='rounded-lg border' alt={alt} {...rest} />
+          <BlurImage
+            className={cn('rounded-lg border', className)}
+            imageClassName={cn(isStaticSized && 'h-auto w-full max-w-full', imageClassName)}
+            style={
+              isStaticSized
+                ? { height: 'auto', maxWidth: '100%', ...(style as React.CSSProperties) }
+                : style
+            }
+            alt={alt}
+            fill={fill}
+            {...rest}
+          />
         </ImageZoom>
         <figcaption className='mt-4 text-center'>{alt}</figcaption>
       </>

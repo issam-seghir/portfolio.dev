@@ -91,14 +91,17 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
       <JsonLd json={jsonLd} />
       <div className='mx-auto max-w-3xl'>
         <ProjectHeader {...project} />
-        <BlurImage
-          src={`/images/projects/${slug}/cover.png`}
-          width={1200}
-          height={630}
-          alt={name}
-          className='my-12 rounded-lg'
-          lazy={false}
-        />
+        <div className='relative my-12 aspect-[40/21] w-full overflow-hidden rounded-lg'>
+          <BlurImage
+            fill
+            src={`/images/projects/${slug}/cover.png`}
+            alt={name}
+            className='absolute inset-0 size-full rounded-lg'
+            imageClassName='object-cover object-center'
+            sizes='(max-width: 768px) 100vw, 48rem'
+            lazy={false}
+          />
+        </div>
         <Mdx code={code} />
         <ProjectCTA />
         <ProjectNavigation prev={prevProject} next={nextProject} />

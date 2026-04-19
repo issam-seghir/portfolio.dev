@@ -1,30 +1,86 @@
 ---
 name: Discord Clone
-description: تطبيق مراسلة في الوقت الفعلي مع قنوات وصوت وفيديو
-homepage: https://github.com/issam-seghir/discord-clone
+description: Discord Clone | دردشة وصوت وفيديو فورية — Next.js وSocket.io وLiveKit وClerk وPrisma
+homepage: https://discord-clone.koyeb.app/
 github: https://github.com/issam-seghir/discord-clone
+openSource: true
 techstack:
   - Next.js
-  - Socket.io
-  - Prisma
-  - Tailwind CSS
   - TypeScript
-selected: true
+  - Tailwind CSS
+  - shadcn/ui
+  - Socket.io
+  - LiveKit
+  - Prisma
+  - Clerk
+  - TanStack Query
+  - Zustand
+  - React Hook Form
+  - Zod
+  - UploadThing
 dateCreated: '2023-08-20T00:00:00Z'
+selected: true
 ---
 
-## المشكلة
+## نظرة عامة على المشروع
 
-تتطلب منصات الاتصال في الوقت الفعلي التعامل مع تحديات معقدة: اتصالات WebSocket، حفظ الرسائل، حالة المستخدم، رفع الملفات، وبث الصوت/الفيديو.
+**Discord Clone** تطبيق **في الوقت الفعلي** للـ **نص والصوت والفيديو** مستوحى من تجربة Discord الأساسية، مبني بـ **Next.js** و**Socket.io** و**LiveKit**، مع مصادقة **Clerk** (بما فيها Google) و**Prisma** للبيانات و**UploadThing** للمرفقات. التفاصيل متماشية مع [README المشروع](https://github.com/issam-seghir/discord-clone/blob/main/README.md).
 
-## الحل
+عرض حي: [discord-clone.vercel.app](https://discord-clone.koyeb.app).
 
-نسخة Discord هذه تكرر التجربة الأساسية مع **المراسلة في الوقت الفعلي**، إدارة الخوادم/القنوات، والرسائل المباشرة.
+## صور وواجهات
+
+
+<Image
+  src='/images/projects/discord-clone/mockup-desktop.png'
+  width={3658}
+  height={1976}
+  alt='Discord Clone — معاينة واجهة سطح المكتب'
+/>
+
+<Image
+  src='/images/projects/discord-clone/mockup-mobile.png'
+  width={2680}
+  height={2167}
+  alt='Discord Clone — معاينة واجهة الجوال'
+/>
+
+## الميزات
 
 ### الميزات الرئيسية
 
-- **المراسلة في الوقت الفعلي** — تسليم فوري للرسائل عبر Socket.io مع مؤشرات الكتابة
-- **الخوادم والقنوات** — إنشاء وإدارة خوادم مع قنوات نصية وصوتية وفيديو
-- **الرسائل المباشرة** — محادثات فردية بين الأعضاء
-- **إدارة الأعضاء** — نظام أدوار مع إمكانيات الطرد/الحظر لمسؤولي الخادم
-- **مشاركة الملفات** — رفع ومشاركة الصور وملفات PDF بدعم السحب والإفلات
+- **🔒 المصادقة** — **Clerk** مع تسجيل دخول **Google**
+- **🎉 الخوادم** — إنشاء وتخصيص الخوادم
+- **📱 المراسلة** — **Socket.io**؛ احتياطي عبر الاستطلاع مع تنبيهات
+- **🚀 القنوات** — قنوات **نص** و**صوت** و**فيديو**
+- **📨 المحادثات** — رسائل مباشرة بين الأعضاء
+- **🎬 مكالمات** — فيديو وصوت عبر **LiveKit**
+- **🎁 المرفقات** — **UploadThing** لرفع الملفات في الدردشة
+- **🧨 الرسائل** — تعديل وحذف فوري لجميع المستخدمين
+- **🔰 الأعضاء** — طرد، أدوار (**ضيف** / **مشرف**)
+- **🔗 الدعوات** — روابط دعوة فريدة ونظام دعوة كامل
+- **⛓ التمرير** — تحميل لا نهائي على دفعات من 10 (**TanStack Query**)
+- **🔍 البحث** — واجهة أمر/بحث
+- **🎨 المظهر** — فاتح / داكن
+- **🚀 SEO والأداء** — ميتا، **Next/Image**، خرائط موقع
+- **🎊 تصميم متجاوب**
+
+## التقنيات المستخدمة
+
+- **Next.js** — App Router، SEO
+- **TypeScript** — أنماط عبر المكدس
+- **Tailwind CSS** + **shadcn/ui**
+- **Clerk** — مصادقة (ومع Google)
+- **Prisma** — طبقة البيانات
+- **Socket.io** — دردشة فورية وغرف
+- **LiveKit** — صوت وفيديو
+- **TanStack Query** — حالة الخادم وقوائم رسائل لا نهائية
+- **Zustand** — حالة واجهة العميل
+- **React Hook Form** + **Zod**
+- **UploadThing** — رفع الملفات في الدردشة
+
+## ملامح التنفيذ
+
+- دمج **WebSockets**، تجربة قريبة من **الحضور**، و**وسائط** (LiveKit) في منتج واحد
+- **تمرير لا نهائي على دفعات** للرسائل عبر TanStack Query بدل تحميل السجل كاملاً
+- مواءمة **Clerk** و**Prisma** مع مسارات محمية وتوزيع فوري للأحداث

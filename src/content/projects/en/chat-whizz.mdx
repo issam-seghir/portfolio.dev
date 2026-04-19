@@ -1,40 +1,77 @@
 ---
 name: Chat Whizz
-description: Modern real-time chat application with React Native
-homepage: https://github.com/issam-seghir/chat-whizz
+description: ChatWhizz | Real-time chat with Pusher — Next.js, NextAuth, Prisma, Cloudinary
+homepage: https://chat-whizz.vercel.app/
 github: https://github.com/issam-seghir/chat-whizz
+openSource: true
 techstack:
-  - React Native
-  - Firebase
-  - Expo
+  - Next.js
   - TypeScript
-  - Redux
+  - Tailwind CSS
+  - NextAuth.js
+  - Prisma
+  - Pusher
+  - Cloudinary
+  - Zustand
+  - React Hook Form
 dateCreated: '2023-05-12T00:00:00Z'
+selected: true
 ---
 
-## The Problem
+## Project Overview
 
-Most chat applications either lack real-time responsiveness or don't work well across platforms. Building a native-quality chat experience that works on both iOS and Android with a single codebase is a significant technical challenge.
+**ChatWhizz** is a **real-time chat** web app powered by **Next.js** and **Pusher**, with **group chats** and **direct messaging**, **notifications**, and **profile** management—as described in the [project README](https://github.com/issam-seghir/chat-whizz/blob/main/README.md).
 
-## The Solution
+Live demo: [chat-whizz.vercel.app](https://chat-whizz.vercel.app).
 
-Chat Whizz is a mobile chat application built with **React Native** and **Firebase**, delivering a smooth, native-feeling experience on both platforms. It features instant messaging, push notifications, and user presence detection.
+## Visuals
 
-### Key Features
 
-- **Real-Time Messaging** — Instant message delivery powered by Firebase Realtime Database
-- **Push Notifications** — Background notifications via Firebase Cloud Messaging
-- **User Presence** — See who's online with real-time status indicators
-- **Image Sharing** — Send photos with compression and progressive loading
-- **Group Chats** — Create and manage group conversations with admin controls
-- **Message Status** — Read receipts and delivery confirmations
+<Image
+  src='/images/projects/chat-whizz/mockup-desktop.png'
+  width={1600}
+  height={1200}
+  alt='ChatWhizz — desktop UI mockup'
+/>
 
-## Technical Decisions
+<Image
+  src='/images/projects/chat-whizz/mockup-mobile.png'
+  width={1340}
+  height={1084}
+  alt='ChatWhizz — mobile UI mockup'
+/>
 
-**Firebase** was the backbone for real-time data sync and authentication — its offline-first architecture means messages are available even without internet, and they sync automatically when connectivity returns. **Redux** manages the application state, with persistence for offline support.
+## Product Features
 
-I chose **Expo** for the build toolchain because it dramatically simplifies the development-to-deployment pipeline, especially for push notifications which are notoriously complex to configure manually on each platform.
+### Main features
 
-## What I Learned
+- **🔒 Auth** — **NextAuth** with **Google** and **GitHub**
+- **🎉 Rooms** — Create and manage **chat rooms** and **channels**
+- **📱 Real-time** messaging via **Pusher**
+- **📨 Group & DM** — Group chats and **one-on-one** messaging
+- **📌 Notifications** — Message notifications and alerts
+- **🌐 Presence** — **Online / offline** user status
+- **👤 Profiles** — User profile customization and settings
+- **🎁 Attachments** — Images and files via **Cloudinary**
+- **🧨 Messages** — **Edit** and **delete** in real time for all participants
+- **🎨 Theme** — Light / dark mode
+- **🚀 SEO & performance** — Meta tags, **Next/Image**, sitemaps
+- **🎊 Responsive** layout
 
-This project deepened my mobile development skills significantly. I learned about the nuances of React Native performance optimization (FlatList virtualization, image caching), push notification architectures, and the challenges of maintaining feature parity across iOS and Android.
+## Tech Stack
+
+- **Next.js** — Full-stack React framework
+- **TypeScript** — Typed UI and API surfaces
+- **Tailwind CSS** — Styling
+- **NextAuth.js** — Authentication (OAuth providers)
+- **Prisma** — Database access layer
+- **Pusher** — Real-time channels
+- **Cloudinary** — Media uploads for chat attachments
+- **Zustand** — Client state
+- **React Hook Form** — Form handling where needed
+
+## Implementation Highlights
+
+- Split **real-time delivery** (Pusher) from **persistent data** (Prisma) for a clear server model
+- Used **Cloudinary** for attachment pipelines instead of bloating app storage
+- Shipped **presence** and **notifications** alongside editable message flows in one cohesive UI

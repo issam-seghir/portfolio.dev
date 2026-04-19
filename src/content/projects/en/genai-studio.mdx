@@ -1,0 +1,74 @@
+---
+name: GenAI Studio
+description: GenAI Studio | Generate Anything with AI — video, image, audio, code, and chat powered by OpenAI and Replicate
+homepage: https://genaistudio.vercel.app/
+github: https://github.com/issam-seghir/GenAi-Studio
+openSource: true
+techstack:
+  - Next.js
+  - TypeScript
+  - Tailwind CSS
+  - Prisma
+  - Clerk
+  - Stripe
+  - OpenAI
+  - Replicate
+  - Vercel
+dateCreated: '2024-09-15T00:00:00Z'
+selected: false
+---
+
+## Project Overview
+
+**GenAI Studio | Generate Anything with AI** is a full-stack AI workspace for creating **video**, **image**, **audio**, **code**, and **conversation** outputs from one place. The app is built as a **multi-surface studio** on top of **OpenAI** and **Replicate** models, with a live deployment on [Vercel](https://genaistudio.vercel.app/).
+
+## Product Features
+
+### Main features
+
+- **🎬 Video generation** — Create video-style outputs through AI pipelines tuned for creative workflows
+- **🖼️ Image generation** — Text-to-image and related image workflows powered by hosted diffusion / image models
+- **🎵 Audio generation** — Generate or transform audio content via model-backed endpoints
+- **💻 Code assistance** — Conversational and code-oriented generation for snippets, refactors, and explanations
+- **💬 Multi-turn conversation** — Chat-style interface for iterative prompting and follow-ups
+- **🧩 Unified studio shell** — One product surface instead of juggling separate single-purpose tools
+
+### Platform and integrations
+
+- **⚡ OpenAI** — Core language and multimodal capabilities where the product relies on OpenAI APIs
+- **🔁 Replicate** — Additional model hosting for specialized image/video/audio workloads
+- **🌐 Deployed on Vercel** — Fast global delivery for the web app and server routes
+
+<Image
+  src='/images/projects/genai-studio/showcase-desktop.png'
+  width={1200}
+  height={675}
+  alt='GenAI Studio — desktop showcase from the repository README'
+/>
+<Image
+  src='/images/projects/genai-studio/showcase-mobile.png'
+  width={600}
+  height={1200}
+  alt='GenAI Studio — mobile showcase from the repository README'
+/>
+
+## Tech Stack
+
+- **Next.js (App Router)** — Routing, server/client boundaries, and production-ready React patterns
+- **TypeScript** — Safer integration code for external APIs and UI state
+- **Tailwind CSS** — Rapid UI iteration and consistent spacing/typography
+- **Prisma** — Typed database access, schema, and migrations for app data
+- **Clerk** — Authentication, sessions, and user management
+- **Stripe** — Payments and billing for monetized or usage-based flows
+- **OpenAI API** — LLM and related capabilities for chat and code flows
+- **Replicate API** — Hosted models for media generation workloads
+- **Vercel** — Hosting and deployment for the live demo
+
+## Implementation Highlights
+
+- Designed a **single studio UX** that groups multiple generation modes behind clear navigation and flows
+- Integrated **two provider ecosystems** (OpenAI + Replicate) with pragmatic error handling and loading states
+- Structured prompts and outputs so users can **iterate** instead of one-shot generation only
+- Optimized for **fast feedback loops** during generation (streaming / progressive UI where applicable)
+- Kept configuration and secrets **server-side** for API keys while keeping the client experience smooth
+- Wired **Clerk** for auth, **Prisma** for persistence, and **Stripe** where checkout or subscriptions apply

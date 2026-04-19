@@ -49,14 +49,16 @@ function ProjectCard(props: ProjectCardProps) {
               Featured
             </div>
           )}
-          <BlurImage
-            src={`/images/projects/${slug}/cover.png`}
-            width={1200}
-            height={630}
-            imageClassName='group-hover:scale-105'
-            alt={name}
-            className='rounded-lg'
-          />
+          <div className='relative aspect-[40/21] w-full overflow-hidden rounded-lg'>
+            <BlurImage
+              fill
+              src={`/images/projects/${slug}/cover.png`}
+              alt={name}
+              className='absolute inset-0 size-full rounded-lg'
+              imageClassName='object-cover object-center transition-transform duration-300 group-hover:scale-105'
+              sizes='(max-width: 768px) 100vw, 50vw'
+            />
+          </div>
           <div className='flex-1 px-2 py-4'>
             <div className='space-y-2'>
               <h2 className='text-2xl font-semibold'>{name}</h2>

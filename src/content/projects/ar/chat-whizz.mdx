@@ -1,30 +1,80 @@
 ---
 name: Chat Whizz
-description: تطبيق دردشة حديث في الوقت الفعلي مع React Native
-homepage: https://github.com/issam-seghir/chat-whizz
+description: ChatWhizz | دردشة فورية مع Pusher — Next.js وNextAuth وPrisma وCloudinary
+homepage: https://chat-whizz.vercel.app/
 github: https://github.com/issam-seghir/chat-whizz
+openSource: true
 techstack:
-  - React Native
-  - Firebase
-  - Expo
+  - Next.js
   - TypeScript
-  - Redux
+  - Tailwind CSS
+  - NextAuth.js
+  - Prisma
+  - Pusher
+  - Cloudinary
+  - Zustand
+  - React Hook Form
 dateCreated: '2023-05-12T00:00:00Z'
+selected: true
 ---
 
-## المشكلة
+## نظرة عامة على المشروع
 
-معظم تطبيقات الدردشة إما تفتقر إلى الاستجابة في الوقت الفعلي أو لا تعمل بشكل جيد عبر المنصات. بناء تجربة دردشة بجودة أصلية تعمل على iOS و Android بقاعدة كود واحدة هو تحدٍ تقني كبير.
+**ChatWhizz** تطبيق **دردشة فورية** على الويب بـ **Next.js** و**Pusher**، مع **دردشات جماعية** و**رسائل مباشرة**، **إشعارات**، و**إدارة ملفات تعريف**—كما في [README المشروع](https://github.com/issam-seghir/chat-whizz/blob/main/README.md).
 
-## الحل
+عرض حي: [chat-whizz.vercel.app](https://chat-whizz.vercel.app).
 
-Chat Whizz هو تطبيق دردشة للموبايل مبني باستخدام **React Native** و **Firebase**، يقدم تجربة سلسة وأصلية على كلا المنصتين.
+## صور وواجهات
+
+**الغلاف (`cover.png`)** — لبطاقات **الرئيسية و/projects** و**صورة البطل** ومعاينات المشاركة؛ الإطار عريض مع **`object-cover`**. هنا يطابق **معاينة سطح المكتب**.
+
+**المعاينات** — لقطتا **سطح المكتب** و**الجوال** من المستودع، ضمن `public/images/projects/chat-whizz/`.
+
+<Image
+  src='/images/projects/chat-whizz/mockup-desktop.png'
+  width={1600}
+  height={1200}
+  alt='ChatWhizz — معاينة واجهة سطح المكتب'
+/>
+
+<Image
+  src='/images/projects/chat-whizz/mockup-mobile.png'
+  width={1340}
+  height={1084}
+  alt='ChatWhizz — معاينة واجهة الجوال'
+/>
+
+## الميزات
 
 ### الميزات الرئيسية
 
-- **المراسلة في الوقت الفعلي** — تسليم فوري للرسائل مدعوم بقاعدة بيانات Firebase في الوقت الفعلي
-- **الإشعارات الفورية** — إشعارات في الخلفية عبر Firebase Cloud Messaging
-- **حالة المستخدم** — رؤية من هو متصل مع مؤشرات الحالة في الوقت الفعلي
-- **مشاركة الصور** — إرسال صور مع ضغط وتحميل تدريجي
-- **دردشات جماعية** — إنشاء وإدارة محادثات جماعية مع عناصر تحكم المسؤول
-- **حالة الرسالة** — إيصالات القراءة وتأكيدات التسليم
+- **🔒 المصادقة** — **NextAuth** مع **Google** و**GitHub**
+- **🎉 الغرف** — إنشاء وإدارة **غرف دردشة** و**قنوات**
+- **📱 الوقت الفعلي** — عبر **Pusher**
+- **📨 جماعي وخاص** — دردشات جماعية و**فردية**
+- **📌 الإشعارات** — تنبيهات الرسائل
+- **🌐 الحضور** — حالة **متصل / غير متصل**
+- **👤 الملفات** — تخصيص الملف الشخصي والإعدادات
+- **🎁 المرفقات** — صور وملفات عبر **Cloudinary**
+- **🧨 الرسائل** — **تعديل** و**حذف** فوري للجميع
+- **🎨 المظهر** — فاتح / داكن
+- **🚀 SEO والأداء** — ميتا، **Next/Image**، خرائط موقع
+- **🎊 تصميم متجاوب**
+
+## التقنيات المستخدمة
+
+- **Next.js**
+- **TypeScript**
+- **Tailwind CSS**
+- **NextAuth.js**
+- **Prisma**
+- **Pusher**
+- **Cloudinary**
+- **Zustand**
+- **React Hook Form**
+
+## ملامح التنفيذ
+
+- فصل **التسليم الفوري** (Pusher) عن **البيانات الدائمة** (Prisma) لنموذج خادم أوضح
+- استخدام **Cloudinary** لمسار المرفقات بدل تخزين ثقيل داخل التطبيق
+- دمج **الحضور** و**الإشعارات** مع تدفقات تعديل/حذف الرسائل في واجهة واحدة

@@ -1,0 +1,69 @@
+---
+name: Wizabot
+description: B2B SaaS for e-commerce — WhatsApp chatbots, LLM + OpenAI, Express & FastAPI, shadcn dashboard
+homepage: https://wizabot.com
+openSource: false
+techstack:
+  - Express.js
+  - FastAPI
+  - LLM
+  - OpenAI
+  - shadcn/ui
+  - TypeScript
+  - Python
+  - MongoDB
+  - Next.js
+  - Tailwind CSS
+  - Docker
+  - WhatsApp Cloud API
+selected: false
+dateCreated: '2025-03-01T00:00:00Z'
+---
+
+## Project Overview
+
+[**Wizabot**](https://wizabot.com) is a **B2B SaaS** platform for **e-commerce** businesses: each tenant can **configure WhatsApp chatbots** that answer customer questions with **LLM-backed AI**, send **template messages**, and tune **AI behavior and prompts** from a dedicated experience.
+
+I collaborated with **AI engineers** to ship this product end to end—**backend services**, **dashboard UI**, **AI integration**, and **containerized** deployment. The codebase is **proprietary**; there is **no public repository**.
+
+## Visuals
+
+<Image
+  src='/images/projects/wizabot/cover.png'
+  width={1200}
+  height={630}
+  alt='Wizabot — project cover'
+/>
+
+## The Problem
+
+E-commerce teams need **always-on** customer messaging on **WhatsApp** without drowning in manual replies. They need a **multi-tenant** product: each business configures its own bot, templates, and AI—without compromising **scale**, **observability**, or **safe** LLM usage.
+
+## The Solution
+
+### Platform
+
+- **Self-serve configuration** — businesses set up **WhatsApp chatbots** to respond with **AI**, send **template messages** to customers, and manage **prompts** and AI settings from the product.
+- **B2B SaaS model** — built as a shared platform so many e-commerce customers run **isolated** configurations on the same foundations.
+
+### Backend engineering
+
+- **Express.js** and **TypeScript** for the main API layer, with **MongoDB** for application data.
+- **WhatsApp Cloud API** integration so businesses can run **real channel** automation at scale.
+- **LLM** capabilities wired into the stack so chatbot replies stay **useful and controllable** in production.
+
+### Dashboard UI
+
+- **Designed and built** the **Wizabot dashboard** with **shadcn/ui** on **Next.js**, **Tailwind CSS**, and **TypeScript**: a clear interface where each business **configures its chatbot**, **manages customer interactions**, and supports **automated, personalized** engagement—without relying on engineers for day-to-day changes.
+
+### AI integration and optimization
+
+- Improved the **Python FastAPI** service that powers the AI path: **better logging**, **cleaner structure**, and **solid integration with OpenAI** so prompts and model calls stay maintainable as the product evolves.
+
+### Docker and deployment
+
+- **Dockerized** the application using **shared volumes** and a **Docker network** so the **Express** app and **FastAPI** AI server run as a **coherent** system—easier to ship, reason about, and operate together.
+
+## What I Learned
+
+Shipping **B2B SaaS** next to **AI engineers** means balancing **product UX**, **API boundaries**, and **LLM reliability**. Multi-tenant WhatsApp automation plus a separate AI service reinforced how much **observability** and **clear contracts** between services matter once customers depend on them in production.

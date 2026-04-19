@@ -1,41 +1,85 @@
 ---
 name: Discord Clone
-description: Real-time messaging application with channels, voice, and video
-homepage: https://github.com/issam-seghir/discord-clone
+description: Discord Clone | Real-time chat, voice & video — Next.js, Socket.io, LiveKit, Clerk, Prisma
+homepage: https://discord-clone.koyeb.app/
 github: https://github.com/issam-seghir/discord-clone
+openSource: true
 techstack:
   - Next.js
-  - Socket.io
-  - Prisma
-  - Tailwind CSS
   - TypeScript
-selected: true
+  - Tailwind CSS
+  - shadcn/ui
+  - Socket.io
+  - LiveKit
+  - Prisma
+  - Clerk
+  - TanStack Query
+  - Zustand
+  - React Hook Form
+  - Zod
+  - UploadThing
 dateCreated: '2023-08-20T00:00:00Z'
+selected: true
 ---
 
-## The Problem
+## Project Overview
 
-Real-time communication platforms require handling complex challenges: WebSocket connections, message persistence, user presence, file uploads, and audio/video streaming — all while keeping the experience smooth and responsive.
+**Discord Clone** is a **full-featured real-time** app for **text, audio, and video**—modeled on Discord’s core flows—built with **Next.js**, **Socket.io**, and **LiveKit**, with **Clerk** authentication (including Google), **Prisma** for data, and **UploadThing** for attachments. Details follow the [project README](https://github.com/issam-seghir/discord-clone/blob/main/README.md).
 
-## The Solution
+Live demo: [discord-clone.vercel.app](https://discord-clone.koyeb.app).
 
-This Discord clone replicates the core experience of Discord with **real-time messaging**, server/channel management, and direct messaging. Built with a modern stack that prioritizes performance and developer experience.
+## Visuals
 
-### Key Features
+<Image
+  src='/images/projects/discord-clone/mockup-desktop.png'
+  width={3658}
+  height={1976}
+  alt='Discord Clone — desktop UI mockup'
+/>
 
-- **Real-time Messaging** — Instant message delivery via Socket.io with typing indicators
-- **Server & Channels** — Create and manage servers with text, audio, and video channels
-- **Direct Messages** — 1-on-1 conversations between members
-- **Member Management** — Role system with kick/ban capabilities for server admins
-- **File Sharing** — Upload and share images and PDFs with drag-and-drop support
-- **Infinite Scroll** — Message history loads seamlessly as you scroll up
+<Image
+  src='/images/projects/discord-clone/mockup-mobile.png'
+  width={2680}
+  height={2167}
+  alt='Discord Clone — mobile UI mockup'
+/>
 
-## Technical Decisions
+## Product Features
 
-**Socket.io** powers the real-time layer because of its automatic reconnection handling and room-based broadcasting, which maps perfectly to Discord's channel model. **Prisma** with PostgreSQL handles the relational data — messages, users, servers, and channels have complex relationships that a relational database models naturally.
+### Main features
 
-I used **Next.js API routes** as the backend, keeping the entire stack in one repository for easier development and deployment. The client-side state management uses React Query for server state and Zustand for UI state.
+- **🔒 Auth** — **Clerk** with **Google** sign-in
+- **🎉 Servers** — Server creation and customization
+- **📱 Messaging** — **Socket.io** real-time chat; websocket fallback with polling + alerts
+- **🚀 Channels** — **Text**, **audio**, and **video** channels
+- **📨 Conversations** — DMs between members
+- **🎬 Video & audio calls** — Via **LiveKit**
+- **🎁 Attachments** — **UploadThing** for file messages
+- **🧨 Messages** — Edit & delete in real time for all clients
+- **🔰 Members** — Kick, roles (**Guest** / **Moderator**)
+- **🔗 Invites** — Unique invite links and full invite flow
+- **⛓ Message feed** — **Infinite loading** in batches of 10 (**TanStack Query**)
+- **🔍 Command palette** — Search / command-line style UX
+- **🎨 Theme** — Light / dark
+- **🚀 SEO & performance** — Meta tags, **Next/Image**, sitemaps
+- **🎊 Responsive** layout
 
-## What I Learned
+## Tech Stack
 
-Building this project taught me the intricacies of WebSocket scaling, managing connection state across browser tabs, and designing database schemas for hierarchical data (servers > channels > messages > replies).
+- **Next.js** — App Router, SEO-oriented setup
+- **TypeScript** — Full-stack typing
+- **Tailwind CSS** + **shadcn/ui** — UI system
+- **Clerk** — Auth (including Google)
+- **Prisma** — Database layer
+- **Socket.io** — Real-time messaging and rooms
+- **LiveKit** — Audio/video
+- **TanStack Query** — Server state & infinite message lists
+- **Zustand** — Client UI state
+- **React Hook Form** + **Zod** — Forms and validation
+- **UploadThing** — File uploads in chat
+
+## Implementation Highlights
+
+- Combined **WebSockets**, **presence-style** UX, and **media** (LiveKit) in one product surface
+- Used **batched infinite scroll** for messages with TanStack Query instead of loading entire histories
+- Kept **auth** (Clerk) and **data** (Prisma) aligned with protected routes and real-time fan-out

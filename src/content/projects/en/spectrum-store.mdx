@@ -1,41 +1,75 @@
 ---
 name: Spectrum Store
-description: Full-stack e-commerce platform with JWT authentication and modern UI
-homepage: https://github.com/issam-seghir/spectrum-store
+description: Spectrum Store | E-commerce on Next.js with Fake Store API, JWT auth, admin dashboard, and shadcn/ui
+homepage: https://spectrum-store.vercel.app/
 github: https://github.com/issam-seghir/spectrum-store
+openSource: true
 techstack:
   - Next.js
   - TypeScript
-  - Shadcn UI
-  - JWT Auth
   - Tailwind CSS
-  - PostgreSQL
-selected: true
+  - shadcn/ui
+  - React Hook Form
+  - Zod
+  - Axios
+  - Recharts
+  - JWT
 dateCreated: '2024-01-15T00:00:00Z'
+selected: true
 ---
 
-## The Problem
+## Project Overview
 
-Building a modern e-commerce experience requires juggling many concerns: authentication, product management, cart state, payments, and responsive design. Most solutions either rely on heavy frameworks or sacrifice developer experience.
+**Spectrum Store** is a **full-stack e-commerce** experience built with **Next.js**, **TypeScript**, and **shadcn/ui**. Product data comes from the **[Fake Store API](https://fakestoreapi.com)**; the app adds **JWT authentication** (cookies), **role-aware authorization**, **middleware**, and an **admin dashboard** for managing products—aligned with secure routing and **server actions** patterns described in the [project README](https://github.com/issam-seghir/spectrum-store/blob/main/README.md).
 
-## The Solution
+## Visuals
 
-Spectrum Store is a full-featured e-commerce platform built from the ground up with **Next.js** and **TypeScript**. It combines server-side rendering for SEO with client-side interactivity for a smooth shopping experience.
+<Image
+  src='/images/projects/spectrum-store/mockup-desktop.png'
+  width={1600}
+  height={1200}
+  alt='Spectrum Store — desktop UI mockup'
+/>
 
-### Key Features
+<Image
+  src='/images/projects/spectrum-store/mockup-mobile.png'
+  width={1600}
+  height={1200}
+  alt='Spectrum Store — mobile UI mockup'
+/>
 
-- **Product Catalog** — Browse and search products with server-side filtering and pagination
-- **JWT Authentication** — Secure login/register flow with token refresh and role-based access
-- **Shopping Cart** — Persistent cart with optimistic updates and real-time price calculation
-- **Responsive Design** — Fully mobile-first UI built with Shadcn UI and Tailwind CSS
-- **Admin Dashboard** — Product CRUD, order management, and analytics overview
+## Product Features
 
-## Technical Decisions
+### Main features
 
-I chose **Next.js App Router** for its hybrid rendering capabilities — product pages are statically generated at build time, while the cart and checkout flow run on the client for instant feedback. **JWT-based auth** was picked over session cookies for its stateless nature, which scales better with distributed deployments.
+- **🔒 Auth** — Login and logout with **JWT**; session-friendly cookie handling
+- **🌍 Storefront** — Home grid, **product listing** with **category filters**, **product detail** (rating, price, add to cart)
+- **🛒 Cart** — Drawer for add/remove items
+- **🔍 Search** — Global product search
+- **🎨 Theme** — Light / dark mode toggle
+- **✨ UX** — Loading states and skeleton UI
+- **📊 Admin** — Dashboard with **CRUD** for products, **pagination**, **search**, and **charts**
+- **🛡 Security** — Authentication, authorization in the data layer, **middleware**, and **validated server actions**
+- **🚀 SEO & performance** — Meta tags, **Next.js Image**, and sitemap-oriented setup
 
-The UI layer uses **Shadcn UI** components for consistency and accessibility, customized with Tailwind CSS for the unique brand identity.
+### Implementation notes
 
-## What I Learned
+- **Next.js 14** features with **server actions**, **Axios**, and **Zod** validation
+- **React Hook Form** + **Zod** on both **client and server** where forms touch the API
+- **Recharts** for dashboard visualization
 
-This project deepened my understanding of server-client architecture trade-offs, especially around when to render on the server vs. client. It also taught me how to handle complex state synchronization between the cart, authentication, and payment flow.
+## Tech Stack
+
+- **Next.js** — App Router, server actions, SEO-focused structure
+- **TypeScript** — End-to-end typing for UI and data flows
+- **Tailwind CSS** + **shadcn/ui** — Accessible, composable UI
+- **React Hook Form** + **Zod** — Form state and schema validation
+- **Axios** — HTTP client for Fake Store API calls
+- **Recharts** — Admin analytics charts
+- **JWT** — Token-based auth with cookie-backed sessions
+
+## Implementation Highlights
+
+- Wired a **catalog + cart** flow against a **public REST API** while keeping **auth and admin** concerns explicit in middleware and server code
+- Practiced **defense in depth**: validation on the server, protected routes, and a clear split between storefront and **admin** surfaces
+- Shipped a **responsive**, **theme-aware** UI with loading and skeleton patterns suitable for real product listings

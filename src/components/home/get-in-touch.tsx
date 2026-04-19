@@ -104,7 +104,7 @@ function GetInTouch() {
             </div>
 
             <div className='mt-6 flex min-w-0 items-center justify-center gap-2 px-2'>
-              <div className='size-2 shrink-0 rounded-full bg-green-500' aria-hidden />
+              {/* <div className='size-2 shrink-0 rounded-full bg-green-500' aria-hidden /> */}
               <p className='max-w-md text-balance text-center text-xs leading-relaxed text-muted-foreground sm:text-sm'>
                 {t('homepage.get-in-touch.availability')}
               </p>

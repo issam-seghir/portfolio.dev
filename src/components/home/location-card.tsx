@@ -89,6 +89,8 @@ function LocationCard() {
 
   const isDarkGlobe = (resolvedTheme ?? 'light') === 'dark'
 
+  // Recreate globe only when light/dark palette changes. Do NOT list springRotation here — it would
+  // tear down WebGL on re-renders and break drag; onRender always reads springRotation.get().
   useEffect(() => {
     let width = 0
 
@@ -126,7 +128,8 @@ function LocationCard() {
       globe.destroy()
       window.removeEventListener('resize', onResize)
     }
-  }, [springRotation, isDarkGlobe])
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- springRotation is stable; Listing it recreated WebGL every render and broke drag.
+  }, [isDarkGlobe])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -179,36 +182,40 @@ function LocationCard() {
               <canvas
                 ref={canvasRef}
                 onPointerDown={(e) => {
+                  e.currentTarget.setPointerCapture(e.pointerId)
                   pointerInteracting.current = e.clientX - pointerInteractionMovement.current
-                  if (canvasRef.current) canvasRef.current.style.cursor = 'grabbing'
+                  e.currentTarget.style.cursor = 'grabbing'
                 }}
-                onPointerUp={() => {
-                  pointerInteracting.current = null
-                  if (canvasRef.current) canvasRef.current.style.cursor = 'grab'
+                onPointerMove={(e) => {
+                  if (pointerInteracting.current === null) return
+                  const delta = e.clientX - pointerInteracting.current
+                  pointerInteractionMovement.current = delta
+                  rotation.set(delta / 200)
                 }}
-                onPointerOut={() => {
-                  pointerInteracting.current = null
-                  if (canvasRef.current) canvasRef.current.style.cursor = 'grab'
-                }}
-                onMouseMove={(e) => {
-                  if (pointerInteracting.current !== null) {
-                    const delta = e.clientX - pointerInteracting.current
-                    pointerInteractionMovement.current = delta
-                    rotation.set(delta / 200)
+                onPointerUp={(e) => {
+                  try {
+                    e.currentTarget.releasePointerCapture(e.pointerId)
+                  } catch {
+                    /* not captured */
                   }
+                  pointerInteracting.current = null
+                  e.currentTarget.style.cursor = 'grab'
                 }}
-                onTouchMove={(e) => {
-                  if (pointerInteracting.current !== null && e.touches[0]) {
-                    const delta = e.touches[0].clientX - pointerInteracting.current
-                    pointerInteractionMovement.current = delta
-                    rotation.set(delta / 100)
+                onPointerCancel={(e) => {
+                  try {
+                    e.currentTarget.releasePointerCapture(e.pointerId)
+                  } catch {
+                    /* not captured */
                   }
+                  pointerInteracting.current = null
+                  e.currentTarget.style.cursor = 'grab'
                 }}
                 style={{
                   width: '100%',
                   height: '100%',
                   contain: 'layout paint size',
-                  cursor: 'auto',
+                  cursor: 'grab',
+                  touchAction: 'none',
                   userSelect: 'none',
                 }}
               />

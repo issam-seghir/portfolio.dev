@@ -1,0 +1,51 @@
+---
+name: Compos Resto
+description: Cross-platform restaurant management app for .COMPOS — tables, orders, kitchen flow, and POS
+openSource: false
+techstack:
+  - React Native
+  - Expo
+  - TypeScript
+selected: false
+dateCreated: '2024-09-01T00:00:00Z'
+---
+
+## Project Overview
+
+**Compos Resto** is a **restaurant management** mobile app built for **.COMPOS**, aimed at restaurant and fast-food operators who need to run service from the floor and the pass: **table state**, **orders**, **kitchen progress**, and **payments** wired into a **point-of-sale (POS)** context.
+
+It was developed as **employer work** for the company; the **codebase and distribution are not public**, so there is **no repository link** or **public app listing** here.
+
+## Visuals
+
+<Image
+  src='/images/projects/compos-resto/cover.png'
+  width={1200}
+  height={630}
+  alt='Compos Resto — product cover'
+/>
+
+## The Problem
+
+Running a busy restaurant with spreadsheets or disconnected tools slows down service. Staff need a single place to see **which tables are live**, **what is cooking**, and **how to close the bill**—without fighting the POS.
+
+## The Solution
+
+I designed and developed a **cross-platform** app using **React Native** and **Expo** so the same codebase ships to the devices kitchens and front-of-house already use. The product focuses on operational clarity: table lifecycle, ordering with modifiers, kitchen status, and in-app payment flows aligned with POS expectations.
+
+### Core capabilities
+
+- **Table management** — track tables as **reserved**, **available**, **outdoor**, **in service**, and related states staff rely on during service
+- **Reservations and ordering** — create orders with **quantities** and **extra options** where the menu allows add-ons
+- **Kitchen pipeline** — follow preparation from **in kitchen** through **ready** to **delivered**
+- **Payments** — handle **payments inside the app** as part of the service workflow
+- **Live tracking** — **order** and **table** status surfaced so hosts, servers, and the pass stay aligned
+- **Staff-first UI** — layouts tuned for **quick scanning** and **touch** under real shift conditions
+
+## Technical Notes
+
+The app is built on **Expo** for streamlined builds and device workflows, with **TypeScript** across the UI layer for safer refactors as service rules evolve. State and navigation are structured around real restaurant flows (floor → order → kitchen → payment) rather than generic CRUD screens.
+
+## What I Learned
+
+Shipping tools for **restaurant staff** means optimizing for **speed and mistakes**, not pixel-perfect marketing pages. Table and order models have to stay honest under concurrency—multiple people updating the same service—and the UI has to stay legible when the room is loud and moving fast.
