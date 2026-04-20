@@ -84,15 +84,19 @@ function Card(props: CardProps) {
             </div>
             <ArrowUpRightIcon className='size-4.5 opacity-0 transition-opacity group-hover:opacity-100' />
           </div>
-          <BlurImage
-            width={1200}
-            height={630}
-            src={`/images/projects/${slug}/cover.png`}
-            alt={description}
-            className='rounded-lg'
-            lazy={false}
-            fetchPriority='high'
-          />
+          {/* Fixed aspect + object-cover so 4:3 (and other) covers aren’t squashed in the card frame */}
+          <div className='relative aspect-[40/21] w-full overflow-hidden rounded-lg'>
+            <BlurImage
+              fill
+              src={`/images/projects/${slug}/cover.png`}
+              alt={description}
+              className='absolute inset-0 size-full rounded-lg'
+              imageClassName='object-cover object-center'
+              sizes='(max-width: 768px) 100vw, 50vw'
+              lazy={false}
+              fetchPriority='high'
+            />
+          </div>
           <div className='pointer-events-none absolute inset-x-2 bottom-[46px] h-36 rounded-b-lg bg-linear-to-t from-black/85 via-black/50 to-transparent' />
           <div className='absolute bottom-16 left-7 flex flex-col transition-[left] ease-out group-hover:left-8'>
             <h3 className='text-2xl font-semibold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]'>{name}</h3>

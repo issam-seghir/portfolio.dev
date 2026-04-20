@@ -61,6 +61,7 @@ const projects = defineCollection({
     openSource: z.boolean().optional().default(false),
     techstack: z.array(z.string()),
     selected: z.boolean().optional().default(false),
+    featuredRank: z.number().int().min(1).optional(),
     dateCreated: z.string(),
     content: z.string(),
   }),

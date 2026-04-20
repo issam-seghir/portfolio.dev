@@ -92,9 +92,18 @@ export function getLatestProjects(locale: string, limit: number = allProjects.le
 export const HOMEPAGE_SELECTED_PROJECTS_LIMIT = 4
 
 export function getSelectedProjects(locale: string, limit?: number) {
+  function getRank(p: (typeof allProjects)[number]) {
+    // Lower rank = higher priority; unranked items come last.
+    return p.featuredRank ?? Number.POSITIVE_INFINITY
+  }
+
   const sorted = allProjects
     .filter((project) => project.selected && project.locale === locale)
-    .toSorted((a, b) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime())
+    .toSorted((a, b) => {
+      const rankDiff = getRank(a) - getRank(b)
+      if (rankDiff !== 0) return rankDiff
+      return new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
+    })
 
   return limit === undefined ? sorted : sorted.slice(0, limit)
 }

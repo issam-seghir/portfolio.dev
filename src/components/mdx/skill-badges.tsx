@@ -10,12 +10,12 @@ const SKILL_CATEGORIES = [
   {
     labelKey: 'about.skills.frontend',
     color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
-    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS',  'Shadcn UI', 'React Native', 'Expo'],
+    skills: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'shadcn/ui', 'React Native', 'Expo'],
   },
   {
     labelKey: 'about.skills.backend',
     color: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
-    skills: ['Node.js', 'Express', 'Python', 'FastAPI', 'tRPC', 'REST APIs'],
+    skills: ['Node.js', 'Express', 'FastAPI', 'Python', 'tRPC', 'REST APIs'],
   },
   {
     labelKey: 'about.skills.database',
@@ -40,7 +40,7 @@ const SKILL_CATEGORIES = [
   {
     labelKey: 'about.skills.ai',
     color: 'bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/20',
-    skills: ['LLM Integration', 'AI APIs', 'OpenAI', 'LangChain'],
+    skills: ['LLM', 'OpenAI', 'AI APIs', 'LangChain'],
   },
 ] as const
 

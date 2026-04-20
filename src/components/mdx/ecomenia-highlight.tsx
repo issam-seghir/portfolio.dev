@@ -36,7 +36,7 @@ function EcomeniaHighlight() {
           <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{t('featured-ecomenia.body')}</p>
 
           <Link
-            href='/projects'
+            href='/projects/ecomenia'
             className={cn(
               'mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary',
               'underline-offset-4 hover:underline',
