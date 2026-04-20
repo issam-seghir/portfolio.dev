@@ -83,7 +83,7 @@ export function getLatestPosts(locale: string, limit: number = allPosts.length) 
 
 export function getLatestProjects(locale: string, limit: number = allProjects.length) {
   return allProjects
-    .filter((project) => project.locale === locale)
+    .filter((project) => project.locale === locale && !project.hidden)
     .toSorted((a, b) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime())
     .slice(0, limit)
 }
@@ -98,7 +98,7 @@ export function getSelectedProjects(locale: string, limit?: number) {
   }
 
   const sorted = allProjects
-    .filter((project) => project.selected && project.locale === locale)
+    .filter((project) => project.selected && project.locale === locale && !project.hidden)
     .toSorted((a, b) => {
       const rankDiff = getRank(a) - getRank(b)
       if (rankDiff !== 0) return rankDiff
@@ -113,7 +113,7 @@ export function getPostBySlug(locale: string, slug: string) {
 }
 
 export function getProjectBySlug(locale: string, slug: string) {
-  return allProjects.find((p) => p.slug === slug && p.locale === locale)
+  return allProjects.find((p) => p.slug === slug && p.locale === locale && !p.hidden)
 }
 
 export function getPageBySlug(locale: string, slug: string) {

@@ -29,6 +29,7 @@
     "lint:fix": "eslint --fix --max-warnings 0 .",
     "lint:spell": "cspell .",
     "prepare": "lefthook install",
+    "project:new": "tsx ./scripts/new-project.ts",
     "start": "pnpm with-env next start -p 3005",
     "test:e2e": "pnpm with-env playwright test",
     "test:e2e:inspector": "pnpm with-env playwright test $1 --debug",

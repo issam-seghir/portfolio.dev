@@ -421,6 +421,7 @@
   },
   "projects": {
     "description": "A showcase of SaaS products, web platforms, mobile apps, and AI tools I've built — from concept to production.",
+    "on-this-page": "On this page",
     "visit-website": "Visit Website",
     "visit-repo": "Visit Repo",
     "cta": {
