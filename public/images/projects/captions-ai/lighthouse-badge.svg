@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="275" height="56" viewBox="0 0 275 56" role="img" aria-label="Lighthouse average results">
-  <rect width="275" height="56" rx="6" fill="#2A2E30"/>
-  <text x="52" y="24" fill="#9CA3AF" font-family="system-ui,Segoe UI,sans-serif" font-size="11">lighthouse</text>
-  <text x="52" y="42" fill="#E5E7EB" font-family="system-ui,Segoe UI,sans-serif" font-size="13" font-weight="600">Average Results</text>
-  <circle cx="28" cy="28" r="14" fill="#F59E0B" opacity="0.9"/>
-  <path fill="#1F2937" d="M24 32V20h8v12h-8zm4-16a2 2 0 100 4 2 2 0 000-4z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="275" height="56" aria-label="Lighthouse average results" role="img" viewBox="0 0 275 56"><rect width="275" height="56" fill="#2A2E30" rx="6"/><text x="52" y="24" fill="#9CA3AF" font-family="system-ui,Segoe UI,sans-serif" font-size="11">lighthouse</text><text x="52" y="42" fill="#E5E7EB" font-family="system-ui,Segoe UI,sans-serif" font-size="13" font-weight="600">Average Results</text><circle cx="28" cy="28" r="14" fill="#F59E0B" opacity=".9"/><path fill="#1F2937" d="M24 32V20h8v12h-8zm4-16a2 2 0 100 4 2 2 0 000-4z"/></svg>
