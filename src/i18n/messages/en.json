@@ -424,6 +424,30 @@
     "on-this-page": "On this page",
     "visit-website": "Visit Website",
     "visit-repo": "Visit Repo",
+    "featured-badge": "Featured",
+    "related": "Related projects",
+    "gallery": "Gallery",
+    "filters": {
+      "all": "All",
+      "search-placeholder": "Search projects...",
+      "any": "Any",
+      "featured": "Featured",
+      "open-source": "Open source",
+      "status": "Status",
+      "type": "Type",
+      "statuses": {
+        "live": "Live",
+        "private": "Private",
+        "archived": "Archived",
+        "in-progress": "In progress"
+      },
+      "types": {
+        "saas": "SaaS",
+        "web": "Web",
+        "mobile": "Mobile",
+        "internal": "Internal"
+      }
+    },
     "cta": {
       "title": "Like what you see?",
       "description": "I build custom web apps, mobile apps, and SaaS products. Message me on WhatsApp and let's discuss your next project.",

@@ -40,6 +40,11 @@ export default defineConfig(
               importNames: ['default'],
               message: 'Please use `@/components/ui/link` instead.',
             },
+            {
+              name: 'next/router',
+              importNames: ['default'],
+              message: 'App Router only — use `@/i18n/routing`.',
+            },
           ],
         },
       ],

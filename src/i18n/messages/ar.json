@@ -424,6 +424,30 @@
     "on-this-page": "في هذه الصفحة",
     "visit-website": "زيارة الموقع",
     "visit-repo": "زيارة المستودع",
+    "featured-badge": "مميّز",
+    "related": "مشاريع ذات صلة",
+    "gallery": "معرض الصور",
+    "filters": {
+      "all": "الكل",
+      "search-placeholder": "ابحث في المشاريع...",
+      "any": "أي",
+      "featured": "مميّز",
+      "open-source": "مفتوح المصدر",
+      "status": "الحالة",
+      "type": "النوع",
+      "statuses": {
+        "live": "مباشر",
+        "private": "خاص",
+        "archived": "مؤرشف",
+        "in-progress": "قيد التطوير"
+      },
+      "types": {
+        "saas": "SaaS",
+        "web": "ويب",
+        "mobile": "موبايل",
+        "internal": "داخلي"
+      }
+    },
     "cta": {
       "title": "أعجبك ما تراه؟",
       "description": "أبني تطبيقات ويب وموبايل ومنتجات SaaS مخصصة. راسلني على واتساب ولنناقش مشروعك القادم.",

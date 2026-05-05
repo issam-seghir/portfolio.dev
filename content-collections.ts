@@ -69,6 +69,36 @@ const projects = defineCollection({
     status: z.enum(['Live', 'Private', 'Archived', 'In progress']).optional(),
     tags: z.array(z.string()).optional(),
     outcomes: z.array(z.string()).optional(),
+    year: z.string().optional(),
+    duration: z.string().optional(),
+    team: z.string().optional(),
+    kpis: z
+      .array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        }),
+      )
+      .optional(),
+    gallery: z
+      .array(
+        z.union([
+          z.string(),
+          z.object({
+            src: z.string(),
+            alt: z.string().optional(),
+            caption: z.string().optional(),
+          }),
+        ]),
+      )
+      .optional(),
+    heroVideoUrl: z.string().optional(),
+    heroLottie: z
+      .object({
+        src: z.string(),
+      })
+      .optional(),
+    videoUrl: z.string().optional(),
     dateCreated: z.string(),
     content: z.string(),
   }),

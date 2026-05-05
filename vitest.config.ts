@@ -1,8 +1,10 @@
+import { fileURLToPath } from 'node:url'
+
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 
 function resolve(path: string) {
-  return new URL(path, import.meta.url).pathname
+  return fileURLToPath(new URL(path, import.meta.url))
 }
 
 export default defineConfig({
