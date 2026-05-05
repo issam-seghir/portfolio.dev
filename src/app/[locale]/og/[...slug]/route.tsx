@@ -59,6 +59,12 @@ async function generateBlogOGImage(locale: Locale, slugs: string[]) {
   const post = getPostBySlug(locale, postSlug)
   if (!post) notFound()
 
+  // Satori font shaping can crash on complex Arabic OpenType features during build prerender.
+  // For Arabic locale, generate a safe ASCII OG title.
+  if (locale === 'ar') {
+    return generateOGImage('Blog', '/blog')
+  }
+
   return generateOGImage(post.title, '/blog')
 }
 
@@ -68,8 +74,14 @@ async function generatePageOGImage(locale: Locale, slugs: string[], pathname: st
 
   if (!(pageSlug in en.common.labels)) notFound()
 
-  const t = await getTranslations({ locale })
+  // Satori font shaping can crash on complex Arabic OpenType features during build prerender.
+  // For Arabic locale, use the English label (safe ASCII) to keep builds stable.
+  if (locale === 'ar') {
+    const label = en.common.labels[pageSlug as keyof typeof en.common.labels]
+    return generateOGImage(label, pathname)
+  }
 
+  const t = await getTranslations({ locale })
   return generateOGImage(t(`common.labels.${pageSlug as keyof typeof en.common.labels}`), pathname)
 }
 
