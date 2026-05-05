@@ -3,7 +3,6 @@
 import type { Project } from 'content-collections'
 
 import { Index } from 'flexsearch'
-import { useSearchParams } from 'next/navigation'
 import { useMemo, useState } from 'react'
 
 import ProjectCards from '@/components/project-cards'
@@ -49,7 +48,6 @@ function norm(value: string) {
 function ProjectsBrowser(props: ProjectsBrowserProps) {
   const { projects, initialQuery, initialFeatured, initialOpenSource, initialStatus, initialType, labels } = props
   const router = useRouter()
-  const searchParams = useSearchParams()
 
   const [q, setQ] = useState(initialQuery ?? '')
   const [featuredOnly, setFeaturedOnly] = useState(Boolean(initialFeatured))
@@ -96,7 +94,7 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
     status?: string
     type?: string
   }) {
-    const sp = new URLSearchParams(searchParams.toString())
+    const sp = new URLSearchParams()
     if (next.q?.trim()) sp.set('q', next.q.trim())
     else sp.delete('q')
     if (next.featured) sp.set('featured', '1')
