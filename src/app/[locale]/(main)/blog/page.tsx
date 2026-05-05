@@ -9,6 +9,7 @@ import BlogRssCallout from '@/components/blog/blog-rss-callout'
 import FilteredPosts from '@/components/filtered-posts'
 import JsonLd from '@/components/json-ld'
 import PageHeader from '@/components/page-header'
+import Soon from '@/components/soon'
 import { MY_NAME } from '@/lib/constants'
 import { getLatestPosts } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
@@ -41,6 +42,16 @@ function Page(props: PageProps<'/[locale]/blog'>) {
   const title = t('common.labels.blog')
   const description = t('blog.description')
   const url = getLocalizedPath({ locale, pathname: '/blog' })
+
+  // Hide unfinished features in production.
+  if (process.env.NODE_ENV === 'production') {
+    return (
+      <>
+        <PageHeader title={title} description={description} />
+        <Soon title={t('blog.soon.title')} description={t('blog.soon.description')} />
+      </>
+    )
+  }
 
   const posts = getLatestPosts(locale)
 

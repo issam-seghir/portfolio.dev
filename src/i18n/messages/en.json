@@ -126,6 +126,10 @@
   },
   "blog": {
     "description": "Tutorials, insights, and lessons learned from building SaaS products, web & mobile apps, and AI-powered tools. Written by a software engineer who ships.",
+    "soon": {
+      "title": "Coming soon",
+      "description": "The blog isn’t ready for production yet. I’m polishing the writing workflow and publishing flow."
+    },
     "rss-subscribe": "Subscribe via RSS",
     "rss-description": "Open the feed in Feedly, NetNewsWire, or any RSS reader to get new posts.",
     "comments": {
@@ -500,6 +504,10 @@
   },
   "store": {
     "description": "Courses, digital products, and services — learn from my experience or get templates and custom work.",
+    "soon": {
+      "title": "Coming soon",
+      "description": "The store isn’t ready for production yet. Products, checkout, and delivery details are still being finalized."
+    },
     "featured": "Featured",
     "price-format": "${value}",
     "price-inquire": "Inquire",

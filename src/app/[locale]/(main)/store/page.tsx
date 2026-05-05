@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import JsonLd from '@/components/json-ld'
 import PageHeader from '@/components/page-header'
+import Soon from '@/components/soon'
 import StoreClient from '@/components/store/store-client'
 import { MY_NAME } from '@/lib/constants'
 import { getStoreProducts } from '@/lib/content'
@@ -41,6 +42,16 @@ async function StorePage(props: PageProps<'/[locale]/store'>) {
   const title = t('common.labels.store')
   const description = t('store.description')
   const url = getLocalizedPath({ locale, pathname: '/store' })
+
+  // Hide unfinished features in production.
+  if (process.env.NODE_ENV === 'production') {
+    return (
+      <>
+        <PageHeader title={title} description={description} />
+        <Soon title={t('store.soon.title')} description={t('store.soon.description')} />
+      </>
+    )
+  }
 
   const { products, total, totalPages, page, perPage } = getStoreProducts(locale, {
     q: parsed.q,
