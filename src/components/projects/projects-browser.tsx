@@ -50,10 +50,10 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
   const router = useRouter()
 
   const [q, setQ] = useState(initialQuery ?? '')
-  const [featuredOnly, setFeaturedOnly] = useState(Boolean(initialFeatured))
-  const [openSourceOnly, setOpenSourceOnly] = useState(Boolean(initialOpenSource))
-  const [status, setStatus] = useState(initialStatus?.trim() ? norm(initialStatus) : '')
-  const [type, setType] = useState(initialType?.trim() ? norm(initialType) : '')
+  const [featuredOnly, setFeaturedOnly] = useState(() => initialFeatured === true)
+  const [openSourceOnly, setOpenSourceOnly] = useState(() => initialOpenSource === true)
+  const [status, setStatus] = useState(() => (initialStatus?.trim() ? norm(initialStatus) : ''))
+  const [type, setType] = useState(() => (initialType?.trim() ? norm(initialType) : ''))
 
   const flex = useMemo(() => {
     const index = new Index({ tokenize: 'forward', cache: 100 })
@@ -67,7 +67,7 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
   const results = useMemo(() => {
     const filtered = projects
       .filter((p) => (featuredOnly ? Boolean(p.selected || p.featuredRank) : true))
-      .filter((p) => (openSourceOnly ? Boolean(p.openSource) : true))
+      .filter((p) => (openSourceOnly ? p.openSource : true))
       .filter((p) => (status ? norm(p.status ?? '') === status : true))
       .filter((p) => (type ? norm(p.projectType ?? '') === type : true))
 
