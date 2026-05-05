@@ -30,29 +30,41 @@ const getSemiBoldFont = cache(async () => {
   return font
 })
 
-const fetchGoogleFont = cache(async (font: string, text: string): Promise<ArrayBuffer> => {
+const fetchGoogleFont = cache(async (font: string, text: string): Promise<ArrayBuffer | null> => {
   const cssURL = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}&text=${encodeURIComponent(text)}`
 
-  const cssResponse = await fetch(cssURL, {
-    headers: {
-      'User-Agent':
-        'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
-    },
-  })
+  try {
+    const cssResponse = await fetch(cssURL, {
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1',
+      },
+    })
 
-  const css = await cssResponse.text()
+    if (!cssResponse.ok) return null
 
-  const match = /src: url\((.+?)\) format\('(?:opentype|truetype)'\)/.exec(css)
+    const css = await cssResponse.text()
 
-  if (!match?.[1]) {
-    throw new Error('Failed to extract font URL from CSS')
+    // NOTE: Google Fonts typically serves woff2, which Satori does NOT support reliably.
+    // We only try to extract TTF/OTF sources; otherwise we fall back to bundled Geist.
+    const match = /src:\s*url\((.+?)\)\s*format\('(?:opentype|truetype)'\)/.exec(css)
+    if (!match?.[1]) return null
+
+    const fontURL = match[1]
+    const fontResponse = await fetch(fontURL)
+    if (!fontResponse.ok) return null
+
+    const fontData = await fontResponse.arrayBuffer()
+    const header = new TextDecoder().decode(fontData.slice(0, 12))
+    // If we got an HTML error page, bail out.
+    if (header.toLowerCase().startsWith('<!doctype') || header.toLowerCase().startsWith('<html')) {
+      return null
+    }
+
+    return fontData
+  } catch {
+    return null
   }
-
-  const fontURL = match[1]
-  const fontResponse = await fetch(fontURL)
-  const fontData = await fontResponse.arrayBuffer()
-
-  return fontData
 })
 
 export async function getOGImageFonts(title: string): Promise<SatoriOptions['fonts']> {
@@ -64,7 +76,7 @@ export async function getOGImageFonts(title: string): Promise<SatoriOptions['fon
     fetchGoogleFont('Noto Sans SC', title),
   ])
 
-  return [
+  const fonts: SatoriOptions['fonts'] = [
     {
       name: 'Geist Sans',
       data: regularFontData,
@@ -83,17 +95,25 @@ export async function getOGImageFonts(title: string): Promise<SatoriOptions['fon
       style: 'normal',
       weight: 600,
     },
-    {
+  ]
+
+  if (notoSansTCData) {
+    fonts.push({
       name: 'Noto Sans TC',
       data: notoSansTCData,
       style: 'normal',
       weight: 400,
-    },
-    {
+    })
+  }
+
+  if (notoSansSCData) {
+    fonts.push({
       name: 'Noto Sans SC',
       data: notoSansSCData,
       style: 'normal',
       weight: 400,
-    },
-  ]
+    })
+  }
+
+  return fonts
 }
