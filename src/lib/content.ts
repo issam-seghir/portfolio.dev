@@ -1,8 +1,15 @@
 import 'server-only'
 
-import { allPages, allPosts, allProjects } from 'content-collections'
+import { allPages, allPosts, allProjects, type Project } from 'content-collections'
 
 import { STORE_PRODUCTS, type StoreCategory } from '@/config/store-products'
+
+/** Project that is safe to expose publicly (not hidden). */
+export type PublicProject = Project
+
+function isVisible(project: Project): boolean {
+  return !project.hidden
+}
 
 export type StoreSort = 'newest' | 'price-asc' | 'price-desc' | 'name'
 
@@ -46,16 +53,21 @@ export function getStoreProducts(
 
   const sorted = [...filtered].sort((a, b) => {
     switch (sort) {
-      case 'newest':
+      case 'newest': {
         return new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime()
-      case 'price-asc':
+      }
+      case 'price-asc': {
         return (a.price ?? Infinity) - (b.price ?? Infinity)
-      case 'price-desc':
+      }
+      case 'price-desc': {
         return (b.price ?? -Infinity) - (a.price ?? -Infinity)
-      case 'name':
+      }
+      case 'name': {
         return a.name.localeCompare(b.name)
-      default:
+      }
+      default: {
         return 0
+      }
     }
   })
 
@@ -83,9 +95,44 @@ export function getLatestPosts(locale: string, limit: number = allPosts.length) 
 
 export function getLatestProjects(locale: string, limit: number = allProjects.length) {
   return allProjects
-    .filter((project) => project.locale === locale && !project.hidden)
+    .filter((project) => project.locale === locale && isVisible(project))
     .toSorted((a, b) => new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime())
     .slice(0, limit)
+}
+
+/**
+ * Find related projects for a given project, ranked by:
+ *  1. Tag overlap (Jaccard-ish) – more shared tags wins
+ *  2. Same `projectType`
+ *  3. Recency
+ */
+export function getRelatedProjects(
+  locale: string,
+  slug: string,
+  limit = 3,
+): PublicProject[] {
+  const current = allProjects.find((p) => p.slug === slug && p.locale === locale)
+  if (!current) return []
+
+  const currentTags = new Set((current.tags ?? []).map((t) => t.toLowerCase()))
+
+  const scored = allProjects
+    .filter((p) => p.locale === locale && p.slug !== slug && isVisible(p))
+    .map((p) => {
+      const tags = new Set((p.tags ?? []).map((t) => t.toLowerCase()))
+      let overlap = 0
+      for (const tag of tags) if (currentTags.has(tag)) overlap += 1
+      const sameType = current.projectType && p.projectType === current.projectType ? 1 : 0
+      const recency = new Date(p.dateCreated).getTime()
+      return { project: p, overlap, sameType, recency }
+    })
+    .toSorted((a, b) => {
+      if (b.overlap !== a.overlap) return b.overlap - a.overlap
+      if (b.sameType !== a.sameType) return b.sameType - a.sameType
+      return b.recency - a.recency
+    })
+
+  return scored.slice(0, limit).map((s) => s.project)
 }
 
 /** Featured on the home page; full catalog lives at `/projects`. */
@@ -98,7 +145,7 @@ export function getSelectedProjects(locale: string, limit?: number) {
   }
 
   const sorted = allProjects
-    .filter((project) => project.selected && project.locale === locale && !project.hidden)
+    .filter((project) => project.selected && project.locale === locale && isVisible(project))
     .toSorted((a, b) => {
       const rankDiff = getRank(a) - getRank(b)
       if (rankDiff !== 0) return rankDiff
@@ -113,7 +160,7 @@ export function getPostBySlug(locale: string, slug: string) {
 }
 
 export function getProjectBySlug(locale: string, slug: string) {
-  return allProjects.find((p) => p.slug === slug && p.locale === locale && !p.hidden)
+  return allProjects.find((p) => p.slug === slug && p.locale === locale && isVisible(p))
 }
 
 export function getPageBySlug(locale: string, slug: string) {

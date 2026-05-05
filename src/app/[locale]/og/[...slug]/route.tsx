@@ -8,11 +8,11 @@ import { hasLocale, type Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
 import OGImage from '@/components/og-image'
-import { LOGO_PUBLIC_FILE } from '@/lib/logo-constants'
 import en from '@/i18n/messages/en.json'
 import { routing } from '@/i18n/routing'
 import { getPostBySlug } from '@/lib/content'
 import { getOGImageFonts } from '@/lib/fonts'
+import { LOGO_PUBLIC_FILE } from '@/lib/logo-constants'
 import { getPathnames } from '@/utils/get-pathnames'
 
 export async function GET(_request: Request, props: RouteContext<'/[locale]/og/[...slug]'>) {
@@ -77,14 +77,23 @@ async function generateProjectOGImage(slugs: string[]) {
   const projectSlug = slugs.at(-1)
   if (!projectSlug) notFound()
 
-  const imageBuffer = await fs.readFile(
-    path.join(process.cwd(), 'public', 'images', 'projects', projectSlug, 'cover.png'),
-  )
+  const base = path.join(process.cwd(), 'public', 'images', 'projects', projectSlug)
+  const webpPath = path.join(base, 'cover.webp')
+  const pngPath = path.join(base, 'cover.png')
+
+  let imageBuffer: Buffer
+  let contentType = 'image/webp'
+  try {
+    imageBuffer = await fs.readFile(webpPath)
+  } catch {
+    imageBuffer = await fs.readFile(pngPath)
+    contentType = 'image/png'
+  }
 
   return new NextResponse(new Uint8Array(imageBuffer), {
     status: 200,
     headers: {
-      'Content-Type': 'image/png',
+      'Content-Type': contentType,
       'Cache-Control': 'no-cache, no-store',
     },
   })

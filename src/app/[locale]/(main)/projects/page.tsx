@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
+import type { Locale } from 'next-intl'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
-import { type Locale, useTranslations } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { use } from 'react'
 
 import JsonLd from '@/components/json-ld'
 import PageHeader from '@/components/page-header'
-import ProjectCards from '@/components/project-cards'
+import ProjectsBrowser from '@/components/projects/projects-browser'
 import { MY_NAME } from '@/lib/constants'
 import { getLatestProjects } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
+import { loadProjectsParams } from '@/lib/projects-params'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
 
@@ -30,18 +30,20 @@ export async function generateMetadata(props: PageProps<'/[locale]/projects'>): 
   })
 }
 
-function Page(props: PageProps<'/[locale]/projects'>) {
-  const { params } = props
-  const { locale } = use(params)
+async function Page(props: PageProps<'/[locale]/projects'>) {
+  const { params, searchParams } = props
+  const { locale } = await params
 
   setRequestLocale(locale as Locale)
 
-  const t = useTranslations()
+  const t = await getTranslations({ locale: locale as Locale })
   const title = t('common.labels.projects')
   const description = t('projects.description')
   const url = getLocalizedPath({ locale, pathname: '/projects' })
 
   const projects = getLatestProjects(locale)
+  const parsed = loadProjectsParams(searchParams)
+  const { q, featured, openSource, status, type } = parsed
 
   const jsonLd: WithContext<CollectionPage> = {
     '@context': 'https://schema.org',
@@ -72,7 +74,35 @@ function Page(props: PageProps<'/[locale]/projects'>) {
     <>
       <JsonLd json={jsonLd} />
       <PageHeader title={title} description={description} />
-      <ProjectCards projects={projects} />
+      <ProjectsBrowser
+        projects={projects}
+        initialQuery={q}
+        initialFeatured={featured}
+        initialOpenSource={openSource}
+        initialStatus={status}
+        initialType={type}
+        labels={{
+          all: t('projects.filters.all'),
+          searchPlaceholder: t('projects.filters.search-placeholder'),
+          featured: t('projects.filters.featured'),
+          openSource: t('projects.filters.open-source'),
+          status: t('projects.filters.status'),
+          type: t('projects.filters.type'),
+          any: t('projects.filters.any'),
+          statuses: {
+            live: t('projects.filters.statuses.live'),
+            private: t('projects.filters.statuses.private'),
+            archived: t('projects.filters.statuses.archived'),
+            inProgress: t('projects.filters.statuses.in-progress'),
+          },
+          types: {
+            saas: t('projects.filters.types.saas'),
+            web: t('projects.filters.types.web'),
+            mobile: t('projects.filters.types.mobile'),
+            internal: t('projects.filters.types.internal'),
+          },
+        }}
+      />
     </>
   )
 }

@@ -49,10 +49,10 @@ function ProjectCard(props: ProjectCardProps) {
               Featured
             </div>
           )}
-          <div className='relative aspect-[40/21] w-full overflow-hidden rounded-lg'>
+          <div className='relative aspect-40/21 w-full overflow-hidden rounded-lg'>
             <BlurImage
               fill
-              src={`/images/projects/${slug}/cover.png`}
+              src={`/images/projects/${slug}/cover.webp`}
               alt={name}
               className='absolute inset-0 size-full rounded-lg'
               imageClassName='object-cover object-center transition-transform duration-300 group-hover:scale-105'

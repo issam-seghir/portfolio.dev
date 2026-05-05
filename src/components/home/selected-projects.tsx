@@ -85,10 +85,10 @@ function Card(props: CardProps) {
             <ArrowUpRightIcon className='size-4.5 opacity-0 transition-opacity group-hover:opacity-100' />
           </div>
           {/* Fixed aspect + object-cover so 4:3 (and other) covers aren’t squashed in the card frame */}
-          <div className='relative aspect-[40/21] w-full overflow-hidden rounded-lg'>
+          <div className='relative aspect-40/21 w-full overflow-hidden rounded-lg'>
             <BlurImage
               fill
-              src={`/images/projects/${slug}/cover.png`}
+              src={`/images/projects/${slug}/cover.webp`}
               alt={description}
               className='absolute inset-0 size-full rounded-lg'
               imageClassName='object-cover object-center'
@@ -97,13 +97,13 @@ function Card(props: CardProps) {
               fetchPriority='high'
             />
           </div>
-          <div className='pointer-events-none absolute inset-x-2 bottom-[46px] h-36 rounded-b-lg bg-linear-to-t from-black/85 via-black/50 to-transparent' />
+          <div className='pointer-events-none absolute inset-x-2 bottom-11.5 h-36 rounded-b-lg bg-linear-to-t from-black/85 via-black/50 to-transparent' />
           <div className='absolute bottom-16 left-7 flex flex-col transition-[left] ease-out group-hover:left-8'>
             <h3 className='text-2xl font-semibold text-white [text-shadow:0_2px_10px_rgba(0,0,0,0.7)]'>{name}</h3>
             <p className='mt-2 text-neutral-100 [text-shadow:0_1px_8px_rgba(0,0,0,0.75)]'>{description}</p>
           </div>
           {techstack.length > 0 && (
-            <div className='flex flex-wrap gap-1.5 px-4 pb-3 pt-2'>
+            <div className='flex flex-wrap gap-1.5 px-4 pt-2 pb-3'>
               {techstack.slice(0, 4).map((tech) => (
                 <Badge key={tech} variant='outline' className='text-[10px]'>
                   {tech}
