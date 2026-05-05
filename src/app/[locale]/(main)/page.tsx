@@ -70,7 +70,8 @@ function Page(props: PageProps<'/[locale]'>) {
     inLanguage: locale,
   }
 
-  const filteredPosts = getLatestPosts(locale, 2)
+  const isBlogPublic = process.env.NODE_ENV !== 'production'
+  const filteredPosts = isBlogPublic ? getLatestPosts(locale, 2) : []
   const filteredProjects = getSelectedProjects(locale, HOMEPAGE_SELECTED_PROJECTS_LIMIT)
 
   return (
@@ -80,7 +81,9 @@ function Page(props: PageProps<'/[locale]'>) {
       <SelectedProjects projects={filteredProjects} />
       <AboutMe />
       <HomeTestimonials />
-      {filteredPosts.length > 0 && <LatestArticles posts={filteredPosts} />}
+      {isBlogPublic && filteredPosts.length > 0 ? (
+        <LatestArticles posts={filteredPosts} />
+      ) : null}
       <GetInTouch />
     </>
   )
