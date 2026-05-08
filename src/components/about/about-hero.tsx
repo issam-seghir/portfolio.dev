@@ -27,7 +27,7 @@ const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 /** Matches `CodingDnaCard` stats on the homepage About Me section */
 const STATS = [
-  { kind: 'count' as const, value: 4, suffix: '+', labelKey: 'homepage.about-me.stat-experience' },
+  { kind: 'count' as const, value: 3, suffix: '+', labelKey: 'homepage.about-me.stat-experience' },
   { kind: 'count' as const, value: 11, suffix: '+', labelKey: 'homepage.about-me.stat-projects' },
   { kind: 'symbol' as const, display: '∞', emoji: '🪄', labelKey: 'homepage.about-me.stat-coffee' },
 ] as const

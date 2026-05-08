@@ -18,7 +18,7 @@ const TRAITS = [
 ] as const
 
 const STATS = [
-  { key: 'stat-experience', value: '4+', icon: '📅' },
+  { key: 'stat-experience', value: '3+', icon: '📅' },
   { key: 'stat-projects', value: '11+', icon: '📦' },
   { key: 'stat-coffee', value: '∞', icon: '🪄' },
 ] as const
