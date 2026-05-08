@@ -2,7 +2,7 @@
 
 import type { Project } from 'content-collections'
 
-import { ArrowUpRightIcon, BuildingIcon, CalendarIcon, ClockIcon, StarIcon, UsersIcon } from 'lucide-react'
+import { ArrowUpRightIcon, BuildingIcon, StarIcon, UsersIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 
@@ -22,8 +22,6 @@ type ContextItem = { icon: React.ElementType; label: string }
 
 function buildContextItems(props: ProjectHeaderProps): ContextItem[] {
   const items: ContextItem[] = []
-  if (props.year) items.push({ icon: CalendarIcon, label: props.year })
-  if (props.duration) items.push({ icon: ClockIcon, label: props.duration })
   if (props.team) items.push({ icon: UsersIcon, label: props.team })
   if (props.company) items.push({ icon: BuildingIcon, label: props.company })
   return items
