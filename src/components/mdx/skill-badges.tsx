@@ -58,7 +58,7 @@ function SkillBadges() {
           animate={isInView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.4, delay: catIndex * 0.08 }}
         >
-          <h4 className='mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground'>
+          <h4 className='mb-3 text-xs font-semibold tracking-widest text-muted-foreground uppercase'>
             {t(category.labelKey as never)}
           </h4>
           <div className='flex flex-wrap gap-2'>

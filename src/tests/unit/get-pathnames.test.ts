@@ -63,8 +63,7 @@ function getPathParts(fullPath: string, rootDir: string): string[] {
   return relativePath.split('/').filter((part) => {
     if (part === '[locale]') return false
     if (part.startsWith('(') && part.endsWith(')')) return false
-    if (part === 'page.tsx') return false
-    return true
+    return part !== 'page.tsx'
   })
 }
 
@@ -104,7 +103,7 @@ async function processDynamicPage(fullPath: string, pathParts: string[]): Promis
 }
 
 async function isRSCPage(filePath: string): Promise<boolean> {
-  const content = await fs.readFile(filePath, 'utf8')
+  const content = await fs.readFile(filePath, 'utf-8')
 
   return content.includes('async function Page')
 }

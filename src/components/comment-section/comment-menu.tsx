@@ -20,8 +20,9 @@ import { useCommentsContext } from '@/contexts/comments.context'
 import { useDeletePostComment } from '@/hooks/queries/comment.query'
 import { useCopyToClipboard } from '@/hooks/use-copy-to-clipboard'
 import { useSession } from '@/lib/auth-client'
+import { cn } from '@/utils/cn'
 
-function CommentMenu() {
+export default function CommentMenu() {
   const { comment } = useCommentContext()
   const { slug } = useCommentsContext()
   const { data: session } = useSession()
@@ -100,7 +101,7 @@ function CommentMenu() {
             <AlertDialogCancel>{t('common.cancel')}</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDeleteComment}
-              className={buttonVariants({ variant: 'destructive' })}
+              className={cn(buttonVariants({ variant: 'destructive' }))}
               data-testid='comment-dialog-delete-button'
             >
               {t('common.delete')}
@@ -111,5 +112,3 @@ function CommentMenu() {
     </>
   )
 }
-
-export default CommentMenu

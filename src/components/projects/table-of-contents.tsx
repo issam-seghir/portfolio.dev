@@ -21,7 +21,7 @@ function ProjectTableOfContents(props: ProjectTableOfContentsProps) {
   const t = useTranslations()
   const router = useRouter()
 
-  if (!toc.length) return null
+  if (toc.length === 0) return null
 
   return (
     <div className='hidden pl-4 lg:block'>
@@ -51,4 +51,3 @@ function ProjectTableOfContents(props: ProjectTableOfContentsProps) {
 }
 
 export default ProjectTableOfContents
-

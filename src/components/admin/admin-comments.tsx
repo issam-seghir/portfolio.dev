@@ -6,7 +6,7 @@ import { useListCommentsAdmin } from '@/hooks/queries/admin.query'
 
 import CommentsTable from '../tables/comments'
 
-function AdminComments() {
+export default function AdminComments() {
   const { data, isSuccess, isLoading, isError } = useListCommentsAdmin()
   const t = useTranslations()
 
@@ -18,5 +18,3 @@ function AdminComments() {
     </>
   )
 }
-
-export default AdminComments

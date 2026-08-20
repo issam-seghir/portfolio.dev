@@ -1,7 +1,7 @@
 'use client'
 
 import { CodeIcon } from 'lucide-react'
-import { motion, useInView, useMotionValue, useTransform, animate } from 'motion/react'
+import { animate, motion, useInView, useMotionValue, useTransform } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useRef } from 'react'
 
@@ -49,11 +49,11 @@ function CodingStatsCard() {
       <div className='grid grid-cols-3 gap-3'>
         {STATS.map((stat) => (
           <div key={stat.key} className='flex flex-col items-center gap-1'>
-            <span className='text-2xl font-bold tabular-nums bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400'>
+            <span className='bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-2xl font-bold text-transparent tabular-nums dark:from-blue-400 dark:to-violet-400'>
               <AnimatedCounter value={stat.value} duration={stat.value > 100 ? 2 : 1} />
               {stat.suffix}
             </span>
-            <span className='text-[11px] text-muted-foreground text-center leading-tight'>
+            <span className='text-center text-[11px] leading-tight text-muted-foreground'>
               {t(`homepage.about-me.${stat.key}` as never)}
             </span>
           </div>
@@ -67,7 +67,7 @@ function CodingStatsCard() {
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 0.3, ease: 'easeOut' }}
         />
-        <span className='absolute right-1 top-1/2 -translate-y-1/2 text-[9px] font-medium text-muted-foreground'>
+        <span className='absolute top-1/2 right-1 -translate-y-1/2 text-[9px] font-medium text-muted-foreground'>
           {t('homepage.about-me.coding-hours-label')}
         </span>
       </div>

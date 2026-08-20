@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import type { Locale } from 'next-intl'
 import type { SoftwareSourceCode, WithContext } from 'schema-dts'
 
 import { allProjects } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { setRequestLocale } from 'next-intl/server'
 import { use } from 'react'
 
 import BlurImage from '@/components/blur-image'
@@ -62,8 +60,6 @@ export async function generateMetadata(props: PageProps<'/[locale]/projects/[slu
 function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
   const { params } = props
   const { slug, locale } = use(params)
-
-  setRequestLocale(locale as Locale)
 
   const project = getProjectBySlug(locale, slug)
   const url = getLocalizedPath({ locale, pathname: `/projects/${slug}` })

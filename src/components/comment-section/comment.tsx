@@ -1,5 +1,6 @@
 'use client'
 
+import type { CommentContextValue } from '@/contexts/comment.context'
 import type { CommentListOutput } from '@/orpc/client'
 
 import Image from 'next/image'
@@ -9,14 +10,13 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { type CommentContextValue, CommentProvider } from '@/contexts/comment.context'
+import { CommentProvider } from '@/contexts/comment.context'
 import { useCommentsContext } from '@/contexts/comments.context'
 import { useCommentParams } from '@/hooks/use-comment-params'
 import { useFormattedDate } from '@/hooks/use-formatted-date'
 import { getDefaultImage } from '@/utils/get-default-image'
 
 import Markdown from '../mdx/markdown'
-
 import CommentActions from './comment-actions'
 import CommentMenu from './comment-menu'
 import CommentReplies from './comment-replies'
@@ -54,11 +54,13 @@ function Comment(props: CommentProps) {
   const formattedDate = useFormattedDate(comment.createdAt, { relative: true })
 
   useEffect(() => {
-    if (isHighlighted && commentRef.current) {
-      const top = commentRef.current.getBoundingClientRect().top + window.scrollY - 128
-
-      window.scrollTo({ top, behavior: 'smooth' })
+    if (!isHighlighted || !commentRef.current) {
+      return
     }
+
+    const top = commentRef.current.getBoundingClientRect().top + window.scrollY - 128
+
+    window.scrollTo({ top, behavior: 'smooth' })
   }, [isHighlighted])
 
   const hasReplies = !parentId && replyCount > 0

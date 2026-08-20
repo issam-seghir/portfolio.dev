@@ -2,7 +2,7 @@
 
 import createGlobe from 'cobe'
 import { MapPinIcon } from 'lucide-react'
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, animate } from 'motion/react'
+import { animate, AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { useEffect, useRef, useState } from 'react'
@@ -90,7 +90,7 @@ function LocationCard() {
   const isDarkGlobe = (resolvedTheme ?? 'light') === 'dark'
 
   // Recreate globe only when light/dark palette changes. Do NOT list springRotation here — it would
-  // tear down WebGL on re-renders and break drag; onRender always reads springRotation.get().
+  // tear down WebGL on re-renders and break drag; the animation loop always reads springRotation.get().
   useEffect(() => {
     let width = 0
 
@@ -111,30 +111,36 @@ function LocationCard() {
       devicePixelRatio: 2,
       width: width * 2,
       height: width * 2,
-      phi: 0,
+      phi: -0.05,
       theta: 0,
       mapSamples: 16_000,
       markers: [{ location: [ALGIERS.lat, ALGIERS.lon], size: 0.1 }],
       scale: 1.05,
       ...style,
-      onRender: (state: Record<string, number>) => {
-        state.phi = -0.05 + springRotation.get()
-        state.width = width * 2
-        state.height = width * 2
-      },
     })
 
+    let raf = 0
+    const tick = () => {
+      globe.update({
+        phi: -0.05 + springRotation.get(),
+        width: width * 2,
+        height: width * 2,
+      })
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+
     return () => {
+      cancelAnimationFrame(raf)
       globe.destroy()
       window.removeEventListener('resize', onResize)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- springRotation is stable; Listing it recreated WebGL every render and broke drag.
   }, [isDarkGlobe])
 
   useEffect(() => {
     const controller = new AbortController()
 
-    ;(async () => {
+    void (async () => {
       try {
         const res = await fetch('https://ipapi.co/json/', { signal: controller.signal })
         if (!res.ok) throw new Error('Geo lookup failed')
@@ -142,8 +148,8 @@ function LocationCard() {
         const lat = Number(data.latitude)
         const lon = Number(data.longitude)
         setGeo({
-          city: (data.city as string) ?? 'Unknown',
-          country: (data.country_name as string) ?? 'Unknown',
+          city: typeof data.city === 'string' ? data.city : 'Unknown',
+          country: typeof data.country_name === 'string' ? data.country_name : 'Unknown',
           lat,
           lon,
           distance: haversineKm(ALGIERS.lat, ALGIERS.lon, lat, lon),
@@ -155,11 +161,68 @@ function LocationCard() {
       }
     })()
 
-    return () => controller.abort()
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   const fadeMask = 'radial-gradient(circle at 50% 50%, rgb(0, 0, 0) 60%, rgb(0, 0, 0, 0) 70%)'
-  const dist = geo ? (unit === 'km' ? geo.distance : geo.distance * 0.621_371) : 0
+  let dist = 0
+  if (geo) {
+    dist = unit === 'km' ? geo.distance : geo.distance * 0.621371
+  }
+
+  let locationStatus = (
+    <motion.p
+      key='fallback'
+      className='text-sm text-muted-foreground'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      {t('homepage.about-me.location-fallback')}
+    </motion.p>
+  )
+
+  if (loading) {
+    locationStatus = (
+      <motion.p
+        key='loading'
+        className='flex items-center gap-2 text-sm text-muted-foreground'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.span animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}>
+          🌍
+        </motion.span>
+        {t('homepage.about-me.location-finding')}
+      </motion.p>
+    )
+  } else if (geo) {
+    locationStatus = (
+      <motion.div
+        key='result'
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
+        <p className='text-sm/relaxed text-muted-foreground'>
+          {t('homepage.about-me.location-distance-pre')}{' '}
+          <button
+            type='button'
+            onClick={() => {
+              setUnit((u) => (u === 'km' ? 'mi' : 'km'))
+            }}
+            className='inline-flex cursor-pointer items-baseline gap-0.5 font-semibold text-foreground underline decoration-blue-500/50 decoration-2 underline-offset-2 transition-colors hover:decoration-blue-500'
+          >
+            <AnimatedDistance value={dist} />
+            {unit}
+          </button>{' '}
+          {t('homepage.about-me.location-distance-post')}
+        </p>
+      </motion.div>
+    )
+  }
 
   return (
     <div className={cn('bento-card overflow-hidden')}>
@@ -224,58 +287,9 @@ function LocationCard() {
         </div>
       </div>
 
-      <div className='px-4 py-4 lg:px-6'>
-        <AnimatePresence mode='wait'>
-          {loading ? (
-            <motion.p
-              key='loading'
-              className='flex items-center gap-2 text-sm text-muted-foreground'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.span
-                animate={{ rotate: 360 }}
-                transition={{ repeat: Infinity, duration: 1, ease: 'linear' }}
-              >
-                🌍
-              </motion.span>
-              {t('homepage.about-me.location-finding')}
-            </motion.p>
-          ) : geo ? (
-            <motion.div
-              key='result'
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              <p className='text-sm leading-relaxed text-muted-foreground'>
-                {t('homepage.about-me.location-distance-pre')}{' '}
-                <button
-                  type='button'
-                  onClick={() => setUnit((u) => (u === 'km' ? 'mi' : 'km'))}
-                  className='inline-flex cursor-pointer items-baseline gap-0.5 font-semibold text-foreground underline decoration-blue-500/50 decoration-2 underline-offset-2 transition-colors hover:decoration-blue-500'
-                >
-                  <AnimatedDistance value={dist} />
-                  {unit}
-                </button>{' '}
-                {t('homepage.about-me.location-distance-post')}
-              </p>
-            </motion.div>
-          ) : (
-            <motion.p
-              key='fallback'
-              className='text-sm text-muted-foreground'
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {t('homepage.about-me.location-fallback')}
-            </motion.p>
-          )}
-        </AnimatePresence>
-        <p className='mt-2 text-[10px] italic text-muted-foreground/30'>
-          {t('homepage.about-me.location-credit')}
-        </p>
+      <div className='p-4 lg:px-6'>
+        <AnimatePresence mode='wait'>{locationStatus}</AnimatePresence>
+        <p className='mt-2 text-[10px] text-muted-foreground/30 italic'>{t('homepage.about-me.location-credit')}</p>
       </div>
     </div>
   )

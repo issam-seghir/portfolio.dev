@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import type { Locale } from 'next-intl'
 import type { BlogPosting, WithContext } from 'schema-dts'
 
 import { allPosts } from 'content-collections'
 import { notFound } from 'next/navigation'
-import { setRequestLocale } from 'next-intl/server'
 import { Suspense, use } from 'react'
 
 import AuthorBio from '@/components/blog/author-bio'
@@ -55,8 +53,6 @@ export async function generateMetadata(props: PageProps<'/[locale]/blog/[slug]'>
 function Page(props: PageProps<'/[locale]/blog/[slug]'>) {
   const { params } = props
   const { slug, locale } = use(params)
-
-  setRequestLocale(locale as Locale)
 
   const post = getPostBySlug(locale, slug)
   const url = getLocalizedPath({ locale, pathname: `/blog/${slug}` })

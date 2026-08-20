@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: '404',
 }
 
-function NotFound() {
+export default function NotFound() {
   const t = useTranslations()
 
   return (
@@ -23,5 +23,3 @@ function NotFound() {
     </MainLayout>
   )
 }
-
-export default NotFound

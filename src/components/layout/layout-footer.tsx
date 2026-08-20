@@ -9,15 +9,15 @@ import { MY_NAME, SITE_CONTACT_MAILTO } from '@/lib/constants'
 
 import LocaleSwitcher from './locale-switcher'
 
-function LayoutFooter() {
+export default function LayoutFooter() {
   const t = useTranslations()
 
   return (
-    <footer className='relative mx-auto mb-6 flex min-w-0 w-full max-w-5xl flex-col overflow-x-clip rounded-2xl border border-border/40 bg-background/30 px-6 py-10 saturate-100 backdrop-blur-md sm:px-8'>
+    <footer className='relative mx-auto mb-6 flex w-full max-w-5xl min-w-0 flex-col overflow-x-clip rounded-2xl border border-border/40 bg-background/30 px-6 py-10 saturate-100 backdrop-blur-md sm:px-8'>
       <div className='grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.2fr)_repeat(3,minmax(0,1fr))] lg:gap-8'>
         <div className='flex flex-col gap-4 sm:col-span-2 lg:col-span-1'>
           <p className='font-heading text-lg font-semibold tracking-tight text-foreground'>{MY_NAME}</p>
-          <p className='max-w-sm text-sm leading-relaxed text-muted-foreground'>{t('layout.footer.tagline')}</p>
+          <p className='max-w-sm text-sm/relaxed text-muted-foreground'>{t('layout.footer.tagline')}</p>
           <a
             href={SITE_CONTACT_MAILTO}
             className='inline-flex w-fit items-center gap-2 text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline'
@@ -41,14 +41,10 @@ function LayoutFooter() {
         </div>
 
         {FOOTER_SECTIONS.map((section) => (
-          <nav
-            key={section.id}
-            aria-labelledby={`footer-heading-${section.id}`}
-            className='flex flex-col gap-3'
-          >
+          <nav key={section.id} aria-labelledby={`footer-heading-${section.id}`} className='flex flex-col gap-3'>
             <h2
               id={`footer-heading-${section.id}`}
-              className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'
+              className='text-xs font-semibold tracking-wider text-muted-foreground uppercase'
             >
               {t(section.titleKey)}
             </h2>
@@ -80,5 +76,3 @@ function LayoutFooter() {
     </footer>
   )
 }
-
-export default LayoutFooter

@@ -1,8 +1,10 @@
 'use client'
 
+import type { VariantProps } from 'class-variance-authority'
+
 import { mergeProps } from '@base-ui/react/merge-props'
 import { useRender } from '@base-ui/react/use-render'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
 import { PanelLeftIcon } from 'lucide-react'
 import { createContext, use, useCallback, useEffect, useMemo, useState } from 'react'
 
@@ -59,20 +61,20 @@ function SidebarProvider(props: SidebarProviderProps) {
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
   const [_open, _setOpen] = useState(defaultOpen)
-  const open = openProp ?? _open
+  const isOpen = openProp ?? _open
   const setOpen = useCallback(
     (value: boolean | ((value: boolean) => boolean)) => {
-      const openState = typeof value === 'function' ? value(open) : value
+      const isOpenState = typeof value === 'function' ? value(isOpen) : value
       if (setOpenProp) {
-        setOpenProp(openState)
+        setOpenProp(isOpenState)
       } else {
-        _setOpen(openState)
+        _setOpen(isOpenState)
       }
 
       // This sets the cookie to keep the sidebar state.
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+      document.cookie = `${SIDEBAR_COOKIE_NAME}=${isOpenState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
     },
-    [setOpenProp, open],
+    [setOpenProp, isOpen],
   )
 
   // Helper to toggle the sidebar.
@@ -87,10 +89,12 @@ function SidebarProvider(props: SidebarProviderProps) {
   // Adds a keyboard shortcut to toggle the sidebar.
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault()
-        toggleSidebar()
+      if (event.key !== SIDEBAR_KEYBOARD_SHORTCUT || (!event.metaKey && !event.ctrlKey)) {
+        return
       }
+
+      event.preventDefault()
+      toggleSidebar()
     }
 
     globalThis.addEventListener('keydown', handleKeyDown)
@@ -101,19 +105,19 @@ function SidebarProvider(props: SidebarProviderProps) {
 
   // We add a state so that we can do data-state="expanded" or "collapsed".
   // This makes it easier to style the sidebar with Tailwind classes.
-  const state = open ? 'expanded' : 'collapsed'
+  const state = isOpen ? 'expanded' : 'collapsed'
 
   const contextValue = useMemo<SidebarContextProps>(
     () => ({
       state,
-      open,
+      open: isOpen,
       setOpen,
       isMobile,
       openMobile,
       setOpenMobile,
       toggleSidebar,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
+    [state, isOpen, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
   )
 
   return (
@@ -206,8 +210,8 @@ function Sidebar(props: SidebarProps) {
         className={cn(
           'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
           side === 'left'
-            ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
-            : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
+            ? 'left-0 group-data-[collapsible=offcanvas]:-left-(--sidebar-width)'
+            : 'right-0 group-data-[collapsible=offcanvas]:-right-(--sidebar-width)',
           // Adjust the padding for floating and inset variants.
           variant === 'floating' || variant === 'inset'
             ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'

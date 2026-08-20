@@ -1,6 +1,6 @@
 'use client'
 
-import { MessageCircleIcon, RocketIcon } from 'lucide-react'
+import { RocketIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
@@ -30,9 +30,7 @@ function ProjectCTA() {
     >
       <RocketIcon className='mx-auto mb-4 size-8 text-blue-600 dark:text-blue-400' />
       <h3 className='text-xl font-semibold'>{t('projects.cta.title')}</h3>
-      <p className='mx-auto mt-2 max-w-md text-sm text-muted-foreground'>
-        {t('projects.cta.description')}
-      </p>
+      <p className='mx-auto mt-2 max-w-md text-sm text-muted-foreground'>{t('projects.cta.description')}</p>
       <a
         href={SITE_WHATSAPP_URL}
         target='_blank'

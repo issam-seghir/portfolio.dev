@@ -37,6 +37,7 @@ setup('setup auth', async () => {
         id: TEST_UNIQUE_ID,
         accountId: TEST_USER.accountId,
         providerId: 'github',
+        issuer: 'local:oauth:github',
         userId: TEST_UNIQUE_ID,
         accessToken: 'gho_000',
         scope: 'read:user,user:email',

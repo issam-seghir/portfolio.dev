@@ -1,4 +1,6 @@
-import { type Context, defineCollection, defineConfig, type Meta } from '@content-collections/core'
+import type { Context, Meta } from '@content-collections/core'
+
+import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import * as z from 'zod'
 
@@ -10,7 +12,10 @@ type BaseDoc = {
 }
 
 function getReadingTime(content: string): number {
-  const words = content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length
+  const words = content
+    .replaceAll(/<[^<>]*>/g, '')
+    .split(/\s+/)
+    .filter(Boolean).length
   return Math.max(1, Math.ceil(words / 230))
 }
 
@@ -116,5 +121,5 @@ const pages = defineCollection({
 })
 
 export default defineConfig({
-  collections: [posts, projects, pages],
+  content: [posts, projects, pages],
 })

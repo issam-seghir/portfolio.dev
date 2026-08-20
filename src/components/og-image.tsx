@@ -2,10 +2,10 @@ import { LOGO_ASPECT } from '@/lib/logo-constants'
 
 function getFontSize(title: string) {
   const baseSize = 80
-  const minSize = 50
-  const maxChars = 80
-
   if (title.length <= 30) return baseSize
+  const minSize = 50
+
+  const maxChars = 80
 
   if (title.length >= maxChars) return minSize
 

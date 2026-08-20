@@ -35,9 +35,7 @@ type CommandGroup = {
 
 function playCommandOpenSound() {
   if (typeof window === 'undefined') return
-  const Ctx =
-    window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
+  const Ctx = globalThis.AudioContext
   try {
     const ctx = new Ctx()
     const osc1 = ctx.createOscillator()
@@ -129,15 +127,17 @@ function CommandMenu() {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault()
-        setIsOpen((prev) => {
-          if (!prev) {
-            playCommandOpenSound()
-          }
-          return !prev
-        })
+      if (event.key !== 'k' || (!event.metaKey && !event.ctrlKey)) {
+        return
       }
+
+      event.preventDefault()
+      setIsOpen((prev) => {
+        if (!prev) {
+          playCommandOpenSound()
+        }
+        return !prev
+      })
     }
 
     document.addEventListener('keydown', handleKeyDown)
@@ -191,7 +191,7 @@ function CommandMenu() {
     { name: t('command-menu.groups.social'), actions: socialActions },
   ]
 
-  const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.platform)
+  const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent)
   const shortcutLabel = isMac ? '⌘K' : 'Ctrl+K'
 
   return (
@@ -207,7 +207,7 @@ function CommandMenu() {
       >
         <CommandIcon />
         <kbd
-          className='pointer-events-none absolute -bottom-0.5 -right-0.5 hidden rounded border border-border/50 bg-muted/80 px-1 font-mono text-[10px] font-medium text-muted-foreground sm:inline'
+          className='pointer-events-none absolute -right-0.5 -bottom-0.5 hidden rounded-sm border border-border/50 bg-muted/80 px-1 font-mono text-[10px] font-medium text-muted-foreground sm:inline'
           aria-hidden
         >
           {shortcutLabel}

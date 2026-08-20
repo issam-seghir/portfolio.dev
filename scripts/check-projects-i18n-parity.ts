@@ -35,6 +35,5 @@ if (missingInAr.length === 0 && missingInEn.length === 0) {
     console.error(`Missing in en/ (${missingInEn.length}):`)
     for (const s of missingInEn) console.error(`  - ${s}`)
   }
-  // eslint-disable-next-line unicorn/no-process-exit -- this is a CLI script; non-zero exit signals CI failure
   process.exit(1)
 }

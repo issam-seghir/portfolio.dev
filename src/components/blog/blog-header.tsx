@@ -31,10 +31,12 @@ function BlogHeader(props: BlogHeaderProps) {
   const incremented = useRef(false)
 
   useEffect(() => {
-    if (!incremented.current) {
-      incrementPostView({ slug: post.slug })
-      incremented.current = true
+    if (incremented.current) {
+      return
     }
+
+    incrementPostView({ slug: post.slug })
+    incremented.current = true
   }, [incrementPostView, post.slug])
 
   return (

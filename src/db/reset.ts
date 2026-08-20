@@ -7,22 +7,25 @@ import { env } from '@/lib/env'
 import { db } from './index'
 
 async function main() {
-  const confirmed = await consola.prompt('Are you sure you want to reset the database?', {
+  const isConfirmed = await consola.prompt('Are you sure you want to reset the database?', {
     type: 'confirm',
   })
 
-  if (!confirmed) {
+  if (!isConfirmed) {
     consola.info('Aborting...')
 
     return
   }
 
   if (!env.DATABASE_URL.includes('localhost')) {
-    const nonLocalConfirmed = await consola.prompt('Non-local database detected. Are you sure you want to continue?', {
-      type: 'confirm',
-    })
+    const isNonLocalConfirmed = await consola.prompt(
+      'Non-local database detected. Are you sure you want to continue?',
+      {
+        type: 'confirm',
+      },
+    )
 
-    if (!nonLocalConfirmed) {
+    if (!isNonLocalConfirmed) {
       consola.info('Aborting...')
 
       return

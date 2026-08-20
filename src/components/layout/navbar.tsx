@@ -6,7 +6,7 @@ import { Link } from '@/components/ui/link'
 import { HEADER_LINKS } from '@/config/links'
 import { usePathname } from '@/i18n/routing'
 
-function Navbar() {
+export default function Navbar() {
   const pathname = usePathname()
   const t = useTranslations()
 
@@ -28,5 +28,3 @@ function Navbar() {
     </nav>
   )
 }
-
-export default Navbar

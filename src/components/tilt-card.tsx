@@ -27,6 +27,10 @@ function TiltCard({ children, className, tiltAmount = 6, glareEnabled = false }:
   })
   const glareX = useTransform(mouseX, [-0.5, 0.5], [0, 100])
   const glareY = useTransform(mouseY, [-0.5, 0.5], [0, 100])
+  const glareBackground = useTransform([glareX, glareY], (latest) => {
+    const [x, y] = latest as [number, number]
+    return `radial-gradient(circle at ${x}% ${y}%, rgba(255,255,255,0.15), transparent 60%)`
+  })
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -56,7 +60,7 @@ function TiltCard({ children, className, tiltAmount = 6, glareEnabled = false }:
         <motion.div
           className='pointer-events-none absolute inset-0 z-10 rounded-2xl opacity-0 transition-opacity group-hover:opacity-100'
           style={{
-            background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.15), transparent 60%)`,
+            background: glareBackground,
           }}
         />
       )}

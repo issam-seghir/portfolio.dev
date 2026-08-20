@@ -9,7 +9,7 @@ function Table(props: TableProps) {
 
   return (
     <div data-slot='table-container' className='relative w-full overflow-x-auto'>
-      {/* eslint-disable-next-line sonarjs/table-header -- Table is a reusable wrapper component. Header rows and columns are provided at the usage site via TableHeader and TableHead components. */}
+      {}
       <table data-slot='table' className={cn('w-full caption-bottom text-sm', className)} {...rest} />
     </div>
   )
@@ -68,7 +68,7 @@ function TableHead(props: TableHeadProps) {
     <th
       data-slot='table-head'
       className={cn(
-        'h-12 px-3 text-left align-middle font-medium whitespace-nowrap text-foreground [&:has([role=checkbox])]:pr-0',
+        'h-12 px-3 text-left align-middle font-medium whitespace-nowrap text-foreground has-[[role=checkbox]]:pr-0',
         className,
       )}
       {...rest}
@@ -84,7 +84,7 @@ function TableCell(props: TableCellProps) {
   return (
     <td
       data-slot='table-cell'
-      className={cn('p-3 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0', className)}
+      className={cn('p-3 align-middle whitespace-nowrap has-[[role=checkbox]]:pr-0', className)}
       {...rest}
     />
   )

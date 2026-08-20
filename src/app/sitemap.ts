@@ -5,7 +5,7 @@ import { getLocalizedPath } from '@/utils/get-localized-path'
 import { getPathnames } from '@/utils/get-pathnames'
 
 function getPriority(pathname: string): number {
-  if (pathname === '/') return 1.0
+  if (pathname === '/') return 1
   if (pathname.startsWith('/blog') || pathname.startsWith('/projects')) return 0.8
   if (pathname === '/about') return 0.7
   return 0.5
@@ -21,7 +21,7 @@ function getChangeFrequency(pathname: string): MetadataRoute.Sitemap[number]['ch
 }
 
 function sitemap(): MetadataRoute.Sitemap {
-  const pathnames = getPathnames().filter((p) => p !== '/design')
+  const pathnames = getPathnames()
 
   const pageEntries = routing.locales.flatMap((locale) =>
     pathnames.map((pathname) => ({

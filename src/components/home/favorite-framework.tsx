@@ -4,7 +4,7 @@ import { DownloadIcon, FileTextIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 
-function ResumeCard() {
+export default function ResumeCard() {
   const t = useTranslations()
 
   return (
@@ -33,5 +33,3 @@ function ResumeCard() {
     </motion.a>
   )
 }
-
-export default ResumeCard

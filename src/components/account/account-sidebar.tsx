@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { ACCOUNT_SIDEBAR_LINKS } from '@/config/links'
 import { Link, usePathname } from '@/i18n/routing'
 
-function AccountSidebar() {
+export default function AccountSidebar() {
   const t = useTranslations()
   const pathname = usePathname()
 
@@ -27,5 +27,3 @@ function AccountSidebar() {
     </div>
   )
 }
-
-export default AccountSidebar

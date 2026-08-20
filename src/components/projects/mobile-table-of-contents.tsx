@@ -21,7 +21,7 @@ function MobileProjectTableOfContents(props: MobileProjectTableOfContentsProps) 
   const router = useRouter()
   const t = useTranslations()
 
-  if (!toc.length) return null
+  if (toc.length === 0) return null
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -60,4 +60,3 @@ function MobileProjectTableOfContents(props: MobileProjectTableOfContentsProps) 
 }
 
 export default MobileProjectTableOfContents
-

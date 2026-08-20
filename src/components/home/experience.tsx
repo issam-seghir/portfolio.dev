@@ -70,7 +70,7 @@ function Experience() {
       </motion.h2>
 
       <div ref={timelineRef} className='relative mx-auto mt-12 max-w-2xl'>
-        <div className='absolute top-0 bottom-0 left-6 w-px bg-border md:left-1/2 md:-translate-x-px' />
+        <div className='absolute inset-y-0 left-6 w-px bg-border md:left-1/2 md:-translate-x-px' />
         <motion.div
           className='absolute top-0 left-6 w-px origin-top bg-linear-to-b from-blue-500 to-violet-500 md:left-1/2 md:-translate-x-px'
           style={{ scaleY: lineScaleY, height: '100%' }}
@@ -102,7 +102,7 @@ function Experience() {
               )}
             </motion.div>
 
-            <div className='flex-1 rounded-2xl p-4 shadow-feature-card md:w-[calc(50%-3rem)] md:odd:ml-auto md:odd:mr-0 md:even:ml-0 md:even:mr-auto'>
+            <div className='flex-1 rounded-2xl p-4 shadow-feature-card md:w-[calc(50%-3rem)] md:odd:mr-0 md:odd:ml-auto md:even:mr-auto md:even:ml-0'>
               <p className='text-xs font-medium text-muted-foreground'>{t(item.periodKey as never)}</p>
               <h3 className='mt-1 text-base font-semibold'>{t(item.titleKey as never)}</h3>
               <p className='text-sm text-muted-foreground'>{t(item.companyKey as never)}</p>

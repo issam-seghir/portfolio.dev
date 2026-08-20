@@ -28,7 +28,7 @@ function StoreProductCard(props: StoreProductCardProps) {
             imageClassName='transition-transform duration-300 group-hover:scale-105'
           />
           {featured && (
-            <div className='absolute top-3 end-3 z-10 flex items-center gap-1 rounded-full bg-amber-500/90 px-2.5 py-1 text-[10px] font-semibold text-white'>
+            <div className='absolute inset-e-3 top-3 z-10 flex items-center gap-1 rounded-full bg-amber-500/90 px-2.5 py-1 text-[10px] font-semibold text-white'>
               <StarIcon className='size-3' />
               {t('featured')}
             </div>
@@ -41,14 +41,12 @@ function StoreProductCard(props: StoreProductCardProps) {
           <h3 className='text-lg font-semibold'>{name}</h3>
           <p className='mt-2 line-clamp-2 text-sm text-muted-foreground'>{description}</p>
           <div className='mt-4 flex items-center justify-between'>
-            {price != null ? (
-              <span className='font-medium'>{t('price-format', { value: price })}</span>
-            ) : (
+            {price === undefined ? (
               <span className='text-sm text-muted-foreground'>{t('price-inquire')}</span>
+            ) : (
+              <span className='font-medium'>{t('price-format', { value: price })}</span>
             )}
-            <span className='text-sm font-medium text-primary group-hover:underline'>
-              {t('cta.view')}
-            </span>
+            <span className='text-sm font-medium text-primary group-hover:underline'>{t('cta.view')}</span>
           </div>
         </div>
       </Link>

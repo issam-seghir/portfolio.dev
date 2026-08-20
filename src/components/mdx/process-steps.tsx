@@ -6,12 +6,42 @@ import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
 const STEPS = [
-  { icon: RocketIcon, titleKey: 'about.capabilities.saas', descKey: 'about.capabilities.saas-desc', color: 'text-blue-500' },
-  { icon: BrainIcon, titleKey: 'about.capabilities.ai', descKey: 'about.capabilities.ai-desc', color: 'text-violet-500' },
-  { icon: CodeIcon, titleKey: 'about.capabilities.enterprise', descKey: 'about.capabilities.enterprise-desc', color: 'text-emerald-500' },
-  { icon: RepeatIcon, titleKey: 'about.capabilities.api', descKey: 'about.capabilities.api-desc', color: 'text-orange-500' },
-  { icon: PencilRulerIcon, titleKey: 'about.capabilities.ui', descKey: 'about.capabilities.ui-desc', color: 'text-pink-500' },
-  { icon: FlameIcon, titleKey: 'about.capabilities.performance', descKey: 'about.capabilities.performance-desc', color: 'text-amber-500' },
+  {
+    icon: RocketIcon,
+    titleKey: 'about.capabilities.saas',
+    descKey: 'about.capabilities.saas-desc',
+    color: 'text-blue-500',
+  },
+  {
+    icon: BrainIcon,
+    titleKey: 'about.capabilities.ai',
+    descKey: 'about.capabilities.ai-desc',
+    color: 'text-violet-500',
+  },
+  {
+    icon: CodeIcon,
+    titleKey: 'about.capabilities.enterprise',
+    descKey: 'about.capabilities.enterprise-desc',
+    color: 'text-emerald-500',
+  },
+  {
+    icon: RepeatIcon,
+    titleKey: 'about.capabilities.api',
+    descKey: 'about.capabilities.api-desc',
+    color: 'text-orange-500',
+  },
+  {
+    icon: PencilRulerIcon,
+    titleKey: 'about.capabilities.ui',
+    descKey: 'about.capabilities.ui-desc',
+    color: 'text-pink-500',
+  },
+  {
+    icon: FlameIcon,
+    titleKey: 'about.capabilities.performance',
+    descKey: 'about.capabilities.performance-desc',
+    color: 'text-amber-500',
+  },
 ] as const
 
 function ProcessSteps() {
@@ -32,16 +62,12 @@ function ProcessSteps() {
               animate={isInView ? { opacity: 1, y: 0 } : undefined}
               transition={{ duration: 0.4, delay: index * 0.08 }}
             >
-              <span className='text-xs font-bold text-muted-foreground/60'>
-                0{index + 1}
-              </span>
+              <span className='text-xs font-bold text-muted-foreground/60'>0{index + 1}</span>
               <div className={`flex size-10 items-center justify-center rounded-lg bg-accent ${step.color}`}>
                 <Icon className='size-5' />
               </div>
               <h3 className='text-sm font-semibold'>{t(step.titleKey as never)}</h3>
-              <p className='text-xs leading-relaxed text-muted-foreground'>
-                {t(step.descKey as never)}
-              </p>
+              <p className='text-xs/relaxed text-muted-foreground'>{t(step.descKey as never)}</p>
             </motion.div>
           )
         })}

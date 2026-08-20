@@ -53,7 +53,7 @@ function CommandDialog(props: CommandDialogProps) {
           'top-1/3 translate-y-0 overflow-hidden rounded-4xl! p-0',
           'duration-100 ease-out',
           'data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95',
-          '[transform:translateZ(0)] [backface-visibility:hidden]',
+          'transform-[translateZ(0)] backface-hidden',
           className,
         )}
         showCloseButton={showCloseButton}

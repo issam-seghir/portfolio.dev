@@ -1,4 +1,6 @@
-import { type DateTimeFormatOptions, useFormatter, useNow } from 'next-intl'
+import type { DateTimeFormatOptions } from 'next-intl'
+
+import { useFormatter, useNow } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 type Options = {
@@ -20,7 +22,7 @@ export function useFormattedDate(date: DateInput, options: Options = {}): string
 
   useEffect(() => {
     const dateTime = new Date(date)
-    const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
+    const { timeZone } = new Intl.DateTimeFormat().resolvedOptions()
 
     const formatOptionsWithTimeZone = {
       ...formatOptions,
@@ -28,9 +30,9 @@ export function useFormattedDate(date: DateInput, options: Options = {}): string
     }
 
     // Check if we should use relative time
-    const useRelative = relative && Math.abs(now.getTime() - dateTime.getTime()) / (1000 * 60 * 60 * 24) <= threshold
+    const isUseRelative = relative && Math.abs(now.getTime() - dateTime.getTime()) / (1000 * 60 * 60 * 24) <= threshold
 
-    const result = useRelative
+    const result = isUseRelative
       ? format.relativeTime(dateTime, now)
       : format.dateTime(dateTime, formatName, formatOptionsWithTimeZone)
 

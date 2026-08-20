@@ -332,7 +332,11 @@
       "languages": "اللغات",
       "language-arabic": "العربية (لغة أم)",
       "language-english": "الإنجليزية (طلاقة)",
-      "language-french": "الفرنسية (محادثة)"
+      "language-french": "الفرنسية (محادثة)",
+      "coding-hours": "إحصائيات البرمجة",
+      "coding-hours-label": "78%",
+      "projects-shipped": "مشاريع أُنجزت",
+      "cups-of-coffee": "أكواب قهوة"
     },
     "experience": {
       "title": "الخبرة",

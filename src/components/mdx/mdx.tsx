@@ -6,7 +6,6 @@ import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
 import ImageZoom from '../image-zoom'
-
 import AnimatedSection from './animated-section'
 import ClosingCTA from './closing-cta'
 import CurrentlySection from './currently-section'
@@ -51,10 +50,7 @@ const components = {
     const { alt, fill, style, className, imageClassName, ...rest } = props
 
     // Prose (and max-width) often constrains width via CSS; next/image then warns unless height stays proportional.
-    const isStaticSized =
-      fill !== true &&
-      typeof rest.width === 'number' &&
-      typeof rest.height === 'number'
+    const isStaticSized = fill !== true && typeof rest.width === 'number' && typeof rest.height === 'number'
 
     return (
       <>
@@ -62,11 +58,7 @@ const components = {
           <BlurImage
             className={cn('rounded-lg border', className)}
             imageClassName={cn(isStaticSized && 'h-auto w-full max-w-full', imageClassName)}
-            style={
-              isStaticSized
-                ? { height: 'auto', maxWidth: '100%', ...(style as React.CSSProperties) }
-                : style
-            }
+            style={isStaticSized ? { height: 'auto', maxWidth: '100%', ...style } : style}
             alt={alt}
             fill={fill}
             {...rest}
@@ -100,7 +92,7 @@ function Mdx(props: MdxProps) {
   const MDXContent = useMDXComponent(code)
 
   return (
-    <div className='prose w-full min-w-0 max-w-none text-start prose-headings:text-start'>
+    <div className='prose w-full max-w-none min-w-0 text-start prose-headings:text-start'>
       <MDXContent components={components} />
     </div>
   )

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { useCommentContext } from '@/contexts/comment.context'
 import { useCommentsContext } from '@/contexts/comments.context'
 
-function CommentActions() {
+export default function CommentActions() {
   useCommentsContext()
   const { comment, setIsReplying, isOpenReplies, setIsOpenReplies } = useCommentContext()
   const t = useTranslations()
@@ -50,5 +50,3 @@ function CommentActions() {
     </>
   )
 }
-
-export default CommentActions

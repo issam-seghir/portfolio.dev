@@ -31,7 +31,7 @@ function ensureDir(dir: string) {
 
 function writeIfMissing(file: string, content: string) {
   if (fs.existsSync(file)) return
-  fs.writeFileSync(file, content, 'utf8')
+  fs.writeFileSync(file, content, 'utf-8')
 }
 
 ensureDir(path.dirname(enMdx))
@@ -50,5 +50,6 @@ writeIfMissing(
   `---\nname: ${name}\ndescription: ${arDescription}\nopenSource: false\ntechstack:\n  - Next.js\n  - TypeScript\nselected: false\ndateCreated: '${nowIso}'\n---\n\n## نظرة على المشروع\n\n\n`,
 )
 
-console.log(`Created (if missing):\n- ${path.relative(root, enMdx)}\n- ${path.relative(root, arMdx)}\n- ${path.relative(root, imagesDir)}/`)
-
+console.log(
+  `Created (if missing):\n- ${path.relative(root, enMdx)}\n- ${path.relative(root, arMdx)}\n- ${path.relative(root, imagesDir)}/`,
+)

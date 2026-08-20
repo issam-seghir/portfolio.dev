@@ -12,7 +12,7 @@ describe(sitemap, () => {
     const pathnames = getPathnames()
     const result = sitemap()
 
-    const expectedEntryCount = routing.locales.length * pathnames.length
+    const expectedEntryCount = routing.locales.length * pathnames.length + routing.locales.length
 
     expect(result).toHaveLength(expectedEntryCount)
   })

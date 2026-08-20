@@ -22,8 +22,6 @@ export async function generateMetadata(props: PageProps<'/[locale]/account/setti
   })
 }
 
-function Page() {
+export default function Page() {
   return <Settings />
 }
-
-export default Page

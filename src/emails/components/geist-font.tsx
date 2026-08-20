@@ -1,6 +1,6 @@
-import { Font } from '@react-email/components'
+import { Font } from 'react-email'
 
-function GeistFont() {
+export default function GeistFont() {
   return (
     <Font
       fontFamily='Geist'
@@ -14,5 +14,3 @@ function GeistFont() {
     />
   )
 }
-
-export default GeistFont

@@ -73,8 +73,8 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
 
     const sorted = featuredOnly
       ? [...filtered].toSorted((a, b) => {
-          const rankA = a.featuredRank ?? Number.POSITIVE_INFINITY
-          const rankB = b.featuredRank ?? Number.POSITIVE_INFINITY
+          const rankA = a.featuredRank ?? Infinity
+          const rankB = b.featuredRank ?? Infinity
           const diff = rankA - rankB
           if (diff !== 0) return diff
           return new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
@@ -87,13 +87,7 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
     return sorted.filter((p) => slugs.has(p.slug))
   }, [featuredOnly, flex, openSourceOnly, projects, q, status, type])
 
-  function setUrl(next: {
-    q?: string
-    featured?: boolean
-    openSource?: boolean
-    status?: string
-    type?: string
-  }) {
+  function setUrl(next: { q?: string; featured?: boolean; openSource?: boolean; status?: string; type?: string }) {
     const sp = new URLSearchParams()
     if (next.q?.trim()) sp.set('q', next.q.trim())
     else sp.delete('q')
@@ -123,15 +117,17 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
               setUrl({ q, featured: false, openSource: false, status: '', type: '' })
             }}
           >
-            <Badge variant={featuredOnly || openSourceOnly || status || type ? 'secondary' : 'default'}>{labels.all}</Badge>
+            <Badge variant={featuredOnly || openSourceOnly || status || type ? 'secondary' : 'default'}>
+              {labels.all}
+            </Badge>
           </Link>
 
           <button
             type='button'
             onClick={() => {
-              const next = !featuredOnly
-              setFeaturedOnly(next)
-              setUrl({ q, featured: next, openSource: openSourceOnly, status, type })
+              const isNext = !featuredOnly
+              setFeaturedOnly(isNext)
+              setUrl({ q, featured: isNext, openSource: openSourceOnly, status, type })
             }}
           >
             <Badge variant={featuredOnly ? 'default' : 'secondary'} className='font-normal'>
@@ -142,9 +138,9 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
           <button
             type='button'
             onClick={() => {
-              const next = !openSourceOnly
-              setOpenSourceOnly(next)
-              setUrl({ q, featured: featuredOnly, openSource: next, status, type })
+              const isNext = !openSourceOnly
+              setOpenSourceOnly(isNext)
+              setUrl({ q, featured: featuredOnly, openSource: isNext, status, type })
             }}
           >
             <Badge variant={openSourceOnly ? 'default' : 'secondary'} className='font-normal'>
@@ -198,4 +194,3 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
 }
 
 export default ProjectsBrowser
-

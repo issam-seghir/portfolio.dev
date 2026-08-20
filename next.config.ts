@@ -33,13 +33,12 @@ if (!IS_PRODUCTION) {
     protocol: 'http',
     hostname: 'localhost',
   })
-  // Portless dev URLs (e.g. `http://portfolio-dev.localhost:1355` — name matches `package.json` `name`)
+  // Portless dev URLs (e.g. `https://portfolio-dev.localhost:1355` — name matches `package.json` `name`)
   remotePatterns.push(
     { protocol: 'http', hostname: 'portfolio-dev.localhost' },
     { protocol: 'https', hostname: 'portfolio-dev.localhost' },
   )
 }
-
 
 const config: NextConfig = {
   productionBrowserSourceMaps: true,
@@ -49,7 +48,7 @@ const config: NextConfig = {
   },
 
   images: {
-    qualities: [75, 100],
+    qualities: [75, 90, 100],
     remotePatterns,
   },
 

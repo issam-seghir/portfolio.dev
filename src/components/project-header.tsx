@@ -27,7 +27,13 @@ function buildContextItems(props: ProjectHeaderProps): ContextItem[] {
   return items
 }
 
-function HeroBadges(props: { isFeatured: boolean; status?: string; projectType?: string; role?: string; featuredLabel: string }) {
+function HeroBadges(props: {
+  isFeatured: boolean
+  status?: string
+  projectType?: string
+  role?: string
+  featuredLabel: string
+}) {
   const { isFeatured, status, projectType, role, featuredLabel } = props
   if (!isFeatured && !status && !projectType && !role) return null
   return (
@@ -60,7 +66,7 @@ function ContextStrip(props: { items: ContextItem[] }) {
   )
 }
 
-function KpiGrid(props: { kpis?: Project['kpis'] }) {
+function KpiGrid(props: { kpis: Project['kpis'] }) {
   const { kpis } = props
   if (!kpis || kpis.length === 0) return null
   return (
@@ -82,21 +88,10 @@ function KpiGrid(props: { kpis?: Project['kpis'] }) {
 
 const EMPTY_LIST: string[] = []
 
-function OutcomesAndTags({
-  outcomes = EMPTY_LIST,
-  tags = EMPTY_LIST,
-}: {
-  outcomes?: string[]
-  tags?: string[]
-}) {
+function OutcomesAndTags({ outcomes = EMPTY_LIST, tags = EMPTY_LIST }: { outcomes?: string[]; tags?: string[] }) {
   if (outcomes.length === 0 && tags.length === 0) return null
   return (
-    <motion.div
-      className='space-y-3'
-      initial={animation.hide}
-      animate={animation.show}
-      transition={{ delay: 0.1 }}
-    >
+    <motion.div className='space-y-3' initial={animation.hide} animate={animation.show} transition={{ delay: 0.1 }}>
       {outcomes.length > 0 && (
         <ul className='space-y-1.5 text-sm text-muted-foreground'>
           {outcomes.slice(0, 3).map((item) => (
@@ -120,7 +115,13 @@ function OutcomesAndTags({
   )
 }
 
-function HeroActions(props: { homepage?: string; github?: string; openSource?: boolean; visitWebsite: string; visitRepo: string }) {
+function HeroActions(props: {
+  homepage?: string
+  github?: string
+  openSource?: boolean
+  visitWebsite: string
+  visitRepo: string
+}) {
   const { homepage, github, openSource, visitWebsite, visitRepo } = props
   const hasRepo = Boolean(github && openSource)
   if (!homepage && !hasRepo) return null
@@ -148,7 +149,20 @@ function HeroActions(props: { homepage?: string; github?: string; openSource?: b
 }
 
 function ProjectHeader(props: ProjectHeaderProps) {
-  const { name, description, status, projectType, role, featuredRank, kpis, outcomes, tags, homepage, github, openSource } = props
+  const {
+    name,
+    description,
+    status,
+    projectType,
+    role,
+    featuredRank,
+    kpis,
+    outcomes,
+    tags,
+    homepage,
+    github,
+    openSource,
+  } = props
   const t = useTranslations()
   const isFeatured = typeof featuredRank === 'number'
   const contextItems = buildContextItems(props)

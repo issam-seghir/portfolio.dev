@@ -1,6 +1,6 @@
-import { Column, Hr, Img, Link, Row, Section, Text } from '@react-email/components'
+import { Column, Hr, Img, Link, Row, Section, Text } from 'react-email'
 
-function Footer() {
+export default function Footer() {
   return (
     <>
       <Hr className='mt-6 mb-3' />
@@ -19,5 +19,3 @@ function Footer() {
     </>
   )
 }
-
-export default Footer

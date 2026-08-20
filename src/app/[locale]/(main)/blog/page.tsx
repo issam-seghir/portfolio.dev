@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import type { Locale } from 'next-intl'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
-import { type Locale, useTranslations } from 'next-intl'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { use } from 'react'
 
 import BlogRssCallout from '@/components/blog/blog-rss-callout'
@@ -35,8 +36,6 @@ export async function generateMetadata(props: PageProps<'/[locale]/blog'>): Prom
 function Page(props: PageProps<'/[locale]/blog'>) {
   const { params } = props
   const { locale } = use(params)
-
-  setRequestLocale(locale as Locale)
 
   const t = useTranslations()
   const title = t('common.labels.blog')

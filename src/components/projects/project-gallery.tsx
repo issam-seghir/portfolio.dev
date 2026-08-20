@@ -8,7 +8,7 @@ import ImageZoom from '@/components/image-zoom'
 type ProjectGalleryProps = {
   slug: string
   gallery: Project['gallery']
-  videoUrl?: Project['videoUrl']
+  videoUrl: Project['videoUrl']
 }
 
 function normalize(item: NonNullable<Project['gallery']>[number], slug: string) {
@@ -16,9 +16,8 @@ function normalize(item: NonNullable<Project['gallery']>[number], slug: string) 
     const src = item.startsWith('http') || item.startsWith('/') ? item : `/images/projects/${slug}/${item}`
     return { src, alt: undefined as string | undefined, caption: undefined as string | undefined }
   }
-  const src = item.src.startsWith('http') || item.src.startsWith('/')
-    ? item.src
-    : `/images/projects/${slug}/${item.src}`
+  const src =
+    item.src.startsWith('http') || item.src.startsWith('/') ? item.src : `/images/projects/${slug}/${item.src}`
   return { src, alt: item.alt, caption: item.caption }
 }
 
@@ -39,19 +38,12 @@ async function ProjectGallery(props: ProjectGalleryProps) {
           {/* Use a generic iframe for video URLs (YouTube/Vimeo) and <video> for local files */}
           {/\.(?:mp4|webm|mov)$/i.test(videoUrl) ? (
             // eslint-disable-next-line jsx-a11y/media-has-caption -- demo videos are non-narrative product captures
-            <video
-              src={videoUrl}
-              controls
-              playsInline
-              preload='metadata'
-              className='size-full object-cover'
-            />
+            <video src={videoUrl} controls playsInline preload='metadata' className='size-full object-cover' />
           ) : (
             <iframe
               src={videoUrl}
               title='Project video'
               loading='lazy'
-              // eslint-disable-next-line @eslint-react/dom/no-unsafe-iframe-sandbox -- author-controlled embed source (YouTube/Vimeo)
               sandbox='allow-scripts allow-same-origin allow-presentation allow-popups'
               allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
               allowFullScreen
@@ -77,9 +69,7 @@ async function ProjectGallery(props: ProjectGalleryProps) {
                   />
                 </div>
               </ImageZoom>
-              {item.caption && (
-                <figcaption className='text-xs text-muted-foreground'>{item.caption}</figcaption>
-              )}
+              {item.caption && <figcaption className='text-xs text-muted-foreground'>{item.caption}</figcaption>}
             </figure>
           ))}
         </div>

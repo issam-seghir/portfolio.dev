@@ -26,7 +26,7 @@ function Messages() {
     if (inView && hasNextPage) void fetchNextPage()
   }, [fetchNextPage, hasNextPage, inView])
 
-  const noMessages = isSuccess && data.pages.every((page) => page.messages.length === 0)
+  const isNoMessages = isSuccess && data.pages.every((page) => page.messages.length === 0)
 
   return (
     <div className='flex flex-col gap-4' data-testid='guestbook-messages-list'>
@@ -39,7 +39,7 @@ function Messages() {
           <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-messages')}</p>
         </div>
       )}
-      {noMessages && (
+      {isNoMessages && (
         <div className='flex min-h-24 items-center justify-center'>
           <p className='text-sm text-muted-foreground'>{t('guestbook.no-messages')}</p>
         </div>

@@ -14,7 +14,7 @@ export function getPathnames(options: GetPathnamesOptions = {}) {
     '/blog',
     '/guestbook',
     '/projects',
-    '/design',
+    '/store',
     ...new Set(allPages.map((page) => `/${page.slug}`)),
     ...new Set(allProjects.filter((project) => !project.hidden).map((project) => `/projects/${project.slug}`)),
     ...new Set(allPosts.map((post) => `/blog/${post.slug}`)),

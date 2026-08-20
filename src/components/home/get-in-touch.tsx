@@ -35,7 +35,7 @@ function GetInTouch() {
         animate={isInView ? { opacity: 1, scale: 1 } : undefined}
         transition={{ duration: 0.5 }}
       >
-        <div className='absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/20 via-violet-500/20 to-blue-500/20 animate-[spin_8s_linear_infinite] blur-sm' />
+        <div className='absolute inset-0 animate-[spin_8s_linear_infinite] rounded-2xl bg-linear-to-r from-blue-500/20 via-violet-500/20 to-blue-500/20 blur-sm' />
         <div className='relative rounded-2xl bg-background px-4 py-8 shadow-feature-card sm:px-8 md:p-12'>
           <div className='relative z-10 mx-auto max-w-xl text-center'>
             <motion.div
@@ -47,10 +47,10 @@ function GetInTouch() {
               <SendIcon className='size-6 text-muted-foreground sm:size-7' />
             </motion.div>
 
-            <h2 className='text-balance text-2xl font-semibold tracking-tight sm:text-3xl'>
+            <h2 className='text-2xl font-semibold tracking-tight text-balance sm:text-3xl'>
               {t('homepage.get-in-touch.title')}
             </h2>
-            <p className='mt-3 text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base'>
+            <p className='mt-3 text-sm/relaxed text-pretty text-muted-foreground sm:text-base'>
               {t('homepage.get-in-touch.description')}
             </p>
 
@@ -59,7 +59,7 @@ function GetInTouch() {
                 href='mailto:issamusma@hotmail.com'
                 className={cn(
                   buttonVariants({ size: 'lg' }),
-                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
                 )}
               >
                 <MailIcon className='size-4 shrink-0' />
@@ -71,7 +71,7 @@ function GetInTouch() {
                 rel='noopener noreferrer'
                 className={cn(
                   buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
                 )}
               >
                 <WhatsAppIcon className='size-4 shrink-0' />
@@ -83,7 +83,7 @@ function GetInTouch() {
                 rel='noopener noreferrer'
                 className={cn(
                   buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
                 )}
               >
                 <LinkedInIcon className='size-4 shrink-0' />
@@ -95,7 +95,7 @@ function GetInTouch() {
                 rel='noopener noreferrer'
                 className={cn(
                   buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'gap-2 min-h-11 w-full shrink-0 justify-center sm:w-auto sm:min-w-44',
+                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
                 )}
               >
                 <SiGithub className='size-4 shrink-0' />
@@ -105,7 +105,7 @@ function GetInTouch() {
 
             <div className='mt-6 flex min-w-0 items-center justify-center gap-2 px-2'>
               {/* <div className='size-2 shrink-0 rounded-full bg-green-500' aria-hidden /> */}
-              <p className='max-w-md text-balance text-center text-xs leading-relaxed text-muted-foreground sm:text-sm'>
+              <p className='max-w-md text-center text-xs/relaxed text-balance text-muted-foreground sm:text-sm'>
                 {t('homepage.get-in-touch.availability')}
               </p>
             </div>

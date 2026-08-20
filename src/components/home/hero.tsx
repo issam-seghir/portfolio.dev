@@ -13,11 +13,7 @@ import { Link } from '@/components/ui/link'
 import { MY_NAME } from '@/lib/constants'
 import { cn } from '@/utils/cn'
 
-const TAGLINES = [
-  'homepage.hero.tagline',
-  'homepage.hero.tagline-2',
-  'homepage.hero.tagline-3',
-] as const
+const TAGLINES = ['homepage.hero.tagline', 'homepage.hero.tagline-2', 'homepage.hero.tagline-3'] as const
 
 function DescriptionWithHighlight({ text, highlight }: { text: string; highlight: string }) {
   if (!text.includes(highlight)) {
@@ -28,7 +24,7 @@ function DescriptionWithHighlight({ text, highlight }: { text: string; highlight
     <>
       {before && <HoverWords text={before} />}
       <motion.span
-        className='relative inline-block font-semibold bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-violet-600 to-blue-600 dark:from-blue-400 dark:via-violet-400 dark:to-blue-400 bg-[length:200%_auto] animate-[shimmer_3s_linear_infinite]'
+        className='relative inline-block animate-[shimmer_3s_linear_infinite] bg-linear-to-r from-blue-600 via-violet-600 to-blue-600 bg-size-[200%_auto] bg-clip-text font-semibold text-transparent dark:from-blue-400 dark:via-violet-400 dark:to-blue-400'
         initial={{ opacity: 0, y: 2 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
@@ -55,7 +51,9 @@ function Hero() {
     const interval = setInterval(() => {
       setTaglineIndex((prev) => (prev + 1) % TAGLINES.length)
     }, 3000)
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
   const handleMouseMove = useCallback(
@@ -79,8 +77,8 @@ function Hero() {
     <div className='relative my-20 space-y-10 overflow-x-clip md:my-28'>
       <div className='pointer-events-none absolute inset-0 -z-10 overflow-x-clip'>
         {/* Sized to viewport so blur halos cannot extend past the page on &lt;560px screens */}
-        <div className='absolute -top-32 left-1/2 size-[min(500px,120vw)] max-sm:size-[min(280px,90vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12),transparent_70%)] blur-3xl dark:bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_70%)]' />
-        <div className='absolute -top-20 left-1/2 size-[min(400px,110vw)] max-sm:size-[min(240px,85vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.1),transparent_70%)] blur-3xl dark:bg-[radial-gradient(circle,rgba(139,92,246,0.06),transparent_70%)] sm:left-1/4 sm:translate-x-0' />
+        <div className='absolute -top-32 left-1/2 size-[min(500px,120vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12),transparent_70%)] blur-3xl max-sm:size-[min(280px,90vw)] dark:bg-[radial-gradient(circle,rgba(59,130,246,0.08),transparent_70%)]' />
+        <div className='absolute -top-20 left-1/2 size-[min(400px,110vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.1),transparent_70%)] blur-3xl max-sm:size-[min(240px,85vw)] sm:left-1/4 sm:translate-x-0 dark:bg-[radial-gradient(circle,rgba(139,92,246,0.06),transparent_70%)]' />
       </div>
 
       <div className='flex justify-between gap-8'>
@@ -113,7 +111,7 @@ function Hero() {
                 <AnimatePresence mode='wait'>
                   <motion.span
                     key={taglineIndex}
-                    className='inline-block bg-clip-text text-transparent bg-linear-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400'
+                    className='inline-block bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-violet-400'
                     initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: -20, filter: 'blur(8px)' }}
@@ -128,7 +126,7 @@ function Hero() {
           </div>
 
           <motion.p
-            className='max-w-lg text-base text-muted-foreground sm:text-lg leading-relaxed'
+            className='max-w-lg text-base/relaxed text-muted-foreground sm:text-lg'
             initial={{ opacity: 0, filter: 'blur(10px)' }}
             animate={{ opacity: 1, filter: 'blur(0px)' }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -165,7 +163,7 @@ function Hero() {
 
         <motion.div
           ref={avatarRef}
-          className='relative hidden w-44 shrink-0 md:block lg:w-56 aspect-[224/150] overflow-hidden rounded-xl ring-2 ring-border'
+          className='relative hidden aspect-224/150 w-44 shrink-0 overflow-hidden rounded-xl ring-2 ring-border md:block lg:w-56'
           initial={{ scale: 0, opacity: 0, filter: 'blur(20px)' }}
           animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
           transition={{ duration: 0.6, delay: 0.2, type: 'spring', stiffness: 200, damping: 20 }}
@@ -191,7 +189,15 @@ function Hero() {
           />
           <div className='absolute inset-0 -z-10 bg-linear-to-tl from-blue-600 to-violet-600 opacity-30 blur-3xl' />
           <BorderBeam duration={6} size={200} borderWidth={2} colorFrom='transparent' colorTo='rgb(59 130 246)' />
-          <BorderBeam duration={6} delay={3} size={200} borderWidth={2} colorFrom='transparent' colorTo='rgb(139 92 246)' reverse />
+          <BorderBeam
+            duration={6}
+            delay={3}
+            size={200}
+            borderWidth={2}
+            colorFrom='transparent'
+            colorTo='rgb(139 92 246)'
+            reverse
+          />
         </motion.div>
       </div>
 

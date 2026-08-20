@@ -69,45 +69,45 @@ function Card(props: CardProps) {
   return (
     <div>
       <Link href={`/blog/${post.slug}`} className='group relative block rounded-2xl p-2 shadow-feature-card'>
-          <div className='flex items-center justify-between px-3 py-3 sm:p-4'>
-            <div className='flex items-center gap-2 sm:gap-3'>
-              <PencilIcon className='size-4 sm:size-4.5' />
-              <h2 className='text-sm sm:text-base'>{t('homepage.latest-articles.card')}</h2>
-            </div>
-            <ArrowUpRightIcon className='size-4 opacity-0 transition-opacity group-hover:opacity-100 sm:size-4.5' />
+        <div className='flex items-center justify-between p-3 sm:p-4'>
+          <div className='flex items-center gap-2 sm:gap-3'>
+            <PencilIcon className='size-4 sm:size-4.5' />
+            <h2 className='text-sm sm:text-base'>{t('homepage.latest-articles.card')}</h2>
           </div>
+          <ArrowUpRightIcon className='size-4 opacity-0 transition-opacity group-hover:opacity-100 sm:size-4.5' />
+        </div>
 
-          {/* Fixed aspect ratio reserves space before image decode — avoids mobile layout jump */}
-          <div className='relative aspect-1200/630 w-full overflow-hidden rounded-lg bg-muted/30'>
-            <BlurImage
-              fill
-              sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px'
-              src={`/images/blog/${post.slug}/cover.png`}
-              alt={post.title}
-              className='rounded-lg'
-              imageClassName='object-cover'
-              lazy={index >= 2}
-            />
-          </div>
+        {/* Fixed aspect ratio reserves space before image decode — avoids mobile layout jump */}
+        <div className='relative aspect-1200/630 w-full overflow-hidden rounded-lg bg-muted/30'>
+          <BlurImage
+            fill
+            sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px'
+            src={`/images/blog/${post.slug}/cover.png`}
+            alt={post.title}
+            className='rounded-lg'
+            imageClassName='object-cover'
+            lazy={index >= 2}
+          />
+        </div>
 
-          <div className='flex flex-wrap items-center justify-between gap-1 px-3 pt-3 text-xs text-muted-foreground sm:gap-2 sm:px-2 sm:pt-4 sm:text-sm'>
-            <span className='shrink-0'>{formattedDate ?? '--'}</span>
-            <div className='flex min-h-5 min-w-0 flex-wrap items-center gap-2 tabular-nums'>
-              {likesQuery.isLoading && <span className='text-muted-foreground/50'>…</span>}
-              {likesQuery.isError && t('common.error')}
-              {likesQuery.isSuccess && <span>{t('common.likes', { count: likesQuery.data.likes })}</span>}
-              <span className='text-muted-foreground/40'>&middot;</span>
-              {viewsQuery.isLoading && <span className='text-muted-foreground/50'>…</span>}
-              {viewsQuery.isError && t('common.error')}
-              {viewsQuery.isSuccess && <span>{t('common.views', { count: viewsQuery.data.views })}</span>}
-            </div>
+        <div className='flex flex-wrap items-center justify-between gap-1 px-3 pt-3 text-xs text-muted-foreground sm:gap-2 sm:px-2 sm:pt-4 sm:text-sm'>
+          <span className='shrink-0'>{formattedDate ?? '--'}</span>
+          <div className='flex min-h-5 min-w-0 flex-wrap items-center gap-2 tabular-nums'>
+            {likesQuery.isLoading && <span className='text-muted-foreground/50'>…</span>}
+            {likesQuery.isError && t('common.error')}
+            {likesQuery.isSuccess && <span>{t('common.likes', { count: likesQuery.data.likes })}</span>}
+            <span className='text-muted-foreground/40'>&middot;</span>
+            {viewsQuery.isLoading && <span className='text-muted-foreground/50'>…</span>}
+            {viewsQuery.isError && t('common.error')}
+            {viewsQuery.isSuccess && <span>{t('common.views', { count: viewsQuery.data.views })}</span>}
           </div>
+        </div>
 
-          <div className='flex flex-col px-3 py-3 transition-transform ease-out group-hover:translate-x-0.5 sm:px-2 sm:py-4'>
-            <h3 className='text-lg font-semibold sm:text-2xl'>{post.title}</h3>
-            <p className='mt-1.5 text-sm text-muted-foreground sm:mt-2 sm:text-base'>{post.summary}</p>
-          </div>
-        </Link>
+        <div className='flex flex-col p-3 transition-transform ease-out group-hover:translate-x-0.5 sm:px-2 sm:py-4'>
+          <h3 className='text-lg font-semibold sm:text-2xl'>{post.title}</h3>
+          <p className='mt-1.5 text-sm text-muted-foreground sm:mt-2 sm:text-base'>{post.summary}</p>
+        </div>
+      </Link>
     </div>
   )
 }

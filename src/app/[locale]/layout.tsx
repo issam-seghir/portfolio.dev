@@ -1,12 +1,11 @@
-import type { Viewport } from 'next'
-
 import '@/styles/globals.css'
+
+import type { Viewport } from 'next'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { JetBrains_Mono, Noto_Sans_Arabic, Plus_Jakarta_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
 
 import Analytics from '@/components/analytics'
@@ -52,8 +51,6 @@ async function Layout(props: LayoutProps<'/[locale]'>) {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-
-  setRequestLocale(locale)
 
   return (
     <html

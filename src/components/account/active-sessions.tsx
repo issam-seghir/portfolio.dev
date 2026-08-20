@@ -16,7 +16,6 @@ import { useRouter } from '@/i18n/routing'
 import { useSession } from '@/lib/auth-client'
 
 import Tip from '../tip'
-
 import ActiveSessionsSkeleton from './active-sessions-skeleton'
 
 function ActiveSessions() {
@@ -72,7 +71,7 @@ function Session(props: SessionProps) {
 
   // Bowser v2 exports a class as default; 'parse' is a static method, not a named export.
   // This triggers a false positive in import-x which expects 'parse' to be a named export.
-  // eslint-disable-next-line import-x/no-named-as-default-member
+
   const { browser, os, platform } = Bowser.parse(session.userAgent ?? '')
 
   const platformType = (platform.type ?? 'desktop') as keyof typeof PLATFORM_ICONS

@@ -1,11 +1,13 @@
 'use client'
 
+import type { TestimonialCountryFlag } from '@/components/testimonial-avatar'
+
 import { QuoteIcon, StarIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
-import { TestimonialAvatar, type TestimonialCountryFlag } from '@/components/testimonial-avatar'
+import { TestimonialAvatar } from '@/components/testimonial-avatar'
 
 type TestimonialItem = {
   quoteKey: string
@@ -96,18 +98,13 @@ function Testimonials() {
                 <p className='truncate text-xs text-muted-foreground'>{t(item.roleKey as never)}</p>
               </div>
               <div className='flex shrink-0 gap-0.5'>
-                {Array.from({ length: item.stars }).map((_, i) => (
-                  <StarIcon
-                    key={i}
-                    className='size-3 fill-amber-400 text-amber-400'
-                  />
+                {Array.from({ length: item.stars }, (_, i) => (
+                  <StarIcon key={i} className='size-3 fill-amber-400 text-amber-400' />
                 ))}
               </div>
             </div>
             <QuoteIcon className='mb-1 size-4 text-primary/30' />
-            <p className='flex-1 text-sm leading-relaxed text-muted-foreground'>
-              &ldquo;{t(item.quoteKey as never)}&rdquo;
-            </p>
+            <p className='flex-1 text-sm/relaxed text-muted-foreground'>&ldquo;{t(item.quoteKey as never)}&rdquo;</p>
           </motion.div>
         ))}
       </div>

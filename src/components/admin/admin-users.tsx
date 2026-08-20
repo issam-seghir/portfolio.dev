@@ -6,7 +6,7 @@ import { useListUsersAdmin } from '@/hooks/queries/admin.query'
 
 import UsersTable from '../tables/users'
 
-function AdminUsers() {
+export default function AdminUsers() {
   const { data, isSuccess, isLoading, isError } = useListUsersAdmin()
   const t = useTranslations()
 
@@ -18,5 +18,3 @@ function AdminUsers() {
     </>
   )
 }
-
-export default AdminUsers

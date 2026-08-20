@@ -1,6 +1,8 @@
 'use client'
 
-import { motion, type Transition } from 'motion/react'
+import type { Transition } from 'motion/react'
+
+import { motion } from 'motion/react'
 
 import { cn } from '@/utils/cn'
 
@@ -33,15 +35,13 @@ function BorderBeam({
 }: BorderBeamProps) {
   return (
     <div
-      className='pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]'
-      style={
-        {
-          borderWidth: `${borderWidth}px`,
-        } as React.CSSProperties
-      }
+      className='pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent mask-[linear-gradient(transparent,transparent),linear-gradient(#000,#000)] mask-intersect [mask-clip:padding-box,border-box]'
+      style={{
+        borderWidth: `${borderWidth}px`,
+      }}
     >
       <motion.div
-        className={cn('absolute left-0 top-0 aspect-square', className)}
+        className={cn('absolute top-0 left-0 aspect-square', className)}
         style={{
           width: size,
           offsetPath: `rect(0 auto auto 0 round ${size}px)`,

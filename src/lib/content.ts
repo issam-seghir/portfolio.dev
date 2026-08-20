@@ -1,8 +1,11 @@
 import 'server-only'
 
-import { allPages, allPosts, allProjects, type Project } from 'content-collections'
+import type { Project } from 'content-collections'
+import type { StoreCategory } from '@/config/store-products'
 
-import { STORE_PRODUCTS, type StoreCategory } from '@/config/store-products'
+import { allPages, allPosts, allProjects } from 'content-collections'
+
+import { STORE_PRODUCTS } from '@/config/store-products'
 
 /** Project that is safe to expose publicly (not hidden). */
 export type PublicProject = Project
@@ -29,10 +32,7 @@ export type GetStoreProductsResult = {
   perPage: number
 }
 
-export function getStoreProducts(
-  locale: string,
-  params: GetStoreProductsParams = {},
-): GetStoreProductsResult {
+export function getStoreProducts(locale: string, params: GetStoreProductsParams = {}): GetStoreProductsResult {
   const { q = '', category = 'all', sort = 'newest', page = 1, perPage = 9 } = params
 
   let filtered = STORE_PRODUCTS.filter((p) => p.locale === locale)
@@ -106,11 +106,7 @@ export function getLatestProjects(locale: string, limit: number = allProjects.le
  *  2. Same `projectType`
  *  3. Recency
  */
-export function getRelatedProjects(
-  locale: string,
-  slug: string,
-  limit = 3,
-): PublicProject[] {
+export function getRelatedProjects(locale: string, slug: string, limit = 3): PublicProject[] {
   const current = allProjects.find((p) => p.slug === slug && p.locale === locale)
   if (!current) return []
 
@@ -141,7 +137,7 @@ export const HOMEPAGE_SELECTED_PROJECTS_LIMIT = 4
 export function getSelectedProjects(locale: string, limit?: number) {
   function getRank(p: (typeof allProjects)[number]) {
     // Lower rank = higher priority; unranked items come last.
-    return p.featuredRank ?? Number.POSITIVE_INFINITY
+    return p.featuredRank ?? Infinity
   }
 
   const sorted = allProjects

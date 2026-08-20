@@ -41,11 +41,11 @@ type DecorationPosition = 'inside' | 'outside' | 'none'
 
 function getDecorationPosition(value: string, start: number, end: number, marker: string): DecorationPosition {
   const selected = value.slice(start, end)
-  const inside = selected.length >= 2 * marker.length && selected.startsWith(marker) && selected.endsWith(marker)
-  const outside =
+  const isInside = selected.length >= 2 * marker.length && selected.startsWith(marker) && selected.endsWith(marker)
+  const isOutside =
     value.slice(start - marker.length, start) === marker && value.slice(end, end + marker.length) === marker
-  if (inside) return 'inside'
-  if (outside) return 'outside'
+  if (isInside) return 'inside'
+  if (isOutside) return 'outside'
   return 'none'
 }
 
@@ -210,14 +210,14 @@ export function useCommentEditor(options: UseCommentEditorOptions = {}) {
     const marker = MARKER_MAP[type]
     const { value } = textarea
     let { selectionStart: start, selectionEnd: end } = textarea
-    let keepCaretPos = false
+    let isKeepCaretPos = false
 
     // If there is no text is selected → handle the word under the caret
     if (start === end) {
       const { left, right } = getWordBounds(value, start)
 
-      const noWordUnderCaret = left === right
-      if (noWordUnderCaret) {
+      const isNoWordUnderCaret = left === right
+      if (isNoWordUnderCaret) {
         // If no word under caret → insert a pair of markers
         applyPairAtCaret(textarea, start, marker)
         return
@@ -226,7 +226,7 @@ export function useCommentEditor(options: UseCommentEditorOptions = {}) {
       // If there is a word under the caret → select the whole word and keep the caret relative position
       start = left
       end = right
-      keepCaretPos = true
+      isKeepCaretPos = true
     }
 
     // Calculate replacement text and range
@@ -238,7 +238,7 @@ export function useCommentEditor(options: UseCommentEditorOptions = {}) {
       action,
       marker.length,
       position,
-      keepCaretPos,
+      isKeepCaretPos,
     )
 
     // Apply replacement and update caret
@@ -498,7 +498,6 @@ export function useCommentEditor(options: UseCommentEditorOptions = {}) {
     if (!ta) return
 
     pushUndo(createSnapshot(ta))
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- only run once
   }, [])
 
   return {

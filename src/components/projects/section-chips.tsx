@@ -21,7 +21,7 @@ function SectionChips(props: SectionChipsProps) {
   return (
     <nav
       aria-label='Sections'
-      className='-mx-4 mt-6 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden'
+      className='-mx-4 mt-6 flex scrollbar-none gap-2 overflow-x-auto px-4 pb-1 lg:hidden [&::-webkit-scrollbar]:hidden'
     >
       {top.map((item) => (
         <Link

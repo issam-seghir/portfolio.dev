@@ -48,7 +48,7 @@ function CommentReply() {
   }
 
   const isAuthenticated = session !== null
-  const disabled = !isAuthenticated || isCreating
+  const isDisabled = !isAuthenticated || isCreating
 
   return (
     <form onSubmit={submitCommentReply}>
@@ -63,7 +63,7 @@ function CommentReply() {
             setIsReplying(false)
           }}
           placeholder={t('blog.comments.reply-to-comment')}
-          disabled={disabled}
+          disabled={isDisabled}
           // eslint-disable-next-line jsx-a11y/no-autofocus -- autofocus is necessary because user is replying to a comment
           autoFocus
           data-testid='comment-textarea-reply'
@@ -75,8 +75,8 @@ function CommentReply() {
           variant='secondary'
           size='sm'
           type='submit'
-          disabled={disabled || !content}
-          aria-disabled={disabled || !content}
+          disabled={isDisabled || !content}
+          aria-disabled={isDisabled || !content}
           data-testid='comment-submit-reply-button'
         >
           {t('blog.comments.reply')}

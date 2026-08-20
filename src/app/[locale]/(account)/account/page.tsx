@@ -23,7 +23,7 @@ export async function generateMetadata(props: PageProps<'/[locale]/account'>): P
   })
 }
 
-function Page() {
+export default function Page() {
   return (
     <>
       <Profile />
@@ -31,5 +31,3 @@ function Page() {
     </>
   )
 }
-
-export default Page

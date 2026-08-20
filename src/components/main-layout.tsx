@@ -12,10 +12,7 @@ function MainLayout(props: MainLayoutProps) {
   return (
     <>
       <LayoutHeader />
-      <main
-        id='skip-nav'
-        className='mx-auto mb-16 min-w-0 w-full max-w-5xl flex-1 overflow-x-clip px-6 py-24 sm:px-8'
-      >
+      <main id='skip-nav' className='mx-auto mb-16 w-full max-w-5xl min-w-0 flex-1 overflow-x-clip px-6 py-24 sm:px-8'>
         {children}
       </main>
       <LayoutFooter />

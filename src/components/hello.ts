@@ -2,9 +2,8 @@
 
 import { useEffect } from 'react'
 
-function Hello() {
+export default function Hello() {
   useEffect(() => {
-    // eslint-disable-next-line no-console
     console.log(
       `%c
   ╦╔═╗╔═╗╔═╗╔╦╗
@@ -27,5 +26,3 @@ function Hello() {
 
   return null
 }
-
-export default Hello

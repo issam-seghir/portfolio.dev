@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/components/ui/link'
 import { cn } from '@/utils/cn'
 
-function EcomeniaHighlight() {
+export default function EcomeniaHighlight() {
   const t = useTranslations('about')
 
   return (
@@ -27,13 +27,13 @@ function EcomeniaHighlight() {
             <span className='flex size-7 items-center justify-center rounded-md bg-primary/10 text-primary'>
               <RocketIcon className='size-3.5' />
             </span>
-            <p className='text-xs font-semibold uppercase tracking-wider text-muted-foreground'>
+            <p className='text-xs font-semibold tracking-wider text-muted-foreground uppercase'>
               {t('featured-ecomenia.heading')}
             </p>
           </div>
 
           <h3 className='mt-3 text-xl font-semibold tracking-tight'>{t('featured-ecomenia.title')}</h3>
-          <p className='mt-2 text-sm leading-relaxed text-muted-foreground'>{t('featured-ecomenia.body')}</p>
+          <p className='mt-2 text-sm/relaxed text-muted-foreground'>{t('featured-ecomenia.body')}</p>
 
           <Link
             href='/projects/ecomenia'
@@ -50,5 +50,3 @@ function EcomeniaHighlight() {
     </div>
   )
 }
-
-export default EcomeniaHighlight

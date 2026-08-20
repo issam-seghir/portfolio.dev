@@ -1,11 +1,15 @@
-import type { AdminCommentListOutput } from '@/orpc/client'
 import type { ColumnDef } from '@tanstack/react-table'
+import type { AdminCommentListOutput } from '@/orpc/client'
+
+import { tableFeatures } from '@tanstack/react-table'
 
 import FormattedDateCell from '../formatted-date-cell'
 
 export type Comment = AdminCommentListOutput['comments'][number]
 
-export const columns: Array<ColumnDef<Comment>> = [
+export const commentsTableFeatures = tableFeatures({})
+
+export const columns: Array<ColumnDef<typeof commentsTableFeatures, Comment>> = [
   {
     accessorKey: 'userId',
     header: 'User ID',

@@ -1,7 +1,7 @@
 'use client'
 
-import NumberFlow from '@number-flow/react'
 import { SiGithub } from '@icons-pack/react-simple-icons'
+import NumberFlow from '@number-flow/react'
 import { MailIcon } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
@@ -35,21 +35,26 @@ const STATS = [
 export function AboutHero() {
   const t = useTranslations()
   const statsRef = useRef<HTMLDivElement>(null)
-  const statsInView = useInView(statsRef, { once: true, margin: '-50px' })
+  const isStatsInView = useInView(statsRef, { once: true, margin: '-50px' })
   const [animateStats, setAnimateStats] = useState(false)
 
   useEffect(() => {
-    if (statsInView) {
-      const timer = setTimeout(() => setAnimateStats(true), 200)
-      return () => clearTimeout(timer)
+    if (!isStatsInView) {
+      return
     }
-    return undefined
-  }, [statsInView])
+
+    const timer = setTimeout(() => {
+      setAnimateStats(true)
+    }, 200)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [isStatsInView])
 
   return (
     <>
       {/* Hero section */}
-      <div className='flex min-w-0 w-full flex-col items-center gap-8 pt-12 pb-10 sm:pt-16 sm:pb-12 md:flex-row md:items-start md:gap-10 lg:gap-12'>
+      <div className='flex w-full min-w-0 flex-col items-center gap-8 pt-12 pb-10 sm:pt-16 sm:pb-12 md:flex-row md:items-start md:gap-10 lg:gap-12'>
         <div className='relative shrink-0'>
           <BlurImage
             src='/images/avatar.png'
@@ -62,9 +67,9 @@ export function AboutHero() {
           <div className='absolute inset-0 -z-10 bg-linear-to-tl from-blue-600 to-violet-600 opacity-20 blur-3xl' />
         </div>
 
-        <div className='flex min-w-0 w-full max-w-xl flex-1 flex-col items-center gap-4 text-center md:max-w-none md:items-start md:text-start'>
+        <div className='flex w-full max-w-xl min-w-0 flex-1 flex-col items-center gap-4 text-center md:max-w-none md:items-start md:text-start'>
           <div className='min-w-0'>
-            <h1 className='text-balance text-3xl font-bold tracking-tight sm:text-4xl'>{MY_NAME}</h1>
+            <h1 className='text-3xl font-bold tracking-tight text-balance sm:text-4xl'>{MY_NAME}</h1>
             <p
               className={cn(
                 'mt-1 text-base font-medium sm:text-lg',
@@ -76,7 +81,7 @@ export function AboutHero() {
             </p>
           </div>
 
-          <p className='max-w-lg text-pretty text-base leading-relaxed text-foreground/95 md:max-w-2xl md:text-[1.0625rem]'>
+          <p className='max-w-lg text-base/relaxed text-pretty text-foreground/95 md:max-w-2xl md:text-[1.0625rem]'>
             {t('about.description')}
           </p>
 
@@ -91,10 +96,7 @@ export function AboutHero() {
           <div className='flex w-full max-w-md flex-wrap justify-center gap-2 sm:max-w-none md:justify-start'>
             <a
               href={SITE_CONTACT_MAILTO}
-              className={cn(
-                buttonVariants({ size: 'sm' }),
-                'min-h-10 gap-1.5 px-4 sm:min-h-9',
-              )}
+              className={cn(buttonVariants({ size: 'sm' }), 'min-h-10 gap-1.5 px-4 sm:min-h-9')}
             >
               <MailIcon className='size-3.5 shrink-0' aria-hidden />
               {t('about.contact')}
@@ -103,10 +105,7 @@ export function AboutHero() {
               href={SITE_WHATSAPP_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'sm' }),
-                'min-h-10 gap-1.5 px-4 sm:min-h-9',
-              )}
+              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'min-h-10 gap-1.5 px-4 sm:min-h-9')}
             >
               <WhatsAppIcon className='size-3.5 shrink-0' aria-hidden />
               {t('about.connect.whatsapp')}
@@ -115,10 +114,7 @@ export function AboutHero() {
               href={SITE_LINKEDIN_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'sm' }),
-                'min-h-10 gap-1.5 px-4 sm:min-h-9',
-              )}
+              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'min-h-10 gap-1.5 px-4 sm:min-h-9')}
             >
               <LinkedInIcon className='size-3.5 shrink-0' aria-hidden />
               LinkedIn
@@ -127,10 +123,7 @@ export function AboutHero() {
               href={SITE_GITHUB_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'sm' }),
-                'min-h-10 gap-1.5 px-4 sm:min-h-9',
-              )}
+              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'min-h-10 gap-1.5 px-4 sm:min-h-9')}
             >
               <SiGithub className='size-3.5 shrink-0' aria-hidden />
               GitHub
@@ -144,7 +137,7 @@ export function AboutHero() {
         ref={statsRef}
         className='mb-12 grid min-w-0 grid-cols-3 gap-2 sm:mb-16 sm:gap-4'
         initial={{ opacity: 0, y: 30 }}
-        animate={statsInView ? { opacity: 1, y: 0 } : undefined}
+        animate={isStatsInView ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.5, delay: 0.1 }}
       >
         {STATS.map((stat, index) => (
@@ -152,23 +145,19 @@ export function AboutHero() {
             key={stat.labelKey}
             className='group flex min-w-0 flex-col items-center justify-between gap-1 rounded-2xl border border-border/60 bg-card/30 p-3 shadow-feature-card transition-colors hover:bg-accent/30 sm:gap-1.5 sm:p-5'
             initial={{ opacity: 0, y: 20 }}
-            animate={statsInView ? { opacity: 1, y: 0 } : undefined}
+            animate={isStatsInView ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
           >
             {stat.kind === 'count' ? (
-              <span className='text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400 sm:text-3xl'>
-                <NumberFlow
-                  value={animateStats ? stat.value : 0}
-                  suffix={stat.suffix}
-                  className='text-inherit'
-                />
+              <span className='text-2xl font-bold text-blue-600 tabular-nums sm:text-3xl dark:text-blue-400'>
+                <NumberFlow value={animateStats ? stat.value : 0} suffix={stat.suffix} className='text-inherit' />
               </span>
             ) : (
               <span className='flex flex-row items-center gap-1'>
                 <span className='text-xl leading-none sm:text-2xl' aria-hidden>
                   {stat.emoji}
                 </span>
-                <span className='text-2xl font-bold tabular-nums text-blue-600 dark:text-blue-400 sm:text-3xl'>
+                <span className='text-2xl font-bold text-blue-600 tabular-nums sm:text-3xl dark:text-blue-400'>
                   {stat.display}
                 </span>
               </span>

@@ -39,7 +39,7 @@ function Marquee(props: MarqueeProps) {
         gap,
       }}
     >
-      {Array.from({ length: 2 }).map((_index, number) => (
+      {Array.from({ length: 2 }, (_, number) => (
         <div
           key={number}
           style={{

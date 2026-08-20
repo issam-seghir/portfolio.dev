@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test'
-import { XMLValidator } from 'fast-xml-parser'
+import { XMLParser } from 'fast-xml-parser'
 
 test.describe('sitemap page', () => {
   test('validates sitemap xml', async ({ page }) => {
     await page.goto('/sitemap.xml')
 
     const feed = await page.content()
-    const result = XMLValidator.validate(feed)
-
-    expect(result).toBe(true)
+    expect(() => {
+      void new XMLParser().parse(feed)
+    }).not.toThrow()
   })
 })

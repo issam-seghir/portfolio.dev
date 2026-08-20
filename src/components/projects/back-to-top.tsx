@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 
-function BackToTop() {
+export default function BackToTop() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
@@ -14,7 +14,9 @@ function BackToTop() {
     }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   if (!show) return null
@@ -24,12 +26,11 @@ function BackToTop() {
       type='button'
       variant='secondary'
       className='fixed bottom-2 left-2 z-50 hidden lg:inline-flex'
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      onClick={() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }}
     >
       <ArrowUpIcon className='size-4' /> Top
     </Button>
   )
 }
-
-export default BackToTop
-

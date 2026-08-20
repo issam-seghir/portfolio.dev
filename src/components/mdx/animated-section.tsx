@@ -1,7 +1,9 @@
 'use client'
 
+import type { ReactNode } from 'react'
+
 import { motion, useInView } from 'motion/react'
-import { type ReactNode, useRef } from 'react'
+import { useRef } from 'react'
 
 type AnimatedSectionProps = {
   children: ReactNode

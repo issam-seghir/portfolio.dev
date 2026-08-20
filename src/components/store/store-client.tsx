@@ -12,14 +12,12 @@ import StoreProductCard from './store-product-card'
 
 type StoreClientProps = {
   products: StoreProduct[]
-  total: number
   totalPages: number
   page: number
-  perPage: number
 }
 
 function StoreClient(props: StoreClientProps) {
-  const { products, total, totalPages, page, perPage } = props
+  const { products, totalPages, page } = props
   const t = useTranslations('store')
 
   return (
@@ -51,9 +49,7 @@ function StoreClient(props: StoreClientProps) {
 
       <section className='rounded-2xl border bg-muted/30 p-8 text-center'>
         <p className='mb-4 font-medium'>{t('cta.custom-title')}</p>
-        <p className='mx-auto mb-6 max-w-md text-sm text-muted-foreground'>
-          {t('cta.custom-description')}
-        </p>
+        <p className='mx-auto mb-6 max-w-md text-sm text-muted-foreground'>{t('cta.custom-description')}</p>
         <Link
           href='/'
           className='inline-flex h-9 items-center justify-center gap-1.5 rounded-4xl border border-transparent bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/80'

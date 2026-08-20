@@ -1,20 +1,16 @@
 import type { Metadata } from 'next'
+import type { Locale } from 'next-intl'
 import type { AboutPage, WithContext } from 'schema-dts'
 
 import { notFound } from 'next/navigation'
-import { type Locale, useTranslations } from 'next-intl'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { use } from 'react'
 
 import { AboutHero } from '@/components/about/about-hero'
 import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
-import {
-  MY_NAME,
-  SITE_FACEBOOK_URL,
-  SITE_GITHUB_URL,
-  SITE_LINKEDIN_URL,
-} from '@/lib/constants'
+import { MY_NAME, SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
 import { getPageBySlug } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
@@ -43,8 +39,6 @@ function Page(props: PageProps<'/[locale]/about'>) {
   const { params } = props
   const { locale } = use(params)
 
-  setRequestLocale(locale as Locale)
-
   const t = useTranslations()
   const title = t('common.labels.about')
   const description = t('about.description')
@@ -65,9 +59,20 @@ function Page(props: PageProps<'/[locale]/about'>) {
       sameAs: [SITE_FACEBOOK_URL, SITE_LINKEDIN_URL, SITE_GITHUB_URL],
       jobTitle: 'Software Engineer & SaaS Founder',
       knowsAbout: [
-        'React', 'Next.js', 'TypeScript', 'React Native', 'Node.js', 'PostgreSQL',
-        'SaaS Development', 'ERP Systems', 'AI Integration', 'Web Development',
-        'Mobile App Development', 'UI/UX Design', 'Tailwind CSS', 'Prisma',
+        'React',
+        'Next.js',
+        'TypeScript',
+        'React Native',
+        'Node.js',
+        'PostgreSQL',
+        'SaaS Development',
+        'ERP Systems',
+        'AI Integration',
+        'Web Development',
+        'Mobile App Development',
+        'UI/UX Design',
+        'Tailwind CSS',
+        'Prisma',
       ],
     },
     inLanguage: locale,

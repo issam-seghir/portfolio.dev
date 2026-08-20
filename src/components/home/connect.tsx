@@ -8,7 +8,7 @@ import { Link } from '@/components/ui/link'
 import { SOCIAL_LINKS } from '@/config/links'
 import { cn } from '@/utils/cn'
 
-function Connect() {
+export default function Connect() {
   const t = useTranslations()
 
   return (
@@ -35,9 +35,7 @@ function Connect() {
               >
                 {icon}
                 <span className='text-sm'>{title}</span>
-                <span className='ms-auto text-xs opacity-0 transition-opacity group-hover/link:opacity-100'>
-                  ↗
-                </span>
+                <span className='ms-auto text-xs opacity-0 transition-opacity group-hover/link:opacity-100'>↗</span>
               </Link>
             </motion.div>
           )
@@ -46,5 +44,3 @@ function Connect() {
     </div>
   )
 }
-
-export default Connect

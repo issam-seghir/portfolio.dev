@@ -12,7 +12,7 @@ import {
   Section,
   Tailwind,
   Text,
-} from '@react-email/components'
+} from 'react-email'
 
 import Footer from '../components/footer'
 import GeistFont from '../components/geist-font'
@@ -82,9 +82,9 @@ function ReplyEmailTemplate(props: ReplyEmailTemplateProps) {
             </Button>
             <Text className='text-xs text-gray-500'>
               You received this because you enabled notifications for replies to your comments. If you wish to stop
-              receiving these emails, please update your{' '}
-              <Link href='/account/settings'>account settings</Link>. To stop receiving reply
-              notifications for this specific comment, you can <Link href={unsubscribeUrl}>unsubscribe</Link>.
+              receiving these emails, please update your <Link href='/account/settings'>account settings</Link>. To stop
+              receiving reply notifications for this specific comment, you can{' '}
+              <Link href={unsubscribeUrl}>unsubscribe</Link>.
             </Text>
             <Footer />
           </Container>

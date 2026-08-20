@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import type { Locale } from 'next-intl'
 
 import { notFound } from 'next/navigation'
-import { type Locale, useTranslations } from 'next-intl'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { use } from 'react'
 
 import Mdx from '@/components/mdx'
@@ -29,8 +30,6 @@ export async function generateMetadata(props: PageProps<'/[locale]/privacy'>): P
 function Page(props: PageProps<'/[locale]/privacy'>) {
   const { params } = props
   const { locale } = use(params)
-
-  setRequestLocale(locale as Locale)
 
   const t = useTranslations()
   const title = t('common.labels.privacy')

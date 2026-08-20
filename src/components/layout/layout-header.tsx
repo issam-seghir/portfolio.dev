@@ -26,9 +26,9 @@ function LayoutHeader() {
     const currHeaderEl = headerEl
 
     function setScrolled() {
-      const scrolled = window.scrollY > 100
+      const isScrolled = window.scrollY > 100
 
-      currHeaderEl.dataset.scrolled = scrolled ? 'true' : 'false'
+      currHeaderEl.dataset.scrolled = isScrolled ? 'true' : 'false'
     }
 
     function handleScroll() {
@@ -49,11 +49,11 @@ function LayoutHeader() {
   return (
     <header
       ref={headerRef}
-      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 min-w-0 max-w-5xl items-center justify-between gap-2 overflow-x-clip rounded-2xl bg-background/30 px-4 shadow-xs saturate-100 backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80 sm:px-8'
+      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 max-w-5xl min-w-0 items-center justify-between gap-2 overflow-x-clip rounded-2xl bg-background/30 px-4 shadow-xs saturate-100 backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80 sm:px-8'
     >
       <Link
         href='#skip-nav'
-        className='fixed top-4 start-4 -translate-y-20 rounded-4xl border bg-background ps-3 pe-3 py-2 font-medium shadow-xs transition-transform focus-visible:translate-y-0 focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2'
+        className='fixed inset-s-4 top-4 -translate-y-20 rounded-4xl border bg-background py-2 ps-3 pe-3 font-medium shadow-xs transition-transform focus-visible:translate-y-0 focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2'
       >
         <span>{t('layout.skip-to-main-content')}</span>
       </Link>

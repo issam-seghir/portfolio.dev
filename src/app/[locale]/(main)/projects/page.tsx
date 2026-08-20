@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
 import type { CollectionPage, WithContext } from 'schema-dts'
 
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
+import { use } from 'react'
 
 import JsonLd from '@/components/json-ld'
 import PageHeader from '@/components/page-header'
@@ -30,13 +32,11 @@ export async function generateMetadata(props: PageProps<'/[locale]/projects'>): 
   })
 }
 
-async function Page(props: PageProps<'/[locale]/projects'>) {
+function Page(props: PageProps<'/[locale]/projects'>) {
   const { params, searchParams } = props
-  const { locale } = await params
+  const { locale } = use(params)
 
-  setRequestLocale(locale as Locale)
-
-  const t = await getTranslations({ locale: locale as Locale })
+  const t = useTranslations()
   const title = t('common.labels.projects')
   const description = t('projects.description')
   const url = getLocalizedPath({ locale, pathname: '/projects' })

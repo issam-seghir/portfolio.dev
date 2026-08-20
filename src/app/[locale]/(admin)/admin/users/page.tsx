@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import AdminPageHeader from '@/components/admin/admin-page-header'
 import AdminUsers from '@/components/admin/admin-users'
 
-async function Page() {
+export default async function Page() {
   const t = await getTranslations()
 
   return (
@@ -13,5 +13,3 @@ async function Page() {
     </div>
   )
 }
-
-export default Page

@@ -1,5 +1,7 @@
 'use client'
 
+import type { ComponentType } from 'react'
+
 import {
   SiCss,
   SiDrizzle,
@@ -14,7 +16,6 @@ import {
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
-  SiOpenai,
   SiPostgresql,
   SiPrisma,
   SiReact,
@@ -25,10 +26,16 @@ import {
 import { ZapIcon } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react'
 import { useTranslations } from 'next-intl'
-import { type ComponentType, useRef } from 'react'
+import { useRef } from 'react'
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { cn } from '@/utils/cn'
+
+const SiOpenai = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg role='img' viewBox='0 0 24 24' fill='currentColor' {...props}>
+    <path d='M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.739-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023-.141-.085-4.78-2.792a.783.783 0 0 0-.785 0L9.409 9.229V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365 2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z' />
+  </svg>
+)
 
 type TechItem = {
   name: string
@@ -41,26 +48,186 @@ type TechItem = {
 }
 
 const TECH: TechItem[] = [
-  { name: 'React', Icon: SiReact, color: '#61dafb', glow: 'rgba(97,218,251,0.4)', floatDelay: 0, floatDuration: 4, floatY: 6 },
-  { name: 'Next.js', Icon: SiNextdotjs, color: '#ffffff', glow: 'rgba(255,255,255,0.2)', floatDelay: 0.5, floatDuration: 4.5, floatY: 5 },
-  { name: 'TypeScript', Icon: SiTypescript, color: '#3178c6', glow: 'rgba(49,120,198,0.4)', floatDelay: 1, floatDuration: 5, floatY: 7 },
-  { name: 'Tailwind', Icon: SiTailwindcss, color: '#06b6d4', glow: 'rgba(6,182,212,0.4)', floatDelay: 0.3, floatDuration: 4.2, floatY: 5 },
-  { name: 'shadcn/ui', Icon: SiShadcnui, color: '#ffffff', glow: 'rgba(255,255,255,0.15)', floatDelay: 0.35, floatDuration: 4.0, floatY: 5 },
-  { name: 'Node.js', Icon: SiNodedotjs, color: '#339933', glow: 'rgba(51,153,51,0.35)', floatDelay: 0.7, floatDuration: 4.8, floatY: 6 },
-  { name: 'PostgreSQL', Icon: SiPostgresql, color: '#4169e1', glow: 'rgba(65,105,225,0.35)', floatDelay: 1.2, floatDuration: 5.2, floatY: 4 },
-  { name: 'Prisma', Icon: SiPrisma, color: '#ffffff', glow: 'rgba(255,255,255,0.15)', floatDelay: 0.4, floatDuration: 3.8, floatY: 5 },
-  { name: 'Drizzle', Icon: SiDrizzle, color: '#f9b707', glow: 'rgba(249,183,7,0.35)', floatDelay: 0.9, floatDuration: 4.4, floatY: 6 },
-  { name: 'Express', Icon: SiExpress, color: '#ffffff', glow: 'rgba(255,255,255,0.15)', floatDelay: 1.4, floatDuration: 4.6, floatY: 4 },
-  { name: 'FastAPI', Icon: SiFastapi, color: '#009688', glow: 'rgba(0,150,136,0.35)', floatDelay: 1.35, floatDuration: 4.5, floatY: 5 },
-  { name: 'OpenAI', Icon: SiOpenai, color: '#412991', glow: 'rgba(65,41,145,0.35)', floatDelay: 0.55, floatDuration: 4.4, floatY: 6 },
-  { name: 'LLM', Icon: SiHuggingface, color: '#ffac33', glow: 'rgba(255,172,51,0.35)', floatDelay: 1.25, floatDuration: 4.2, floatY: 5 },
-  { name: 'MongoDB', Icon: SiMongodb, color: '#47a248', glow: 'rgba(71,162,72,0.35)', floatDelay: 0.6, floatDuration: 5.0, floatY: 5 },
-  { name: 'Firebase', Icon: SiFirebase, color: '#ffca28', glow: 'rgba(255,202,40,0.35)', floatDelay: 1.1, floatDuration: 4.3, floatY: 7 },
-  { name: 'Figma', Icon: SiFigma, color: '#f24e1e', glow: 'rgba(242,78,30,0.35)', floatDelay: 0.2, floatDuration: 4.7, floatY: 5 },
-  { name: 'Git', Icon: SiGit, color: '#f05032', glow: 'rgba(240,80,50,0.35)', floatDelay: 0.8, floatDuration: 3.6, floatY: 4 },
-  { name: 'JavaScript', Icon: SiJavascript, color: '#f7df1e', glow: 'rgba(247,223,30,0.3)', floatDelay: 1.3, floatDuration: 4.1, floatY: 6 },
-  { name: 'HTML5', Icon: SiHtml5, color: '#e34f26', glow: 'rgba(227,79,38,0.35)', floatDelay: 0.5, floatDuration: 4.9, floatY: 5 },
-  { name: 'CSS3', Icon: SiCss, color: '#1572b6', glow: 'rgba(21,114,182,0.35)', floatDelay: 1.0, floatDuration: 5.1, floatY: 4 },
+  {
+    name: 'React',
+    Icon: SiReact,
+    color: '#61dafb',
+    glow: 'rgba(97,218,251,0.4)',
+    floatDelay: 0,
+    floatDuration: 4,
+    floatY: 6,
+  },
+  {
+    name: 'Next.js',
+    Icon: SiNextdotjs,
+    color: '#ffffff',
+    glow: 'rgba(255,255,255,0.2)',
+    floatDelay: 0.5,
+    floatDuration: 4.5,
+    floatY: 5,
+  },
+  {
+    name: 'TypeScript',
+    Icon: SiTypescript,
+    color: '#3178c6',
+    glow: 'rgba(49,120,198,0.4)',
+    floatDelay: 1,
+    floatDuration: 5,
+    floatY: 7,
+  },
+  {
+    name: 'Tailwind',
+    Icon: SiTailwindcss,
+    color: '#06b6d4',
+    glow: 'rgba(6,182,212,0.4)',
+    floatDelay: 0.3,
+    floatDuration: 4.2,
+    floatY: 5,
+  },
+  {
+    name: 'shadcn/ui',
+    Icon: SiShadcnui,
+    color: '#ffffff',
+    glow: 'rgba(255,255,255,0.15)',
+    floatDelay: 0.35,
+    floatDuration: 4,
+    floatY: 5,
+  },
+  {
+    name: 'Node.js',
+    Icon: SiNodedotjs,
+    color: '#339933',
+    glow: 'rgba(51,153,51,0.35)',
+    floatDelay: 0.7,
+    floatDuration: 4.8,
+    floatY: 6,
+  },
+  {
+    name: 'PostgreSQL',
+    Icon: SiPostgresql,
+    color: '#4169e1',
+    glow: 'rgba(65,105,225,0.35)',
+    floatDelay: 1.2,
+    floatDuration: 5.2,
+    floatY: 4,
+  },
+  {
+    name: 'Prisma',
+    Icon: SiPrisma,
+    color: '#ffffff',
+    glow: 'rgba(255,255,255,0.15)',
+    floatDelay: 0.4,
+    floatDuration: 3.8,
+    floatY: 5,
+  },
+  {
+    name: 'Drizzle',
+    Icon: SiDrizzle,
+    color: '#f9b707',
+    glow: 'rgba(249,183,7,0.35)',
+    floatDelay: 0.9,
+    floatDuration: 4.4,
+    floatY: 6,
+  },
+  {
+    name: 'Express',
+    Icon: SiExpress,
+    color: '#ffffff',
+    glow: 'rgba(255,255,255,0.15)',
+    floatDelay: 1.4,
+    floatDuration: 4.6,
+    floatY: 4,
+  },
+  {
+    name: 'FastAPI',
+    Icon: SiFastapi,
+    color: '#009688',
+    glow: 'rgba(0,150,136,0.35)',
+    floatDelay: 1.35,
+    floatDuration: 4.5,
+    floatY: 5,
+  },
+  {
+    name: 'OpenAI',
+    Icon: SiOpenai,
+    color: '#412991',
+    glow: 'rgba(65,41,145,0.35)',
+    floatDelay: 0.55,
+    floatDuration: 4.4,
+    floatY: 6,
+  },
+  {
+    name: 'LLM',
+    Icon: SiHuggingface,
+    color: '#ffac33',
+    glow: 'rgba(255,172,51,0.35)',
+    floatDelay: 1.25,
+    floatDuration: 4.2,
+    floatY: 5,
+  },
+  {
+    name: 'MongoDB',
+    Icon: SiMongodb,
+    color: '#47a248',
+    glow: 'rgba(71,162,72,0.35)',
+    floatDelay: 0.6,
+    floatDuration: 5,
+    floatY: 5,
+  },
+  {
+    name: 'Firebase',
+    Icon: SiFirebase,
+    color: '#ffca28',
+    glow: 'rgba(255,202,40,0.35)',
+    floatDelay: 1.1,
+    floatDuration: 4.3,
+    floatY: 7,
+  },
+  {
+    name: 'Figma',
+    Icon: SiFigma,
+    color: '#f24e1e',
+    glow: 'rgba(242,78,30,0.35)',
+    floatDelay: 0.2,
+    floatDuration: 4.7,
+    floatY: 5,
+  },
+  {
+    name: 'Git',
+    Icon: SiGit,
+    color: '#f05032',
+    glow: 'rgba(240,80,50,0.35)',
+    floatDelay: 0.8,
+    floatDuration: 3.6,
+    floatY: 4,
+  },
+  {
+    name: 'JavaScript',
+    Icon: SiJavascript,
+    color: '#f7df1e',
+    glow: 'rgba(247,223,30,0.3)',
+    floatDelay: 1.3,
+    floatDuration: 4.1,
+    floatY: 6,
+  },
+  {
+    name: 'HTML5',
+    Icon: SiHtml5,
+    color: '#e34f26',
+    glow: 'rgba(227,79,38,0.35)',
+    floatDelay: 0.5,
+    floatDuration: 4.9,
+    floatY: 5,
+  },
+  {
+    name: 'CSS3',
+    Icon: SiCss,
+    color: '#1572b6',
+    glow: 'rgba(21,114,182,0.35)',
+    floatDelay: 1,
+    floatDuration: 5.1,
+    floatY: 4,
+  },
 ]
 
 function isWhiteBrandColor(color: string) {
@@ -69,7 +236,7 @@ function isWhiteBrandColor(color: string) {
 
 function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
   const { name, Icon, color, glow, floatDelay, floatDuration, floatY } = item
-  const useThemeAwareFill = isWhiteBrandColor(color)
+  const isUseThemeAwareFill = isWhiteBrandColor(color)
 
   return (
     <motion.div
@@ -85,7 +252,7 @@ function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
     >
       <Tooltip>
         {/* Base UI Trigger renders a <button>; use unstyled button + inner motion (not Radix asChild) */}
-        <TooltipTrigger className='inline-flex h-auto min-h-0 w-auto cursor-grab border-0 bg-transparent p-0 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none active:cursor-grabbing'>
+        <TooltipTrigger className='inline-flex size-auto min-h-0 cursor-grab border-0 bg-transparent p-0 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none active:cursor-grabbing'>
           <motion.div
             drag
             dragSnapToOrigin
@@ -108,26 +275,21 @@ function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
               className={cn(
                 'flex size-14 items-center justify-center rounded-2xl border backdrop-blur-md transition-all duration-300 sm:size-16',
                 'border-border/60 bg-muted/50 hover:border-border hover:bg-muted/80',
-                'dark:border-white/8 dark:bg-white/4 dark:hover:border-white/20 dark:hover:bg-white/8'
+                'dark:border-white/8 dark:bg-white/4 dark:hover:border-white/20 dark:hover:bg-white/8',
               )}
               style={{
                 boxShadow: `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`,
               }}
               onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLDivElement).style.boxShadow =
-                  `0 0 28px ${glow}, 0 0 60px ${glow.replace(/[\d.]+\)$/, '0.15)')}, inset 0 1px 0 rgba(128,128,128,0.14)`
+                e.currentTarget.style.boxShadow = `0 0 28px ${glow}, 0 0 60px ${glow.replace(/0\.\d+\)$/, '0.15)')}, inset 0 1px 0 rgba(128,128,128,0.14)`
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLDivElement).style.boxShadow =
-                  `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`
+                e.currentTarget.style.boxShadow = `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`
               }}
             >
               <Icon
-                className={cn(
-                  'size-7 sm:size-8',
-                  useThemeAwareFill && 'text-zinc-900 dark:text-white'
-                )}
-                style={useThemeAwareFill ? undefined : { color }}
+                className={cn('size-7 sm:size-8', isUseThemeAwareFill && 'text-zinc-900 dark:text-white')}
+                style={isUseThemeAwareFill ? undefined : { color }}
               />
             </div>
           </motion.div>
@@ -178,7 +340,7 @@ function TiltContainer({ children }: { children: React.ReactNode }) {
   )
 }
 
-function StacksCard() {
+export default function StacksCard() {
   const t = useTranslations()
 
   return (
@@ -189,10 +351,7 @@ function StacksCard() {
       </div>
 
       <TiltContainer>
-        <div className={cn(
-          'grid grid-cols-4 gap-3 sm:grid-cols-5 lg:grid-cols-8',
-          'place-items-center py-2'
-        )}>
+        <div className={cn('grid grid-cols-4 gap-3 sm:grid-cols-5 lg:grid-cols-8', 'place-items-center py-2')}>
           {TECH.map((item, i) => (
             <FloatingIcon key={item.name} item={item} index={i} />
           ))}
@@ -201,5 +360,3 @@ function StacksCard() {
     </div>
   )
 }
-
-export default StacksCard

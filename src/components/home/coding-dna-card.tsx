@@ -44,9 +44,7 @@ function CodingDnaCard() {
             transition={{ delay: i * 0.05 + 0.1, type: 'spring', stiffness: 200, damping: 15 }}
           >
             <span className='text-lg leading-none'>{trait.emoji}</span>
-            <span className='text-xs font-medium leading-tight'>
-              {t(`homepage.about-me.${trait.key}` as never)}
-            </span>
+            <span className='text-xs/tight font-medium'>{t(`homepage.about-me.${trait.key}` as never)}</span>
           </motion.div>
         ))}
       </div>
@@ -62,7 +60,7 @@ function CodingDnaCard() {
             transition={{ delay: i * 0.1 + 0.4, duration: 0.4 }}
           >
             <span className='text-2xl'>{stat.icon}</span>
-            <span className='bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-base font-bold tabular-nums text-transparent dark:from-blue-400 dark:to-violet-400'>
+            <span className='bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-base font-bold text-transparent tabular-nums dark:from-blue-400 dark:to-violet-400'>
               {stat.value}
             </span>
             <span className='text-center text-[13px] leading-tight text-muted-foreground'>

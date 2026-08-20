@@ -17,22 +17,15 @@ type TestimonialAvatarProps = {
   size?: 'sm' | 'md'
 }
 
-export function TestimonialAvatar({
-  name,
-  initials,
-  color,
-  avatar,
-  countryFlag,
-  size = 'md',
-}: TestimonialAvatarProps) {
+export function TestimonialAvatar({ name, initials, color, avatar, countryFlag, size = 'md' }: TestimonialAvatarProps) {
   const dim = size === 'sm' ? 40 : 44
   const box = size === 'sm' ? 'size-10' : 'size-11'
 
   const mediaShell = cn('shrink-0 rounded-full ring-2 ring-border', box)
 
-  const avatarShell = cn('relative shrink-0 overflow-hidden rounded-full ring-2 ring-border min-h-0', box)
+  const avatarShell = cn('relative min-h-0 shrink-0 overflow-hidden rounded-full ring-2 ring-border', box)
 
-  if (countryFlag && COUNTRY_FLAGS[countryFlag]) {
+  if (countryFlag) {
     const { src, label } = COUNTRY_FLAGS[countryFlag]
     return (
       <BlurImage

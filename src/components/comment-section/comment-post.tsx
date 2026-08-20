@@ -54,7 +54,7 @@ function CommentPost() {
   }
 
   const isAuthenticated = session !== null && !isSessionLoading
-  const disabled = !isAuthenticated || isCreating
+  const isDisabled = !isAuthenticated || isCreating
 
   return (
     <form onSubmit={submitComment}>
@@ -70,7 +70,7 @@ function CommentPost() {
           }}
           onModEnter={submitComment}
           placeholder={t('blog.comments.placeholder')}
-          disabled={disabled}
+          disabled={isDisabled}
           data-testid='comment-textarea-post'
         />
         <Button
@@ -78,9 +78,9 @@ function CommentPost() {
           size='icon-sm'
           className='absolute right-2 bottom-1.5'
           type='submit'
-          disabled={disabled || !content}
+          disabled={isDisabled || !content}
           aria-label={t('blog.comments.send-comment')}
-          aria-disabled={disabled || !content}
+          aria-disabled={isDisabled || !content}
           data-testid='comment-submit-button'
         >
           <SendIcon />

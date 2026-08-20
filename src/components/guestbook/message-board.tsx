@@ -7,7 +7,7 @@ import Messages from './messages'
 import Pinned from './pinned'
 import SignIn from './sign-in'
 
-function MessageBoard() {
+export default function MessageBoard() {
   const { data: session } = useSession()
 
   return (
@@ -18,5 +18,3 @@ function MessageBoard() {
     </div>
   )
 }
-
-export default MessageBoard

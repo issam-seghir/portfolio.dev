@@ -9,8 +9,7 @@ import { Button } from '@/components/ui/button'
 
 function playThemeClickSound() {
   if (typeof window === 'undefined') return
-  const Ctx = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
-  if (!Ctx) return
+  const Ctx = globalThis.AudioContext
   try {
     const ctx = new Ctx()
     const osc = ctx.createOscillator()

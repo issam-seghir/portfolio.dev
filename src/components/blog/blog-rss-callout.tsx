@@ -5,12 +5,12 @@ import { useTranslations } from 'next-intl'
 
 import { Link } from '@/i18n/routing'
 
-function BlogRssCallout() {
+export default function BlogRssCallout() {
   const t = useTranslations()
 
   return (
     <aside
-      className='mb-10 flex flex-col gap-3 rounded-2xl border border-dashed border-border/80 bg-muted/30 px-4 py-4 sm:flex-row sm:items-center sm:gap-4'
+      className='mb-10 flex flex-col gap-3 rounded-2xl border border-dashed border-border/80 bg-muted/30 p-4 sm:flex-row sm:items-center sm:gap-4'
       aria-label={t('blog.rss-subscribe')}
     >
       <div className='flex items-center gap-2 font-medium'>
@@ -27,5 +27,3 @@ function BlogRssCallout() {
     </aside>
   )
 }
-
-export default BlogRssCallout

@@ -12,7 +12,7 @@ import Comment from './comment'
 import CommentHeader from './comment-header'
 import CommentLoader from './comment-loader'
 
-function CommentList() {
+export default function CommentList() {
   const { slug, sort } = useCommentsContext()
   const [params] = useCommentParams()
   const t = useTranslations()
@@ -33,7 +33,7 @@ function CommentList() {
     if (inView && hasNextPage) void fetchNextPage()
   }, [fetchNextPage, hasNextPage, inView])
 
-  const noComments = isSuccess && data.pages[0]?.comments.length === 0
+  const isNoComments = isSuccess && data.pages[0]?.comments.length === 0
 
   return (
     <>
@@ -47,7 +47,7 @@ function CommentList() {
             <p className='text-sm text-muted-foreground'>{t('error.failed-to-load-comments')}</p>
           </div>
         )}
-        {noComments && (
+        {isNoComments && (
           <div className='flex min-h-20 items-center justify-center'>
             <p className='text-sm text-muted-foreground'>{t('blog.comments.no-comments')}</p>
           </div>
@@ -57,5 +57,3 @@ function CommentList() {
     </>
   )
 }
-
-export default CommentList

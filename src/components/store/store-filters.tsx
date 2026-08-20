@@ -5,13 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useQueryStates } from 'nuqs'
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { storeParamsParsers } from '@/lib/store-params-parsers'
 
 import { Button } from '../ui/button'
@@ -19,7 +13,11 @@ import { Button } from '../ui/button'
 const CATEGORIES = ['all', 'course', 'template', 'service'] as const
 const SORT_OPTIONS = ['newest', 'price-asc', 'price-desc', 'name'] as const
 
-function StoreFilters() {
+function isSortOption(value: unknown): value is (typeof SORT_OPTIONS)[number] {
+  return typeof value === 'string' && (SORT_OPTIONS as readonly string[]).includes(value)
+}
+
+export default function StoreFilters() {
   const t = useTranslations('store.filters')
   const [params, setParams] = useQueryStates(storeParamsParsers)
 
@@ -33,7 +31,7 @@ function StoreFilters() {
           <InputGroupInput
             type='search'
             value={params.q}
-            onChange={(e) => setParams({ q: e.target.value || null, page: 1 })}
+            onChange={async (e) => setParams({ q: e.target.value || null, page: 1 })}
             placeholder={t('search-placeholder')}
             aria-label={t('search-placeholder')}
             className='w-full pl-12'
@@ -46,7 +44,7 @@ function StoreFilters() {
             key={cat}
             variant={params.category === cat ? 'default' : 'outline'}
             size='sm'
-            onClick={() => setParams({ category: cat, page: 1 })}
+            onClick={async () => setParams({ category: cat, page: 1 })}
           >
             {t(`category.${cat}`)}
           </Button>
@@ -56,11 +54,12 @@ function StoreFilters() {
         <span className='text-sm text-muted-foreground'>{t('sort-label')}</span>
         <Select
           value={params.sort}
-          onValueChange={(value) =>
-            setParams({ sort: value as (typeof SORT_OPTIONS)[number], page: 1 })
-          }
+          onValueChange={async (value) => {
+            if (!isSortOption(value)) return
+            await setParams({ sort: value, page: 1 })
+          }}
         >
-          <SelectTrigger className='w-[180px]'>
+          <SelectTrigger className='w-45'>
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -75,5 +74,3 @@ function StoreFilters() {
     </div>
   )
 }
-
-export default StoreFilters

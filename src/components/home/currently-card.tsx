@@ -1,6 +1,6 @@
 'use client'
 
-import { ActivityIcon, BookOpenIcon, HammerIcon, GraduationCapIcon } from 'lucide-react'
+import { ActivityIcon, BookOpenIcon, GraduationCapIcon, HammerIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 

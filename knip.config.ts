@@ -5,7 +5,7 @@ const config: KnipConfig = {
     // PostCSS is already installed under Next.js
     'postcss',
     // Required by react-email
-    '@react-email/preview-server',
+    '@react-email/ui',
   ],
   ignore: ['src/components/ui/*.tsx'],
   entry: ['content-collections.ts', 'src/db/reset.ts', 'src/db/seed.ts'],

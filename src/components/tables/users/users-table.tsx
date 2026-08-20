@@ -1,8 +1,10 @@
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import type { User } from './columns'
+
+import { flexRender, useTable } from '@tanstack/react-table'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-import { columns, type User } from './columns'
+import { columns, usersTableFeatures } from './columns'
 
 type UsersTableProps = {
   users: User[]
@@ -11,13 +13,10 @@ type UsersTableProps = {
 function UsersTable(props: UsersTableProps) {
   const { users } = props
 
-  // @tanstack/react-table is incompatible with React Compiler
-  // See https://github.com/TanStack/table/issues/5567
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const table = useReactTable({
+  const table = useTable({
+    features: usersTableFeatures,
     data: users,
     columns,
-    getCoreRowModel: getCoreRowModel(),
   })
 
   return (
@@ -37,8 +36,8 @@ function UsersTable(props: UsersTableProps) {
         <TableBody>
           {table.getRowModel().rows.length > 0 ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
-                {row.getVisibleCells().map((cell) => (
+              <TableRow key={row.id}>
+                {row.getAllCells().map((cell) => (
                   <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                 ))}
               </TableRow>

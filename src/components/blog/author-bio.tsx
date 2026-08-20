@@ -6,7 +6,7 @@ import BlurImage from '@/components/blur-image'
 import { Link } from '@/components/ui/link'
 import { MY_NAME, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
 
-function AuthorBio() {
+export default function AuthorBio() {
   const t = useTranslations()
 
   return (
@@ -20,9 +20,7 @@ function AuthorBio() {
       />
       <div>
         <p className='font-semibold'>{MY_NAME}</p>
-        <p className='mt-1 text-sm text-muted-foreground'>
-          {t('about.role')}
-        </p>
+        <p className='mt-1 text-sm text-muted-foreground'>{t('about.role')}</p>
         <div className='mt-3 flex gap-3 text-sm'>
           <Link href={SITE_GITHUB_URL} className='text-muted-foreground hover:text-foreground'>
             GitHub
@@ -38,5 +36,3 @@ function AuthorBio() {
     </div>
   )
 }
-
-export default AuthorBio

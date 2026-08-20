@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
 import type { WebPage, WithContext } from 'schema-dts'
 
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { getTranslations } from 'next-intl/server'
 
 import JsonLd from '@/components/json-ld'
 import PageHeader from '@/components/page-header'
@@ -36,8 +36,6 @@ async function StorePage(props: PageProps<'/[locale]/store'>) {
   const { locale } = await params
   const parsed = await loadStoreParams(searchParams)
 
-  setRequestLocale(locale as Locale)
-
   const t = await getTranslations({ locale: locale as Locale })
   const title = t('common.labels.store')
   const description = t('store.description')
@@ -53,7 +51,7 @@ async function StorePage(props: PageProps<'/[locale]/store'>) {
     )
   }
 
-  const { products, total, totalPages, page, perPage } = getStoreProducts(locale, {
+  const { products, totalPages, page } = getStoreProducts(locale, {
     q: parsed.q,
     category: parsed.category,
     sort: parsed.sort,
@@ -78,13 +76,7 @@ async function StorePage(props: PageProps<'/[locale]/store'>) {
     <>
       <JsonLd json={jsonLd} />
       <PageHeader title={title} description={description} />
-      <StoreClient
-        products={products}
-        total={total}
-        totalPages={totalPages}
-        page={page}
-        perPage={perPage}
-      />
+      <StoreClient products={products} totalPages={totalPages} page={page} />
     </>
   )
 }

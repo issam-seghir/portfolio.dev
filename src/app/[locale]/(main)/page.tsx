@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
+import type { Locale } from 'next-intl'
 import type { WebSite, WithContext } from 'schema-dts'
 
-import { type Locale, useTranslations } from 'next-intl'
-import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { use } from 'react'
 
 import AboutMe from '@/components/home/about-me'
@@ -12,17 +13,8 @@ import LatestArticles from '@/components/home/latest-articles'
 import SelectedProjects from '@/components/home/selected-projects'
 import HomeTestimonials from '@/components/home/testimonials'
 import JsonLd from '@/components/json-ld'
-import {
-  MY_NAME,
-  SITE_FACEBOOK_URL,
-  SITE_GITHUB_URL,
-  SITE_LINKEDIN_URL,
-} from '@/lib/constants'
-import {
-  getLatestPosts,
-  getSelectedProjects,
-  HOMEPAGE_SELECTED_PROJECTS_LIMIT,
-} from '@/lib/content'
+import { MY_NAME, SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
+import { getLatestPosts, getSelectedProjects, HOMEPAGE_SELECTED_PROJECTS_LIMIT } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
@@ -45,8 +37,6 @@ export async function generateMetadata(props: PageProps<'/[locale]'>): Promise<M
 function Page(props: PageProps<'/[locale]'>) {
   const { params } = props
   const { locale } = use(params)
-
-  setRequestLocale(locale as Locale)
 
   const t = useTranslations()
   const url = getLocalizedPath({ locale })
@@ -81,9 +71,7 @@ function Page(props: PageProps<'/[locale]'>) {
       <SelectedProjects projects={filteredProjects} />
       <AboutMe />
       <HomeTestimonials />
-      {isBlogPublic && filteredPosts.length > 0 ? (
-        <LatestArticles posts={filteredPosts} />
-      ) : null}
+      {isBlogPublic && filteredPosts.length > 0 ? <LatestArticles posts={filteredPosts} /> : null}
       <GetInTouch />
     </>
   )

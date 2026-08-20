@@ -18,7 +18,14 @@ function Logo({
   ...rest
 }: LogoProps) {
   const w = typeof width === 'number' ? width : Number(width)
-  const h = height !== undefined ? (typeof height === 'number' ? height : Number(height)) : Math.round(w * LOGO_ASPECT)
+  let h: number
+  if (height === undefined) {
+    h = Math.round(w * LOGO_ASPECT)
+  } else if (typeof height === 'number') {
+    h = height
+  } else {
+    h = Number(height)
+  }
 
   return (
     <Image

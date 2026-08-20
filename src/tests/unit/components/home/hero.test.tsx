@@ -11,6 +11,6 @@ describe('<Hero />', () => {
 
     render(<Hero />)
 
-    expect(screen.getByAltText(`${MY_NAME}'s Logo`)).toBeInTheDocument()
+    expect(screen.getByAltText(`${MY_NAME}'s photo`)).toBeInTheDocument()
   })
 })

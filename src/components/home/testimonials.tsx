@@ -1,18 +1,20 @@
 'use client'
 
+import type { TestimonialCountryFlag } from '@/components/testimonial-avatar'
+
 import { ChevronLeftIcon, ChevronRightIcon, QuoteIcon } from 'lucide-react'
 import { AnimatePresence, motion, useInView } from 'motion/react'
 import { useLocale, useMessages, useTranslations } from 'next-intl'
 import { useCallback, useMemo, useRef, useState } from 'react'
 
-import { TestimonialAvatar, type TestimonialCountryFlag } from '@/components/testimonial-avatar'
+import { TestimonialAvatar } from '@/components/testimonial-avatar'
 import { Marquee } from '@/components/ui/marquee'
 import { cn } from '@/utils/cn'
 
 type Segment = { type: 'text'; value: string } | { type: 'highlight'; value: string }
 
 function splitByHighlights(text: string, phrases: string[]): Segment[] {
-  if (!phrases.length) return [{ type: 'text', value: text }]
+  if (phrases.length === 0) return [{ type: 'text', value: text }]
   const segments: Segment[] = []
   let remaining = text
   const sortedPhrases = [...phrases].filter(Boolean).sort((a, b) => b.length - a.length)
@@ -97,6 +99,14 @@ const TESTIMONIALS: TestimonialItem[] = [
   },
 ]
 
+function getTestimonial(index: number): TestimonialItem {
+  const item = TESTIMONIALS[index] ?? TESTIMONIALS[0]
+  if (!item) {
+    throw new Error('TESTIMONIALS must not be empty')
+  }
+  return item
+}
+
 function HomeTestimonials() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
@@ -155,35 +165,39 @@ function MobileTestimonials() {
 
   const next = useCallback(() => {
     setDirection(1)
-    setActive((prev) => (prev + 1) % TESTIMONIALS.length)
+    setActive((current) => (current + 1) % TESTIMONIALS.length)
   }, [])
 
-  const prev = useCallback(() => {
+  const goToPrevious = useCallback(() => {
     setDirection(-1)
-    setActive((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+    setActive((current) => (current - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
   }, [])
 
   const swipeRef = useRef<{ startX: number; startTime: number } | null>(null)
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
-    swipeRef.current = { startX: e.touches[0]!.clientX, startTime: Date.now() }
+    const touch = e.touches[0]
+    if (!touch) return
+    swipeRef.current = { startX: touch.clientX, startTime: Date.now() }
   }, [])
 
   const handleTouchEnd = useCallback(
     (e: React.TouchEvent) => {
       if (!swipeRef.current) return
-      const deltaX = e.changedTouches[0]!.clientX - swipeRef.current.startX
+      const touch = e.changedTouches[0]
+      if (!touch) return
+      const deltaX = touch.clientX - swipeRef.current.startX
       const elapsed = Date.now() - swipeRef.current.startTime
       const velocity = Math.abs(deltaX) / elapsed
 
       if (Math.abs(deltaX) > 50 || velocity > 0.3) {
-        const swipedLeft = isRtl ? deltaX > 0 : deltaX < 0
-        if (swipedLeft) next()
-        else prev()
+        const isSwipedLeft = isRtl ? deltaX > 0 : deltaX < 0
+        if (isSwipedLeft) next()
+        else goToPrevious()
       }
       swipeRef.current = null
     },
-    [next, prev, isRtl],
+    [next, goToPrevious, isRtl],
   )
 
   const variants = {
@@ -195,7 +209,7 @@ function MobileTestimonials() {
   return (
     <div dir={isRtl ? 'rtl' : 'ltr'}>
       <div
-        className='relative mx-auto min-h-[280px] overflow-hidden px-4'
+        className='relative mx-auto min-h-70 overflow-hidden px-4'
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -209,7 +223,7 @@ function MobileTestimonials() {
             exit='exit'
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           >
-            <TestimonialCard item={TESTIMONIALS[active]!} mobile />
+            <TestimonialCard item={getTestimonial(active)} mobile />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -217,7 +231,7 @@ function MobileTestimonials() {
       <div className='mt-6 flex items-center justify-center gap-4'>
         <button
           type='button'
-          onClick={prev}
+          onClick={goToPrevious}
           className='flex size-9 items-center justify-center rounded-full border bg-card transition-colors hover:bg-accent'
           aria-label={t('homepage.testimonials.prev')}
         >
@@ -261,11 +275,10 @@ function TestimonialCard({ item, mobile }: { item: TestimonialItem; mobile?: boo
   const messages = useMessages() as { about?: { testimonials?: Array<{ highlights?: string[] }> } }
   const quote = t(item.quoteKey as never)
   const testimonialIndex = useMemo(() => {
-    const m = item.quoteKey.match(/\.(\d+)\.quote$/)
+    const m = /\.(\d+)\.quote$/.exec(item.quoteKey)
     return m ? Number(m[1]) : -1
   }, [item.quoteKey])
-  const highlights =
-    testimonialIndex >= 0 ? messages?.about?.testimonials?.[testimonialIndex]?.highlights : undefined
+  const highlights = testimonialIndex >= 0 ? messages.about?.testimonials?.[testimonialIndex]?.highlights : undefined
   const segments = useMemo(
     () => (Array.isArray(highlights) && highlights.length > 0 ? splitByHighlights(quote, highlights) : null),
     [quote, highlights],
@@ -276,7 +289,7 @@ function TestimonialCard({ item, mobile }: { item: TestimonialItem; mobile?: boo
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
       className={cn(
         'group relative rounded-2xl border bg-card p-6 shadow-feature-card transition-shadow hover:shadow-lg',
-        mobile ? 'w-full' : 'mx-2 w-[340px] shrink-0',
+        mobile ? 'w-full' : 'mx-2 w-85 shrink-0',
       )}
     >
       <div className='mb-4 flex items-center gap-3'>
@@ -295,7 +308,7 @@ function TestimonialCard({ item, mobile }: { item: TestimonialItem; mobile?: boo
       </div>
 
       <QuoteIcon className='mb-2 size-4 text-muted-foreground/30' />
-      <p className='text-sm leading-relaxed text-muted-foreground'>
+      <p className='text-sm/relaxed text-muted-foreground'>
         {segments ? (
           <>
             {segments.map((seg, i) =>

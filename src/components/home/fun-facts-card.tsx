@@ -42,15 +42,15 @@ function FunFactsCard() {
     }
   }, [next])
 
-  const fact = FACTS[index]!
+  const fact = FACTS[index] ?? FACTS[0]
 
   return (
     <button
       type='button'
       onClick={handleClick}
       className={cn(
-        'bento-card group flex h-full w-full cursor-pointer flex-col gap-3 p-4 active:scale-[0.98] lg:p-6',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background'
+        'bento-card group flex size-full cursor-pointer flex-col gap-3 p-4 active:scale-[0.98] lg:p-6',
+        'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none',
       )}
     >
       <div className='flex items-center justify-between'>
@@ -91,15 +91,13 @@ function FunFactsCard() {
             >
               {fact.emoji}
             </motion.span>
-            <p className='text-sm text-center leading-relaxed'>
-              {t(fact.key as never)}
-            </p>
+            <p className='text-center text-sm/relaxed'>{t(fact.key as never)}</p>
           </motion.div>
         </AnimatePresence>
       </div>
 
       <div className='flex items-center justify-between'>
-        <span className='text-[10px] text-muted-foreground/50 group-hover:text-muted-foreground transition-colors'>
+        <span className='text-[10px] text-muted-foreground/50 transition-colors group-hover:text-muted-foreground'>
           {t('homepage.about-me.fun-facts-tap')} →
         </span>
         {clickCount >= 3 && (

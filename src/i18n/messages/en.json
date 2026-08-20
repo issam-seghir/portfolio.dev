@@ -332,7 +332,11 @@
       "languages": "Languages",
       "language-arabic": "Arabic (Native)",
       "language-english": "English (Fluent)",
-      "language-french": "French (Conversational)"
+      "language-french": "French (Conversational)",
+      "coding-hours": "Coding Stats",
+      "coding-hours-label": "78%",
+      "projects-shipped": "Projects shipped",
+      "cups-of-coffee": "Cups of coffee"
     },
     "experience": {
       "title": "Experience",

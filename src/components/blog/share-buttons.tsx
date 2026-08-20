@@ -31,7 +31,9 @@ function ShareButtons({ title, url }: ShareButtonsProps) {
   const handleCopy = async () => {
     await navigator.clipboard.writeText(url)
     setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    setTimeout(() => {
+      setCopied(false)
+    }, 2000)
   }
 
   const encodedUrl = encodeURIComponent(url)
