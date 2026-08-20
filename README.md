@@ -134,21 +134,30 @@ pnpm install
 cp .env.example .env.local
 ```
 
-2. Run required services using Docker:
+2. Start required services with Docker (recommended):
 
 ```bash
 docker compose up -d
 ```
 
-3. Run the database migrations:
+This starts Postgres, Redis, and the serverless Redis HTTP proxy. Defaults from `docker-compose.yml`:
+
+| Service | Host access | Credentials / notes |
+| ------- | ----------- | ------------------- |
+| Postgres | `localhost:5433` | user `postgres`, password `postgres`, database `portfolio` |
+| Redis | `localhost:6380` | — |
+| Redis HTTP (Upstash-compatible) | `http://localhost:8080` | token `portfolio` |
+
+3. Point **`DATABASE_URL`** in `.env.local` at that Postgres instance (do **not** append `?schema=public` — `postgres.js` treats it as a config param and Postgres rejects it):
+
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:5433/portfolio"
+```
+
+4. Apply migrations, then seed:
 
 ```bash
 pnpm db:migrate
-```
-
-4. Seed the database:
-
-```bash
 pnpm db:seed
 ```
 
@@ -162,6 +171,55 @@ pnpm dev:direct   # Plain Next on port 3005 (no Portless — use for E2E or if P
 # or
 pnpm email:dev    # Run the email preview server separately
 ```
+
+#### Local database
+
+**Docker (recommended)** — after `docker compose up -d`:
+
+```bash
+# migrations (issuer column for Better Auth, etc.)
+pnpm db:migrate
+
+# optional seed data
+pnpm db:seed
+
+# browse tables in the browser (Drizzle Studio)
+pnpm db:studio
+
+# reset DB contents (destructive — see src/db/reset.ts)
+pnpm db:reset
+```
+
+Useful Docker helpers:
+
+```bash
+# container status / logs
+docker compose ps
+docker compose logs -f db
+
+# psql inside the container
+docker exec -it portfolio-postgres psql -U postgres -d portfolio
+```
+
+**Native Postgres (alternative)** — if you use a local Postgres on the default port instead of Docker:
+
+1. Create the database (name must match `DATABASE_URL`):
+
+```bash
+# example with peer/trust auth as your OS user, or via the postgres superuser
+createdb issam_portfolio
+# or: psql -U postgres -c 'CREATE DATABASE issam_portfolio;'
+```
+
+2. Set `DATABASE_URL` accordingly, for example:
+
+```bash
+DATABASE_URL="postgresql://YOUR_USER:YOUR_PASSWORD@localhost:5432/issam_portfolio"
+```
+
+3. Run `pnpm db:migrate` (and optionally `pnpm db:seed`).
+
+If migrate fails with `database "…" does not exist`, create the DB first — Drizzle will not create it for you.
 
 #### Portless (default `pnpm dev`)
 
@@ -181,7 +239,7 @@ The services will be available at the following URLs:
 | App (Portless)   | e.g. `http://portfolio-dev.localhost:1355` (see terminal after `pnpm dev`) |
 | App (direct)     | `http://localhost:3005` (`pnpm dev:direct`) |
 | React Email      | `localhost:3006` |
-| Database         | `localhost:5433` |
+| Database (Docker)| `localhost:5433` → db `portfolio` |
 | Redis            | `localhost:6380` |
 | Redis serverless | `localhost:8080` |
 
@@ -198,9 +256,12 @@ pnpm format           # Format code with Prettier
 pnpm test:unit        # Run unit tests
 pnpm test:e2e         # Run E2E tests
 pnpm db:migrate       # Run database migrations
+pnpm db:generate      # Generate a new Drizzle migration from schema changes
 pnpm db:seed          # Seed the database
-pnpm db:studio        # Open Drizzle Studio
+pnpm db:studio        # Open Drizzle Studio (browse / edit local tables)
+pnpm db:reset         # Wipe and re-seed (destructive)
 ```
+
 
 ## Credits
 
