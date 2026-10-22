@@ -30,7 +30,13 @@ export default function CaseStudies() {
     <section id='work' className='my-24 scroll-mt-28'>
       <div className='flex flex-wrap items-end justify-between gap-4'>
         <h2 className='font-heading text-3xl font-semibold sm:text-4xl'>{t('title')}</h2>
-        <Link href='/projects' className={cn(buttonVariants({ variant: 'outline' }))}>
+        <Link
+          href='/projects'
+          data-track='cta_clicked'
+          data-track-cta='all_projects'
+          data-track-location='case_studies'
+          className={cn(buttonVariants({ variant: 'outline' }))}
+        >
           {t('more')}
         </Link>
       </div>
@@ -48,7 +54,15 @@ export default function CaseStudies() {
               className='group/case grid gap-6 py-10 md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:items-start md:gap-10'
             >
               {/* Same destination as the title link, so it stays out of the tab order */}
-              <Link href={href} tabIndex={-1} aria-hidden='true' className='scroll-rise block rounded-xl'>
+              <Link
+                href={href}
+                tabIndex={-1}
+                aria-hidden='true'
+                data-track='case_study_opened'
+                data-track-slug={slug}
+                data-track-location='home'
+                className='scroll-rise block rounded-xl'
+              >
                 <ProjectCoverTransition slug={slug}>
                   <div className='relative aspect-16/10 overflow-hidden rounded-xl border bg-muted'>
                     <BlurImage
@@ -76,7 +90,13 @@ export default function CaseStudies() {
                     {t(`${key}.role` as never)}
                   </p>
                   <h3 className='font-heading text-2xl/tight font-semibold text-balance'>
-                    <Link href={href} className='hover:text-primary'>
+                    <Link
+                      href={href}
+                      data-track='case_study_opened'
+                      data-track-slug={slug}
+                      data-track-location='home'
+                      className='hover:text-primary'
+                    >
                       {t(`${key}.title` as never)}
                     </Link>
                   </h3>
@@ -95,6 +115,9 @@ export default function CaseStudies() {
 
                 <Link
                   href={href}
+                  data-track='case_study_opened'
+                  data-track-slug={slug}
+                  data-track-location='home'
                   className='inline-flex w-fit items-center gap-1.5 text-sm font-medium text-primary hover:underline'
                 >
                   {t('read')}

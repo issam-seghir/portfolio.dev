@@ -53,10 +53,22 @@ export default function Hero() {
           </p>
 
           <div className='mt-8 flex flex-wrap gap-3'>
-            <a href='#contact' className={cn(buttonVariants({ size: 'lg' }))}>
+            <a
+              href='#contact'
+              data-track='cta_clicked'
+              data-track-cta='contact'
+              data-track-location='hero'
+              className={cn(buttonVariants({ size: 'lg' }))}
+            >
               {t('homepage.hero.cta-contact')}
             </a>
-            <a href='#work' className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}>
+            <a
+              href='#work'
+              data-track='cta_clicked'
+              data-track-cta='work'
+              data-track-location='hero'
+              className={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
+            >
               {t('homepage.hero.cta-projects')}
             </a>
           </div>

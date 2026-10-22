@@ -7,6 +7,7 @@ import { ThemeProvider } from 'next-themes'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 
+import ClickTracker from './click-tracker'
 import QueryProvider from './query-provider'
 
 type ProvidesProps = {
@@ -28,6 +29,7 @@ function Providers(props: ProvidesProps) {
         >
           <TooltipProvider>
             <MotionConfig reducedMotion='user'>{children}</MotionConfig>
+            <ClickTracker />
             <Toaster
               toastOptions={{
                 duration: 2500,

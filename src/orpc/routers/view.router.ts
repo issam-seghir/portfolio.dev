@@ -2,6 +2,7 @@ import { ORPCError } from '@orpc/client'
 import { eq, sql, sum } from 'drizzle-orm'
 
 import { posts } from '@/db/schemas'
+import { isPostSlug } from '@/lib/content'
 
 import { cache } from '../cache'
 import { publicProcedure } from '../procedures'
@@ -27,6 +28,8 @@ const countView = publicProcedure
     const [post] = await context.db.select({ views: posts.views }).from(posts).where(eq(posts.slug, input.slug))
 
     if (!post) {
+      // A post gets its row on the first view, so a real post nobody has opened yet has 0.
+      if (isPostSlug(input.slug)) return { views: 0 }
       throw new ORPCError('NOT_FOUND', {
         message: 'Post not found',
       })

@@ -2,6 +2,7 @@ import { ORPCError } from '@orpc/client'
 import { and, eq, sql, sum } from 'drizzle-orm'
 
 import { postLikes, posts } from '@/db/schemas'
+import { isPostSlug } from '@/lib/content'
 import { getAnonKey } from '@/utils/get-anon-key'
 import { getIp } from '@/utils/get-ip'
 
@@ -42,10 +43,10 @@ const countLike = publicProcedure
             .where(eq(posts.slug, input.slug))
             .then((rows) => {
               const row = rows[0]
-              if (!row) {
-                throw new ORPCError('NOT_FOUND', { message: 'Post not found' })
-              }
-              return row.likes
+              if (row) return row.likes
+              // A post gets its row on the first view, so a real post nobody has opened yet has 0.
+              if (isPostSlug(input.slug)) return 0
+              throw new ORPCError('NOT_FOUND', { message: 'Post not found' })
             })
         : Promise.resolve(cachedLikes),
       cachedUserLikes === null

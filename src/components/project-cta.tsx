@@ -33,6 +33,9 @@ function ProjectCTA() {
       <p className='mx-auto mt-2 max-w-md text-sm text-muted-foreground'>{t('projects.cta.description')}</p>
       <a
         href={SITE_WHATSAPP_URL}
+        data-track='cta_clicked'
+        data-track-cta='whatsapp'
+        data-track-location='project_page'
         target='_blank'
         rel='noopener noreferrer'
         className={cn(buttonVariants(), 'mt-6 gap-2')}

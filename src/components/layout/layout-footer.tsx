@@ -20,6 +20,9 @@ export default function LayoutFooter() {
           <p className='max-w-sm text-sm/relaxed text-muted-foreground'>{t('layout.footer.tagline')}</p>
           <a
             href={SITE_CONTACT_MAILTO}
+            data-track='cta_clicked'
+            data-track-cta='email'
+            data-track-location='footer'
             className='inline-flex w-fit items-center gap-2 text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-primary hover:underline'
           >
             <MailIcon aria-hidden className='size-4 shrink-0' />

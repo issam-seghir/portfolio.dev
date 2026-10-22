@@ -7,6 +7,7 @@ import { motion, useInView } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
+import PostCoverPlaceholder from '@/components/blog/post-cover-placeholder'
 import BlurImage from '@/components/blur-image'
 import { buttonVariants } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
@@ -79,15 +80,19 @@ function Card(props: CardProps) {
 
         {/* Fixed aspect ratio reserves space before image decode — avoids mobile layout jump */}
         <div className='relative aspect-1200/630 w-full overflow-hidden rounded-lg bg-muted/30'>
-          <BlurImage
-            fill
-            sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px'
-            src={`/images/blog/${post.slug}/cover.png`}
-            alt={post.title}
-            className='rounded-lg'
-            imageClassName='object-cover'
-            lazy={index >= 2}
-          />
+          {post.cover ? (
+            <BlurImage
+              fill
+              sizes='(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px'
+              src={post.cover}
+              alt={post.title}
+              className='rounded-lg'
+              imageClassName='object-cover'
+              lazy={index >= 2}
+            />
+          ) : (
+            <PostCoverPlaceholder />
+          )}
         </div>
 
         <div className='flex flex-wrap items-center justify-between gap-1 px-3 pt-3 text-xs text-muted-foreground sm:gap-2 sm:px-2 sm:pt-4 sm:text-sm'>

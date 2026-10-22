@@ -131,6 +131,11 @@ export function getRelatedProjects(locale: string, slug: string, limit = 3): Pub
   return scored.slice(0, limit).map((s) => s.project)
 }
 
+/** True when a blog post with this slug exists in any language. */
+export function isPostSlug(slug: string) {
+  return allPosts.some((p) => p.slug === slug)
+}
+
 export function getPostBySlug(locale: string, slug: string) {
   return allPosts.find((p) => p.slug === slug && p.locale === locale)
 }

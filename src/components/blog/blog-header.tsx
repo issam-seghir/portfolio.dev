@@ -77,17 +77,19 @@ function BlogHeader(props: BlogHeaderProps) {
           </div>
         </div>
       </div>
-      <ImageZoom>
-        <BlurImage
-          src={`/images/blog/${post.slug}/cover.png`}
-          className='rounded-lg'
-          width={1200}
-          height={630}
-          lazy={false}
-          fetchPriority='high'
-          alt={post.title}
-        />
-      </ImageZoom>
+      {post.cover && (
+        <ImageZoom>
+          <BlurImage
+            src={post.cover}
+            className='rounded-lg'
+            width={1200}
+            height={630}
+            lazy={false}
+            fetchPriority='high'
+            alt={post.title}
+          />
+        </ImageZoom>
+      )}
     </div>
   )
 }

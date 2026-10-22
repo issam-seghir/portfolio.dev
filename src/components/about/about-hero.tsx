@@ -84,6 +84,9 @@ export function AboutHero() {
           <div className='flex w-full max-w-md flex-wrap justify-center gap-2 sm:max-w-none md:justify-start'>
             <a
               href={SITE_CONTACT_MAILTO}
+              data-track='cta_clicked'
+              data-track-cta='email'
+              data-track-location='about'
               className={cn(buttonVariants({ size: 'sm' }), 'min-h-10 gap-1.5 px-4 sm:min-h-9')}
             >
               <MailIcon className='size-3.5 shrink-0' aria-hidden />
@@ -91,6 +94,9 @@ export function AboutHero() {
             </a>
             <a
               href={SITE_WHATSAPP_URL}
+              data-track='cta_clicked'
+              data-track-cta='whatsapp'
+              data-track-location='about'
               target='_blank'
               rel='noopener noreferrer'
               className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'min-h-10 gap-1.5 px-4 sm:min-h-9')}

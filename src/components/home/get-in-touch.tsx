@@ -47,6 +47,9 @@ export default function GetInTouch() {
           {SITE_BOOKING_URL && (
             <a
               href={SITE_BOOKING_URL}
+              data-track='cta_clicked'
+              data-track-cta='booking'
+              data-track-location='contact'
               target='_blank'
               rel='noopener noreferrer'
               className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'min-h-11 w-fit gap-2')}
@@ -59,20 +62,45 @@ export default function GetInTouch() {
           <div className='grid gap-3'>
             <p className='text-sm text-muted-foreground'>{t('homepage.get-in-touch.other-ways')}</p>
             <div className='grid grid-cols-2 gap-3'>
-              <a href={SITE_CONTACT_MAILTO} className={cn(secondary, 'col-span-2')}>
+              <a
+                href={SITE_CONTACT_MAILTO}
+                data-track='cta_clicked'
+                data-track-cta='email'
+                data-track-location='contact'
+                className={cn(secondary, 'col-span-2')}
+              >
                 <MailIcon className='size-4 shrink-0' />
                 <span dir='ltr'>{SITE_CONTACT_EMAIL}</span>
               </a>
-              <a href={SITE_WHATSAPP_URL} target='_blank' rel='noopener noreferrer' className={secondary}>
+              <a
+                href={SITE_WHATSAPP_URL}
+                data-track='cta_clicked'
+                data-track-cta='whatsapp'
+                data-track-location='contact'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={secondary}
+              >
                 <WhatsAppIcon className='size-4 shrink-0' />
                 WhatsApp
               </a>
-              <a href={SITE_LINKEDIN_URL} target='_blank' rel='noopener noreferrer' className={secondary}>
+              <a
+                href={SITE_LINKEDIN_URL}
+                data-track='cta_clicked'
+                data-track-cta='linkedin'
+                data-track-location='contact'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={secondary}
+              >
                 <LinkedInIcon className='size-4 shrink-0' />
                 LinkedIn
               </a>
               <a
                 href={SITE_GITHUB_URL}
+                data-track='cta_clicked'
+                data-track-cta='github'
+                data-track-location='contact'
                 target='_blank'
                 rel='noopener noreferrer'
                 className={cn(secondary, 'col-span-2')}

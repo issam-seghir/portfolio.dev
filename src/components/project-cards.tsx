@@ -30,7 +30,13 @@ function ProjectCard(props: Project) {
   const extra = techstack.length - MAX_TAGS
 
   return (
-    <Link href={`/projects/${slug}`} className='group block rounded-xl'>
+    <Link
+      href={`/projects/${slug}`}
+      data-track='case_study_opened'
+      data-track-slug={slug}
+      data-track-location='projects'
+      className='group block rounded-xl'
+    >
       <ProjectCoverTransition slug={slug}>
         <div className='relative aspect-40/21 w-full overflow-hidden rounded-xl border bg-muted'>
           <BlurImage

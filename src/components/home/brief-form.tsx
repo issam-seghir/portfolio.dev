@@ -6,7 +6,7 @@ import { ORPCError } from '@orpc/client'
 import { useForm, useSelector } from '@tanstack/react-form'
 import { CheckIcon } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import * as z from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
 import { useSendBrief } from '@/hooks/queries/brief.query'
+import { track } from '@/lib/analytics'
 import { SITE_CONTACT_EMAIL } from '@/lib/constants'
 import { BRIEF_MESSAGE_MAX, BRIEF_MESSAGE_MIN, BUDGET_RANGES, PROJECT_TYPES } from '@/orpc/schemas/brief.schema'
 import { cn } from '@/utils/cn'
@@ -121,16 +122,38 @@ export default function BriefForm() {
     // Quiet until the first submit, then errors clear as each field is fixed.
     validators: { onSubmit: schema, onChange: schema },
     onSubmit: ({ value }) => {
-      sendBrief({
-        type: value.type as ProjectType,
-        budget: value.budget as BudgetRange,
-        email: value.email.trim(),
-        message: value.message.trim(),
-        locale: locale === 'ar' ? 'ar' : 'en',
-        website: value.website || undefined,
-      })
+      // Only the choices go to analytics, never the email or message.
+      const choices = { type: value.type, budget: value.budget, locale: locale === 'ar' ? 'ar' : 'en' } as const
+      track('brief_submitted', choices)
+      sendBrief(
+        {
+          type: value.type as ProjectType,
+          budget: value.budget as BudgetRange,
+          email: value.email.trim(),
+          message: value.message.trim(),
+          locale: choices.locale,
+          website: value.website || undefined,
+        },
+        {
+          onSuccess: () => {
+            track('brief_sent', choices)
+          },
+          onError: (sendError) => {
+            const code = sendError instanceof ORPCError ? String(sendError.code) : 'NETWORK'
+            track('brief_failed', { ...choices, code })
+          },
+        },
+      )
     },
   })
+
+  // One "started" event per visit to the form, on the first choice or keystroke.
+  const started = useRef(false)
+  function markStarted() {
+    if (started.current) return
+    started.current = true
+    track('brief_started')
+  }
 
   const submitted = useSelector(form.store, (state) => state.submissionAttempts > 0)
   const values = useSelector(form.store, (state) => state.values)
@@ -150,6 +173,7 @@ export default function BriefForm() {
           onClick={() => {
             form.reset()
             resetMutation()
+            started.current = false
           }}
         >
           {t('send-another')}
@@ -176,6 +200,10 @@ export default function BriefForm() {
     await form.handleSubmit()
     // Take keyboard and screen reader users straight to the first thing to fix.
     if (!form.state.isValid) {
+      const fields = Object.entries(form.state.fieldMeta)
+        .filter(([, meta]) => meta.errors.length > 0)
+        .map(([name]) => name)
+      track('brief_invalid', { fields })
       formElement
         .querySelector<HTMLElement>(':scope fieldset[aria-describedby] input, :scope [aria-invalid="true"]')
         ?.focus()
@@ -189,7 +217,7 @@ export default function BriefForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className='grid gap-6'>
+    <form onSubmit={handleSubmit} onChange={markStarted} noValidate className='grid gap-6'>
       <form.Field name='type'>
         {(field) => (
           <ChoiceGroup
@@ -313,7 +341,13 @@ export default function BriefForm() {
       {error && (
         <div role='alert' className='grid gap-2 rounded-xl border border-destructive/40 p-4 text-sm'>
           <p>{isRateLimited ? t('errors.rate-limited') : t('errors.failed')}</p>
-          <a href={mailto} className='w-fit font-medium text-primary underline underline-offset-4'>
+          <a
+            href={mailto}
+            data-track='cta_clicked'
+            data-track-cta='email'
+            data-track-location='brief_error'
+            className='w-fit font-medium text-primary underline underline-offset-4'
+          >
             {t('errors.email-instead')}
           </a>
         </div>

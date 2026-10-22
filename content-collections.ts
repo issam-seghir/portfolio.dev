@@ -1,5 +1,8 @@
 import type { Context, Meta } from '@content-collections/core'
 
+import { existsSync } from 'node:fs'
+import path from 'node:path'
+
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import * as z from 'zod'
@@ -24,9 +27,9 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     remarkPlugins,
     rehypePlugins,
   })
-  const [locale, path] = document._meta.path.split(/[/\\]/)
+  const [locale, fileName] = document._meta.path.split(/[/\\]/)
 
-  if (!locale || !path) {
+  if (!locale || !fileName) {
     throw new Error(`Invalid path: ${document._meta.path}`)
   }
 
@@ -34,7 +37,7 @@ async function transform<D extends BaseDoc>(document: D, context: Context) {
     ...document,
     code,
     locale,
-    slug: path,
+    slug: fileName,
     toc: await getTOC(document.content),
     readingTime: getReadingTime(document.content),
   }
@@ -51,7 +54,12 @@ const posts = defineCollection({
     summary: z.string(),
     content: z.string(),
   }),
-  transform,
+  transform: async (document, context) => {
+    const post = await transform(document, context)
+    // Several posts have no cover; cards show a branded placeholder instead of a broken image.
+    const cover = `/images/blog/${post.slug}/cover.png`
+    return { ...post, cover: existsSync(path.join(process.cwd(), 'public', cover)) ? cover : null }
+  },
 })
 
 const projects = defineCollection({

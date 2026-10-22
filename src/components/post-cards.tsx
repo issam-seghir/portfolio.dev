@@ -5,6 +5,7 @@ import type { Post } from 'content-collections'
 import { ClockIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
+import PostCoverPlaceholder from '@/components/blog/post-cover-placeholder'
 import BlurImage from '@/components/blur-image'
 import { Link } from '@/components/ui/link'
 import { useCountLike } from '@/hooks/queries/like.query'
@@ -30,7 +31,7 @@ function PostCards(props: PostCardsProps) {
 }
 
 function PostCard(props: PostCardProps) {
-  const { slug, title, summary, date, readingTime } = props
+  const { slug, title, summary, date, readingTime, cover } = props
   const formattedDate = useFormattedDate(date)
   const t = useTranslations()
 
@@ -39,14 +40,18 @@ function PostCard(props: PostCardProps) {
 
   return (
     <Link href={`/blog/${slug}`} className='group rounded-2xl p-2 shadow-feature-card'>
-      <BlurImage
-        src={`/images/blog/${slug}/cover.png`}
-        className='rounded-lg'
-        width={1200}
-        height={630}
-        imageClassName='transition-transform group-hover:scale-105'
-        alt={title}
-      />
+      {cover ? (
+        <BlurImage
+          src={cover}
+          className='rounded-lg'
+          width={1200}
+          height={630}
+          imageClassName='transition-transform group-hover:scale-105'
+          alt={title}
+        />
+      ) : (
+        <PostCoverPlaceholder />
+      )}
       <div className='flex items-center justify-between gap-2 px-2 pt-4 text-sm text-muted-foreground'>
         <div className='flex items-center gap-3'>
           {formattedDate ?? '--'}

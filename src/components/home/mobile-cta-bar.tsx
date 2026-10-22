@@ -46,7 +46,13 @@ export default function MobileCtaBar() {
       )}
     >
       <span className='text-sm text-muted-foreground'>{t('mobile-bar.note')}</span>
-      <a href='#contact' className={cn(buttonVariants({ size: 'lg' }), 'min-h-11 shrink-0')}>
+      <a
+        href='#contact'
+        data-track='cta_clicked'
+        data-track-cta='contact'
+        data-track-location='mobile_bar'
+        className={cn(buttonVariants({ size: 'lg' }), 'min-h-11 shrink-0')}
+      >
         {t('hero.cta-contact')}
       </a>
     </div>
