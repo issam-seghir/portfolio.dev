@@ -22,7 +22,7 @@ export default function StoreFilters() {
   const [params, setParams] = useQueryStates(storeParamsParsers)
 
   return (
-    <div className='flex flex-col gap-4 rounded-2xl border bg-card/50 p-4 shadow-sm md:flex-row md:items-center md:gap-6'>
+    <div className='flex flex-col gap-4 rounded-xl border bg-card/50 p-4 shadow-sm md:flex-row md:items-center md:gap-6'>
       <div className='flex-1'>
         <InputGroup>
           <InputGroupAddon>
@@ -34,7 +34,7 @@ export default function StoreFilters() {
             onChange={async (e) => setParams({ q: e.target.value || null, page: 1 })}
             placeholder={t('search-placeholder')}
             aria-label={t('search-placeholder')}
-            className='w-full pl-12'
+            className='w-full ps-12'
           />
         </InputGroup>
       </div>

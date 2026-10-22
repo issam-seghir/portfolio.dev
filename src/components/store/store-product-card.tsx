@@ -16,7 +16,7 @@ function StoreProductCard(props: StoreProductCardProps) {
   const t = useTranslations('store')
 
   return (
-    <article className='group flex flex-col overflow-hidden rounded-2xl border bg-card shadow-sm transition-shadow hover:shadow-md'>
+    <article className='group flex flex-col overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md'>
       <Link href={link} className='relative block'>
         <div className='relative aspect-video overflow-hidden'>
           <BlurImage
@@ -28,8 +28,8 @@ function StoreProductCard(props: StoreProductCardProps) {
             imageClassName='transition-transform duration-300 group-hover:scale-105'
           />
           {featured && (
-            <div className='absolute inset-e-3 top-3 z-10 flex items-center gap-1 rounded-full bg-amber-500/90 px-2.5 py-1 text-[10px] font-semibold text-white'>
-              <StarIcon className='size-3' />
+            <div className='absolute inset-e-3 top-3 z-10 flex items-center gap-1 rounded-sm bg-highlight px-2 py-1 text-[11px] font-semibold text-highlight-foreground'>
+              <StarIcon className='size-3 fill-current' aria-hidden />
               {t('featured')}
             </div>
           )}

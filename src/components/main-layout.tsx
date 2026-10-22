@@ -1,4 +1,3 @@
-import GradientBackground from './gradient-background'
 import LayoutFooter from './layout/layout-footer'
 import LayoutHeader from './layout/layout-header'
 
@@ -16,8 +15,6 @@ function MainLayout(props: MainLayoutProps) {
         {children}
       </main>
       <LayoutFooter />
-      <GradientBackground className='absolute top-0 left-1/2 -z-10 max-w-full min-w-0 -translate-x-1/2' />
-      <GradientBackground className='absolute -bottom-6 left-1/2 -z-10 max-w-full min-w-0 -translate-x-1/2 rotate-180' />
     </>
   )
 }

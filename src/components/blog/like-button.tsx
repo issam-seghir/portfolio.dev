@@ -73,7 +73,7 @@ function LikeButton(props: LikeButtonProps) {
     <div className='mt-12 mb-4 flex justify-center'>
       <motion.button
         ref={buttonRef}
-        className='flex items-center gap-3 rounded-4xl bg-primary px-4 py-2 text-lg text-white dark:bg-primary/5'
+        className='flex items-center gap-3 rounded-lg bg-primary px-4 py-2 text-lg text-primary-foreground'
         onClick={handleLikeButtonClick}
         aria-label={t('blog.like-this-post')}
         whileTap={{ scale: 0.96 }}
@@ -86,7 +86,7 @@ function LikeButton(props: LikeButtonProps) {
           height='28'
           viewBox='0 0 24 24'
           strokeWidth='2'
-          stroke='#ef4444'
+          stroke='currentColor'
           className='relative overflow-hidden'
           fill='none'
           strokeLinecap='round'
@@ -104,7 +104,7 @@ function LikeButton(props: LikeButtonProps) {
               y='0'
               width='24'
               height='24'
-              fill='#ef4444'
+              fill='currentColor'
               initial={{
                 y: '100%',
               }}
@@ -115,7 +115,7 @@ function LikeButton(props: LikeButtonProps) {
           </g>
         </svg>
         {t('common.like')}
-        <Separator orientation='vertical' className='bg-accent/20 dark:bg-accent' />
+        <Separator orientation='vertical' className='bg-primary-foreground/30' />
         {isSuccess && <NumberFlow value={data.likes + cacheCount} data-testid='like-count' />}
         {isLoading && <div>--</div>}
         {isError && <div>{t('common.error')}</div>}

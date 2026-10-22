@@ -13,15 +13,10 @@ export default function EcomeniaHighlight() {
     <div className='not-prose my-10'>
       <div
         className={cn(
-          'relative overflow-hidden rounded-2xl border border-border/60 bg-muted/30 shadow-sm backdrop-blur-sm',
+          'relative overflow-hidden rounded-xl border border-border/60 bg-muted/30 shadow-sm',
           'border-s-4 border-s-primary/70',
         )}
       >
-        <div
-          className='pointer-events-none absolute inset-0 bg-linear-to-br from-primary/4 via-transparent to-violet-500/4'
-          aria-hidden
-        />
-
         <div className='relative p-6 text-start sm:p-8'>
           <div className='flex items-center gap-2'>
             <span className='flex size-7 items-center justify-center rounded-md bg-primary/10 text-primary'>
@@ -43,7 +38,7 @@ export default function EcomeniaHighlight() {
             )}
           >
             {t('featured-ecomenia.cta')}
-            <ArrowRightIcon className='size-4 rtl:rotate-180' aria-hidden />
+            <ArrowRightIcon className='size-4 rtl:-scale-x-100' aria-hidden />
           </Link>
         </div>
       </div>

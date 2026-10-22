@@ -1,14 +1,9 @@
 import type { useTranslations } from 'next-intl'
 
 import { SiFacebook, SiGithub } from '@icons-pack/react-simple-icons'
-import { FlameIcon, MessageCircleIcon, PencilIcon, ShoppingBagIcon, UserCircleIcon } from 'lucide-react'
+import { FlameIcon, PencilIcon, ShoppingBagIcon, UserCircleIcon } from 'lucide-react'
 
-import {
-  SITE_FACEBOOK_URL,
-  SITE_GITHUB_URL,
-  SITE_LINKEDIN_URL,
-  SITE_WHATSAPP_URL,
-} from '@/lib/constants'
+import { SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_WHATSAPP_URL } from '@/lib/constants'
 
 const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg role='img' viewBox='0 0 24 24' fill='currentColor' width='1em' height='1em' {...props}>
@@ -35,21 +30,11 @@ type HeaderLinks = Array<{
   labelKey: TranslationKey
 }>
 
+// Blog and Store show a "Soon" page in production, so they only join the header in development.
+// Guestbook lives in the footer.
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+
 export const HEADER_LINKS: HeaderLinks = [
-  {
-    icon: <PencilIcon className='size-3.5' />,
-    href: '/blog',
-    key: 'blog',
-    // i18n-check t('common.labels.blog')
-    labelKey: 'common.labels.blog',
-  },
-  {
-    icon: <MessageCircleIcon className='size-3.5' />,
-    href: '/guestbook',
-    key: 'guestbook',
-    // i18n-check t('common.labels.guestbook')
-    labelKey: 'common.labels.guestbook',
-  },
   {
     icon: <FlameIcon className='size-3.5' />,
     href: '/projects',
@@ -58,19 +43,30 @@ export const HEADER_LINKS: HeaderLinks = [
     labelKey: 'common.labels.projects',
   },
   {
-    icon: <ShoppingBagIcon className='size-3.5' />,
-    href: '/store',
-    key: 'store',
-    // i18n-check t('common.labels.store')
-    labelKey: 'common.labels.store',
-  },
-  {
     icon: <UserCircleIcon className='size-3.5' />,
     href: '/about',
     key: 'about',
     // i18n-check t('common.labels.about')
     labelKey: 'common.labels.about',
   },
+  ...(IS_PRODUCTION
+    ? []
+    : [
+        {
+          icon: <PencilIcon className='size-3.5' />,
+          href: '/blog',
+          key: 'blog',
+          // i18n-check t('common.labels.blog')
+          labelKey: 'common.labels.blog' as const,
+        },
+        {
+          icon: <ShoppingBagIcon className='size-3.5' />,
+          href: '/store',
+          key: 'store',
+          // i18n-check t('common.labels.store')
+          labelKey: 'common.labels.store' as const,
+        },
+      ]),
 ]
 
 type FooterSection = {

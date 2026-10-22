@@ -57,31 +57,36 @@
         "quote": "It's rare to find a developer who combines the power of clean code with a genuine eye for design — and that's exactly what I found in Issam. The work wasn't just technical execution; it was a journey of craftsmanship and attention to the finest details. The design quality and results were stunning. Issam isn't just a developer — he's a true partner who pushes for the best possible outcome.",
         "highlights": ["clean code", "eye for design", "craftsmanship", "true partner"],
         "name": "Coach Karim",
-        "role": "Trainer & CEO, Creative Book"
+        "role": "Trainer & CEO, Creative Book",
+        "short": "Issam isn't just a developer — he's a true partner who pushes for the best possible outcome."
       },
       {
         "quote": "Issam took our Basmat Design website to the next level. He added online payments, set up CI/CD deployment, and fixed our performance issues — our Lighthouse scores improved on both mobile and desktop. That brought more clients to basmatdesign.cloud. Professional and results-driven.",
         "highlights": ["online payments", "CI/CD deployment", "Lighthouse scores", "more clients"],
         "name": "Alla Mohamed",
-        "role": "Basmat Design, Saudi Arabia"
+        "role": "Basmat Design, Saudi Arabia",
+        "short": "That brought more clients to basmatdesign.cloud."
       },
       {
         "quote": "Over 3 million users — and more than a year in production with zero performance issues. Issam built our website and admin dashboard from the ground up. What impressed us most was his speed and pixel-perfect execution. Users love the UI/UX, and his SEO improvements helped us rank on Google.",
         "highlights": ["Over 3 million users", "zero performance issues", "pixel-perfect", "rank on Google"],
         "name": "Abdul Aziz",
-        "role": "Awan Company, Saudi Arabia"
+        "role": "Awan Company, Saudi Arabia",
+        "short": "Over 3 million users — and more than a year in production with zero performance issues."
       },
       {
         "quote": "As Project Manager at Compos Solution, I worked with Issam on the development of our Food Delivery application. The result was a very successful and polished product, perfectly aligned with our design guidelines. He is highly cooperative, understands requirements quickly, and communicates effectively. I would confidently collaborate with him again.",
         "highlights": ["polished product", "design guidelines", "highly cooperative", "confidently collaborate"],
         "name": "Mohamed Akram",
-        "role": "Project Manager, Compos Solution"
+        "role": "Project Manager, Compos Solution",
+        "short": "The result was a very successful and polished product, perfectly aligned with our design guidelines."
       },
       {
         "quote": "At Ecomenia, Issam leads as CTO and has been our technical backbone from day one. He architected and built our all-in-one e-commerce platform — order management, delivery integrations like Yalidine and Mystro, multi-store dashboards, inventory, and team tools — with the kind of clarity and scalability that lets real businesses run on it. His combination of product sense and engineering rigor is exactly what you want leading engineering.",
         "highlights": ["technical backbone", "all-in-one e-commerce platform", "scalability", "CTO"],
         "name": "Miloud Khdoum",
-        "role": "Founder, Ecomenia"
+        "role": "Founder, Ecomenia",
+        "short": "At Ecomenia, Issam leads as CTO and has been our technical backbone from day one."
       }
     ],
     "currently": {
@@ -296,13 +301,10 @@
       "location-distance-post": "away from your current location, according to your IP address.",
       "location-fallback": "I'm based in Algiers, Algeria — come say hello!",
       "location-credit": "Approximate distance from your location (IP-based).",
-      "more": "Know more about me",
       "stacks": "Tech Stack",
       "stacks-frontend": "Frontend",
       "stacks-backend": "Backend",
       "stacks-tools": "Tools & Mobile",
-      "title": "About Me",
-      "intro": "A curious, creative soul who codes like a founder and designs like an artist. I build things that matter — driven by imagination, fueled by energy, and obsessed with every pixel.",
       "coding-dna": "Who I Am",
       "trait-curious": "Deeply Curious",
       "trait-creative": "Born Creative",
@@ -336,7 +338,8 @@
       "coding-hours": "Coding Stats",
       "coding-hours-label": "78%",
       "projects-shipped": "Projects shipped",
-      "cups-of-coffee": "Cups of coffee"
+      "cups-of-coffee": "Cups of coffee",
+      "cards-title": "Beyond the code"
     },
     "experience": {
       "title": "Experience",
@@ -368,39 +371,164 @@
       }
     },
     "get-in-touch": {
-      "title": "Let's Build Something Amazing",
-      "description": "Got a SaaS idea, need a mobile app, or want a stunning web platform? I turn ambitious ideas into production-ready products. Let's talk.",
-      "email": "Start a Conversation",
-      "availability": "Typically respond within 24 hours. Available for freelance & contract work."
+      "title": "Tell me what you're building",
+      "description": "A few lines is enough. I reply within 24 hours with questions or a time for a short call.",
+      "call": "Book a 20-minute call",
+      "other-ways": "Prefer email or chat?"
     },
     "hero": {
-      "available": "Available for freelance",
-      "greeting": "Hi, I'm Issam Seghir.",
-      "tagline": "I turn ideas into products.",
-      "tagline-2": "I turn designs into code.",
-      "tagline-3": "I build AI SaaS that scales",
-      "description": "Software Engineer & SaaS Founder. I build scalable web apps, mobile apps, and AI-powered SaaS products — from concept to production, pixel-perfect.",
-      "description-highlight": "Software Engineer & SaaS Founder",
-      "cta-projects": "See My Work",
-      "cta-about": "About Me",
-      "location-timezone": "Algiers, Algeria · UTC+1"
+      "available": "Taking new projects",
+      "tagline": "I design and build SaaS products, web platforms and mobile apps, from the first sketch to launch day.",
+      "cta-projects": "See case studies",
+      "cta-about": "About me",
+      "location-timezone": "Algiers, Algeria · UTC+1",
+      "cta-contact": "Start a project",
+      "photo-alt": "Portrait of {name}"
     },
     "testimonials": {
-      "title": "What Clients Say",
-      "subtitle": "Don't just take my word for it — here's what people I've worked with have to say.",
-      "prev": "Previous testimonial",
-      "next": "Next testimonial",
-      "go-to": "Go to testimonial {n}"
+      "title": "What clients say"
     },
     "latest-articles": {
       "card": "Article",
       "more": "See all articles",
-      "title": "Latest Articles"
+      "title": "Latest articles"
     },
-    "selected-projects": {
-      "card": "Project",
-      "more": "See all projects",
-      "title": "Selected Projects"
+    "proof": {
+      "label": "Track record",
+      "built-for": "Built for",
+      "items": [
+        {
+          "value": "3M+",
+          "label": "people use the shopping platform I built for Awan"
+        },
+        {
+          "value": "CTO",
+          "label": "at Ecomenia, leading engineering since day one"
+        },
+        {
+          "value": "5",
+          "label": "clients put their names to the quotes on this page"
+        },
+        {
+          "value": "24 h",
+          "label": "to reply, in Arabic or English"
+        }
+      ]
+    },
+    "case-studies": {
+      "title": "Case studies",
+      "more": "All projects",
+      "problem": "Problem",
+      "built": "What I built",
+      "outcome": "Outcome",
+      "read": "Read case study",
+      "items": {
+        "ecomenia": {
+          "client": "Ecomenia",
+          "role": "CTO",
+          "title": "The operations platform behind growing online stores",
+          "problem": "Sellers juggled cash-on-delivery orders, local carriers and several storefronts with tools that weren't built for them.",
+          "built": "Order management, delivery integrations such as Yalidine and Mystro, multi-store dashboards, inventory and team roles.",
+          "outcome": "Live, with businesses running their daily operations on it."
+        },
+        "compos-resto": {
+          "client": "Compos Solution",
+          "role": "Mobile app",
+          "title": "Tables, orders and the kitchen in one app",
+          "problem": "Busy restaurants ran service on spreadsheets and disconnected tools, which slowed every table.",
+          "built": "A cross-platform app for table status, orders, kitchen flow and the bill, to the client's design guidelines.",
+          "outcome": "Delivered as a polished product. The project manager would work with me again."
+        },
+        "creative-book": {
+          "client": "Creative Book",
+          "role": "Web store",
+          "title": "A bilingual store for books and courses",
+          "problem": "A training brand needed one place to sell its books and courses to readers in Arabic and English.",
+          "built": "A Next.js storefront with a bento layout, smooth motion and full Arabic and English versions.",
+          "outcome": "Live at creativebook.io, and the client came back for a mobile reading app."
+        }
+      },
+      "separator": ", "
+    },
+    "services": {
+      "title": "What I build",
+      "items": [
+        {
+          "title": "SaaS products",
+          "body": "From first version to paying users: sign-in, billing, dashboards and admin."
+        },
+        {
+          "title": "E-commerce and operations",
+          "body": "Storefronts, order and delivery flows, inventory and multi-store tools."
+        },
+        {
+          "title": "Mobile apps",
+          "body": "iOS and Android from one codebase, shipped to both stores."
+        },
+        {
+          "title": "Arabic and English",
+          "body": "Bilingual products with right-to-left layouts built in from day one."
+        }
+      ],
+      "process-title": "How a project runs",
+      "steps": [
+        {
+          "title": "A short call",
+          "body": "We talk about what you're building and who it's for."
+        },
+        {
+          "title": "Scope and a quote",
+          "body": "A written plan with price and dates before any work starts."
+        },
+        {
+          "title": "Build with weekly demos",
+          "body": "You see working software every week, not only at the end."
+        },
+        {
+          "title": "Launch and hand over",
+          "body": "Deploy, watch the first weeks, and hand over everything you need."
+        }
+      ]
+    },
+    "brief": {
+      "type-label": "What are you building?",
+      "types": {
+        "saas": "SaaS product",
+        "ecommerce": "E-commerce",
+        "mobile": "Mobile app",
+        "website": "Website",
+        "other": "Something else"
+      },
+      "budget-label": "Budget",
+      "budgets": {
+        "under-3k": "Under $3k",
+        "3k-10k": "$3k to $10k",
+        "10k-25k": "$10k to $25k",
+        "25k-plus": "$25k+",
+        "unsure": "Not sure yet"
+      },
+      "email-label": "Your email",
+      "message-label": "About the project",
+      "message-placeholder": "What it does, who it's for, and when you'd like to launch.",
+      "honeypot-label": "Leave this field empty",
+      "submit": "Send brief",
+      "sending": "Sending",
+      "sent-title": "Brief sent",
+      "sent-body": "I'll reply within 24 hours. A confirmation is on its way to your inbox.",
+      "send-another": "Send another brief",
+      "errors": {
+        "type": "Pick what you're building.",
+        "budget": "Pick a budget range, or \"Not sure yet\".",
+        "email": "Enter an email I can reply to.",
+        "message": "Add a sentence or two about the project.",
+        "failed": "The brief didn't send. Your text is still here, so you can email it instead.",
+        "rate-limited": "You've sent several briefs in the last hour. Email it to me instead.",
+        "email-instead": "Email the brief"
+      },
+      "mailto-subject": "Project brief"
+    },
+    "mobile-bar": {
+      "note": "Replies within 24 hours"
     }
   },
   "layout": {
@@ -464,6 +592,11 @@
     "nav": {
       "previous": "Previous project",
       "next": "Next project"
+    },
+    "groups": {
+      "client": "Client work",
+      "experiments": "Experiments",
+      "experiments-note": "Demos and clones I built to try new tools."
     }
   },
   "settings": {

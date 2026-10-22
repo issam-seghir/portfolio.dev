@@ -8,6 +8,7 @@ import { use } from 'react'
 import BlurImage from '@/components/blur-image'
 import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
+import ProjectCoverTransition from '@/components/project-cover-transition'
 import ProjectCTA from '@/components/project-cta'
 import ProjectHeader from '@/components/project-header'
 import ProjectNavigation from '@/components/project-navigation'
@@ -121,17 +122,19 @@ function Page(props: PageProps<'/[locale]/projects/[slug]'>) {
                   />
                 </div>
               ) : (
-                <div className='relative aspect-40/21 w-full'>
-                  <BlurImage
-                    fill
-                    src={`/images/projects/${slug}/cover.webp`}
-                    alt={name}
-                    className='absolute inset-0 size-full rounded-lg'
-                    imageClassName='object-cover object-center'
-                    sizes='(max-width: 1024px) 100vw, 48rem'
-                    lazy={false}
-                  />
-                </div>
+                <ProjectCoverTransition slug={slug}>
+                  <div className='relative aspect-40/21 w-full'>
+                    <BlurImage
+                      fill
+                      src={`/images/projects/${slug}/cover.webp`}
+                      alt={name}
+                      className='absolute inset-0 size-full rounded-lg'
+                      imageClassName='object-cover object-center'
+                      sizes='(max-width: 1024px) 100vw, 48rem'
+                      lazy={false}
+                    />
+                  </div>
+                </ProjectCoverTransition>
               )}
             </div>
             <Mdx code={code} />

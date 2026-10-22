@@ -64,21 +64,12 @@ export function AboutHero() {
             alt={`${MY_NAME}'s photo`}
             lazy={false}
           />
-          <div className='absolute inset-0 -z-10 bg-linear-to-tl from-blue-600 to-violet-600 opacity-20 blur-3xl' />
         </div>
 
         <div className='flex w-full max-w-xl min-w-0 flex-1 flex-col items-center gap-4 text-center md:max-w-none md:items-start md:text-start'>
           <div className='min-w-0'>
             <h1 className='text-3xl font-bold tracking-tight text-balance sm:text-4xl'>{MY_NAME}</h1>
-            <p
-              className={cn(
-                'mt-1 text-base font-medium sm:text-lg',
-                'bg-linear-to-r from-blue-600 via-violet-600 to-blue-600 bg-clip-text text-transparent',
-                'dark:from-blue-400 dark:via-violet-400 dark:to-blue-400',
-              )}
-            >
-              {t('about.role')}
-            </p>
+            <p className='mt-1 text-base font-medium text-primary sm:text-lg'>{t('about.role')}</p>
           </div>
 
           <p className='max-w-lg text-base/relaxed text-pretty text-foreground/95 md:max-w-2xl md:text-[1.0625rem]'>
@@ -86,11 +77,8 @@ export function AboutHero() {
           </p>
 
           <div className='flex items-center justify-center gap-2 md:justify-start'>
-            <span className='relative flex size-2'>
-              <span className='absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-75' />
-              <span className='relative inline-flex size-2 rounded-full bg-green-500' />
-            </span>
-            <span className='text-sm text-green-600 dark:text-green-400'>{t('about.available')}</span>
+            <span className='size-2 shrink-0 rounded-[2px] bg-highlight' aria-hidden />
+            <span className='text-sm text-muted-foreground'>{t('about.available')}</span>
           </div>
 
           <div className='flex w-full max-w-md flex-wrap justify-center gap-2 sm:max-w-none md:justify-start'>
@@ -143,13 +131,13 @@ export function AboutHero() {
         {STATS.map((stat, index) => (
           <motion.div
             key={stat.labelKey}
-            className='group flex min-w-0 flex-col items-center justify-between gap-1 rounded-2xl border border-border/60 bg-card/30 p-3 shadow-feature-card transition-colors hover:bg-accent/30 sm:gap-1.5 sm:p-5'
+            className='group flex min-w-0 flex-col items-center justify-between gap-1 rounded-xl border border-border/60 bg-card/30 p-3 shadow-feature-card transition-colors hover:bg-accent/30 sm:gap-1.5 sm:p-5'
             initial={{ opacity: 0, y: 20 }}
             animate={isStatsInView ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
           >
             {stat.kind === 'count' ? (
-              <span className='text-2xl font-bold text-blue-600 tabular-nums sm:text-3xl dark:text-blue-400'>
+              <span className='text-2xl font-bold text-primary tabular-nums sm:text-3xl'>
                 <NumberFlow value={animateStats ? stat.value : 0} suffix={stat.suffix} className='text-inherit' />
               </span>
             ) : (
@@ -157,9 +145,7 @@ export function AboutHero() {
                 <span className='text-xl leading-none sm:text-2xl' aria-hidden>
                   {stat.emoji}
                 </span>
-                <span className='text-2xl font-bold text-blue-600 tabular-nums sm:text-3xl dark:text-blue-400'>
-                  {stat.display}
-                </span>
+                <span className='text-2xl font-bold text-primary tabular-nums sm:text-3xl'>{stat.display}</span>
               </span>
             )}
             <span className='text-center text-[11px] leading-snug text-foreground/75 sm:text-xs'>

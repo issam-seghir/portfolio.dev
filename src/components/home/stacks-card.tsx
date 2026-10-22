@@ -40,11 +40,8 @@ const SiOpenai = (props: React.SVGProps<SVGSVGElement>) => (
 type TechItem = {
   name: string
   Icon: ComponentType<React.SVGProps<SVGSVGElement>>
+  /** Real brand color of the tech logo (intentionally not a theme token) */
   color: string
-  glow: string
-  floatDelay: number
-  floatDuration: number
-  floatY: number
 }
 
 const TECH: TechItem[] = [
@@ -52,181 +49,101 @@ const TECH: TechItem[] = [
     name: 'React',
     Icon: SiReact,
     color: '#61dafb',
-    glow: 'rgba(97,218,251,0.4)',
-    floatDelay: 0,
-    floatDuration: 4,
-    floatY: 6,
   },
   {
     name: 'Next.js',
     Icon: SiNextdotjs,
     color: '#ffffff',
-    glow: 'rgba(255,255,255,0.2)',
-    floatDelay: 0.5,
-    floatDuration: 4.5,
-    floatY: 5,
   },
   {
     name: 'TypeScript',
     Icon: SiTypescript,
     color: '#3178c6',
-    glow: 'rgba(49,120,198,0.4)',
-    floatDelay: 1,
-    floatDuration: 5,
-    floatY: 7,
   },
   {
     name: 'Tailwind',
     Icon: SiTailwindcss,
     color: '#06b6d4',
-    glow: 'rgba(6,182,212,0.4)',
-    floatDelay: 0.3,
-    floatDuration: 4.2,
-    floatY: 5,
   },
   {
     name: 'shadcn/ui',
     Icon: SiShadcnui,
     color: '#ffffff',
-    glow: 'rgba(255,255,255,0.15)',
-    floatDelay: 0.35,
-    floatDuration: 4,
-    floatY: 5,
   },
   {
     name: 'Node.js',
     Icon: SiNodedotjs,
     color: '#339933',
-    glow: 'rgba(51,153,51,0.35)',
-    floatDelay: 0.7,
-    floatDuration: 4.8,
-    floatY: 6,
   },
   {
     name: 'PostgreSQL',
     Icon: SiPostgresql,
     color: '#4169e1',
-    glow: 'rgba(65,105,225,0.35)',
-    floatDelay: 1.2,
-    floatDuration: 5.2,
-    floatY: 4,
   },
   {
     name: 'Prisma',
     Icon: SiPrisma,
     color: '#ffffff',
-    glow: 'rgba(255,255,255,0.15)',
-    floatDelay: 0.4,
-    floatDuration: 3.8,
-    floatY: 5,
   },
   {
     name: 'Drizzle',
     Icon: SiDrizzle,
     color: '#f9b707',
-    glow: 'rgba(249,183,7,0.35)',
-    floatDelay: 0.9,
-    floatDuration: 4.4,
-    floatY: 6,
   },
   {
     name: 'Express',
     Icon: SiExpress,
     color: '#ffffff',
-    glow: 'rgba(255,255,255,0.15)',
-    floatDelay: 1.4,
-    floatDuration: 4.6,
-    floatY: 4,
   },
   {
     name: 'FastAPI',
     Icon: SiFastapi,
     color: '#009688',
-    glow: 'rgba(0,150,136,0.35)',
-    floatDelay: 1.35,
-    floatDuration: 4.5,
-    floatY: 5,
   },
   {
     name: 'OpenAI',
     Icon: SiOpenai,
     color: '#412991',
-    glow: 'rgba(65,41,145,0.35)',
-    floatDelay: 0.55,
-    floatDuration: 4.4,
-    floatY: 6,
   },
   {
     name: 'LLM',
     Icon: SiHuggingface,
     color: '#ffac33',
-    glow: 'rgba(255,172,51,0.35)',
-    floatDelay: 1.25,
-    floatDuration: 4.2,
-    floatY: 5,
   },
   {
     name: 'MongoDB',
     Icon: SiMongodb,
     color: '#47a248',
-    glow: 'rgba(71,162,72,0.35)',
-    floatDelay: 0.6,
-    floatDuration: 5,
-    floatY: 5,
   },
   {
     name: 'Firebase',
     Icon: SiFirebase,
     color: '#ffca28',
-    glow: 'rgba(255,202,40,0.35)',
-    floatDelay: 1.1,
-    floatDuration: 4.3,
-    floatY: 7,
   },
   {
     name: 'Figma',
     Icon: SiFigma,
     color: '#f24e1e',
-    glow: 'rgba(242,78,30,0.35)',
-    floatDelay: 0.2,
-    floatDuration: 4.7,
-    floatY: 5,
   },
   {
     name: 'Git',
     Icon: SiGit,
     color: '#f05032',
-    glow: 'rgba(240,80,50,0.35)',
-    floatDelay: 0.8,
-    floatDuration: 3.6,
-    floatY: 4,
   },
   {
     name: 'JavaScript',
     Icon: SiJavascript,
     color: '#f7df1e',
-    glow: 'rgba(247,223,30,0.3)',
-    floatDelay: 1.3,
-    floatDuration: 4.1,
-    floatY: 6,
   },
   {
     name: 'HTML5',
     Icon: SiHtml5,
     color: '#e34f26',
-    glow: 'rgba(227,79,38,0.35)',
-    floatDelay: 0.5,
-    floatDuration: 4.9,
-    floatY: 5,
   },
   {
     name: 'CSS3',
     Icon: SiCss,
     color: '#1572b6',
-    glow: 'rgba(21,114,182,0.35)',
-    floatDelay: 1,
-    floatDuration: 5.1,
-    floatY: 4,
   },
 ]
 
@@ -234,8 +151,8 @@ function isWhiteBrandColor(color: string) {
   return color.toLowerCase() === '#ffffff'
 }
 
-function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
-  const { name, Icon, color, glow, floatDelay, floatDuration, floatY } = item
+function TechIcon({ item, index }: { item: TechItem; index: number }) {
+  const { name, Icon, color } = item
   const isUseThemeAwareFill = isWhiteBrandColor(color)
 
   return (
@@ -259,36 +176,17 @@ function FloatingIcon({ item, index }: { item: TechItem; index: number }) {
             dragElastic={0.3}
             dragTransition={{ bounceStiffness: 300, bounceDamping: 20 }}
             className='relative'
-            animate={{ y: [-floatY, floatY, -floatY] }}
-            transition={{
-              y: {
-                duration: floatDuration,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: floatDelay,
-              },
-            }}
-            whileHover={{ scale: 1.2, zIndex: 10 }}
+            whileHover={{ scale: 1.1, zIndex: 10 }}
             whileTap={{ scale: 1.3 }}
           >
             <div
               className={cn(
-                'flex size-14 items-center justify-center rounded-2xl border backdrop-blur-md transition-all duration-300 sm:size-16',
+                'flex size-14 items-center justify-center rounded-xl border transition-colors duration-300 sm:size-16',
                 'border-border/60 bg-muted/50 hover:border-border hover:bg-muted/80',
-                'dark:border-white/8 dark:bg-white/4 dark:hover:border-white/20 dark:hover:bg-white/8',
               )}
-              style={{
-                boxShadow: `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 28px ${glow}, 0 0 60px ${glow.replace(/0\.\d+\)$/, '0.15)')}, inset 0 1px 0 rgba(128,128,128,0.14)`
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 0px ${glow}, inset 0 1px 0 rgba(128,128,128,0.1)`
-              }}
             >
               <Icon
-                className={cn('size-7 sm:size-8', isUseThemeAwareFill && 'text-zinc-900 dark:text-white')}
+                className={cn('size-7 sm:size-8', isUseThemeAwareFill && 'text-foreground')}
                 style={isUseThemeAwareFill ? undefined : { color }}
               />
             </div>
@@ -353,7 +251,7 @@ export default function StacksCard() {
       <TiltContainer>
         <div className={cn('grid grid-cols-4 gap-3 sm:grid-cols-5 lg:grid-cols-8', 'place-items-center py-2')}>
           {TECH.map((item, i) => (
-            <FloatingIcon key={item.name} item={item} index={i} />
+            <TechIcon key={item.name} item={item} index={i} />
           ))}
         </div>
       </TiltContainer>

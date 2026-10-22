@@ -5,18 +5,15 @@ export default function Pinned() {
   const t = useTranslations()
 
   return (
-    <div className='relative overflow-hidden rounded-2xl border text-card-foreground'>
-      {/* Gradient Background */}
-      <div className='absolute inset-0 bg-linear-to-br from-blue-50 via-purple-50 to-rose-50 dark:from-blue-900/20 dark:via-purple-900/20 dark:to-rose-900/10' />
-
+    <div className='relative overflow-hidden rounded-xl border bg-card text-card-foreground'>
       {/* Pin Icon */}
-      <div className='absolute top-4 right-4'>
+      <div className='absolute inset-e-4 top-4'>
         <PinIcon className='size-5 rotate-45 text-muted-foreground' />
       </div>
 
       <div className='relative p-6'>
         <div className='flex items-start gap-4'>
-          <div className='hidden size-10 shrink-0 items-center justify-center rounded-full bg-muted sm:flex'>
+          <div className='hidden size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 sm:flex'>
             <MessageCircleIcon className='size-5 text-primary' />
           </div>
           <div className='space-y-4'>

@@ -35,6 +35,8 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: z.string().min(1).optional(),
 
     RESEND_API_KEY: z.string().min(1).optional(),
+    // Sender on a domain verified in Resend, e.g. "Issam Seghir <hello@issam.tech>"
+    EMAIL_FROM: z.string().min(1).optional(),
     AUTHOR_EMAIL: z
       .union([z.email(), z.literal('')])
       .optional()

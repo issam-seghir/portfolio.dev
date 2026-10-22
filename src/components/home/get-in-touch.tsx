@@ -1,14 +1,19 @@
-'use client'
-
 import { SiGithub } from '@icons-pack/react-simple-icons'
-import { MailIcon, SendIcon } from 'lucide-react'
-import { motion, useInView } from 'motion/react'
+import { CalendarIcon, MailIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useRef } from 'react'
 
-import { buttonVariants } from '@/components/ui/button'
-import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_WHATSAPP_URL } from '@/lib/constants'
+import { buttonVariants } from '@/components/ui/button-variants'
+import {
+  SITE_BOOKING_URL,
+  SITE_CONTACT_EMAIL,
+  SITE_CONTACT_MAILTO,
+  SITE_GITHUB_URL,
+  SITE_LINKEDIN_URL,
+  SITE_WHATSAPP_URL,
+} from '@/lib/constants'
 import { cn } from '@/utils/cn'
+
+import BriefForm from './brief-form'
 
 const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg role='img' viewBox='0 0 24 24' fill='currentColor' width='1em' height='1em' {...props}>
@@ -22,70 +27,47 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-function GetInTouch() {
-  const cardsRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(cardsRef, { once: true, margin: '-100px' })
+export default function GetInTouch() {
   const t = useTranslations()
+  const secondary = cn(buttonVariants({ variant: 'outline' }), 'min-h-11 justify-center gap-2')
 
   return (
-    <div ref={cardsRef} className='relative my-24'>
-      <motion.div
-        className='relative overflow-hidden rounded-2xl p-px'
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : undefined}
-        transition={{ duration: 0.5 }}
-      >
-        <div className='absolute inset-0 animate-[spin_8s_linear_infinite] rounded-2xl bg-linear-to-r from-blue-500/20 via-violet-500/20 to-blue-500/20 blur-sm' />
-        <div className='relative rounded-2xl bg-background px-4 py-8 shadow-feature-card sm:px-8 md:p-12'>
-          <div className='relative z-10 mx-auto max-w-xl text-center'>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : undefined}
-              transition={{ duration: 0.4, delay: 0.1, type: 'spring', stiffness: 200 }}
-              className='mx-auto mb-5 flex size-14 items-center justify-center rounded-full bg-muted sm:mb-6 sm:size-16'
-            >
-              <SendIcon className='size-6 text-muted-foreground sm:size-7' />
-            </motion.div>
-
-            <h2 className='text-2xl font-semibold tracking-tight text-balance sm:text-3xl'>
+    <section id='contact' className='my-24 scroll-mt-28'>
+      <div className='grid gap-10 rounded-xl border bg-card p-6 sm:p-10 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] md:gap-12'>
+        <div className='grid content-start gap-6'>
+          <div>
+            <h2 className='font-heading text-3xl font-semibold text-balance sm:text-4xl'>
               {t('homepage.get-in-touch.title')}
             </h2>
-            <p className='mt-3 text-sm/relaxed text-pretty text-muted-foreground sm:text-base'>
+            <p className='mt-3 max-w-[46ch] text-pretty text-muted-foreground'>
               {t('homepage.get-in-touch.description')}
             </p>
+          </div>
 
-            <div className='mt-8 flex w-full flex-col gap-3 sm:mx-auto sm:max-w-2xl sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3'>
-              <a
-                href='mailto:issamusma@hotmail.com'
-                className={cn(
-                  buttonVariants({ size: 'lg' }),
-                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
-                )}
-              >
+          {SITE_BOOKING_URL && (
+            <a
+              href={SITE_BOOKING_URL}
+              target='_blank'
+              rel='noopener noreferrer'
+              className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'min-h-11 w-fit gap-2')}
+            >
+              <CalendarIcon className='size-4 shrink-0' />
+              {t('homepage.get-in-touch.call')}
+            </a>
+          )}
+
+          <div className='grid gap-3'>
+            <p className='text-sm text-muted-foreground'>{t('homepage.get-in-touch.other-ways')}</p>
+            <div className='grid grid-cols-2 gap-3'>
+              <a href={SITE_CONTACT_MAILTO} className={cn(secondary, 'col-span-2')}>
                 <MailIcon className='size-4 shrink-0' />
-                {t('homepage.get-in-touch.email')}
+                <span dir='ltr'>{SITE_CONTACT_EMAIL}</span>
               </a>
-              <a
-                href={SITE_WHATSAPP_URL}
-                target='_blank'
-                rel='noopener noreferrer'
-                className={cn(
-                  buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
-                )}
-              >
+              <a href={SITE_WHATSAPP_URL} target='_blank' rel='noopener noreferrer' className={secondary}>
                 <WhatsAppIcon className='size-4 shrink-0' />
                 WhatsApp
               </a>
-              <a
-                href={SITE_LINKEDIN_URL}
-                target='_blank'
-                rel='noopener noreferrer'
-                className={cn(
-                  buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
-                )}
-              >
+              <a href={SITE_LINKEDIN_URL} target='_blank' rel='noopener noreferrer' className={secondary}>
                 <LinkedInIcon className='size-4 shrink-0' />
                 LinkedIn
               </a>
@@ -93,27 +75,19 @@ function GetInTouch() {
                 href={SITE_GITHUB_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className={cn(
-                  buttonVariants({ variant: 'outline', size: 'lg' }),
-                  'min-h-11 w-full shrink-0 justify-center gap-2 sm:w-auto sm:min-w-44',
-                )}
+                className={cn(secondary, 'col-span-2')}
               >
                 <SiGithub className='size-4 shrink-0' />
                 GitHub
               </a>
             </div>
-
-            <div className='mt-6 flex min-w-0 items-center justify-center gap-2 px-2'>
-              {/* <div className='size-2 shrink-0 rounded-full bg-green-500' aria-hidden /> */}
-              <p className='max-w-md text-center text-xs/relaxed text-balance text-muted-foreground sm:text-sm'>
-                {t('homepage.get-in-touch.availability')}
-              </p>
-            </div>
           </div>
         </div>
-      </motion.div>
-    </div>
+
+        <div className='md:border-s md:ps-12'>
+          <BriefForm />
+        </div>
+      </div>
+    </section>
   )
 }
-
-export default GetInTouch

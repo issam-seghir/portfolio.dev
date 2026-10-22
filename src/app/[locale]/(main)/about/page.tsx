@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { use } from 'react'
 
+import AboutCards from '@/components/about/about-cards'
 import { AboutHero } from '@/components/about/about-hero'
 import JsonLd from '@/components/json-ld'
 import Mdx from '@/components/mdx'
@@ -88,6 +89,7 @@ function Page(props: PageProps<'/[locale]/about'>) {
     <>
       <JsonLd json={jsonLd} />
       <AboutHero />
+      <AboutCards />
       <Mdx code={code} />
     </>
   )

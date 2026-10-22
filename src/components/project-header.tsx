@@ -39,7 +39,7 @@ function HeroBadges(props: {
   return (
     <div className='flex flex-wrap items-center gap-2'>
       {isFeatured && (
-        <Badge variant='secondary' className='gap-1 font-normal'>
+        <Badge variant='secondary' className='gap-1 bg-highlight text-highlight-foreground'>
           <StarIcon className='size-3 fill-current' aria-hidden />
           {featuredLabel}
         </Badge>
@@ -135,13 +135,13 @@ function HeroActions(props: {
       {homepage && (
         <Link href={homepage} className={cn(buttonVariants(), 'group')}>
           {visitWebsite}
-          <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
+          <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12 rtl:-scale-x-100' />
         </Link>
       )}
       {github && openSource && (
         <Link href={github} className={cn(buttonVariants({ variant: 'outline' }), 'group')}>
           {visitRepo}
-          <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12' />
+          <ArrowUpRightIcon className='size-5 transition-transform group-hover:-rotate-12 rtl:-scale-x-100' />
         </Link>
       )}
     </motion.div>

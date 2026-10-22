@@ -74,7 +74,7 @@ function Message(props: MessageProps) {
           <div className='text-xs text-muted-foreground'>{formattedDate ?? '--'}</div>
         </div>
       </div>
-      <div className='pl-13 wrap-break-word'>{message.body}</div>
+      <div className='ps-13 wrap-break-word'>{message.body}</div>
       {isAuthor && <DeleteButton message={message} />}
     </div>
   )

@@ -131,26 +131,6 @@ export function getRelatedProjects(locale: string, slug: string, limit = 3): Pub
   return scored.slice(0, limit).map((s) => s.project)
 }
 
-/** Featured on the home page; full catalog lives at `/projects`. */
-export const HOMEPAGE_SELECTED_PROJECTS_LIMIT = 4
-
-export function getSelectedProjects(locale: string, limit?: number) {
-  function getRank(p: (typeof allProjects)[number]) {
-    // Lower rank = higher priority; unranked items come last.
-    return p.featuredRank ?? Infinity
-  }
-
-  const sorted = allProjects
-    .filter((project) => project.selected && project.locale === locale && isVisible(project))
-    .toSorted((a, b) => {
-      const rankDiff = getRank(a) - getRank(b)
-      if (rankDiff !== 0) return rankDiff
-      return new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
-    })
-
-  return limit === undefined ? sorted : sorted.slice(0, limit)
-}
-
 export function getPostBySlug(locale: string, slug: string) {
   return allPosts.find((p) => p.slug === slug && p.locale === locale)
 }

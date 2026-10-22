@@ -13,7 +13,7 @@ type AnimatedLineProps = {
 function AnimatedLine({ className, delay = 0.3, duration = 0.6 }: AnimatedLineProps) {
   return (
     <motion.span
-      className={cn('mt-2 block h-0.75 w-16 rounded-full bg-linear-to-r from-blue-500 to-violet-500', className)}
+      className={cn('mt-2 block h-0.75 w-16 origin-left rounded-full bg-primary rtl:origin-right', className)}
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
       transition={{
@@ -21,7 +21,6 @@ function AnimatedLine({ className, delay = 0.3, duration = 0.6 }: AnimatedLinePr
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}
-      style={{ transformOrigin: 'left' }}
     />
   )
 }

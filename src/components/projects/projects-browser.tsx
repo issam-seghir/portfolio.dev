@@ -38,6 +38,11 @@ type ProjectsBrowserProps = {
       mobile: string
       internal: string
     }
+    groups: {
+      client: string
+      experiments: string
+      experimentsNote: string
+    }
   }
 }
 
@@ -188,7 +193,36 @@ function ProjectsBrowser(props: ProjectsBrowserProps) {
         </div>
       </div>
 
-      <ProjectCards projects={results} />
+      {results.length === 0 ? (
+        <ProjectCards projects={results} />
+      ) : (
+        <ProjectGroups projects={results} labels={labels.groups} />
+      )}
+    </div>
+  )
+}
+
+/** Client work first; demos and clones follow under their own heading. */
+function ProjectGroups(props: { projects: Project[]; labels: ProjectsBrowserProps['labels']['groups'] }) {
+  const { projects, labels } = props
+  const client = projects.filter((p) => p.kind !== 'experiment')
+  const experiments = projects.filter((p) => p.kind === 'experiment')
+
+  return (
+    <div className='grid gap-16'>
+      {client.length > 0 && (
+        <section>
+          <h2 className='font-heading text-2xl font-semibold'>{labels.client}</h2>
+          <ProjectCards projects={client} />
+        </section>
+      )}
+      {experiments.length > 0 && (
+        <section>
+          <h2 className='font-heading text-2xl font-semibold'>{labels.experiments}</h2>
+          <p className='mt-2 text-muted-foreground'>{labels.experimentsNote}</p>
+          <ProjectCards projects={experiments} />
+        </section>
+      )}
     </div>
   )
 }

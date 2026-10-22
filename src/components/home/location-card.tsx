@@ -9,7 +9,10 @@ import { useEffect, useRef, useState } from 'react'
 
 import { cn } from '@/utils/cn'
 
-/** COBE presets: dark mode matches the original card; light mode uses library “light” defaults so the globe isn’t a black sphere on a white card */
+/**
+ * COBE presets (WebGL needs RGB floats, so CSS tokens can't be passed directly).
+ * Marker colors mirror `--primary` (#0c6b5b light / #46bfa3 dark) from globals.css; the rest stays neutral.
+ */
 function globeStyle(isDark: boolean) {
   if (isDark) {
     return {
@@ -17,7 +20,7 @@ function globeStyle(isDark: boolean) {
       diffuse: 2,
       mapBrightness: 2,
       baseColor: [0.8, 0.8, 0.8] as [number, number, number],
-      markerColor: [1, 1, 1] as [number, number, number],
+      markerColor: [0.275, 0.749, 0.639] as [number, number, number],
       glowColor: [0.5, 0.5, 0.5] as [number, number, number],
     }
   }
@@ -25,9 +28,9 @@ function globeStyle(isDark: boolean) {
     dark: 0,
     diffuse: 1.2,
     mapBrightness: 6,
-    baseColor: [0.9, 0.92, 0.97] as [number, number, number],
-    markerColor: [0.22, 0.48, 0.95] as [number, number, number],
-    glowColor: [0.72, 0.8, 0.96] as [number, number, number],
+    baseColor: [0.92, 0.94, 0.93] as [number, number, number],
+    markerColor: [0.047, 0.42, 0.357] as [number, number, number],
+    glowColor: [0.85, 0.88, 0.86] as [number, number, number],
   }
 }
 
@@ -213,7 +216,7 @@ function LocationCard() {
             onClick={() => {
               setUnit((u) => (u === 'km' ? 'mi' : 'km'))
             }}
-            className='inline-flex cursor-pointer items-baseline gap-0.5 font-semibold text-foreground underline decoration-blue-500/50 decoration-2 underline-offset-2 transition-colors hover:decoration-blue-500'
+            className='inline-flex cursor-pointer items-baseline gap-0.5 font-semibold text-foreground underline decoration-primary/50 decoration-2 underline-offset-2 transition-colors hover:decoration-primary'
           >
             <AnimatedDistance value={dist} />
             {unit}
@@ -289,7 +292,7 @@ function LocationCard() {
 
       <div className='p-4 lg:px-6'>
         <AnimatePresence mode='wait'>{locationStatus}</AnimatePresence>
-        <p className='mt-2 text-[10px] text-muted-foreground/30 italic'>{t('homepage.about-me.location-credit')}</p>
+        <p className='mt-2 text-[10px] text-muted-foreground italic'>{t('homepage.about-me.location-credit')}</p>
       </div>
     </div>
   )

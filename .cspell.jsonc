@@ -49,5 +49,7 @@
     "html",
     "sql",
   ],
-  "ignorePaths": ["pnpm-lock.yaml", ".git"],
+  // Arabic script is checked by people, not by an English dictionary
+  "ignoreRegExpList": ["/[\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF\\uFB50-\\uFDFF\\uFE70-\\uFEFF]+/gu"],
+  "ignorePaths": ["pnpm-lock.yaml", ".git", "docs/product/brand-kit/**"],
 }

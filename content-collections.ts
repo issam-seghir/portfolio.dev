@@ -67,6 +67,8 @@ const projects = defineCollection({
     hidden: z.boolean().optional().default(false),
     techstack: z.array(z.string()),
     selected: z.boolean().optional().default(false),
+    /** Paid client work, or a demo / clone built to practise. */
+    kind: z.enum(['client', 'experiment']).optional().default('client'),
     featuredRank: z.number().int().min(1).optional(),
     company: z.string().optional(),
     role: z.string().optional(),

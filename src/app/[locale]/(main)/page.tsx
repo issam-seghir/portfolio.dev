@@ -6,15 +6,18 @@ import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { use } from 'react'
 
-import AboutMe from '@/components/home/about-me'
+import CaseStudies from '@/components/home/case-studies'
 import GetInTouch from '@/components/home/get-in-touch'
 import Hero from '@/components/home/hero'
 import LatestArticles from '@/components/home/latest-articles'
-import SelectedProjects from '@/components/home/selected-projects'
-import HomeTestimonials from '@/components/home/testimonials'
+import MobileCtaBar from '@/components/home/mobile-cta-bar'
+import ProofBar from '@/components/home/proof-bar'
+import QuoteMarkers from '@/components/home/quote-markers'
+import Services from '@/components/home/services'
+import ClientVoices from '@/components/home/testimonials'
 import JsonLd from '@/components/json-ld'
 import { MY_NAME, SITE_FACEBOOK_URL, SITE_GITHUB_URL, SITE_LINKEDIN_URL } from '@/lib/constants'
-import { getLatestPosts, getSelectedProjects, HOMEPAGE_SELECTED_PROJECTS_LIMIT } from '@/lib/content'
+import { getLatestPosts } from '@/lib/content'
 import { createMetadata } from '@/lib/metadata'
 import { getBaseUrl } from '@/utils/get-base-url'
 import { getLocalizedPath } from '@/utils/get-localized-path'
@@ -62,17 +65,19 @@ function Page(props: PageProps<'/[locale]'>) {
 
   const isBlogPublic = process.env.NODE_ENV !== 'production'
   const filteredPosts = isBlogPublic ? getLatestPosts(locale, 2) : []
-  const filteredProjects = getSelectedProjects(locale, HOMEPAGE_SELECTED_PROJECTS_LIMIT)
 
   return (
     <>
       <JsonLd json={jsonLd} />
       <Hero />
-      <SelectedProjects projects={filteredProjects} />
-      <AboutMe />
-      <HomeTestimonials />
+      <ProofBar />
+      <CaseStudies />
+      <Services />
+      <ClientVoices />
       {isBlogPublic && filteredPosts.length > 0 ? <LatestArticles posts={filteredPosts} /> : null}
       <GetInTouch />
+      <MobileCtaBar />
+      <QuoteMarkers />
     </>
   )
 }

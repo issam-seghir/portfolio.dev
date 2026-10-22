@@ -14,11 +14,13 @@ type TestimonialItem = {
   nameKey: string
   roleKey: string
   initials: string
-  color: string
   stars: number
   avatar?: string
   countryFlag?: TestimonialCountryFlag
 }
+
+/** Single brand treatment for initials avatars (overrides the shared avatar's gradient + white text via tailwind-merge) */
+const AVATAR_TONE = 'from-primary to-primary text-primary-foreground'
 
 const TESTIMONIALS: TestimonialItem[] = [
   {
@@ -26,7 +28,6 @@ const TESTIMONIALS: TestimonialItem[] = [
     nameKey: 'about.testimonials.0.name',
     roleKey: 'about.testimonials.0.role',
     initials: 'CK',
-    color: 'from-blue-500 to-cyan-500',
     stars: 5,
     avatar: '/images/testimonials/coach-karim.jpg',
   },
@@ -35,7 +36,6 @@ const TESTIMONIALS: TestimonialItem[] = [
     nameKey: 'about.testimonials.1.name',
     roleKey: 'about.testimonials.1.role',
     initials: 'AM',
-    color: 'from-violet-500 to-pink-500',
     stars: 5,
     avatar: '/images/testimonials/alla-mohamed.png',
   },
@@ -44,7 +44,6 @@ const TESTIMONIALS: TestimonialItem[] = [
     nameKey: 'about.testimonials.2.name',
     roleKey: 'about.testimonials.2.role',
     initials: 'AA',
-    color: 'from-amber-500 to-orange-500',
     stars: 5,
     countryFlag: 'sa',
   },
@@ -53,7 +52,6 @@ const TESTIMONIALS: TestimonialItem[] = [
     nameKey: 'about.testimonials.3.name',
     roleKey: 'about.testimonials.3.role',
     initials: 'MA',
-    color: 'from-sky-500 to-indigo-500',
     stars: 5,
     avatar: '/images/testimonials/mohamed-akram.jpg',
   },
@@ -62,7 +60,6 @@ const TESTIMONIALS: TestimonialItem[] = [
     nameKey: 'about.testimonials.4.name',
     roleKey: 'about.testimonials.4.role',
     initials: 'MK',
-    color: 'from-lime-500 to-green-600',
     stars: 5,
     avatar: '/images/testimonials/miloud-khdoum.png',
   },
@@ -79,7 +76,7 @@ function Testimonials() {
         {TESTIMONIALS.map((item, index) => (
           <motion.div
             key={item.quoteKey}
-            className='group relative flex min-w-0 flex-col rounded-2xl border bg-card p-5 text-start shadow-feature-card transition-shadow hover:shadow-lg sm:p-6'
+            className='group relative flex min-w-0 flex-col rounded-xl border bg-card p-5 text-start shadow-feature-card transition-shadow hover:shadow-lg sm:p-6'
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isInView ? { opacity: 1, scale: 1 } : undefined}
             transition={{ duration: 0.4, delay: index * 0.1, type: 'spring', stiffness: 100, damping: 20 }}
@@ -88,7 +85,7 @@ function Testimonials() {
               <TestimonialAvatar
                 name={t(item.nameKey as never)}
                 initials={item.initials}
-                color={item.color}
+                color={AVATAR_TONE}
                 avatar={item.avatar}
                 countryFlag={item.countryFlag}
                 size='sm'
@@ -99,11 +96,11 @@ function Testimonials() {
               </div>
               <div className='flex shrink-0 gap-0.5'>
                 {Array.from({ length: item.stars }, (_, i) => (
-                  <StarIcon key={i} className='size-3 fill-amber-400 text-amber-400' />
+                  <StarIcon key={i} className='size-3 fill-primary text-primary' />
                 ))}
               </div>
             </div>
-            <QuoteIcon className='mb-1 size-4 text-primary/30' />
+            <QuoteIcon className='mb-1 size-4 text-primary' aria-hidden />
             <p className='flex-1 text-sm/relaxed text-muted-foreground'>&ldquo;{t(item.quoteKey as never)}&rdquo;</p>
           </motion.div>
         ))}

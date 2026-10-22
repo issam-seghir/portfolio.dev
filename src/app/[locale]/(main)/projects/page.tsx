@@ -101,6 +101,11 @@ function Page(props: PageProps<'/[locale]/projects'>) {
             mobile: t('projects.filters.types.mobile'),
             internal: t('projects.filters.types.internal'),
           },
+          groups: {
+            client: t('projects.groups.client'),
+            experiments: t('projects.groups.experiments'),
+            experimentsNote: t('projects.groups.experiments-note'),
+          },
         }}
       />
     </>

@@ -24,7 +24,7 @@ function ProjectTableOfContents(props: ProjectTableOfContentsProps) {
   if (toc.length === 0) return null
 
   return (
-    <div className='hidden pl-4 lg:block'>
+    <div className='hidden ps-4 lg:block'>
       <div className='mb-4'>{t('projects.on-this-page')}</div>
       <SegmentGroup
         orientation='vertical'
@@ -39,7 +39,7 @@ function ProjectTableOfContents(props: ProjectTableOfContentsProps) {
             key={item.url}
             value={item.url}
             style={{
-              paddingLeft: (item.depth - 1) * 12,
+              paddingInlineStart: (item.depth - 1) * 12,
             }}
           >
             {item.title}

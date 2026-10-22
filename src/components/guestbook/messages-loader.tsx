@@ -12,7 +12,7 @@ function Placeholder() {
           <Skeleton className='h-4 w-36' />
         </div>
       </div>
-      <Skeleton className='h-6 w-full max-w-xs pl-13' />
+      <Skeleton className='h-6 w-full max-w-xs ps-13' />
     </div>
   )
 }

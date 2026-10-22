@@ -15,6 +15,13 @@ export const ratelimit = new Ratelimit({
   analytics: true,
 })
 
+/** Each brief sends two emails, so this is far tighter than the general limit. */
+export const briefRatelimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(3, '1 h'),
+  prefix: 'ratelimit:brief',
+})
+
 const DEFAULT_TTL = 60 * 60 * 24 // 1 day
 
 export function createCache<T>(prefix: string, ttl: number = DEFAULT_TTL) {

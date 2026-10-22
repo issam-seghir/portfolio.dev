@@ -42,9 +42,7 @@ function BlogHeader(props: BlogHeaderProps) {
   return (
     <div className='space-y-16 py-16'>
       <div className='space-y-16 sm:px-8'>
-        <h1 className='bg-linear-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-center text-4xl font-semibold text-transparent md:text-5xl/16 dark:from-white dark:via-white/90 dark:to-white/70'>
-          {post.title}
-        </h1>
+        <h1 className='text-center text-4xl font-semibold text-foreground md:text-5xl/16'>{post.title}</h1>
         <div className='grid grid-cols-2 text-sm max-md:gap-4 md:grid-cols-4'>
           <div className='space-y-1 md:mx-auto'>
             <div className='text-muted-foreground'>{t('blog.header.written-by')}</div>

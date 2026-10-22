@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 import type { Viewport } from 'next'
 
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { JetBrains_Mono, Noto_Sans_Arabic, Plus_Jakarta_Sans } from 'next/font/google'
+import { JetBrains_Mono, Readex_Pro, Reem_Kufi } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
@@ -21,26 +21,27 @@ export function generateStaticParams(): Array<{ locale: string }> {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { media: '(prefers-color-scheme: light)', color: '#f5f7f4' },
+    { media: '(prefers-color-scheme: dark)', color: '#0b1620' },
   ],
 }
 
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: '--font-sans-main',
-  subsets: ['latin'],
+// Both families cover Arabic and Latin, so en and ar share one type system.
+const readexPro = Readex_Pro({
+  variable: '--font-text',
+  subsets: ['latin', 'arabic'],
+  display: 'swap',
+})
+
+const reemKufi = Reem_Kufi({
+  variable: '--font-display',
+  subsets: ['latin', 'arabic'],
   display: 'swap',
 })
 
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-mono-main',
   subsets: ['latin'],
-  display: 'swap',
-})
-
-const notoSansArabic = Noto_Sans_Arabic({
-  variable: '--font-noto-sans-arabic',
-  subsets: ['arabic'],
   display: 'swap',
 })
 
@@ -56,7 +57,7 @@ async function Layout(props: LayoutProps<'/[locale]'>) {
     <html
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      className={cn(plusJakartaSans.variable, jetBrainsMono.variable, notoSansArabic.variable)}
+      className={cn(readexPro.variable, reemKufi.variable, jetBrainsMono.variable)}
       data-scroll-behavior='smooth'
       suppressHydrationWarning
     >

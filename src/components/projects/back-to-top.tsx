@@ -25,7 +25,7 @@ export default function BackToTop() {
     <Button
       type='button'
       variant='secondary'
-      className='fixed bottom-2 left-2 z-50 hidden lg:inline-flex'
+      className='fixed inset-s-2 bottom-2 z-50 hidden lg:inline-flex'
       onClick={() => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }}

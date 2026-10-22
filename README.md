@@ -17,6 +17,17 @@
 
 Welcome to my personal blog and portfolio website! This repository contains a modern Next.js application where I share my thoughts, projects, and insights.
 
+## Brand
+
+<p>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/product/brand-kit/lockups/issam-lockup-latin-dark.png">
+    <img alt="Issam Seghir: the doorway mark and name" src="docs/product/brand-kit/lockups/issam-lockup-latin-light.png" width="280">
+  </picture>
+</p>
+
+The name, mark, colours, fonts and voice are in [docs/product/brand.md](docs/product/brand.md) (rules) and [docs/product/brand-book.md](docs/product/brand-book.md) (the brand book, also as HTML, PDF and SVG/PNG files in [docs/product/brand-kit/](docs/product/brand-kit/README.md)). The October 2026 redesign, what changed and what is left, is in [docs/product/redesign.md](docs/product/redesign.md). All docs: [docs/README.md](docs/README.md).
+
 ## Features
 
 ### Core Technologies
@@ -84,6 +95,7 @@ Welcome to my personal blog and portfolio website! This repository contains a mo
 
 ```
 portfolio.dev/
+├── docs/             # Brand book, brand kit, redesign notes (index: docs/README.md)
 ├── public/           # Static assets (images, fonts, videos)
 ├── src/
 │   ├── app/          # Next.js app router pages
@@ -142,11 +154,11 @@ docker compose up -d
 
 This starts Postgres, Redis, and the serverless Redis HTTP proxy. Defaults from `docker-compose.yml`:
 
-| Service | Host access | Credentials / notes |
-| ------- | ----------- | ------------------- |
-| Postgres | `localhost:5433` | user `postgres`, password `postgres`, database `portfolio` |
-| Redis | `localhost:6380` | — |
-| Redis HTTP (Upstash-compatible) | `http://localhost:8080` | token `portfolio` |
+| Service                         | Host access             | Credentials / notes                                        |
+| ------------------------------- | ----------------------- | ---------------------------------------------------------- |
+| Postgres                        | `localhost:5433`        | user `postgres`, password `postgres`, database `portfolio` |
+| Redis                           | `localhost:6380`        | —                                                          |
+| Redis HTTP (Upstash-compatible) | `http://localhost:8080` | token `portfolio`                                          |
 
 3. Point **`DATABASE_URL`** in `.env.local` at that Postgres instance (do **not** append `?schema=public` — `postgres.js` treats it as a config param and Postgres rejects it):
 
@@ -234,14 +246,14 @@ This repo follows [Portless](https://github.com/vercel-labs/portless) best pract
 
 The services will be available at the following URLs:
 
-| Service          | URL |
-| ---------------- | --- |
-| App (Portless)   | e.g. `http://portfolio-dev.localhost:1355` (see terminal after `pnpm dev`) |
-| App (direct)     | `http://localhost:3005` (`pnpm dev:direct`) |
-| React Email      | `localhost:3006` |
-| Database (Docker)| `localhost:5433` → db `portfolio` |
-| Redis            | `localhost:6380` |
-| Redis serverless | `localhost:8080` |
+| Service           | URL                                                                        |
+| ----------------- | -------------------------------------------------------------------------- |
+| App (Portless)    | e.g. `http://portfolio-dev.localhost:1355` (see terminal after `pnpm dev`) |
+| App (direct)      | `http://localhost:3005` (`pnpm dev:direct`)                                |
+| React Email       | `localhost:3006`                                                           |
+| Database (Docker) | `localhost:5433` → db `portfolio`                                          |
+| Redis             | `localhost:6380`                                                           |
+| Redis serverless  | `localhost:8080`                                                           |
 
 ### Available Scripts
 
@@ -261,7 +273,6 @@ pnpm db:seed          # Seed the database
 pnpm db:studio        # Open Drizzle Studio (browse / edit local tables)
 pnpm db:reset         # Wipe and re-seed (destructive)
 ```
-
 
 ## Credits
 

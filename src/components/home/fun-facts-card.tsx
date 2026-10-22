@@ -3,44 +3,30 @@
 import { SparklesIcon } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import { cn } from '@/utils/cn'
 
 const FACTS = [
-  { key: 'homepage.about-me.fun-fact-1', emoji: '✍️', bg: 'from-violet-500/10 to-purple-500/10' },
-  { key: 'homepage.about-me.fun-fact-2', emoji: '🎨', bg: 'from-rose-500/10 to-pink-500/10' },
-  { key: 'homepage.about-me.fun-fact-3', emoji: '🚀', bg: 'from-blue-500/10 to-cyan-500/10' },
-  { key: 'homepage.about-me.fun-fact-4', emoji: '🗣️', bg: 'from-green-500/10 to-emerald-500/10' },
-  { key: 'homepage.about-me.fun-fact-5', emoji: '🖌️', bg: 'from-amber-500/10 to-orange-500/10' },
-  { key: 'homepage.about-me.fun-fact-6', emoji: '🌙', bg: 'from-indigo-500/10 to-blue-500/10' },
-  { key: 'homepage.about-me.fun-fact-7', emoji: '🤝', bg: 'from-amber-600/10 to-yellow-500/10' },
-  { key: 'homepage.about-me.fun-fact-8', emoji: '🧩', bg: 'from-teal-500/10 to-cyan-500/10' },
+  { key: 'homepage.about-me.fun-fact-1', emoji: '✍️' },
+  { key: 'homepage.about-me.fun-fact-2', emoji: '🎨' },
+  { key: 'homepage.about-me.fun-fact-3', emoji: '🚀' },
+  { key: 'homepage.about-me.fun-fact-4', emoji: '🗣️' },
+  { key: 'homepage.about-me.fun-fact-5', emoji: '🖌️' },
+  { key: 'homepage.about-me.fun-fact-6', emoji: '🌙' },
+  { key: 'homepage.about-me.fun-fact-7', emoji: '🤝' },
+  { key: 'homepage.about-me.fun-fact-8', emoji: '🧩' },
 ] as const
 
 function FunFactsCard() {
   const t = useTranslations()
   const [index, setIndex] = useState(0)
   const [clickCount, setClickCount] = useState(0)
-  const timerRef = useRef<ReturnType<typeof setInterval>>(null)
-
-  const next = useCallback(() => {
-    setIndex((prev) => (prev + 1) % FACTS.length)
-  }, [])
 
   const handleClick = useCallback(() => {
-    next()
+    setIndex((prev) => (prev + 1) % FACTS.length)
     setClickCount((c) => c + 1)
-    if (timerRef.current) clearInterval(timerRef.current)
-    timerRef.current = setInterval(next, 5000)
-  }, [next])
-
-  useEffect(() => {
-    timerRef.current = setInterval(next, 5000)
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
-    }
-  }, [next])
+  }, [])
 
   const fact = FACTS[index] ?? FACTS[0]
 
@@ -60,14 +46,12 @@ function FunFactsCard() {
         </div>
         <div className='flex items-center gap-1.5'>
           {FACTS.map((_, i) => (
-            <motion.div
+            <span
               key={i}
-              className='size-1.5 rounded-full'
-              animate={{
-                backgroundColor: i === index ? 'rgb(99 102 241)' : 'rgb(156 163 175 / 0.3)',
-                scale: i === index ? 1.3 : 1,
-              }}
-              transition={{ duration: 0.2 }}
+              className={cn(
+                'size-1.5 rounded-full transition-[background-color,scale] duration-200',
+                i === index ? 'scale-130 bg-primary' : 'bg-muted-foreground/30',
+              )}
             />
           ))}
         </div>
@@ -77,7 +61,7 @@ function FunFactsCard() {
         <AnimatePresence mode='wait'>
           <motion.div
             key={index}
-            className={`flex w-full flex-col items-center gap-3 rounded-xl bg-linear-to-br p-4 ${fact.bg}`}
+            className='flex w-full flex-col items-center gap-3 rounded-xl bg-muted p-4'
             initial={{ opacity: 0, x: 30, filter: 'blur(6px)' }}
             animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             exit={{ opacity: 0, x: -30, filter: 'blur(6px)' }}
@@ -97,12 +81,12 @@ function FunFactsCard() {
       </div>
 
       <div className='flex items-center justify-between'>
-        <span className='text-[10px] text-muted-foreground/50 transition-colors group-hover:text-muted-foreground'>
-          {t('homepage.about-me.fun-facts-tap')} →
+        <span className='text-[10px] text-muted-foreground transition-colors group-hover:text-foreground'>
+          {t('homepage.about-me.fun-facts-tap')} <span className='inline-block rtl:-scale-x-100'>→</span>
         </span>
         {clickCount >= 3 && (
           <motion.span
-            className='text-[10px] text-muted-foreground/50'
+            className='text-[10px] text-muted-foreground'
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
           >

@@ -13,7 +13,7 @@ export default function LayoutFooter() {
   const t = useTranslations()
 
   return (
-    <footer className='relative mx-auto mb-6 flex w-full max-w-5xl min-w-0 flex-col overflow-x-clip rounded-2xl border border-border/40 bg-background/30 px-6 py-10 saturate-100 backdrop-blur-md sm:px-8'>
+    <footer className='relative mx-auto mb-6 flex w-full max-w-5xl min-w-0 flex-col overflow-x-clip rounded-xl border bg-card px-6 py-10 sm:px-8'>
       <div className='grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.2fr)_repeat(3,minmax(0,1fr))] lg:gap-8'>
         <div className='flex flex-col gap-4 sm:col-span-2 lg:col-span-1'>
           <p className='font-heading text-lg font-semibold tracking-tight text-foreground'>{MY_NAME}</p>
@@ -42,10 +42,7 @@ export default function LayoutFooter() {
 
         {FOOTER_SECTIONS.map((section) => (
           <nav key={section.id} aria-labelledby={`footer-heading-${section.id}`} className='flex flex-col gap-3'>
-            <h2
-              id={`footer-heading-${section.id}`}
-              className='text-xs font-semibold tracking-wider text-muted-foreground uppercase'
-            >
+            <h2 id={`footer-heading-${section.id}`} className='text-sm font-medium text-foreground'>
               {t(section.titleKey)}
             </h2>
             <ul className='flex flex-col gap-2'>
@@ -64,7 +61,7 @@ export default function LayoutFooter() {
         ))}
       </div>
 
-      <div className='mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border/40 pt-8'>
+      <div className='mt-10 flex flex-wrap items-center justify-between gap-4 border-t pt-8'>
         <p className='text-sm text-muted-foreground'>
           {t('layout.footer.copyright', {
             year: new Date().getFullYear(),

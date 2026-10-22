@@ -1,0 +1,11 @@
+{
+  "source": "src/styles/globals.css (:root = light, .dark = dark)",
+  "tokens": {
+    "background": { "name": "Limewash / Night", "light": "#f5f7f4", "dark": "#0b1620" },
+    "foreground": { "name": "Ink", "light": "#10202e", "dark": "#e8eeec" },
+    "muted-foreground": { "name": "Stone", "light": "#55636b", "dark": "#9aa9ae" },
+    "primary": { "name": "Zellige", "light": "#0c6b5b", "dark": "#46bfa3" },
+    "highlight": { "name": "Saffron", "light": "#e2a33a", "dark": "#f0b44c" },
+    "info": { "name": "Casbah blue", "light": "#2f5d8a", "dark": "#7fa8d6" }
+  }
+}

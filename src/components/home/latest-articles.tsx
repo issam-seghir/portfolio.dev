@@ -28,7 +28,7 @@ function LatestArticles(props: LatestArticlesProps) {
   return (
     <div ref={projectsRef} className='my-24'>
       <motion.h2
-        className='text-center text-2xl font-semibold sm:text-3xl'
+        className='text-3xl font-semibold sm:text-4xl'
         initial={{ y: 30, opacity: 0 }}
         animate={isInView ? { y: 0, opacity: 1 } : undefined}
         transition={{ duration: 0.3 }}

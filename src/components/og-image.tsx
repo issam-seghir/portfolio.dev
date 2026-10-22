@@ -1,3 +1,4 @@
+import { SITE_DOMAIN } from '@/lib/constants'
 import { LOGO_ASPECT } from '@/lib/logo-constants'
 
 function getFontSize(title: string) {
@@ -34,9 +35,9 @@ function OGImage(props: OGImageProps) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        backgroundColor: '#000',
+        backgroundColor: '#0b1620',
         padding: 50,
-        color: '#fff',
+        color: '#e8eeec',
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- Satori OG pipeline; data URL only */}
@@ -48,8 +49,19 @@ function OGImage(props: OGImageProps) {
         style={{ position: 'absolute', left: 50, top: 50, objectFit: 'contain' }}
       />
       <div style={{ fontSize, maxWidth: 740, fontWeight: 600 }}>{title}</div>
-      <div style={{ display: 'flex', fontSize: 30, position: 'absolute', right: 50, bottom: 50, fontWeight: 500 }}>
-        issam.dev{url}
+      <div
+        style={{
+          display: 'flex',
+          fontSize: 30,
+          position: 'absolute',
+          right: 50,
+          bottom: 50,
+          fontWeight: 500,
+          color: '#9aa9ae',
+        }}
+      >
+        {SITE_DOMAIN}
+        {url}
       </div>
     </div>
   )

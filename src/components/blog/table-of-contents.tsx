@@ -22,7 +22,7 @@ function TableOfContents(props: TableOfContentsProps) {
   const router = useRouter()
 
   return (
-    <div className='hidden pl-4 lg:block'>
+    <div className='hidden ps-4 lg:block'>
       <div className='mb-4'>{t('blog.on-this-page')}</div>
       <SegmentGroup
         orientation='vertical'
@@ -37,7 +37,7 @@ function TableOfContents(props: TableOfContentsProps) {
             key={item.url}
             value={item.url}
             style={{
-              paddingLeft: (item.depth - 1) * 12,
+              paddingInlineStart: (item.depth - 1) * 12,
             }}
           >
             {item.title}

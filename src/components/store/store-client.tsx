@@ -4,7 +4,9 @@ import type { StoreProduct } from '@/config/store-products'
 
 import { useTranslations } from 'next-intl'
 
+import { buttonVariants } from '@/components/ui/button'
 import { Link } from '@/components/ui/link'
+import { cn } from '@/utils/cn'
 
 import StoreFilters from './store-filters'
 import StorePagination from './store-pagination'
@@ -25,13 +27,10 @@ function StoreClient(props: StoreClientProps) {
       <StoreFilters />
 
       {products.length === 0 ? (
-        <div className='rounded-2xl border bg-card/50 p-12 text-center'>
+        <div className='rounded-xl border bg-card/50 p-12 text-center'>
           <p className='mb-4 text-lg font-medium'>{t('empty.title')}</p>
           <p className='mb-6 text-muted-foreground'>{t('empty.description')}</p>
-          <Link
-            href='/'
-            className='inline-flex h-9 items-center justify-center gap-1.5 rounded-4xl border border-transparent bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/80'
-          >
+          <Link href='/' className={cn(buttonVariants())}>
             {t('cta.custom-button')}
           </Link>
         </div>
@@ -47,13 +46,10 @@ function StoreClient(props: StoreClientProps) {
         </>
       )}
 
-      <section className='rounded-2xl border bg-muted/30 p-8 text-center'>
+      <section className='rounded-xl border bg-muted/30 p-8 text-center'>
         <p className='mb-4 font-medium'>{t('cta.custom-title')}</p>
         <p className='mx-auto mb-6 max-w-md text-sm text-muted-foreground'>{t('cta.custom-description')}</p>
-        <Link
-          href='/'
-          className='inline-flex h-9 items-center justify-center gap-1.5 rounded-4xl border border-transparent bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/80'
-        >
+        <Link href='/' className={cn(buttonVariants())}>
           {t('cta.custom-button')}
         </Link>
       </section>

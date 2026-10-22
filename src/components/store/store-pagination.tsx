@@ -42,7 +42,7 @@ function StorePagination(props: StorePaginationProps) {
         onClick={async () => setParams({ page: page - 1 })}
         aria-label={t('prev')}
       >
-        <ChevronLeftIcon className='size-4' />
+        <ChevronLeftIcon className='size-4 rtl:-scale-x-100' />
       </Button>
       <div className='flex items-center gap-1'>
         {pageNumbers.map((n) => (
@@ -65,7 +65,7 @@ function StorePagination(props: StorePaginationProps) {
         onClick={async () => setParams({ page: page + 1 })}
         aria-label={t('next')}
       >
-        <ChevronRightIcon className='size-4' />
+        <ChevronRightIcon className='size-4 rtl:-scale-x-100' />
       </Button>
     </nav>
   )

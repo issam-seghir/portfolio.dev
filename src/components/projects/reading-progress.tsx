@@ -14,7 +14,7 @@ export default function ReadingProgress() {
     <motion.div
       aria-hidden
       style={{ scaleX }}
-      className='pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5 origin-left bg-primary/70'
+      className='pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5 origin-left bg-primary/70 rtl:origin-right'
     />
   )
 }

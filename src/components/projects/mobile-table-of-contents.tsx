@@ -28,8 +28,8 @@ function MobileProjectTableOfContents(props: MobileProjectTableOfContentsProps) 
       <PopoverTrigger
         className='gap-2'
         render={
-          <Button variant='secondary' className='fixed right-2 bottom-2 z-50 lg:hidden'>
-            <AlignLeftIcon data-icon='inline-start' /> {t('projects.on-this-page')}
+          <Button variant='secondary' className='fixed inset-e-2 bottom-2 z-50 lg:hidden'>
+            <AlignLeftIcon data-icon='inline-start' className='rtl:-scale-x-100' /> {t('projects.on-this-page')}
           </Button>
         }
       />
@@ -41,9 +41,9 @@ function MobileProjectTableOfContents(props: MobileProjectTableOfContentsProps) 
             <Link
               key={url}
               href={`#${url}`}
-              className='block py-2.5 pr-2.5 text-sm/tight text-muted-foreground transition-colors hover:text-foreground'
+              className='block py-2.5 pe-2.5 text-sm/tight text-muted-foreground transition-colors hover:text-foreground'
               style={{
-                paddingLeft: (depth - 1) * 16,
+                paddingInlineStart: (depth - 1) * 16,
               }}
               onClick={() => {
                 router.push(`#${url}`)

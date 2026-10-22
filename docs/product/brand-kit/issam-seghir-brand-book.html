@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Issam Seghir Brand Book</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&family=Reem+Kufi:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout metaphor: an architect's drawing sheet for one doorway. Hairline frame, dimension lines, a title block. */
+:root {
+  --ground: #F5F7F4;      /* limewash */
+  --sheet: #FFFFFF;
+  --ink: #10202E;
+  --stone: #55636B;
+  --zellige: #0C6B5B;
+  --zellige-soft: #DCEBE5;
+  --saffron: #E2A33A;
+  --saffron-soft: #F7E7C8;
+  --casbah: #2F5D8A;
+  --line: #D9E0DC;
+  --grid: rgba(16, 32, 46, 0.07);
+  --dim: #2F5D8A;         /* dimension lines on drawings */
+  --on-zellige: #F5F7F4;
+
+  --font-display: "Reem Kufi", "Readex Pro", system-ui, sans-serif;
+  --font-text: "Readex Pro", system-ui, "Segoe UI", sans-serif;
+  --font-measure: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0B1620; --sheet: #12212D; --ink: #E8EEEC; --stone: #9AA9AE;
+    --zellige: #46BFA3; --zellige-soft: #133A35; --saffron: #F0B44C; --saffron-soft: #3A2D14;
+    --casbah: #7FA8D6; --line: #22343F; --grid: rgba(232, 238, 236, 0.06); --dim: #7FA8D6; --on-zellige: #0B1620;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #0B1620; --sheet: #12212D; --ink: #E8EEEC; --stone: #9AA9AE;
+  --zellige: #46BFA3; --zellige-soft: #133A35; --saffron: #F0B44C; --saffron-soft: #3A2D14;
+  --casbah: #7FA8D6; --line: #22343F; --grid: rgba(232, 238, 236, 0.06); --dim: #7FA8D6; --on-zellige: #0B1620;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--ground); color: var(--ink); font-family: var(--font-text); font-weight: 350; font-size: 1rem; line-height: 1.6; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -0.01em; }
+h3 { font-size: 1.2rem; }
+p { margin: 0; max-width: 66ch; }
+[lang="ar"] { font-size: 1.08em; line-height: 1.85; letter-spacing: 0; }
+a { color: var(--casbah); text-underline-offset: 3px; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--zellige); outline-offset: 3px; border-radius: 4px; }
+.measure { font-family: var(--font-measure); font-size: 0.78rem; color: var(--dim); }
+.muted { color: var(--stone); }
+.ar-quote { font-family: "Readex Pro", system-ui, sans-serif; direction: rtl; text-align: right; font-weight: 500; font-size: 1.35rem; line-height: 2; }
+
+/* hero */
+.hero { border-bottom: 1px solid var(--line); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; }
+.hero .wrap { padding-block: 56px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: center; }
+.hero-mark { width: min(100%, 340px); height: auto; justify-self: center; display: block; }
+.lockup-hero { display: grid; gap: 2px; }
+.lockup-hero .lat { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -0.02em; }
+.lockup-hero .ar { text-align: left; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.3rem, 5.4vw, 3.6rem); line-height: 1.35; color: var(--zellige); }
+.tagline { margin-top: 18px; font-size: 1.2rem; font-weight: 300; max-width: 40ch; }
+.hero blockquote { margin: 24px 0 0; padding-inline-start: 16px; border-inline-start: 3px solid var(--saffron); display: grid; gap: 4px; }
+.hero blockquote .ar-quote { text-align: start; }
+.hero blockquote cite { font-style: normal; font-size: 0.9rem; color: var(--stone); }
+.hero-tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; justify-content: center; }
+.titleblock { margin-top: 28px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--ink); font-size: 0.78rem; max-width: 520px; }
+.titleblock div { padding: 6px 10px; border-inline-end: 1px solid var(--ink); min-width: 0; }
+.titleblock div:last-child { border-inline-end: 0; }
+.titleblock b { display: block; font-weight: 500; font-size: 0.68rem; color: var(--stone); }
+.titleblock span { font-family: var(--font-measure); }
+@media (max-width: 760px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); } .titleblock div:nth-child(2) { border-inline-end: 0; } .titleblock div:nth-child(-n+2) { border-bottom: 1px solid var(--ink); } }
+
+.btn { border: 1px solid var(--ink); background: transparent; border-radius: 8px; padding: 7px 14px; font-size: 0.9rem; cursor: pointer; }
+.btn:hover { background: var(--zellige-soft); }
+.btn[aria-pressed="true"] { background: var(--zellige); color: var(--on-zellige); border-color: var(--zellige); }
+
+/* construction overlay */
+.construct { opacity: 0; transition: opacity .25s ease; pointer-events: none; }
+.show-construct .construct { opacity: 1; }
+.draw-i, .draw-s { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.drawing .arch { animation: arch-in .5s ease-out both; }
+.drawing .draw-i { animation: draw .45s ease-in-out .45s both; }
+.drawing .draw-s { animation: draw .9s ease-in-out .9s both; }
+.drawing .dot { animation: dot-in .25s ease-out 1.8s both; }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes arch-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes dot-in { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+.dot { transform-box: fill-box; transform-origin: center; }
+
+/* toc */
+.toc { border-bottom: 1px solid var(--line); }
+.toc .wrap { padding-block: 18px; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.92rem; }
+.toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.toc a:hover { border-color: var(--zellige); }
+
+section.sheet { padding-block: 64px; border-bottom: 1px solid var(--line); }
+section.sheet > .wrap { display: grid; gap: 28px; }
+.head { display: grid; gap: 12px; }
+.head p { color: var(--stone); }
+
+/* facts */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: start; }
+@media (max-width: 760px) { .split { grid-template-columns: minmax(0, 1fr); } }
+.prose { display: grid; gap: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--sheet); }
+th, td { text-align: start; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font-weight: 500; font-size: 0.8rem; color: var(--stone); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { color: var(--stone); white-space: nowrap; }
+.tag { display: inline-block; font-size: 0.75rem; padding: 1px 7px; border-radius: 4px; background: var(--zellige-soft); color: var(--ink); }
+.tag.taken { background: var(--saffron-soft); }
+
+/* sources */
+.sources { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.card { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; break-inside: avoid; }
+.card .src { font-size: 0.85rem; color: var(--stone); }
+.card .gloss { font-size: 0.95rem; }
+.note { font-size: 0.85rem; color: var(--stone); }
+
+/* reasons */
+.reasons { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 32px; list-style: none; margin: 0; padding: 0; }
+.reasons li { border-top: 2px solid var(--ink); padding-top: 12px; display: grid; gap: 6px; break-inside: avoid; }
+.reasons p { color: var(--stone); font-size: 0.95rem; }
+
+/* mark specs */
+.versions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 760px) { .versions { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.version { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; break-inside: avoid; }
+.version .plate { aspect-ratio: 1; display: grid; place-items: center; max-width: 100%; }
+.version .plate svg { width: 46%; height: auto; }
+.version p { padding: 10px 12px; font-size: 0.85rem; }
+.sizes { display: flex; align-items: end; gap: 28px; flex-wrap: wrap; padding: 22px; background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; }
+.sizes figure { margin: 0; display: grid; gap: 6px; justify-items: center; }
+.sizes figcaption { font-family: var(--font-measure); font-size: 0.75rem; color: var(--stone); }
+.never { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+.never figure { margin: 0; display: grid; gap: 8px; break-inside: avoid; }
+.never .plate { aspect-ratio: 1; border: 1px solid var(--line); border-radius: 8px; display: grid; place-items: center; position: relative; overflow: hidden; background: var(--sheet); max-width: 100%; }
+.never .plate::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top right, transparent calc(50% - 1px), #B3261E calc(50% - 1px), #B3261E calc(50% + 1px), transparent calc(50% + 1px)); opacity: .75; }
+.never figcaption { font-size: 0.85rem; color: var(--stone); }
+
+/* lockups */
+.lockups { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.lockup-card { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; padding: 28px 22px; display: grid; gap: 14px; justify-items: center; break-inside: avoid; }
+.lk { display: flex; align-items: center; gap: 12px; }
+.lk svg { width: 44px; height: auto; flex: none; }
+.lk span { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; line-height: 1.2; }
+.lk.stack { flex-direction: column; gap: 6px; text-align: center; }
+.lk.stack svg { width: 64px; }
+.lk.stack .ar { color: var(--zellige); font-size: 1.6rem; }
+.lk.stack .lat { font-size: 1.25rem; }
+
+/* colour */
+.swatches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 860px) { .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .swatches { grid-template-columns: minmax(0, 1fr); } }
+.sw { background: var(--sheet); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; break-inside: avoid; }
+.sw .pair { display: grid; grid-template-columns: 1fr 1fr; height: 76px; }
+.sw .body { padding: 12px 14px; display: grid; gap: 6px; }
+.sw .name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+.sw .hexes { display: flex; gap: 8px; flex-wrap: wrap; }
+.hex { font-family: var(--font-measure); font-size: 0.78rem; border: 1px solid var(--line); background: var(--ground); border-radius: 4px; padding: 2px 6px; cursor: copy; }
+.hex:hover { border-color: var(--zellige); }
+.sw small { color: var(--stone); font-size: 0.82rem; line-height: 1.45; }
+.usage { display: flex; height: 40px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); }
+.usage div { min-width: 0; }
+.usage-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.85rem; color: var(--stone); }
+.usage-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-inline-end: 6px; vertical-align: -1px; background: var(--c); border: 1px solid var(--line); }
+#copied { position: fixed; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); inset-inline-start: 50%; transform: translateX(-50%); background: var(--ink); color: var(--ground); padding: 6px 14px; border-radius: 8px; font-size: 0.85rem; }
+
+/* type */
+.faces { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.face { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; padding-block: 22px; border-bottom: 1px solid var(--line); break-inside: avoid; }
+.face .meta { font-size: 0.85rem; color: var(--stone); display: grid; gap: 4px; align-content: start; }
+.face .meta b { color: var(--ink); font-weight: 500; font-size: 1rem; }
+.face .samples { display: grid; gap: 10px; min-width: 0; }
+@media (max-width: 760px) { .face { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
+
+/* voice */
+.voice { display: grid; gap: 12px; }
+.vrow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; break-inside: avoid; }
+.say, .not { border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; }
+.say { background: var(--zellige-soft); }
+.not { background: var(--sheet); border: 1px dashed var(--line); color: var(--stone); }
+.say b, .not b { font-size: 0.75rem; font-weight: 500; }
+.say [lang="ar"] { color: var(--stone); }
+@media (max-width: 680px) { .vrow { grid-template-columns: minmax(0, 1fr); } }
+
+/* mockups */
+.mocks { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .mocks { grid-template-columns: minmax(0, 1fr); } }
+.browser { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--sheet); break-inside: avoid; }
+.chrome { display: flex; align-items: end; gap: 6px; padding: 8px 10px 0; background: var(--line); }
+.tabx { display: flex; align-items: center; gap: 8px; background: var(--ground); border-radius: 8px 8px 0 0; padding: 7px 12px; font-size: 0.8rem; max-width: 220px; }
+.tabx svg { width: 12px; height: auto; }
+.addr { background: var(--ground); padding: 8px 12px; border-bottom: 1px solid var(--line); font-family: var(--font-measure); font-size: 0.75rem; color: var(--stone); }
+.site { background: var(--ground); padding: 14px 18px 26px; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 16px 16px; }
+.site-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.8rem; }
+.site-nav .lk svg { width: 18px; }
+.site-nav .lk span { font-size: 0.95rem; }
+.site-nav nav { display: flex; gap: 12px; color: var(--stone); }
+.site-nav .cta { background: var(--zellige); color: var(--on-zellige); border-radius: 6px; padding: 4px 9px; }
+.site-hero { margin-top: 26px; display: grid; gap: 6px; }
+.status { display: inline-flex; align-items: center; gap: 6px; width: fit-content; font-size: 0.72rem; padding: 3px 9px; border-radius: 999px; background: var(--saffron-soft); }
+.status::before { content: ""; width: 6px; height: 6px; border-radius: 1px; background: var(--saffron); }
+.site-hero .n1 { font-family: var(--font-display); font-weight: 700; font-size: 1.8rem; line-height: 1.05; }
+.site-hero .n2 { font-family: var(--font-display); font-weight: 700; font-size: 1.55rem; color: var(--zellige); line-height: 1.4; }
+.site-hero p { font-size: 0.85rem; max-width: 40ch; }
+.phone { width: min(100%, 260px); justify-self: center; aspect-ratio: 9 / 16; border-radius: 32px; border: 8px solid var(--ink); background: linear-gradient(160deg, #24414F, #10202E); padding: 30px 16px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px 8px; align-content: start; break-inside: avoid; max-width: 100%; }
+.app { display: grid; gap: 4px; justify-items: center; font-size: 0.6rem; color: #E8EEEC; min-width: 0; }
+.app i { display: block; width: 100%; aspect-ratio: 1; border-radius: 22%; }
+.app svg { width: 100%; height: auto; border-radius: 22%; display: block; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; grid-column: 1 / -1; }
+@media (max-width: 600px) { .cards { grid-template-columns: minmax(0, 1fr); } }
+.bcard { aspect-ratio: 85 / 55; border-radius: 10px; border: 1px solid var(--line); padding: 20px 22px; display: grid; align-content: space-between; break-inside: avoid; max-width: 100%; }
+.bcard.front { background: #F5F7F4; color: #10202E; }
+.bcard.back { background: #0C6B5B; color: #F5F7F4; font-size: 0.85rem; }
+.bcard .lk span { font-size: 1.3rem; }
+.bcard .lk svg { width: 30px; }
+.bcard .line { font-size: 0.82rem; opacity: .85; }
+.bcard .contact { display: grid; gap: 2px; font-family: var(--font-measure); font-size: 0.72rem; }
+
+footer.foot { padding-block: 44px 64px; }
+footer.foot .wrap { display: grid; gap: 18px; }
+footer.foot ul { margin: 0; padding-inline-start: 18px; color: var(--stone); display: grid; gap: 4px; }
+footer.foot code { font-family: var(--font-measure); font-size: 0.82rem; color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+@media print {
+  .hero-tools, .toc, #copied { display: none !important; }
+  section.sheet { padding-block: 0; break-before: page; border-bottom: 0; }
+  section.sheet > .wrap { gap: 18px; }
+  .head { break-after: avoid; }
+  .versions { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) !important; }
+  .card, .version, .sw, .face, .vrow, .lockup-card, .browser, .phone, .bcard, .reasons li, .never figure { break-inside: avoid; }
+  body { font-size: 11pt; }
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="mark" viewBox="14 8 72 90">
+      <path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="var(--zellige)"/>
+      <g transform="translate(21 28) scale(.58)" fill="none" stroke="var(--on-zellige)" stroke-width="11" stroke-linecap="round">
+        <rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="var(--saffron)" stroke="none"/>
+        <path d="M23 82V42"/>
+        <path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <svg id="hero-mark" class="hero-mark" viewBox="-18 -6 140 116" role="img" aria-label="The Issam Seghir mark: lowercase is inside an arched doorway">
+        <g>
+          <path class="arch" d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="var(--zellige)"/>
+          <g transform="translate(21 28) scale(.58)" fill="none" stroke="var(--on-zellige)" stroke-width="11" stroke-linecap="round">
+            <rect class="dot" x="17.5" y="20" width="11" height="11" rx="1.5" fill="var(--saffron)" stroke="none"/>
+            <path class="draw-i" pathLength="1" d="M23 42V82"/>
+            <path class="draw-s" pathLength="1" d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/>
+          </g>
+        </g>
+        <g class="construct" aria-hidden="true">
+          <g stroke="var(--grid)" stroke-width=".25">
+            <path d="M18 10.8V94M24.4 10.8V94M30.8 10.8V94M37.2 10.8V94M43.6 10.8V94M50 10.8V94M56.4 10.8V94M62.8 10.8V94M69.2 10.8V94M75.6 10.8V94M82 10.8V94"/>
+            <path d="M18 94H82M18 87.6H82M18 81.2H82M18 74.8H82M18 68.4H82M18 62H82M18 55.6H82M18 49.2H82M18 42.8H82M18 36.4H82M18 30H82M18 23.6H82M18 17.2H82M18 10.8H82"/>
+          </g>
+          <rect x="5.2" y="-2" width="89.6" height="108.8" fill="none" stroke="var(--dim)" stroke-width=".35" stroke-dasharray="1.6 1.2"/>
+          <g stroke="var(--dim)" stroke-width=".4" fill="none">
+            <path d="M8 49.2H94" stroke-dasharray="2 1.4"/>
+            <path d="M12 42.6H30" stroke-dasharray="1 1"/>
+            <path d="M18 101V96M82 101V96M18 99H82"/>
+            <path d="M11 94H16M11 49.2H16M11 10.8H16M13 94V49.2M13 49.2V10.8"/>
+          </g>
+          <g font-family="JetBrains Mono, monospace" font-size="3.4" fill="var(--dim)">
+            <text x="50" y="105" text-anchor="middle">span 10d</text>
+            <text x="10.5" y="73" text-anchor="end">7d</text>
+            <text x="10.5" y="28" text-anchor="end">6d</text>
+            <text x="95.5" y="50.4">spring line</text>
+            <text x="94.8" y="-3" text-anchor="end">clear space 2d</text>
+            <text x="-1" y="44">1d dot</text>
+          </g>
+        </g>
+      </svg>
+      <div class="hero-tools">
+        <button class="btn" type="button" id="toggle-construct" aria-pressed="false" aria-controls="hero-mark">Show construction</button>
+        <button class="btn" type="button" id="draw-mark">Draw the mark</button>
+      </div>
+    </div>
+    <div>
+      <div class="lockup-hero">
+        <span class="lat">Issam Seghir</span>
+        <span class="ar" lang="ar" dir="rtl">عصام صغير</span>
+      </div>
+      <p class="tagline">Software engineer and SaaS founder in Algiers. I design and build products from the first sketch to launch day.</p>
+      <blockquote>
+        <span class="ar-quote" lang="ar" dir="rtl">«كن عصامياً، ولا تكن عظامياً»</span>
+        <cite>Be self-made like ʿIṣām, not proud of your ancestors' bones. Arab proverb, in al-Maydānī's Majmaʿ al-Amthāl</cite>
+      </blockquote>
+      <div class="titleblock" aria-label="Drawing title block">
+        <div><b>Drawing</b><span>Brand book</span></div>
+        <div><b>Module</b><span>1d = 6.4u</span></div>
+        <div><b>Drawn</b><span>2026-10-20</span></div>
+        <div><b>Repo</b><span>docs/product</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <ol>
+      <li><a href="#name">The name</a></li>
+      <li><a href="#sources">In the sources</a></li>
+      <li><a href="#why">Why it works</a></li>
+      <li><a href="#mark">The mark</a></li>
+      <li><a href="#lockups">Lockups</a></li>
+      <li><a href="#colour">Colour</a></li>
+      <li><a href="#type">Type</a></li>
+      <li><a href="#voice">Voice</a></li>
+      <li><a href="#use">In use</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+<section class="sheet" id="name">
+  <div class="wrap">
+    <div class="head">
+      <h2>The name: a word for the self-made</h2>
+      <p>This is a personal brand, so the name is fixed: it's yours. What the brand does is choose which of its meanings to stand on. In Arabic, ʿIṣām is the man the word <span lang="ar">عصامي</span> comes from, the everyday word for someone who made himself without inherited rank. For a self-taught engineer who founded his own products, the meaning is already the pitch.</p>
+    </div>
+    <div class="split">
+      <div class="tbl">
+        <table>
+          <tbody>
+            <tr><td>Arabic</td><td><span lang="ar" dir="rtl">عِصام صغير</span></td></tr>
+            <tr><td>Latin</td><td><b>Issam Seghir</b></td></tr>
+            <tr><td>Say it</td><td>ee-SAAM se-GHEER (gh as the French r)</td></tr>
+            <tr><td>Root</td><td><span lang="ar">ع ص م</span>: to hold fast, to protect</td></tr>
+            <tr><td>The word</td><td><span lang="ar">العِصام</span>: the tie of a water-skin, and the strap it is carried by (Lane's Lexicon, citing al-Ṣiḥāḥ, al-Miṣbāḥ, Tāj al-ʿArūs)</td></tr>
+            <tr><td>Derived</td><td><span lang="ar">عِصامي</span>: self-made, after ʿIṣām ibn Shahbar</td></tr>
+            <tr><td>Short form</td><td>issam, lowercase, in the mark and the domain</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <p><b>The spelling.</b> "Issam" doubles the s to keep the Arabic ص sharp and short-vowelled in French and English, the convention across the Maghreb. "Seghir" is the Algerian civil-register spelling of <span lang="ar">صغير</span>, rather than Saghir or Sghir. Both match the GitHub handle <code>issam-seghir</code>, so the name is spelled one way everywhere.</p>
+        <p><b>Addresses</b> (registry RDAP lookups on 20 October 2026; trademarks not checked):</p>
+        <div class="tbl">
+          <table>
+            <thead><tr><th>Domain</th><th>Use</th><th>State</th></tr></thead>
+            <tbody>
+              <tr><td>issam.tech</td><td>main</td><td><span class="tag">yours</span> Live on Vercel; www redirects here.</td></tr>
+              <tr><td>issamseghir.com</td><td>optional redirect</td><td><span class="tag">free</span> Worth holding so the full name also reaches you.</td></tr>
+              <tr><td>issam.dev</td><td>none</td><td><span class="tag taken">someone else's</span> Registered 2026-09-08. Never print it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sources">
+  <div class="wrap">
+    <div class="head">
+      <h2>In the classical sources</h2>
+      <p>All quotations are from al-Maydānī's <i>Majmaʿ al-Amthāl</i>, proverb no. 4189 (vol. 2, p. 331), as printed in the al-Maktaba al-Shāmila edition.</p>
+    </div>
+    <div class="sources">
+      <article class="card">
+        <p class="ar-quote" lang="ar" dir="rtl">نَفْسُ عِصَامٍ سَوَّدَتْ عِصَاماً</p>
+        <p class="gloss">ʿIṣām's own spirit made ʿIṣām a chief.</p>
+        <p class="src">The proverb itself. Al-Maydānī: <span lang="ar">«قيل: إنه عصام بن شهبر حاجبُ النعمان بن المنذر»</span>, said to be ʿIṣām ibn Shahbar, chamberlain to the king al-Nuʿmān ibn al-Mundhir.</p>
+      </article>
+      <article class="card">
+        <p class="ar-quote" lang="ar" dir="rtl">كن عصامياً، ولاَ تكن عظامياً</p>
+        <p class="gloss">Be ʿiṣāmī, self-made, and not ʿiẓāmī, someone who boasts of ancestors who are now only bones.</p>
+        <p class="src">Quoted in the same entry: <span lang="ar">«وفي المثل»</span>.</p>
+      </article>
+      <article class="card">
+        <p class="ar-quote" lang="ar" dir="rtl">يضرب في نَبَاهة الرجل من غير قديم … يعنى أنه خرج بنفسه من غير أولية كانت له</p>
+        <p class="gloss">Said of a man who becomes distinguished without an old lineage: he rose by himself, with no inherited start.</p>
+        <p class="src">Al-Maydānī's explanation of when the proverb is used.</p>
+      </article>
+      <article class="card">
+        <p class="ar-quote" lang="ar" dir="rtl">فإنِّي لاَ ألُومُكَ في دُخُول … وَلَكِنْ مَا وَرَاءَكَ يا عِصَامُ؟</p>
+        <p class="gloss">I don't blame you for barring the door; but what news is behind you, ʿIṣām?</p>
+        <p class="src">Al-Nābigha al-Dhubyānī, to ʿIṣām when he kept the poet from the sick king's door. Quoted in the same entry. ʿIṣām was the keeper of a door, which is where the mark comes from.</p>
+      </article>
+      <article class="card">
+        <p class="ar-quote" lang="ar" dir="rtl">نَفْسُ عِصَامٍ سَوَّدَتْ عِصَامَا … وَعَلَّمَتْهُ الكَرَّ وَالإقْدَامَا</p>
+        <p class="gloss">ʿIṣām's spirit made ʿIṣām a chief, and taught him to charge and press forward.</p>
+        <p class="src">Given by al-Maydānī with <span lang="ar">«وقيل»</span> ("and it was said"), without a poet's name; later anthologies attribute it to al-Nābigha.</p>
+        <p class="note">The Shāmila text prints this line with misplaced vowels (<span lang="ar">نَفَسُ … سَوْدَتْ عَصَامَا</span>); they are normalised here. Check against a printed edition before using it in print.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="why">
+  <div class="wrap">
+    <div class="head"><h2>Why it works</h2></div>
+    <ul class="reasons">
+      <li><h3>It's a person</h3><p>Clients hiring a freelancer hire a person, not a studio. Using your own name keeps the promise personal and accountable.</p></li>
+      <li><h3>Self-made is in the word</h3><p>Arabic speakers already know <span lang="ar">عصامي</span>. You taught yourself and founded your own products, so the name tells the story before the About page does.</p></li>
+      <li><h3>The keeper of the door</h3><p>ʿIṣām ibn Shahbar kept a king's door. The portfolio is the door to your work, and the mark is drawn as that doorway.</p></li>
+      <li><h3>To hold fast</h3><p>The root means to hold and protect, and the ʿiṣām is the strap that carries the water. Carrying a project safely to launch is the job.</p></li>
+      <li><h3>The dot</h3><p>The saffron square is the dot of the i, a full stop and a text cursor. It marks things that are finished, like a shipped product.</p></li>
+      <li><h3>Two scripts, one name</h3><p>It reads naturally in Arabic and in Latin letters, it's short, and it needs no "studio" or "labs" added to it.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sheet" id="mark">
+  <div class="wrap">
+    <div class="head">
+      <h2>The mark: a doorway with "is" inside</h2>
+      <p>Everything is measured in the dot (d), the saffron square. The doorway is 10d wide; its straight jambs rise 7d to the spring line and the arch rises 6d more, so the opening is taller than a half-circle, the way a door should be. The letters are drawn with a 1d stroke and sit 2d from each jamb. Use "Show construction" in the header to see the measurements.</p>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Spec</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Module</td><td>d = the dot = the letter stroke = 1/10 of the span (6.4 units in the 72 × 90 viewBox)</td></tr>
+          <tr><td>Doorway</td><td>10d wide, 13d tall: 7d jambs and a 6d arch</td></tr>
+          <tr><td>Letters</td><td>Lowercase i and s, round caps, x-height 4d, set 2d in from each jamb</td></tr>
+          <tr><td>Clear space</td><td>2d on every side</td></tr>
+          <tr><td>Smallest size</td><td>16px tall (favicon). Below 24px the letters may blur, but the arch still reads.</td></tr>
+          <tr><td>Reading direction</td><td>Drawn i then s, left to right, as the "Draw the mark" button shows</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="versions">
+      <figure class="version" style="margin:0">
+        <div class="plate" style="background:#F5F7F4"><svg viewBox="14 8 72 90" role="img" aria-label="Default version"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="#0C6B5B"/><g transform="translate(21 28) scale(.58)" fill="none" stroke="#F5F7F4" stroke-width="11" stroke-linecap="round"><rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="#E2A33A" stroke="none"/><path d="M23 82V42"/><path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/></g></svg></div>
+        <p><b>Default.</b> Zellige on limewash.</p>
+      </figure>
+      <figure class="version" style="margin:0">
+        <div class="plate" style="background:#0C6B5B"><svg viewBox="14 8 72 90" role="img" aria-label="Inverse version for app icons"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="#F5F7F4"/><g transform="translate(21 28) scale(.58)" fill="none" stroke="#0C6B5B" stroke-width="11" stroke-linecap="round"><rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="#E2A33A" stroke="none"/><path d="M23 82V42"/><path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/></g></svg></div>
+        <p><b>Inverse.</b> Limewash on zellige, for social avatars.</p>
+      </figure>
+      <figure class="version" style="margin:0">
+        <div class="plate" style="background:#0B1620"><svg viewBox="14 8 72 90" role="img" aria-label="Dark mode version"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="#46BFA3"/><g transform="translate(21 28) scale(.58)" fill="none" stroke="#0B1620" stroke-width="11" stroke-linecap="round"><rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="#F0B44C" stroke="none"/><path d="M23 82V42"/><path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/></g></svg></div>
+        <p><b>Dark mode.</b> Light zellige on night.</p>
+      </figure>
+      <figure class="version" style="margin:0">
+        <div class="plate" style="background:#FFFFFF"><svg viewBox="14 8 72 90" role="img" aria-label="One colour version"><defs><mask id="cut1"><rect x="0" y="0" width="100" height="100" fill="#fff"/><g transform="translate(21 28) scale(.58)" fill="none" stroke="#000" stroke-width="11" stroke-linecap="round"><rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="#000" stroke="none"/><path d="M23 82V42"/><path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/></g></mask></defs><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="#10202E" mask="url(#cut1)"/></svg></div>
+        <p><b>One colour.</b> Letters cut out, for stamps and engraving.</p>
+      </figure>
+    </div>
+    <div class="sizes" aria-label="The mark at 96, 48, 32 and 16 pixels">
+      <figure><svg width="77" height="96" aria-hidden="true"><use href="#mark"/></svg><figcaption>96px</figcaption></figure>
+      <figure><svg width="38" height="48" aria-hidden="true"><use href="#mark"/></svg><figcaption>48px</figcaption></figure>
+      <figure><svg width="26" height="32" aria-hidden="true"><use href="#mark"/></svg><figcaption>32px</figcaption></figure>
+      <figure><svg width="13" height="16" aria-hidden="true"><use href="#mark"/></svg><figcaption>16px</figcaption></figure>
+    </div>
+    <h3>Never</h3>
+    <div class="never">
+      <figure><div class="plate"><svg width="56" height="70" viewBox="14 8 72 90" aria-hidden="true" style="transform:scaleX(1.5)"><use href="#mark"/></svg></div><figcaption>Stretch or squash it</figcaption></figure>
+      <figure><div class="plate"><svg width="56" height="70" viewBox="14 8 72 90" aria-hidden="true" style="transform:rotate(-15deg)"><use href="#mark"/></svg></div><figcaption>Rotate or tilt it</figcaption></figure>
+      <figure><div class="plate"><svg width="56" height="70" viewBox="14 8 72 90" aria-hidden="true"><defs><linearGradient id="badg" x1="0" x2="1"><stop offset="0" stop-color="#3B82F6"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="url(#badg)"/></svg></div><figcaption>Fill it with a gradient or another hue</figcaption></figure>
+      <figure><div class="plate"><svg width="56" height="70" viewBox="14 8 72 90" aria-hidden="true"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="none" stroke="var(--zellige)" stroke-width="2"/></svg></div><figcaption>Use it as an outline</figcaption></figure>
+      <figure><div class="plate" style="background:repeating-linear-gradient(45deg,#E2A33A 0 8px,#2F5D8A 8px 16px)"><svg width="56" height="70" viewBox="14 8 72 90" aria-hidden="true"><use href="#mark"/></svg></div><figcaption>Place it on a busy photo or pattern without a plain plate</figcaption></figure>
+      <figure><div class="plate"><svg width="56" height="70" viewBox="14 8 72 90" aria-hidden="true"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="var(--zellige)"/><text x="50" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="var(--on-zellige)">IS</text></svg></div><figcaption>Swap the drawn letters for a font</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="lockups">
+  <div class="wrap">
+    <div class="head">
+      <h2>Lockups</h2>
+      <p>The mark sits where reading starts: on the left of the Latin name and on the right of the Arabic one. The gap between mark and name is 2d. The stacked version is for business cards, slides and the OG image.</p>
+    </div>
+    <div class="lockups">
+      <div class="lockup-card"><div class="lk" dir="ltr"><svg viewBox="14 8 72 90" aria-hidden="true"><use href="#mark"/></svg><span>Issam Seghir</span></div><p class="note">Latin, left to right</p></div>
+      <div class="lockup-card"><div class="lk" dir="rtl" lang="ar"><svg viewBox="14 8 72 90" aria-hidden="true"><use href="#mark"/></svg><span>عصام صغير</span></div><p class="note">Arabic, right to left</p></div>
+      <div class="lockup-card"><div class="lk stack"><svg viewBox="14 8 72 90" aria-hidden="true"><use href="#mark"/></svg><span class="ar" lang="ar" dir="rtl">عصام صغير</span><span class="lat">Issam Seghir</span></div><p class="note">Stacked</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="colour">
+  <div class="wrap">
+    <div class="head">
+      <h2>Colour</h2>
+      <p>Taken from Algiers: limewashed walls, glazed zellige tile, saffron, and the blue of the bay. Each token has a light and a dark value. Click a hex code to copy it. Contrast is WCAG 2.2, measured against that theme's page ground.</p>
+    </div>
+    <div class="swatches">
+      <div class="sw"><div class="pair"><div style="background:#F5F7F4"></div><div style="background:#0B1620"></div></div><div class="body"><span class="name">Limewash / Night</span><div class="hexes"><button class="hex" type="button" data-hex="#F5F7F4">#F5F7F4</button><button class="hex" type="button" data-hex="#0B1620">#0B1620</button></div><small><code>--background</code>. The page ground in each theme.</small></div></div>
+      <div class="sw"><div class="pair"><div style="background:#10202E"></div><div style="background:#E8EEEC"></div></div><div class="body"><span class="name">Ink</span><div class="hexes"><button class="hex" type="button" data-hex="#10202E">#10202E</button><button class="hex" type="button" data-hex="#E8EEEC">#E8EEEC</button></div><small><code>--foreground</code>. Text and headings. 15.4:1 light, 15.5:1 dark.</small></div></div>
+      <div class="sw"><div class="pair"><div style="background:#55636B"></div><div style="background:#9AA9AE"></div></div><div class="body"><span class="name">Stone</span><div class="hexes"><button class="hex" type="button" data-hex="#55636B">#55636B</button><button class="hex" type="button" data-hex="#9AA9AE">#9AA9AE</button></div><small><code>--muted-foreground</code>. Secondary text and captions. 5.8:1 light, 7.5:1 dark.</small></div></div>
+      <div class="sw"><div class="pair"><div style="background:#0C6B5B"></div><div style="background:#46BFA3"></div></div><div class="body"><span class="name">Zellige</span><div class="hexes"><button class="hex" type="button" data-hex="#0C6B5B">#0C6B5B</button><button class="hex" type="button" data-hex="#46BFA3">#46BFA3</button></div><small><code>--primary</code>. The only brand colour: the mark, buttons, links, focus. 6.0:1 light, 8.0:1 dark; text on it 6.0:1 and 8.0:1.</small></div></div>
+      <div class="sw"><div class="pair"><div style="background:#E2A33A"></div><div style="background:#F0B44C"></div></div><div class="body"><span class="name">Saffron</span><div class="hexes"><button class="hex" type="button" data-hex="#E2A33A">#E2A33A</button><button class="hex" type="button" data-hex="#F0B44C">#F0B44C</button></div><small><code>--highlight</code>. The dot, availability status and Featured badges. A fill only, never text on the page; ink on it 7.5:1, night on it 9.9:1.</small></div></div>
+      <div class="sw"><div class="pair"><div style="background:#2F5D8A"></div><div style="background:#7FA8D6"></div></div><div class="body"><span class="name">Casbah blue</span><div class="hexes"><button class="hex" type="button" data-hex="#2F5D8A">#2F5D8A</button><button class="hex" type="button" data-hex="#7FA8D6">#7FA8D6</button></div><small><code>--info</code>. Links inside long text and informational notes. 6.4:1 light, 7.4:1 dark.</small></div></div>
+    </div>
+    <h3>On a typical screen</h3>
+    <div class="usage" role="img" aria-label="Approximate share of a typical screen: limewash 72 percent, ink 14, stone 7, zellige 5, saffron 1, casbah blue 1">
+      <div style="flex:72;background:#F5F7F4"></div><div style="flex:14;background:#10202E"></div><div style="flex:7;background:#55636B"></div><div style="flex:5;background:#0C6B5B"></div><div style="flex:1;background:#E2A33A"></div><div style="flex:1;background:#2F5D8A"></div>
+    </div>
+    <div class="usage-legend"><span style="--c:#F5F7F4">Limewash 72%</span><span style="--c:#10202E">Ink 14%</span><span style="--c:#55636B">Stone 7%</span><span style="--c:#0C6B5B">Zellige 5%</span><span style="--c:#E2A33A">Saffron 1%</span><span style="--c:#2F5D8A">Casbah blue 1%</span></div>
+  </div>
+</section>
+
+<section class="sheet" id="type">
+  <div class="wrap">
+    <div class="head">
+      <h2>Typography</h2>
+      <p>Two families drawn for Arabic and Latin together, so both languages share one voice, plus a monospace for code. All three are free on Google Fonts and load through <code>next/font</code>.</p>
+    </div>
+    <div class="faces">
+      <div class="face"><div class="meta"><b>Reem Kufi</b><span>Display, headings and the wordmark. Weights 600–700.</span><span>A geometric Kufic design, from the grid-built script family the brand comes from.</span></div>
+        <div class="samples"><div style="font-family:var(--font-display);font-weight:700;font-size:2.2rem;line-height:1.15">I build products people use</div><div lang="ar" dir="rtl" style="font-family:var(--font-display);font-weight:700;font-size:2rem;line-height:1.5">أبني منتجات يستخدمها الناس</div></div></div>
+      <div class="face"><div class="meta"><b>Readex Pro</b><span>Interface and body text in both scripts. Weights 300–500.</span><span>16px / 1.6 in Latin, about 17px / 1.8 in Arabic, at most 66 characters a line.</span></div>
+        <div class="samples"><p>Ecomenia handles orders, delivery, inventory and teams for sellers who run several stores. I led its architecture as CTO.</p><p lang="ar" dir="rtl">تدير إيكومينيا الطلبات والتوصيل والمخزون والفرق للبائعين الذين يديرون عدة متاجر. قدت تصميم بنيتها التقنية بصفتي المدير التقني.</p></div></div>
+      <div class="face"><div class="meta"><b>JetBrains Mono</b><span>Code blocks, commands, and measurements on drawings like this one. Never for labels or headings.</span></div>
+        <div class="samples"><code style="font-family:var(--font-measure);font-size:0.95rem">pnpm db:generate &amp;&amp; pnpm db:migrate</code></div></div>
+    </div>
+    <p class="note">Rules: no letter-spacing on Arabic, since it breaks the joins. No italic Arabic. Sentence case for every label; no tracked-out capitals.</p>
+  </div>
+</section>
+
+<section class="sheet" id="voice">
+  <div class="wrap">
+    <div class="head">
+      <h2>Voice</h2>
+      <p>Plain and specific: say what you built, for whom, and what changed, and let clients supply the adjectives. Write the Arabic directly rather than translating it word for word.</p>
+    </div>
+    <div class="voice">
+      <div class="vrow"><div class="say"><b>Say</b><span>I built the storefront and admin for a shopping platform used by more than 3 million people.</span><span lang="ar" dir="rtl">بنيت واجهة المتجر ولوحة الإدارة لمنصة تسوّق يستخدمها أكثر من 3 ملايين شخص.</span></div><div class="not"><b>Not</b><span>I craft stunning, pixel-perfect digital experiences.</span></div></div>
+      <div class="vrow"><div class="say"><b>Say</b><span>Tell me what you're building.</span><span lang="ar" dir="rtl">أخبرني بما تبنيه.</span></div><div class="not"><b>Not</b><span>Let's build something amazing!</span></div></div>
+      <div class="vrow"><div class="say"><b>Say</b><span>Taking new projects from December.</span><span lang="ar" dir="rtl">أستقبل مشاريع جديدة ابتداءً من ديسمبر.</span></div><div class="not"><b>Not</b><span>🚀 Open to exciting opportunities!</span></div></div>
+      <div class="vrow"><div class="say"><b>Say</b><span>This page didn't load. Try again, or email me.</span><span lang="ar" dir="rtl">لم تُحمَّل الصفحة. أعد المحاولة، أو راسلني عبر البريد.</span></div><div class="not"><b>Not</b><span>Oops! Something went wrong 😢</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="use">
+  <div class="wrap">
+    <div class="head"><h2>In use</h2></div>
+    <div class="mocks">
+      <div class="browser" aria-label="Browser mockup of the portfolio home page">
+        <div class="chrome"><div class="tabx"><svg viewBox="14 8 72 90" aria-hidden="true"><use href="#mark"/></svg><span>Issam Seghir</span></div></div>
+        <div class="addr">issam.tech</div>
+        <div class="site">
+          <div class="site-nav"><div class="lk"><svg viewBox="14 8 72 90" aria-hidden="true"><use href="#mark"/></svg><span>Issam Seghir</span></div><nav><span>Projects</span><span>About</span></nav><span class="cta">Start a project</span></div>
+          <div class="site-hero"><span class="status">Taking new projects</span><span class="n1">Issam Seghir</span><span class="n2" lang="ar" dir="rtl" style="text-align:left">عصام صغير</span><p>I design and build SaaS products, web platforms and mobile apps, from the first sketch to launch day.</p></div>
+        </div>
+      </div>
+      <div class="phone" aria-label="Phone home screen with the app icon">
+        <div class="app"><i style="background:#3D5A6C"></i>Notes</div>
+        <div class="app"><i style="background:#6B4E3D"></i>Photos</div>
+        <div class="app"><i style="background:#2E5E4E"></i>Maps</div>
+        <div class="app"><i style="background:#5B4B78"></i>Music</div>
+        <div class="app"><i style="background:#4A4A4A"></i>Clock</div>
+        <div class="app"><svg viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" fill="#F5F7F4"/><g transform="translate(10 7) scale(.8)"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="#0C6B5B"/><g transform="translate(21 28) scale(.58)" fill="none" stroke="#F5F7F4" stroke-width="11" stroke-linecap="round"><rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="#E2A33A" stroke="none"/><path d="M23 82V42"/><path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/></g></g></svg>Issam</div>
+        <div class="app"><i style="background:#7A3E48"></i>Mail</div>
+        <div class="app"><i style="background:#2F4A7A"></i>Files</div>
+        <div class="app"><i style="background:#4E6B3D"></i>Health</div>
+        <div class="app"><i style="background:#6C5B3D"></i>Wallet</div>
+        <div class="app"><i style="background:#3D4E6C"></i>Weather</div>
+        <div class="app"><i style="background:#5E3D6C"></i>Books</div>
+      </div>
+      <div class="cards">
+        <div class="bcard front" aria-label="Business card front"><div class="lk"><svg viewBox="14 8 72 90" aria-hidden="true"><path d="M18 94V49.2C18 27.6 32 10.8 50 10.8s32 16.8 32 38.4V94Z" fill="#0C6B5B"/><g transform="translate(21 28) scale(.58)" fill="none" stroke="#F5F7F4" stroke-width="11" stroke-linecap="round"><rect x="17.5" y="20" width="11" height="11" rx="1.5" fill="#E2A33A" stroke="none"/><path d="M23 82V42"/><path d="M76 45c-4-5-11-7-18-7-10 0-16 4-16 11s6 9 17 11 18 4 18 12-7 10-18 10c-8 0-15-2-19-7"/></g></svg><span>Issam Seghir</span></div><span class="line">Software engineer and SaaS founder</span></div>
+        <div class="bcard back" aria-label="Business card back"><span lang="ar" dir="rtl" style="font-family:var(--font-display);font-weight:700;font-size:1.3rem">عصام صغير</span><div class="contact"><span>issam.tech</span><span>issamusma@hotmail.com</span><span>WhatsApp +213 781 844 146</span><span>Algiers · UTC+1</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <h2 style="font-size:1.4rem">Source of truth</h2>
+    <ul>
+      <li>Rules and reasons: <code>docs/product/brand.md</code>. This book: <code>docs/product/brand-book.md</code>, with files in <code>docs/product/brand-kit/</code></li>
+      <li>Mark: <code>src/components/ui/logo.tsx</code> (follows the theme), <code>public/images/brand/logo-mark.svg</code>, <code>public/favicon.svg</code></li>
+      <li>Colour tokens: <code>src/styles/globals.css</code> (<code>:root</code> and <code>.dark</code>). Fonts: <code>src/app/[locale]/layout.tsx</code></li>
+    </ul>
+    <p class="muted">History: a stock gold "IS" shield template until October 2026; a grid-built monogram, sketched and rejected on 20 October 2026; the doorway, chosen the same day.</p>
+    <p class="note">Limits: trademarks not checked. The verse vowels are normalised from a digital edition; check them against a printed copy before print. A designer's review of the mark is welcome before signage or print runs.</p>
+  </div>
+</footer>
+<div id="copied" role="status" aria-live="polite" hidden></div>
+
+<script>
+(function () {
+  var mark = document.getElementById('hero-mark');
+  var toggle = document.getElementById('toggle-construct');
+  toggle.addEventListener('click', function () {
+    var on = toggle.getAttribute('aria-pressed') !== 'true';
+    toggle.setAttribute('aria-pressed', String(on));
+    toggle.textContent = on ? 'Hide construction' : 'Show construction';
+    mark.classList.toggle('show-construct', on);
+  });
+  document.getElementById('draw-mark').addEventListener('click', function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    mark.classList.remove('drawing');
+    void mark.getBoundingClientRect();
+    mark.classList.add('drawing');
+  });
+  var toast = document.getElementById('copied');
+  var timer;
+  function show(msg) {
+    toast.textContent = msg; toast.hidden = false;
+    clearTimeout(timer); timer = setTimeout(function () { toast.hidden = true; }, 1600);
+  }
+  document.querySelectorAll('.hex').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var hex = b.getAttribute('data-hex');
+      var done = function () { show('Copied ' + hex); };
+      try {
+        navigator.clipboard.writeText(hex).then(done, function () { selectText(b); show('Select and copy ' + hex); });
+      } catch (e) { selectText(b); show('Select and copy ' + hex); }
+    });
+  });
+  function selectText(el) {
+    try { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+  }
+})();
+</script>
+
+</body>
+</html>

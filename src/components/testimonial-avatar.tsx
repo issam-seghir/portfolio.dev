@@ -59,7 +59,7 @@ export function TestimonialAvatar({ name, initials, color, avatar, countryFlag, 
     <div
       className={cn(
         mediaShell,
-        'flex items-center justify-center bg-linear-to-br text-xs font-semibold text-white',
+        'flex items-center justify-center bg-primary text-xs font-semibold text-primary-foreground',
         color,
       )}
     >

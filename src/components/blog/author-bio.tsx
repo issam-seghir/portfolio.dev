@@ -10,7 +10,7 @@ export default function AuthorBio() {
   const t = useTranslations()
 
   return (
-    <div className='mt-12 flex items-start gap-4 rounded-2xl border bg-card p-6'>
+    <div className='mt-12 flex items-start gap-4 rounded-xl border bg-card p-6'>
       <BlurImage
         src='/images/avatar.png'
         className='size-14 shrink-0 rounded-full ring-2 ring-border'

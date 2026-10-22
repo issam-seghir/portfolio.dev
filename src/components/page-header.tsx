@@ -20,11 +20,10 @@ function PageHeader(props: PageTitleProps) {
       >
         {title}
         <motion.div
-          className='mt-2 h-1 w-12 rounded-full bg-linear-to-r from-blue-600 to-violet-600'
+          className='mt-2 h-1 w-12 origin-left rounded-full bg-primary rtl:origin-right'
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          style={{ transformOrigin: 'left' }}
         />
       </motion.h1>
       <motion.h2

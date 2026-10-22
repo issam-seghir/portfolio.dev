@@ -40,7 +40,20 @@ export default defineConfig(
     rules: {
       'better-tailwindcss/no-unknown-classes': [
         'error',
-        { ignore: ['not-prose', 'shiki', 'toaster', 'bento-card', 'testimonial-highlight', 'hover-word'] },
+        {
+          ignore: [
+            'not-prose',
+            'shiki',
+            'toaster',
+            'bento-card',
+            'testimonial-highlight',
+            'hover-word',
+            'doorway-frame',
+            'doorway-photo',
+            'doorway-keystone',
+            'scroll-rise',
+          ],
+        },
       ],
     },
   }),

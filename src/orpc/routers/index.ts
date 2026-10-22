@@ -1,5 +1,6 @@
 import { adminRouter } from './admin.router'
 import { authRouter } from './auth.router'
+import { briefRouter } from './brief.router'
 import { commentRouter } from './comment.router'
 import { githubRouter } from './github.router'
 import { likeRouter } from './like.router'
@@ -22,4 +23,5 @@ export const router = {
   settings: settingsRouter,
   unsubscribe: unsubscribeRouter,
   r2: r2Router,
+  brief: briefRouter,
 }

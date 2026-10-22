@@ -1,6 +1,7 @@
 'use client'
 
 import { Provider as JotaiProvider } from 'jotai'
+import { MotionConfig } from 'motion/react'
 import { ThemeProvider } from 'next-themes'
 
 import { Toaster } from '@/components/ui/sonner'
@@ -26,7 +27,7 @@ function Providers(props: ProvidesProps) {
           disableTransitionOnChange
         >
           <TooltipProvider>
-            {children}
+            <MotionConfig reducedMotion='user'>{children}</MotionConfig>
             <Toaster
               toastOptions={{
                 duration: 2500,

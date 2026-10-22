@@ -12,6 +12,7 @@ import { getTranslations } from 'next-intl/server'
 import OGImage from '@/components/og-image'
 import en from '@/i18n/messages/en.json'
 import { routing } from '@/i18n/routing'
+import { MY_NAME } from '@/lib/constants'
 import { getPostBySlug } from '@/lib/content'
 import { getOGImageFonts } from '@/lib/fonts'
 import { LOGO_PUBLIC_FILE } from '@/lib/logo-constants'
@@ -43,15 +44,7 @@ export async function GET(_request: Request, props: RouteContext<'/[locale]/og/[
 }
 
 async function generateIndexOGImage() {
-  const imageBuffer = await fs.readFile(path.join(process.cwd(), 'public', 'images', 'banner.png'))
-
-  return new NextResponse(new Uint8Array(imageBuffer), {
-    status: 200,
-    headers: {
-      'Content-Type': 'image/png',
-      'Cache-Control': 'no-cache, no-store',
-    },
-  })
+  return generateOGImage(MY_NAME, '')
 }
 
 async function generateBlogOGImage(locale: Locale, slugs: string[]) {
@@ -116,7 +109,7 @@ async function generateProjectOGImage(slugs: string[]) {
 async function generateOGImage(title: string, url: string) {
   const fonts = await getOGImageFonts(title)
   const logoBuffer = await fs.readFile(path.join(process.cwd(), 'public', LOGO_PUBLIC_FILE))
-  const logoDataUrl = `data:image/jpeg;base64,${logoBuffer.toString('base64')}`
+  const logoDataUrl = `data:image/svg+xml;base64,${logoBuffer.toString('base64')}`
 
   return new ImageResponse(<OGImage title={title} url={url} logoDataUrl={logoDataUrl} />, {
     width: 1200,

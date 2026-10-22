@@ -39,7 +39,7 @@ async function RelatedProjects(props: RelatedProjectsProps) {
             <div className='space-y-1 p-3'>
               <div className='flex items-start justify-between gap-2'>
                 <h3 className='text-sm/tight font-semibold'>{project.name}</h3>
-                <ArrowUpRightIcon className='size-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100' />
+                <ArrowUpRightIcon className='size-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 rtl:-scale-x-100' />
               </div>
               <p className='line-clamp-2 text-xs text-muted-foreground'>{project.description}</p>
             </div>

@@ -7,14 +7,14 @@ import { useTranslations } from 'next-intl'
 import { cn } from '@/utils/cn'
 
 const TRAITS = [
-  { key: 'trait-curious', emoji: '🧠', bg: 'from-blue-500/15 to-cyan-500/15' },
-  { key: 'trait-creative', emoji: '🎨', bg: 'from-rose-500/15 to-pink-500/15' },
-  { key: 'trait-founder', emoji: '🚀', bg: 'from-violet-500/15 to-purple-500/15' },
-  { key: 'trait-perfectionist', emoji: '✨', bg: 'from-amber-500/15 to-yellow-500/15' },
-  { key: 'trait-dreamer', emoji: '💭', bg: 'from-indigo-500/15 to-blue-500/15' },
-  { key: 'trait-resilient', emoji: '🦁', bg: 'from-orange-500/15 to-red-500/15' },
-  { key: 'trait-self-taught', emoji: '📚', bg: 'from-teal-500/15 to-emerald-500/15' },
-  { key: 'trait-unboxed', emoji: '💡', bg: 'from-green-500/15 to-lime-500/15' },
+  { key: 'trait-curious', emoji: '🧠' },
+  { key: 'trait-creative', emoji: '🎨' },
+  { key: 'trait-founder', emoji: '🚀' },
+  { key: 'trait-perfectionist', emoji: '✨' },
+  { key: 'trait-dreamer', emoji: '💭' },
+  { key: 'trait-resilient', emoji: '🦁' },
+  { key: 'trait-self-taught', emoji: '📚' },
+  { key: 'trait-unboxed', emoji: '💡' },
 ] as const
 
 const STATS = [
@@ -37,7 +37,7 @@ function CodingDnaCard() {
         {TRAITS.map((trait, i) => (
           <motion.div
             key={trait.key}
-            className={`flex items-center gap-2 rounded-xl bg-linear-to-br p-2.5 ${trait.bg} cursor-default transition-all hover:scale-[1.03] hover:brightness-110`}
+            className='flex cursor-default items-center gap-2 rounded-lg bg-muted p-2.5 transition-colors hover:bg-accent'
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -60,9 +60,7 @@ function CodingDnaCard() {
             transition={{ delay: i * 0.1 + 0.4, duration: 0.4 }}
           >
             <span className='text-2xl'>{stat.icon}</span>
-            <span className='bg-linear-to-r from-blue-600 to-violet-600 bg-clip-text text-base font-bold text-transparent tabular-nums dark:from-blue-400 dark:to-violet-400'>
-              {stat.value}
-            </span>
+            <span className='text-base font-bold text-primary tabular-nums'>{stat.value}</span>
             <span className='text-center text-[13px] leading-tight text-muted-foreground'>
               {t(`homepage.about-me.${stat.key}` as never)}
             </span>

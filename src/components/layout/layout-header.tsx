@@ -49,7 +49,7 @@ function LayoutHeader() {
   return (
     <header
       ref={headerRef}
-      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 max-w-5xl min-w-0 items-center justify-between gap-2 overflow-x-clip rounded-2xl bg-background/30 px-4 shadow-xs saturate-100 backdrop-blur-md transition-colors data-[scrolled=true]:bg-background/80 sm:px-8'
+      className='fixed inset-x-0 top-4 z-40 mx-auto flex h-15 max-w-5xl min-w-0 items-center justify-between gap-2 overflow-x-clip rounded-xl border border-transparent bg-background/60 px-4 backdrop-blur-md transition-colors data-[scrolled=true]:border-border data-[scrolled=true]:bg-background/90 sm:px-6'
     >
       <Link
         href='#skip-nav'
@@ -58,7 +58,7 @@ function LayoutHeader() {
         <span>{t('layout.skip-to-main-content')}</span>
       </Link>
       <Link href='/' className='flex items-center justify-center gap-1' aria-label={t('common.labels.home')}>
-        <Logo width={45} aria-hidden='true' priority className='rounded-full' />
+        <Logo width={34} aria-hidden='true' />
       </Link>
       <div className='flex items-center gap-2'>
         <Navbar />

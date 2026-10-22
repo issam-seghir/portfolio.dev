@@ -3,7 +3,7 @@ import { Img, Section } from 'react-email'
 export default function Logo() {
   return (
     <Section className='mb-6'>
-      <Img src='/images/avatar.png' alt="Issam Seghir's logo" width='48' height='48' className='rounded-full' />
+      <Img src='/images/brand/logo-mark.png' alt='Issam Seghir' width='38' height='48' />
     </Section>
   )
 }

@@ -26,9 +26,9 @@ function ProjectCTA() {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : undefined}
       transition={{ duration: 0.5 }}
-      className='mt-16 rounded-2xl border bg-linear-to-br from-blue-50 to-violet-50 p-8 text-center dark:from-blue-950/30 dark:to-violet-950/30'
+      className='mt-16 rounded-xl border bg-card p-8 text-center'
     >
-      <RocketIcon className='mx-auto mb-4 size-8 text-blue-600 dark:text-blue-400' />
+      <RocketIcon className='mx-auto mb-4 size-8 text-primary' />
       <h3 className='text-xl font-semibold'>{t('projects.cta.title')}</h3>
       <p className='mx-auto mt-2 max-w-md text-sm text-muted-foreground'>{t('projects.cta.description')}</p>
       <a

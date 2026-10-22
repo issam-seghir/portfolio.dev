@@ -5,6 +5,7 @@ import { ArrowUpRightIcon, MailIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import {
+  SITE_CONTACT_MAILTO,
   SITE_FACEBOOK_URL,
   SITE_GITHUB_URL,
   SITE_LINKEDIN_URL,
@@ -26,7 +27,7 @@ const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const LINKS = [
   {
-    href: 'mailto:issamusma@hotmail.com',
+    href: SITE_CONTACT_MAILTO,
     icon: MailIcon,
     label: 'Email',
     labelKey: 'about.connect.email',
@@ -84,8 +85,10 @@ function LetsConnect() {
               <span className='flex-1 font-medium'>{t(link.labelKey as never)}</span>
               <ArrowUpRightIcon
                 className={cn(
-                  'size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground',
+                  'size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:text-foreground',
+                  'group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5',
                 )}
+                aria-hidden
               />
             </a>
           )
